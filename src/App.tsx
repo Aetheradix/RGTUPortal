@@ -1,11 +1,10 @@
 import AppLayout from './layout/AppLayout'
+import AppRoutes from './components/AppRoutes'
 
 const App = () => {
   return (
     <AppLayout>
-      <div className="max-w-5xl mx-auto">
-        
-      </div>
+      <AppRoutes />
     </AppLayout>
   )
 }

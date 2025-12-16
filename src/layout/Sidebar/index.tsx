@@ -1,41 +1,65 @@
-import React from 'react';
-import {
-  MdAssignment,
-  MdAttachMoney,
-  MdBook,
-  MdClose,
-  MdDashboard,
-  MdDirectionsBus,
-  MdLocalLibrary,
-  MdPeople,
-  MdSchool,
-} from 'react-icons/md';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { MdClose, MdChevronRight, MdExpandLess } from 'react-icons/md';
+import { getIcon } from '../../utils/iconMapper';
 
-const navItems = [
-  { name: 'Dashboard', icon: MdDashboard, active: false },
-  { name: 'Students', icon: MdPeople, active: true },
-  { name: 'Faculty', icon: MdSchool, active: false },
-  { name: 'Courses', icon: MdBook, active: false },
-  { name: 'Examinations', icon: MdAssignment, active: false },
-  { name: 'Finance', icon: MdAttachMoney, active: false },
-  { name: 'Library', icon: MdLocalLibrary, active: false },
-  { name: 'Transport', icon: MdDirectionsBus, active: false },
-];
+interface Page {
+  page: string;
+  route: string;
+}
+
+interface SubModule {
+  subModule: string;
+  route: string;
+  pages?: Page[];
+}
+
+interface Module {
+  module: string;
+  icon: string;
+  route: string;
+  subModules?: SubModule[];
+}
+
+interface SidebarConfig {
+  sidebarMenu: Module[];
+}
 
 
 
 interface SidebarItemProps {
   name: string;
-  Icon: React.ElementType; // Or the specific icon type you are using
+  Icon: React.ElementType; 
   active?: boolean;
   collapsed?: boolean;
   onClick?: () => void;
+  hasChildren?: boolean;
+  isExpanded?: boolean;
+  onToggle?: () => void;
 }
 
-const SidebarItem: React.FC<SidebarItemProps> = ({ name, Icon, active, collapsed, onClick }) => {
+const SidebarItem: React.FC<SidebarItemProps> = ({ 
+  name, 
+  Icon, 
+  active, 
+  collapsed, 
+  onClick,
+  hasChildren,
+  isExpanded,
+  onToggle
+}) => {
+  const handleClick = (e: React.MouseEvent) => {
+    if (hasChildren && !collapsed && onToggle) {
+      e.stopPropagation();
+      onToggle();
+    } else if (onClick) {
+      onClick();
+    }
+  };
+
   return (
     <button
-      onClick={onClick}
+      onClick={handleClick}
       className={`
         relative flex items-center transition-all duration-300 group mb-2
         ${collapsed ? 'justify-center w-12 h-12 mx-auto rounded-full' : 'w-[90%] mx-auto py-4 px-6 rounded-full'}
@@ -51,13 +75,13 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ name, Icon, active, collapsed
       <div 
         className={`
           flex items-center justify-center rounded-full transition-all duration-300
-          ${active ? ' w-8 h-8 p-1' : 'w-5 h-5 border-0 p-0'}
+          ${active ? 'w-8 h-8 bg-white/20 backdrop-blur-sm' : 'w-5 h-5'}
         `}
       >
         <Icon 
           className={`
-            transition-all duration-300
-            ${active ? 'w-6 h-6' : collapsed  && 'w-5 h-5'}
+            transition-all duration-300 text-current
+            ${active ? 'w-5 h-5' : collapsed ? 'w-5 h-5' : 'w-5 h-5'}
           `} 
         />
       </div>
@@ -73,6 +97,17 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ name, Icon, active, collapsed
         {name}
       </span>
 
+      {/* Chevron Icon for expandable items */}
+      {hasChildren && !collapsed && (
+        <div className="ml-auto">
+          {isExpanded ? (
+            <MdExpandLess className="w-5 h-5 text-gray-400" />
+          ) : (
+            <MdChevronRight className="w-5 h-5 text-gray-400" />
+          )}
+        </div>
+      )}
+
       {/* Tooltip for collapsed state */}
       {collapsed && (
         <div className="absolute left-full ml-4 px-3 py-2 bg-[#1c1f3b] text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap z-50 shadow-xl border border-purple-500/20">
@@ -80,6 +115,98 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ name, Icon, active, collapsed
         </div>
       )}
     </button>
+  );
+};
+
+interface SubModuleItemProps {
+  subModule: SubModule;
+  collapsed?: boolean;
+  onNavigate?: (route: string) => void;
+}
+
+const SubModuleItem: React.FC<SubModuleItemProps> = ({ subModule, collapsed, onNavigate }) => {
+  const location = useLocation();
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  // Auto-expand if current route matches this submodule or its pages
+  useEffect(() => {
+    if (subModule.pages) {
+      const shouldExpand = subModule.pages.some(page => location.pathname === page.route);
+      setIsExpanded(shouldExpand);
+    } else {
+      const shouldExpand = location.pathname === subModule.route || location.pathname.startsWith(subModule.route + '/');
+      setIsExpanded(shouldExpand);
+    }
+  }, [location.pathname, subModule.route, subModule.pages]);
+
+  if (collapsed) return null;
+
+  const handleClick = () => {
+    if (subModule.pages && subModule.pages.length > 0) {
+      setIsExpanded(!isExpanded);
+    } else if (onNavigate) {
+      onNavigate(subModule.route);
+    }
+  };
+
+  const hasPages = subModule.pages && subModule.pages.length > 0;
+  const isSubModuleActive = (() => {
+    const currentPath = location.pathname;
+    // Exact match with submodule route
+    if (currentPath === subModule.route) return true;
+    // Check if any page under this submodule is active
+    if (hasPages && subModule.pages) {
+      return subModule.pages.some(page => currentPath === page.route);
+    }
+    return false;
+  })();
+
+  return (
+    <div className="ml-4 mb-1">
+      <button
+        onClick={handleClick}
+        className={`w-full text-left py-2 px-4 rounded-lg transition-all duration-200 flex items-center justify-between group ${
+          isSubModuleActive 
+            ? 'text-white bg-slate-700/50' 
+            : 'text-gray-400 hover:text-white hover:bg-slate-700/30'
+        }`}
+      >
+        <span className="text-sm font-medium">{subModule.subModule}</span>
+        {hasPages && (
+          <MdChevronRight 
+            className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${isExpanded ? 'rotate-90' : ''}`}
+          />
+        )}
+      </button>
+      
+      {/* Pages list with animation */}
+      {hasPages && (
+        <div 
+          className={`overflow-hidden transition-all duration-300 ${
+            isExpanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+          }`}
+        >
+          <div className="ml-4 space-y-1 pt-1">
+            {subModule.pages.map((page) => {
+              const isPageActive = location.pathname === page.route;
+              return (
+                <button
+                  key={page.route}
+                  onClick={() => onNavigate && onNavigate(page.route)}
+                  className={`w-full text-left py-1.5 px-4 rounded-lg transition-all duration-200 text-xs ${
+                    isPageActive
+                      ? 'text-white bg-slate-700/40'
+                      : 'text-gray-500 hover:text-white hover:bg-slate-700/20'
+                  }`}
+                >
+                  {page.page}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 
@@ -92,6 +219,70 @@ type SidebarProps = {
 };
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, collapsed, onClose }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [sidebarModules, setSidebarModules] = useState<Module[]>([]);
+  const [expandedModules, setExpandedModules] = useState<Set<string>>(new Set());
+
+  useEffect(() => {
+    // Load sidebar configuration from config file
+    const loadSidebarConfig = async () => {
+      try {
+        const response = await fetch('/config/modules.json');
+        const data: SidebarConfig = await response.json();
+        setSidebarModules(data.sidebarMenu || []);
+        
+        // Auto-expand modules that contain the current route
+        const currentPath = location.pathname;
+        const modulesToExpand = new Set<string>();
+        
+        data.sidebarMenu.forEach((module) => {
+          if (currentPath.startsWith(module.route)) {
+            modulesToExpand.add(module.module);
+          }
+        });
+        
+        if (modulesToExpand.size > 0) {
+          setExpandedModules(modulesToExpand);
+        }
+      } catch (error) {
+        console.error('Failed to load sidebar config:', error);
+        setSidebarModules([]);
+      }
+    };
+
+    loadSidebarConfig();
+  }, [location.pathname]);
+
+  const toggleModule = (moduleName: string) => {
+    setExpandedModules((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(moduleName)) {
+        newSet.delete(moduleName);
+      } else {
+        newSet.add(moduleName);
+      }
+      return newSet;
+    });
+  };
+
+  const handleNavigate = (route: string) => {
+    navigate(route);
+    if (window.innerWidth < 1024) {
+      onClose();
+    }
+  };
+  
+  // Check if a route is active (exact match or is a parent of current route)
+  const isRouteActive = (route: string): boolean => {
+    const currentPath = location.pathname;
+    // Exact match
+    if (currentPath === route) return true;
+    // Is parent route (current path starts with route + '/')
+    if (currentPath.startsWith(route + '/')) return true;
+    return false;
+  };
+
   return (
     <>
       {/* Sidebar drawer */}
@@ -137,21 +328,69 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, collapsed, onClose }) => {
 
         {/* Navigation */}
         <nav className="flex-1 py-6 overflow-y-auto overflow-x-hidden scrollbar-hide px-0">
-          {navItems.map((item) => (
-            <SidebarItem
-              key={item.name}
-              name={item.name}
-              Icon={item.icon}
-              active={item.active}
-              collapsed={collapsed}
-              onClick={() => {
-
-                if (window.innerWidth < 1024) {
-                  onClose();
-                }
-              }}
-            />
-          ))}
+          {sidebarModules.map((module) => {
+            const Icon = getIcon(module.icon);
+            const hasSubModules = module.subModules && module.subModules.length > 0;
+            const isExpanded = expandedModules.has(module.module);
+            
+            // Check if module is active - either exact match or any child route matches
+            const isModuleActive = (() => {
+              const currentPath = location.pathname;
+              // Exact match
+              if (currentPath === module.route) return true;
+              // Check if any submodule or page under this module is active
+              if (hasSubModules && module.subModules) {
+                return module.subModules.some(subModule => {
+                  if (currentPath === subModule.route) return true;
+                  if (currentPath.startsWith(subModule.route + '/')) return true;
+                  if (subModule.pages) {
+                    return subModule.pages.some(page => currentPath === page.route);
+                  }
+                  return false;
+                });
+              }
+              return false;
+            })();
+            
+            return (
+              <div key={module.module} className="mb-2">
+                <SidebarItem
+                  name={module.module}
+                  Icon={Icon}
+                  active={isModuleActive}
+                  collapsed={collapsed}
+                  hasChildren={hasSubModules}
+                  isExpanded={isExpanded}
+                  onToggle={() => toggleModule(module.module)}
+                  onClick={() => {
+                    if (!hasSubModules) {
+                      handleNavigate(module.route);
+                    }
+                  }}
+                />
+                
+                {/* SubModules - only show when expanded and not collapsed */}
+                {hasSubModules && !collapsed && (
+                  <div 
+                    className={`overflow-hidden transition-all duration-300 ${
+                      isExpanded ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'
+                    }`}
+                  >
+                    <div className="mt-1 space-y-1">
+                      {module.subModules!.map((subModule) => (
+                        <SubModuleItem
+                          key={subModule.route}
+                          subModule={subModule}
+                          collapsed={collapsed}
+                          onNavigate={handleNavigate}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </nav>
 
         {/* Footer - hidden when collapsed */}
