@@ -80,7 +80,7 @@ const RoleWiseRightsAssign: React.FC = () => {
         <div className="flex gap-3">
           <Button type="submit" label="Assign Rights" icon="pi pi-save" className="p-button-primary" />
           <Button type="button" label="Cancel" icon="pi pi-times" className="p-button-secondary" />
-          <Button type="button" label="Reset" icon="pi pi-refresh" className="p-button-outlined" />
+          <Button type="button" label="Reset" icon="pi pi-refresh" className="p-button-outlined" onClick={() => setFormData({ roleName: '', selectedForms: [] })} /> 
         </div>
       </form>
 
