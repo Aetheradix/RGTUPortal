@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+/* Custom CSS Variables */
+:root {
+  /* Brand Colors */
+  --color-primary: #8b5cf6;
+  --color-primary-hover: #7c3aed;
+  --color-primary-active: #6d28d9;
+  
+  /* App layout */
+  --app-sidebar-width: 260px;
+  --app-sidebar-width-collapsed: 80px;
+
+  /* Sidebar */
+  --sidebar-bg-dark: #1c1f3b;
+  --sidebar-bg: #1e293b;
+  --sidebar-hover: #5b21b6;
+  --sidebar-active: #7c3aed;
+  --sidebar-text: #94a3b8;
+  --sidebar-text-active: #ffffff;
+
+  /* Gradients */
+  --gradient-purple-pink: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+  --gradient-purple-cyan: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
+  --gradient-mesh: linear-gradient(135deg, rgba(139, 92, 246, 0.3) 0%, rgba(236, 72, 153, 0.3) 50%, rgba(6, 182, 212, 0.3) 100%);
+
+  /* Shadows */
+  --shadow-purple: 0 10px 30px -5px rgba(139, 92, 246, 0.3);
+  --shadow-purple-lg: 0 20px 40px -10px rgba(139, 92, 246, 0.4);
+}
+
+/* Dark mode variables */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sidebar-bg: #0f172a;
+  }
+}
+
+/* Base Styles */
+* {
+  @apply antialiased;
+}
+
+
+/* Custom Utility Classes */
+.gradient-purple-pink {
+  background: var(--gradient-purple-pink);
+}
+
+.gradient-purple-cyan {
+  background: var(--gradient-purple-cyan);
+}
+
+.gradient-mesh {
+  background: var(--gradient-mesh);
+}
+
+.shadow-purple {
+  box-shadow: var(--shadow-purple);
+}
+
+.shadow-purple-lg {
+  box-shadow: var(--shadow-purple-lg);
+}
+
+.bg-sidebar-bg {
+  background-color: var(--sidebar-bg);
+}
+
+.text-sidebar-text {
+  color: var(--sidebar-text);
+}
+
+/* You might need to define more if you use them directly: */
+.bg-sidebar-hover {
+  background-color: var(--sidebar-hover);
+}
+
+.text-sidebar-text-active {
+  color: var(--sidebar-text-active);
+}
+
+/* Sidebar Component */
+.sidebar {
+  /* Use plain CSS instead of @apply for custom colors */
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-text);
+  width: 16rem;
+  /* w-64 */
+  height: 100vh;
+  /* h-screen */
+  position: fixed;
+  left: 0;
+  top: 0;
+  overflow-y: auto;
+}
+
+.sidebar-item {
+  @apply flex items-center gap-3 px-6 py-3 text-sm font-medium transition-all duration-200 cursor-pointer;
+}
+
+.sidebar-item:hover {
+  /* Use plain CSS for custom colors, keep Tailwind for the rest */
+  background-color: var(--sidebar-hover);
+  color: var(--sidebar-text-active);
+}
+
+.sidebar-item.active {
+  background-color: var(--sidebar-active);
+  color: var(--sidebar-text-active);
+}

@@ -1,0 +1,889 @@
+{
+  "applicationName": "Comprehensive Education Management System",
+  "modules": [
+    {
+      "module": "Masters",
+      "icon": "fa-cog",
+      "route": "/masters",
+      "subModules": [
+        { "subModule": "User Management", "route": "/masters/user-management", "pages": [
+          { "page": "Create User Type", "route": "/masters/user-management/create-user-type" },
+          { "page": "Create User Level", "route": "/masters/user-management/create-user-level" },
+          { "page": "Module Mapping", "route": "/masters/user-management/module-mapping" },
+          { "page": "Main Menu Creation", "route": "/masters/user-management/main-menu-creation" },
+          { "page": "Sub Menu Creation", "route": "/masters/user-management/sub-menu-creation" },
+          { "page": "Role Creation", "route": "/masters/user-management/role-creation" },
+          { "page": "Role Wise Module Mapping", "route": "/masters/user-management/role-wise-module-mapping" },
+          { "page": "Incharge Mapping", "route": "/masters/user-management/incharge-mapping" },
+          { "page": "Role Wise Rights Assign", "route": "/masters/user-management/role-wise-rights-assign" },
+          { "page": "Module Menu Description", "route": "/masters/user-management/module-menu-description" },
+          { "page": "Parent Menu Creation", "route": "/masters/user-management/parent-menu-creation" },
+          { "page": "Role Master Creation", "route": "/masters/user-management/role-master-creation" },
+          { "page": "Form Wise Rights Assign", "route": "/masters/user-management/form-wise-rights-assign" }
+        ]},
+        { "subModule": "Location Master", "route": "/masters/location-master", "pages": [
+          { "page": "Division Master Data", "route": "/masters/location-master/division-master-data" },
+          { "page": "District Master Data", "route": "/masters/location-master/district-master-data" },
+          { "page": "Block Master Data", "route": "/masters/location-master/block-master-data" },
+          { "page": "Assembly Master Data", "route": "/masters/location-master/assembly-master-data" },
+          { "page": "Nagar Nigam Master Data", "route": "/masters/location-master/nagar-nigam-master-data" },
+          { "page": "Nagar Palika Master Data", "route": "/masters/location-master/nagar-palika-master-data" },
+          { "page": "Jila Panchayat Master Data", "route": "/masters/location-master/jila-panchayat-master-data" },
+          { "page": "Janpad Panchayat Master Data", "route": "/masters/location-master/janpad-panchayat-master-data" },
+          { "page": "Gram Panchayat Master Data", "route": "/masters/location-master/gram-panchayat-master-data" },
+          { "page": "City Master Data", "route": "/masters/location-master/city-master-data" },
+          { "page": "Village Master", "route": "/masters/location-master/village-master" },
+          { "page": "Reservation Master Data", "route": "/masters/location-master/reservation-master-data" },
+          { "page": "Pin code", "route": "/masters/location-master/pin-code" },
+          { "page": "Category", "route": "/masters/location-master/category" }
+        ]},
+        { "subModule": "Course Master", "route": "/masters/course-master", "pages": [
+          { "page": "Course", "route": "/masters/course-master/course" },
+          { "page": "Specialization", "route": "/masters/course-master/specialization" },
+          { "page": "Grades of Education", "route": "/masters/course-master/grades-of-education" },
+          { "page": "Course and Specialization Mapping", "route": "/masters/course-master/course-specialization-mapping" },
+          { "page": "Course Status", "route": "/masters/course-master/course-status" }
+        ]},
+        { "subModule": "Faculty Master", "route": "/masters/faculty-master", "pages": [
+          { "page": "Faculty", "route": "/masters/faculty-master/faculty" },
+          { "page": "Faculty Status", "route": "/masters/faculty-master/faculty-status" },
+          { "page": "Pay Status", "route": "/masters/faculty-master/pay-status" }
+        ]},
+        { "subModule": "University Master", "route": "/masters/university-master", "pages": [
+          { "page": "Department", "route": "/masters/university-master/department" },
+          { "page": "Office", "route": "/masters/university-master/office" },
+          { "page": "District Office", "route": "/masters/university-master/district-office" },
+          { "page": "University Category Master", "route": "/masters/university-master/university-category-master" },
+          { "page": "University", "route": "/masters/university-master/university" },
+          { "page": "Campus Type Master", "route": "/masters/university-master/campus-type-master" }
+        ]},
+        { "subModule": "College Master", "route": "/masters/college-master", "pages": [
+          { "page": "College Category Master", "route": "/masters/college-master/college-category-master" },
+          { "page": "College", "route": "/masters/college-master/college" },
+          { "page": "Post Master Data", "route": "/masters/college-master/post-master-data" },
+          { "page": "Class Master Data", "route": "/masters/college-master/class-master-data" }
+        ]},
+        { "subModule": "HR Master", "route": "/masters/hr-master", "pages": [
+          { "page": "Designation Master Data", "route": "/masters/hr-master/designation-master-data" },
+          { "page": "Cadre Master Data", "route": "/masters/hr-master/cadre-master-data" },
+          { "page": "Pay Commission Master Data", "route": "/masters/hr-master/pay-commission-master-data" },
+          { "page": "Pay Scale Master Data", "route": "/masters/hr-master/pay-scale-master-data" },
+          { "page": "Religion Master Data", "route": "/masters/hr-master/religion-master-data" },
+          { "page": "Leave Master Data", "route": "/masters/hr-master/leave-master-data" },
+          { "page": "Level Basic Pay Master Data", "route": "/masters/hr-master/level-basic-pay-master-data" },
+          { "page": "Promotion Type Master Data", "route": "/masters/hr-master/promotion-type-master-data" },
+          { "page": "Blood Master Data", "route": "/masters/hr-master/blood-master-data" },
+          { "page": "Marital Status", "route": "/masters/hr-master/marital-status" },
+          { "page": "Caste Master Data", "route": "/masters/hr-master/caste-master-data" },
+          { "page": "Qualification Master Data", "route": "/masters/hr-master/qualification-master-data" }
+        ]},
+        { "subModule": "Payroll Master", "route": "/masters/payroll-master", "pages": [
+          { "page": "Head Management Master", "route": "/masters/payroll-master/head-management-master" },
+          { "page": "Set Earning & Deduction Optional Head Value", "route": "/masters/payroll-master/set-earning-deduction-optional-head-value" },
+          { "page": "Set Earning & Deduction Monthly Head Value", "route": "/masters/payroll-master/set-earning-deduction-monthly-head-value" },
+          { "page": "Set Insurance Policy And The All Employee Head Value", "route": "/masters/payroll-master/set-insurance-policy-all-employee-head-value" },
+          { "page": "Loan Master Data", "route": "/masters/payroll-master/loan-master-data" },
+          { "page": "Bank Master Data", "route": "/masters/payroll-master/bank-master-data" },
+          { "page": "Challan Details Master Data", "route": "/masters/payroll-master/challan-details-master-data" }
+        ]},
+        { "subModule": "Scheme Master", "route": "/masters/scheme-master", "pages": [
+          { "page": "Scheme Department Master", "route": "/masters/scheme-master/scheme-department-master" },
+          { "page": "Scheme Master", "route": "/masters/scheme-master/scheme-master" },
+          { "page": "Scheme Type Master", "route": "/masters/scheme-master/scheme-type-master" },
+          { "page": "Scheme Category Master (Central, State, UGC)", "route": "/masters/scheme-master/scheme-category-master" }
+        ]},
+        { "subModule": "Grant Master", "route": "/masters/grant-master", "pages": [
+          { "page": "Grant Type", "route": "/masters/grant-master/grant-type" },
+          { "page": "Grant Category", "route": "/masters/grant-master/grant-category" }
+        ]}
+      ]
+    },
+    {
+      "module": "User Management",
+      "icon": "fa-users-cog",
+      "route": "/user-management",
+      "subModules": [
+        { "subModule": "Master", "route": "/user-management/master", "pages": [
+          { "page": "Create User Type", "route": "/user-management/master/create-user-type" },
+          { "page": "Create User Level", "route": "/user-management/master/create-user-level" },
+          { "page": "Module Mapping", "route": "/user-management/master/module-mapping" },
+          { "page": "Main Menu Creation", "route": "/user-management/master/main-menu-creation" },
+          { "page": "Sub Menu Creation", "route": "/user-management/master/sub-menu-creation" },
+          { "page": "Role Creation", "route": "/user-management/master/role-creation" },
+          { "page": "Role Wise Module Mapping", "route": "/user-management/master/role-wise-module-mapping" },
+          { "page": "Incharge Mapping", "route": "/user-management/master/incharge-mapping" },
+          { "page": "Role Wise Rights Assign", "route": "/user-management/master/role-wise-rights-assign" },
+          { "page": "Module Menu Description", "route": "/user-management/master/module-menu-description" }
+        ]}
+      ]
+    },
+    {
+      "module": "Employee Directory Management",
+      "icon": "fa-id-card-alt",
+      "route": "/employee-directory-management",
+      "subModules": [
+        {
+          "subModule": "Employee Directory",
+          "route": "/employee-directory-management/employee-directory",
+          "pages": [
+            { "page": "Official Details Update", "route": "/employee-directory-management/employee-directory/official-details-update" },
+            { "page": "Employee Data Change Request", "route": "/employee-directory-management/employee-directory/employee-data-change-request" },
+            { "page": "Employee Verification", "route": "/employee-directory-management/employee-directory/employee-verification" },
+            { "page": "Employee Verification Pdf", "route": "/employee-directory-management/employee-directory/employee-verification-pdf" },
+            { "page": "Employee Verification HO Level", "route": "/employee-directory-management/employee-directory/employee-verification-ho-level" },
+            { "page": "Exam Wise Employee Enrolment", "route": "/employee-directory-management/employee-directory/exam-wise-employee-enrolment" },
+            { "page": "Employee Registration", "route": "/employee-directory-management/employee-directory/employee-registration" },
+            { "page": "Print Employee Card", "route": "/employee-directory-management/employee-directory/print-employee-card" }
+          ]
+        },
+        {
+          "subModule": "Employee ID Card Management System",
+          "route": "/employee-directory-management/employee-id-card-management-system",
+          "pages": [
+            { "page": "Approve Employee Id Card", "route": "/employee-directory-management/employee-id-card-management-system/approve-id-card" },
+            { "page": "Employee ID Card Generate", "route": "/employee-directory-management/employee-id-card-management-system/id-card-generate" },
+            { "page": "District Wise ID Card", "route": "/employee-directory-management/employee-id-card-management-system/district-wise-id-card" }
+          ]
+        },
+        {
+          "subModule": "Employee ID Card Reports",
+          "route": "/employee-directory-management/employee-id-card-reports",
+          "pages": [
+            { "page": "College Wise ID Card", "route": "/employee-directory-management/employee-id-card-reports/college-wise-id-card" },
+            { "page": "Missing Employee Details", "route": "/employee-directory-management/employee-id-card-reports/missing-employee-details" }
+          ]
+        },
+        {
+          "subModule": "Employee Reports",
+          "route": "/employee-directory-management/employee-reports",
+          "pages": [
+            { "page": "Employee Details Report", "route": "/employee-directory-management/employee-reports/employee-details-report" },
+            { "page": "Change Request Statistic Report", "route": "/employee-directory-management/employee-reports/change-request-statistic-report" },
+            { "page": "Employee Verification Statistic Report", "route": "/employee-directory-management/employee-reports/verification-statistic-report" },
+            { "page": "Exam Wise Employee Enrolment Report", "route": "/employee-directory-management/employee-reports/exam-wise-enrolment-report" },
+            { "page": "Employee Verification Report", "route": "/employee-directory-management/employee-reports/verification-report" },
+            { "page": "Handicapped Employees Report", "route": "/employee-directory-management/employee-reports/handicapped-employees-report" },
+            { "page": "Employee Customized Report", "route": "/employee-directory-management/employee-reports/customized-report" },
+            { "page": "About Voluntary and Mutuall Transfer", "route": "/employee-directory-management/employee-reports/about-voluntary-mutual-transfer" }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "HRMS",
+      "icon": "fa-briefcase",
+      "route": "/hrms",
+      "subModules": [
+        { "subModule": "HOD Anukampa Application Approval", "route": "/hrms/hod-anukampa-approval", "pages": [
+          { "page": "Print Application", "route": "/hrms/hod-anukampa-approval/print-application" },
+          { "page": "Action on Anukampa Appointment", "route": "/hrms/hod-anukampa-approval/action-on-anukampa-appointment" },
+          { "page": "Decision On Application", "route": "/hrms/hod-anukampa-approval/decision-on-application" },
+          { "page": "NOC Report Sent to District Collector", "route": "/hrms/hod-anukampa-approval/noc-report-to-district-collector" },
+          { "page": "Dispose Cases", "route": "/hrms/hod-anukampa-approval/dispose-cases" },
+          { "page": "Block Wise Statistics", "route": "/hrms/hod-anukampa-approval/block-wise-statistics" },
+          { "page": "District Wise Statistics", "route": "/hrms/hod-anukampa-approval/district-wise-statistics" }
+        ]},
+        { "subModule": "Director Anukampa Application Approval", "route": "/hrms/director-anukampa-approval", "pages": [
+          { "page": "JD Anukampa Application Approval Home", "route": "/hrms/director-anukampa-approval/jd-anukampa-approval-home" },
+          { "page": "Register/Correct Application for Anukampa Appointment", "route": "/hrms/director-anukampa-approval/register-correct-application" },
+          { "page": "Print Application", "route": "/hrms/director-anukampa-approval/print-application" },
+          { "page": "Action on Anukampa Appointment", "route": "/hrms/director-anukampa-approval/action-on-anukampa-appointment" },
+          { "page": "Decision On Application", "route": "/hrms/director-anukampa-approval/decision-on-application" },
+          { "page": "NOC Report Sent to District Collector", "route": "/hrms/director-anukampa-approval/noc-report-to-district-collector" },
+          { "page": "Dispose Cases", "route": "/hrms/director-anukampa-approval/dispose-cases" },
+          { "page": "Block Wise Statistics", "route": "/hrms/director-anukampa-approval/block-wise-statistics" },
+          { "page": "District Wise Statistics", "route": "/hrms/director-anukampa-approval/district-wise-statistics" }
+        ]},
+        { "subModule": "Head Office Anukampa Application Approval", "route": "/hrms/head-office-anukampa-approval", "pages": [
+          { "page": "NOC Head Office Anukampa Application Approval Home", "route": "/hrms/head-office-anukampa-approval/noc-approval-home" },
+          { "page": "Register/Correct Application for Anukampa Appointment", "route": "/hrms/head-office-anukampa-approval/register-correct-application" },
+          { "page": "Print Application", "route": "/hrms/head-office-anukampa-approval/print-application" },
+          { "page": "Action on Anukampa Appointment", "route": "/hrms/head-office-anukampa-approval/action-on-anukampa-appointment" },
+          { "page": "Decision On Application", "route": "/hrms/head-office-anukampa-approval/decision-on-application" },
+          { "page": "NOC Report Sent to District Collector", "route": "/hrms/head-office-anukampa-approval/noc-report-to-district-collector" },
+          { "page": "Dispose Cases", "route": "/hrms/head-office-anukampa-approval/dispose-cases" },
+          { "page": "Block Wise Statistics", "route": "/hrms/head-office-anukampa-approval/block-wise-statistics" },
+          { "page": "District Wise Statistics", "route": "/hrms/head-office-anukampa-approval/district-wise-statistics" },
+          { "page": "NOC Report", "route": "/hrms/head-office-anukampa-approval/noc-report" },
+          { "page": "Anukampa Appointment Report", "route": "/hrms/head-office-anukampa-approval/anukampa-appointment-report" },
+          { "page": "All Under Details", "route": "/hrms/head-office-anukampa-approval/all-under-details" }
+        ]},
+        { "subModule": "Dashboard Display", "route": "/hrms/dashboard-display", "pages": [
+          { "page": "Order Master", "route": "/hrms/dashboard-display/order-master" },
+          { "page": "Tender Master", "route": "/hrms/dashboard-display/tender-master" },
+          { "page": "Circular Master", "route": "/hrms/dashboard-display/circular-master" },
+          { "page": "News Master", "route": "/hrms/dashboard-display/news-master" },
+          { "page": "Event Information Master", "route": "/hrms/dashboard-display/event-information-master" },
+          { "page": "Employee Leave Type Master", "route": "/hrms/dashboard-display/employee-leave-type-master" }
+        ]},
+        { "subModule": "Grievance Management System", "route": "/hrms/grievance-management-system", "pages": [
+          { "page": "Grievance Management System Home", "route": "/hrms/grievance-management-system/home" },
+          { "page": "Add Employee Grievance Details", "route": "/hrms/grievance-management-system/add-details" },
+          { "page": "Employee Grievance Report", "route": "/hrms/grievance-management-system/employee-report" },
+          { "page": "Print Complaint", "route": "/hrms/grievance-management-system/print-complaint" },
+          { "page": "Grievances Processing", "route": "/hrms/grievance-management-system/processing" },
+          { "page": "Print Grievance Resolution", "route": "/hrms/grievance-management-system/print-resolution" },
+          { "page": "Grievance Disposed Report", "route": "/hrms/grievance-management-system/disposed-report" },
+          { "page": "Rejected Complaint Report", "route": "/hrms/grievance-management-system/rejected-complaint-report" },
+          { "page": "Action Taken On Complaint", "route": "/hrms/grievance-management-system/action-taken-on-complaint" },
+          { "page": "Complaint Forwarded From CPI", "route": "/hrms/grievance-management-system/complaint-forwarded-from-cpi" },
+          { "page": "District Wise Grievance Report", "route": "/hrms/grievance-management-system/district-wise-report" }
+        ]},
+        { "subModule": "Grievance Report", "route": "/hrms/grievance-report", "pages": [
+          { "page": "District Wise Progress Report", "route": "/hrms/grievance-report/district-wise-progress-report" },
+          { "page": "All Grievance Report", "route": "/hrms/grievance-report/all-grievance-report" }
+        ]},
+        { "subModule": "Employee Annual Property Returns Management System", "route": "/hrms/eapr-management", "pages": [
+          { "page": "Employee APR Form", "route": "/hrms/eapr-management/employee-apr-form" },
+          { "page": "Employee APR Form Print", "route": "/hrms/eapr-management/employee-apr-form-print" },
+          { "page": "Upload APR Form Document", "route": "/hrms/eapr-management/upload-apr-form-document" },
+          { "page": "Employee APR Form Report", "route": "/hrms/eapr-management/employee-apr-form-report" },
+          { "page": "APRMS District Wise Report", "route": "/hrms/eapr-management/aprms-district-wise-report" }
+        ]},
+        { "subModule": "Punishment System", "route": "/hrms/punishment-system", "pages": [
+          { "page": "About Punishment System", "route": "/hrms/punishment-system/about" },
+          { "page": "Generate Punishment", "route": "/hrms/punishment-system/generate-punishment" },
+          { "page": "Restore Punishment", "route": "/hrms/punishment-system/restore-punishment" }
+        ]},
+        { "subModule": "HRMS Reports", "route": "/hrms/reports", "pages": [
+          { "page": "Punishment Report", "route": "/hrms/reports/punishment-report" },
+          { "page": "E Service Book Report", "route": "/hrms/reports/e-service-book-report" },
+          { "page": "Employee Retirement Report", "route": "/hrms/reports/employee-retirement-report" }
+        ]},
+        { "subModule": "Bonus", "route": "/hrms/bonus", "pages": [
+          { "page": "Bonus", "route": "/hrms/bonus/bonus-main" }
+        ]},
+        { "subModule": "Anukampa", "route": "/hrms/anukampa", "pages": [
+          { "page": "Level Upgration And Salary Arrear Process", "route": "/hrms/anukampa/level-upgration-salary-arrear-process" },
+          { "page": "DA Arrear Process", "route": "/hrms/anukampa/da-arrear-process" },
+          { "page": "Arrear Request Generate Process", "route": "/hrms/anukampa/arrear-request-generate-process" },
+          { "page": "Arrear Report", "route": "/hrms/anukampa/arrear-report" }
+        ]},
+        { "subModule": "Transfer Request", "route": "/hrms/transfer-request", "pages": [
+          { "page": "About Voluntary and Mutual Transfer", "route": "/hrms/transfer-request/about-voluntary-mutual-transfer" },
+          { "page": "Transfer Request", "route": "/hrms/transfer-request/transfer-request-main" },
+          { "page": "Apply Mutual Transfer", "route": "/hrms/transfer-request/apply-mutual-transfer" },
+          { "page": "Print Draft Application", "route": "/hrms/transfer-request/print-draft-application" },
+          { "page": "Submit Application", "route": "/hrms/transfer-request/submit-application" },
+          { "page": "Transfer", "route": "/hrms/transfer-request/transfer-main" },
+          { "page": "Print Draft Transfer Or Update Application", "route": "/hrms/transfer-request/print-draft-or-update" },
+          { "page": "Employee Transfer Order", "route": "/hrms/transfer-request/employee-transfer-order" },
+          { "page": "Print Transfer Order", "route": "/hrms/transfer-request/print-transfer-order" }
+        ]},
+        { "subModule": "Administrative Level Transfer", "route": "/hrms/administrative-transfer", "pages": [
+          { "page": "View Post Code with Vacancies", "route": "/hrms/administrative-transfer/view-post-code-vacancies" },
+          { "page": "Employee Transfer Order", "route": "/hrms/administrative-transfer/employee-transfer-order" },
+          { "page": "Block Wise Counting Report", "route": "/hrms/administrative-transfer/block-wise-counting-report" },
+          { "page": "Transfer Report", "route": "/hrms/administrative-transfer/transfer-report" }
+        ]},
+        { "subModule": "HOD Transfer Approval", "route": "/hrms/hod-transfer-approval", "pages": [
+          { "page": "Voluntary Transfer Approve", "route": "/hrms/hod-transfer-approval/voluntary-transfer-approve" },
+          { "page": "Mutual Transfer Print", "route": "/hrms/hod-transfer-approval/mutual-transfer-print" },
+          { "page": "About HO Level Transfer Approval", "route": "/hrms/hod-transfer-approval/about-ho-level-approval" },
+          { "page": "Voluntary Transfer Final Approve", "route": "/hrms/hod-transfer-approval/voluntary-transfer-final-approve" }
+        ]},
+        { "subModule": "Transfer Approval by Head Office", "route": "/hrms/head-office-transfer-approval", "pages": [
+          { "page": "Voluntary Transfer Final Approve", "route": "/hrms/head-office-transfer-approval/voluntary-transfer-final-approve" },
+          { "page": "Voluntary Transfer Print", "route": "/hrms/head-office-transfer-approval/voluntary-transfer-print" },
+          { "page": "Mutual Transfer Approve", "route": "/hrms/head-office-transfer-approval/mutual-transfer-approve" },
+          { "page": "Mutual Transfer Print", "route": "/hrms/head-office-transfer-approval/mutual-transfer-print-2" }
+        ]},
+        { "subModule": "Higher Designation Counselling", "route": "/hrms/higher-designation-counselling", "pages": [
+          { "page": "Employee Higher Designation Change", "route": "/hrms/higher-designation-counselling/employee-change" },
+          { "page": "Generate List", "route": "/hrms/higher-designation-counselling/generate-list" },
+          { "page": "Generate List Report", "route": "/hrms/higher-designation-counselling/generate-list-report" }
+        ]},
+        { "subModule": "Automatic Transfer System", "route": "/hrms/automatic-transfer-system", "pages": [
+          { "page": "About Automatic Transfer System", "route": "/hrms/automatic-transfer-system/about" },
+          { "page": "Generate Transfer", "route": "/hrms/automatic-transfer-system/generate-transfer" }
+        ]},
+        { "subModule": "Cancel Transfer Order", "route": "/hrms/cancel-transfer-order", "pages": [
+          { "page": "About Cancel Transfer Order", "route": "/hrms/cancel-transfer-order/about" },
+          { "page": "Cancel Transfer Order", "route": "/hrms/cancel-transfer-order/cancel-order" },
+          { "page": "Print Cancel Transfer Order", "route": "/hrms/cancel-transfer-order/print-order" },
+          { "page": "Report", "route": "/hrms/cancel-transfer-order/report" }
+        ]},
+        { "subModule": "Employee Joining In Office", "route": "/hrms/employee-joining-in-office", "pages": [
+          { "page": "About Employee Joining", "route": "/hrms/employee-joining-in-office/about-joining" },
+          { "page": "Add Employee to Office", "route": "/hrms/employee-joining-in-office/add-employee-to-office" },
+          { "page": "Report", "route": "/hrms/employee-joining-in-office/report" }
+        ]},
+        { "subModule": "Tour", "route": "/hrms/tour", "pages": [
+          { "page": "About Tour", "route": "/hrms/tour/about-tour" },
+          { "page": "Tour Apply", "route": "/hrms/tour/tour-apply" },
+          { "page": "Tour Approve", "route": "/hrms/tour/tour-approve" },
+          { "page": "Tour Report", "route": "/hrms/tour/tour-report" }
+        ]},
+        { "subModule": "Promotion", "route": "/hrms/promotion", "pages": [
+          { "page": "Promotion Process", "route": "/hrms/promotion/promotion-process" },
+          { "page": "Promotion Order", "route": "/hrms/promotion/promotion-order" },
+          { "page": "Promotion Back Orders", "route": "/hrms/promotion/promotion-back-orders" },
+          { "page": "Promotion Order Report", "route": "/hrms/promotion/promotion-order-report" },
+          { "page": "Promotion With Transfer Report", "route": "/hrms/promotion/promotion-with-transfer-report" }
+        ]},
+        { "subModule": "E-Service Book", "route": "/hrms/e-service-book", "pages": [
+          { "page": "E Service Book", "route": "/hrms/e-service-book/main" },
+          { "page": "E-Service Book Report", "route": "/hrms/e-service-book/report" }
+        ]},
+        { "subModule": "Departmental Enquiry", "route": "/hrms/departmental-enquiry", "pages": [
+          { "page": "About Departmental Enquiry", "route": "/hrms/departmental-enquiry/about" },
+          { "page": "Departmental Enquiry Case", "route": "/hrms/departmental-enquiry/enquiry-case" },
+          { "page": "Departmental Enquiry List", "route": "/hrms/departmental-enquiry/enquiry-list" },
+          { "page": "Departmental Enquiry Report", "route": "/hrms/departmental-enquiry/enquiry-report" }
+        ]},
+        { "subModule": "Annual Confidential Report (ACR)", "route": "/hrms/acr-management", "pages": [
+          { "page": "About Annual Confidential Report", "route": "/hrms/acr-management/about" },
+          { "page": "Employee ACR", "route": "/hrms/acr-management/employee-acr" },
+          { "page": "Employee ACR Resend & Edit Application", "route": "/hrms/acr-management/resend-edit-application" },
+          { "page": "Employee ACR Reporting Authority", "route": "/hrms/acr-management/reporting-authority" },
+          { "page": "ACR Report Reviewing Fill Accepting Authority", "route": "/hrms/acr-management/reviewing-accepting-authority" },
+          { "page": "Employee ACR Report", "route": "/hrms/acr-management/employee-acr-report" }
+        ]},
+        { "subModule": "ACR Report", "route": "/hrms/acr-reporting", "pages": [
+          { "page": "Reporting ACR Report Fill Report", "route": "/hrms/acr-reporting/reporting-fill-report" },
+          { "page": "Accepting Authority ACR Report", "route": "/hrms/acr-reporting/accepting-authority-report" },
+          { "page": "District Wise ACR Report", "route": "/hrms/acr-reporting/district-wise-report" }
+        ]},
+        { "subModule": "Employee Anukampa Application", "route": "/hrms/employee-anukampa-application", "pages": [
+          { "page": "Employee Anukampa Home", "route": "/hrms/employee-anukampa-application/home" },
+          { "page": "Apply for Anukampa Appointment", "route": "/hrms/employee-anukampa-application/apply-appointment" },
+          { "page": "Print Status of Anukampa Appointment", "route": "/hrms/employee-anukampa-application/print-status" },
+          { "page": "Anukampa", "route": "/hrms/employee-anukampa-application/anukampa-main" },
+          { "page": "HOD Anukampa Application Approval Home", "route": "/hrms/employee-anukampa-application/hod-approval-home" },
+          { "page": "Register/Correct Application for Anukampa Appointment", "route": "/hrms/employee-anukampa-application/register-correct-application" }
+        ]}
+      ]
+    },
+    {
+      "module": "Payroll",
+      "icon": "fa-money-check-alt",
+      "route": "/payroll",
+      "subModules": [
+        { "subModule": "Payroll Baseline Data", "route": "/payroll/payroll-baseline-data", "pages": [
+          { "page": "Earning And Deduction", "route": "/payroll/payroll-baseline-data/earning-and-deduction" }
+        ]},
+        { "subModule": "Set Head Value", "route": "/payroll/set-head-value", "pages": [
+          { "page": "Salary Head", "route": "/payroll/set-head-value/salary-head" },
+          { "page": "Salary Optional Head", "route": "/payroll/set-head-value/salary-optional-head" },
+          { "page": "Salary Monthly Head", "route": "/payroll/set-head-value/salary-monthly-head" },
+          { "page": "Insurance Policy", "route": "/payroll/set-head-value/insurance-policy" },
+          { "page": "Loan Information", "route": "/payroll/set-head-value/loan-information" }
+        ]},
+        { "subModule": "Salary Process", "route": "/payroll/salary-process", "pages": [
+          { "page": "Set Attendance", "route": "/payroll/salary-process/set-attendance" },
+          { "page": "Generate Salary", "route": "/payroll/salary-process/generate-salary" },
+          { "page": "Salary Process", "route": "/payroll/salary-process/main-salary-process" },
+          { "page": "Bank Wise Monthly Pay Bill Details", "route": "/payroll/salary-process/bank-wise-pay-bill-details" },
+          { "page": "Monthly Pay Bill Sheet", "route": "/payroll/salary-process/monthly-pay-bill-sheet" },
+          { "page": "Final Summary Report", "route": "/payroll/salary-process/final-summary-report" }
+        ]},
+        { "subModule": "Payroll Reports", "route": "/payroll/payroll-reports", "pages": [
+          { "page": "Employee Wise Salary Slip", "route": "/payroll/payroll-reports/employee-wise-salary-slip" },
+          { "page": "FY Earn Deduction Report", "route": "/payroll/payroll-reports/fy-earn-deduction-report" },
+          { "page": "Monthly Policy Report", "route": "/payroll/payroll-reports/monthly-policy-report" },
+          { "page": "Salary Generation Status Report", "route": "/payroll/payroll-reports/salary-generation-status-report" },
+          { "page": "Office Wise Salary Slip", "route": "/payroll/payroll-reports/office-wise-salary-slip" },
+          { "page": "Tax Challan Report", "route": "/payroll/payroll-reports/tax-challan-report" },
+          { "page": "Monthly Earning Deduction Report", "route": "/payroll/payroll-reports/monthly-earning-deduction-report" },
+          { "page": "Employee Salary Ledger", "route": "/payroll/payroll-reports/employee-salary-ledger" }
+        ]},
+        { "subModule": "Gratuity", "route": "/payroll/gratuity", "pages": [
+          { "page": "Gratuity", "route": "/payroll/gratuity/main" }
+        ]},
+        { "subModule": "Leave Encashment", "route": "/payroll/leave-encashment", "pages": [
+          { "page": "Leave Encashment", "route": "/payroll/leave-encashment/main" }
+        ]}
+      ]
+    },
+    {
+      "module": "Budget & Finance",
+      "icon": "fa-money-bill-wave",
+      "route": "/budget-and-finance",
+      "subModules": [
+        { "subModule": "Finance Master", "route": "/budget-and-finance/finance-master", "pages": [
+          { "page": "Group Management", "route": "/budget-and-finance/finance-master/group-management" },
+          { "page": "Ledger Creation Management", "route": "/budget-and-finance/finance-master/ledger-creation-management" },
+          { "page": "HSN/SAC Master", "route": "/budget-and-finance/finance-master/hsn-sac-master" },
+          { "page": "Group Wise Ledger List", "route": "/budget-and-finance/finance-master/group-wise-ledger-list" },
+          { "page": "Office Wise Ledger List Details", "route": "/budget-and-finance/finance-master/office-wise-ledger-list-details" },
+          { "page": "Ledger for Office Mapping", "route": "/budget-and-finance/finance-master/ledger-for-office-mapping" },
+          { "page": "Ledger Allocation", "route": "/budget-and-finance/finance-master/ledger-allocation" }
+        ]},
+        { "subModule": "Proposed Budget Process", "route": "/budget-and-finance/proposed-budget-process", "pages": [
+          { "page": "Proposed Budget", "route": "/budget-and-finance/proposed-budget-process/proposed-budget" },
+          { "page": "Update Proposed Budget", "route": "/budget-and-finance/proposed-budget-process/update-proposed-budget" }
+        ]},
+        { "subModule": "Online Budget Demand Process", "route": "/budget-and-finance/online-budget-demand-process", "pages": [
+          { "page": "Demand Request Process", "route": "/budget-and-finance/online-budget-demand-process/demand-request-process" },
+          { "page": "Demand Status Details", "route": "/budget-and-finance/online-budget-demand-process/demand-status-details" },
+          { "page": "Budget Approval Process (Approval Authority)", "route": "/budget-and-finance/online-budget-demand-process/budget-approval-process" }
+        ]},
+        { "subModule": "Budget Allocation Process", "route": "/budget-and-finance/budget-allocation-process", "pages": [
+          { "page": "Budget Allocation (Head Wise)", "route": "/budget-and-finance/budget-allocation-process/budget-allocation-head-wise" },
+          { "page": "Budget Allocation Report", "route": "/budget-and-finance/budget-allocation-process/budget-allocation-report" },
+          { "page": "Budget Allocation Approval Process (Letter Generate)", "route": "/budget-and-finance/budget-allocation-process/approval-process-letter" },
+          { "page": "Budget Assign Report", "route": "/budget-and-finance/budget-allocation-process/budget-assign-report" },
+          { "page": "Budget Utilization Report", "route": "/budget-and-finance/budget-allocation-process/budget-utilization-report" }
+        ]},
+        { "subModule": "Voucher Creation", "route": "/budget-and-finance/voucher-creation", "pages": [
+          { "page": "Payment Voucher", "route": "/budget-and-finance/voucher-creation/payment-voucher" },
+          { "page": "Receipt Voucher", "route": "/budget-and-finance/voucher-creation/receipt-voucher" },
+          { "page": "Journal Voucher", "route": "/budget-and-finance/voucher-creation/journal-voucher" },
+          { "page": "Contra Voucher", "route": "/budget-and-finance/voucher-creation/contra-voucher" },
+          { "page": "Service Purchase Voucher", "route": "/budget-and-finance/voucher-creation/service-purchase-voucher" }
+        ]},
+        { "subModule": "Finance Report", "route": "/budget-and-finance/finance-report", "pages": [
+          { "page": "Expenses Report", "route": "/budget-and-finance/finance-report/expenses-report" },
+          { "page": "Office Wise Budget Allocation Report", "route": "/budget-and-finance/finance-report/office-wise-allocation-report" },
+          { "page": "Day Book (Single)", "route": "/budget-and-finance/finance-report/day-book-single" },
+          { "page": "Custom Day Book", "route": "/budget-and-finance/finance-report/custom-day-book" },
+          { "page": "Ledger Report", "route": "/budget-and-finance/finance-report/ledger-report" },
+          { "page": "Cash Bank Book", "route": "/budget-and-finance/finance-report/cash-bank-book" },
+          { "page": "Statistics", "route": "/budget-and-finance/finance-report/statistics" },
+          { "page": "Alphabetical Ledger Report", "route": "/budget-and-finance/finance-report/alphabetical-ledger-report" }
+        ]}
+      ]
+    },
+    {
+      "module": "Scheme Management",
+      "icon": "fa-hand-holding-usd",
+      "route": "/scheme-management",
+      "subModules": [
+        { "subModule": "New Scheme Management", "route": "/scheme-management/new-scheme-management", "pages": [
+          { "page": "Apply For Scheme", "route": "/scheme-management/new-scheme-management/apply-for-scheme" },
+          { "page": "View Scheme Wise Generate List", "route": "/scheme-management/new-scheme-management/view-scheme-wise-generate-list" },
+          { "page": "Scheme Wise Generate Payment File", "route": "/scheme-management/new-scheme-management/scheme-wise-generate-payment-file" }
+        ]},
+        { "subModule": "Student Profile Management", "route": "/scheme-management/student-profile-management", "pages": [
+          { "page": "Student Profile View/ Edit/ Lock", "route": "/scheme-management/student-profile-management/view-edit-lock" },
+          { "page": "Student Profile Management", "route": "/scheme-management/student-profile-management/main" },
+          { "page": "Update Student Profile for Scholarships", "route": "/scheme-management/student-profile-management/update-for-scholarships" }
+        ]},
+        { "subModule": "E-KYC", "route": "/scheme-management/e-kyc", "pages": [
+          { "page": "eKyc Verification", "route": "/scheme-management/e-kyc/verification" },
+          { "page": "Student Details kyc", "route": "/scheme-management/e-kyc/student-details-kyc" },
+          { "page": "eKYC Approval", "route": "/scheme-management/e-kyc/approval" },
+          { "page": "Student Samagra e-KYC Approval", "route": "/scheme-management/e-kyc/samagra-approval" }
+        ]},
+        { "subModule": "Reports", "route": "/scheme-management/reports", "pages": [
+          { "page": "Various Level Reports - HO, JD, District, University, College", "route": "/scheme-management/reports/various-level-reports" }
+        ]}
+      ]
+    },
+    {
+      "module": "Compassion Management",
+      "icon": "fa-hand-holding-heart",
+      "route": "/compassion-management",
+      "subModules": [
+        { "subModule": "Compassion", "route": "/compassion-management/compassion", "pages": [
+          { "page": "Compassion Apply", "route": "/compassion-management/compassion/apply" },
+          { "page": "Application Print And Status", "route": "/compassion-management/compassion/print-status" },
+          { "page": "DEO Compassion Apply", "route": "/compassion-management/compassion/deo-apply" },
+          { "page": "Compassion Verification", "route": "/compassion-management/compassion/verification" },
+          { "page": "Final Decision", "route": "/compassion-management/compassion/final-decision" },
+          { "page": "Generate and Forward NOC Request", "route": "/compassion-management/compassion/generate-forward-noc-request" },
+          { "page": "DEO NOC Certificate Release", "route": "/compassion-management/compassion/deo-noc-certificate-release" },
+          { "page": "Update NOC job Status", "route": "/compassion-management/compassion/update-noc-job-status" },
+          { "page": "Disposed Application Report", "route": "/compassion-management/compassion/disposed-application-report" }
+        ]},
+        { "subModule": "Compassion Report", "route": "/compassion-management/compassion-report", "pages": [
+          { "page": "NOC Report", "route": "/compassion-management/compassion-report/noc-report" },
+          { "page": "District Wise Statistical Count Report", "route": "/compassion-management/compassion-report/district-wise-statistical-count-report" },
+          { "page": "NOC Statistical Count Report", "route": "/compassion-management/compassion-report/noc-statistical-count-report" }
+        ]}
+      ]
+    },
+    {
+      "module": "Guest Faculty Management",
+      "icon": "fa-chalkboard-teacher",
+      "route": "/guest-faculty-management",
+      "subModules": [
+        { "subModule": "Guest Faculty Login", "route": "/guest-faculty-management/guest-faculty-login", "pages": [
+          { "page": "Guest Faculty Registration", "route": "/guest-faculty-management/guest-faculty-login/registration" },
+          { "page": "Guest Faculty Login", "route": "/guest-faculty-management/guest-faculty-login/login" },
+          { "page": "Profile View", "route": "/guest-faculty-management/guest-faculty-login/profile-view" },
+          { "page": "Qualification / Experience Information", "route": "/guest-faculty-management/guest-faculty-login/qualification-experience" },
+          { "page": "Apply Against Vacancy", "route": "/guest-faculty-management/guest-faculty-login/apply-against-vacancy" },
+          { "page": "Claim Experience Certificate", "route": "/guest-faculty-management/guest-faculty-login/claim-experience-certificate" },
+          { "page": "Print Experience Claim", "route": "/guest-faculty-management/guest-faculty-login/print-experience-claim" },
+          { "page": "Generate Score Card", "route": "/guest-faculty-management/guest-faculty-login/generate-score-card" }
+        ]},
+        { "subModule": "College Login", "route": "/guest-faculty-management/college-login", "pages": [
+          { "page": "Vacant Post", "route": "/guest-faculty-management/college-login/vacant-post" },
+          { "page": "View Applied Profile", "route": "/guest-faculty-management/college-login/view-applied-profile" },
+          { "page": "Selection and Register Profile for Guest Faculty", "route": "/guest-faculty-management/college-login/selection-register-profile" }
+        ]},
+        { "subModule": "University Login", "route": "/guest-faculty-management/university-login", "pages": [
+          { "page": "Vacant Post", "route": "/guest-faculty-management/university-login/vacant-post" },
+          { "page": "View Applied Profile (all Colleges)", "route": "/guest-faculty-management/university-login/view-applied-profile-all-colleges" },
+          { "page": "View Approved and registered profile (all Colleges)", "route": "/guest-faculty-management/university-login/view-approved-registered-profile-all-colleges" }
+        ]},
+        { "subModule": "TED Login", "route": "/guest-faculty-management/ted-login", "pages": [
+          { "page": "Vacant Post", "route": "/guest-faculty-management/ted-login/vacant-post" },
+          { "page": "View Applied Profile (all University and Colleges)", "route": "/guest-faculty-management/ted-login/view-applied-profile-all" },
+          { "page": "View Approved and registered profile (all University and Colleges)", "route": "/guest-faculty-management/ted-login/view-approved-registered-profile-all" }
+        ]}
+      ]
+    },
+    {
+      "module": "Academics",
+      "icon": "fa-graduation-cap",
+      "route": "/academics",
+      "subModules": [
+        { "subModule": "Lectures", "route": "/academics/lectures", "pages": [
+          { "page": "Offline Lectures", "route": "/academics/lectures/offline-lectures" },
+          { "page": "Lecture Resources", "route": "/academics/lectures/lecture-resources" }
+        ]},
+        { "subModule": "Attendance Management", "route": "/academics/attendance-management", "pages": [
+          { "page": "View Attendance Records", "route": "/academics/attendance-management/view-records" },
+          { "page": "Mark Attendance", "route": "/academics/attendance-management/mark-attendance" },
+          { "page": "Attendance Policies", "route": "/academics/attendance-management/policies" },
+          { "page": "Request Leave", "route": "/academics/attendance-management/request-leave" },
+          { "page": "Attendance Reports", "route": "/academics/attendance-management/reports" }
+        ]},
+        { "subModule": "Syllabus & Study Material", "route": "/academics/syllabus-study-material", "pages": [
+          { "page": "Add Study Materials", "route": "/academics/syllabus-study-material/add-materials" },
+          { "page": "Saved Notes And Videos", "route": "/academics/syllabus-study-material/saved-notes-videos" },
+          { "page": "View Study Materials", "route": "/academics/syllabus-study-material/view-materials" }
+        ]},
+        { "subModule": "College Transfer", "route": "/academics/college-transfer", "pages": [
+          { "page": "Apply College Transfer", "route": "/academics/college-transfer/apply-transfer" },
+          { "page": "Approve Transfer Request (University)", "route": "/academics/college-transfer/approve-request-university" },
+          { "page": "Transfer In", "route": "/academics/college-transfer/transfer-in" },
+          { "page": "Transfer out", "route": "/academics/college-transfer/transfer-out" },
+          { "page": "Credit Transfer to New College/University", "route": "/academics/college-transfer/credit-transfer" }
+        ]}
+      ]
+    },
+    {
+      "module": "Admission Management System",
+      "icon": "fa-clipboard-list",
+      "route": "/admission-management-system",
+      "subModules": [
+        { "subModule": "Registration Form", "route": "/admission-management-system/registration-form", "pages": [
+          { "page": "Edit Registration Form", "route": "/admission-management-system/registration-form/edit" },
+          { "page": "Configure Document Requirement", "route": "/admission-management-system/registration-form/configure-document-requirement" }
+        ]},
+        { "subModule": "Upload Document", "route": "/admission-management-system/upload-document", "pages": [
+          { "page": "Upload Documents", "route": "/admission-management-system/upload-document/upload-documents" },
+          { "page": "Uploaded Documents", "route": "/admission-management-system/upload-document/uploaded-documents" }
+        ]},
+        { "subModule": "College selection (Choices Filling)", "route": "/admission-management-system/choices-filling", "pages": [
+          { "page": "Seat Availability Updates", "route": "/admission-management-system/choices-filling/seat-availability-updates" },
+          { "page": "Fill Choices by Priority and lock choices", "route": "/admission-management-system/choices-filling/fill-choices" },
+          { "page": "Student Preferences Report", "route": "/admission-management-system/choices-filling/student-preferences-report" },
+          { "page": "Choice Report", "route": "/admission-management-system/choices-filling/choice-report" }
+        ]},
+        { "subModule": "Document Verification", "route": "/admission-management-system/document-verification", "pages": [
+          { "page": "Configure Document Requirement to Verify", "route": "/admission-management-system/document-verification/configure-requirement" },
+          { "page": "Documents Verification", "route": "/admission-management-system/document-verification/verify-documents" },
+          { "page": "Document Verification Report", "route": "/admission-management-system/document-verification/verification-report" },
+          { "page": "College-wise Verification Report", "route": "/admission-management-system/document-verification/college-verification-report" }
+        ]},
+        { "subModule": "Merit List", "route": "/admission-management-system/merit-list", "pages": [
+          { "page": "Candidates Rank", "route": "/admission-management-system/merit-list/candidates-rank" },
+          { "page": "Set Tie Breaking Criteria of rank", "route": "/admission-management-system/merit-list/set-tie-breaking-criteria" },
+          { "page": "Generate Merit List", "route": "/admission-management-system/merit-list/generate-merit-list" },
+          { "page": "Merit List", "route": "/admission-management-system/merit-list/view-merit-list" }
+        ]},
+        { "subModule": "Seat Allocation", "route": "/admission-management-system/seat-allocation", "pages": [
+          { "page": "View Allocation Status", "route": "/admission-management-system/seat-allocation/view-allocation-status" },
+          { "page": "Accept/Reject Allocation", "route": "/admission-management-system/seat-allocation/accept-reject-allocation" },
+          { "page": "Reserved Categories/Quota (Head)", "route": "/admission-management-system/seat-allocation/reserved-categories" },
+          { "page": "Set Categories/Quota Percentages (Head)", "route": "/admission-management-system/seat-allocation/set-quota-percentages" },
+          { "page": "Seat Allocation per Course (Head/University)", "route": "/admission-management-system/seat-allocation/per-course-allocation" },
+          { "page": "Seat Acceptance Window (College/University)", "route": "/admission-management-system/seat-allocation/acceptance-window" },
+          { "page": "View Available Seats", "route": "/admission-management-system/seat-allocation/view-available-seats" },
+          { "page": "Allocation Report", "route": "/admission-management-system/seat-allocation/allocation-report" }
+        ]},
+        { "subModule": "Allotment letter", "route": "/admission-management-system/allotment-letter", "pages": [
+          { "page": "Get Allotment Letter", "route": "/admission-management-system/allotment-letter/get-letter" },
+          { "page": "Generate Allotment Letters", "route": "/admission-management-system/allotment-letter/generate-letters" },
+          { "page": "Manage Allotment Status", "route": "/admission-management-system/allotment-letter/manage-status" },
+          { "page": "College-wise Allotment Status", "route": "/admission-management-system/allotment-letter/college-wise-status" }
+        ]},
+        { "subModule": "Admission Fee", "route": "/admission-management-system/admission-fee", "pages": [
+          { "page": "Set Admission fee", "route": "/admission-management-system/admission-fee/set-fee" },
+          { "page": "View Fee Structure", "route": "/admission-management-system/admission-fee/view-fee-structure" },
+          { "page": "Make Payment", "route": "/admission-management-system/admission-fee/make-payment" },
+          { "page": "Payment Verification", "route": "/admission-management-system/admission-fee/payment-verification" },
+          { "page": "Payment History & Receipt Download", "route": "/admission-management-system/admission-fee/payment-history-download" },
+          { "page": "Payment Report", "route": "/admission-management-system/admission-fee/payment-report" }
+        ]}
+      ]
+    },
+    {
+      "module": "Transport Management",
+      "icon": "fa-bus",
+      "route": "/transport-management",
+      "subModules": [
+        { "subModule": "Transport Management System", "route": "/transport-management/system", "pages": [
+          { "page": "Vehicle Maintenance Type Master", "route": "/transport-management/system/vehicle-maintenance-type-master" },
+          { "page": "Vehicle Registration", "route": "/transport-management/system/vehicle-registration" },
+          { "page": "Vehicle Allotment", "route": "/transport-management/system/vehicle-allotment" },
+          { "page": "Vehicle Maintenance", "route": "/transport-management/system/vehicle-maintenance" },
+          { "page": "Vehicle Insurance", "route": "/transport-management/system/vehicle-insurance" },
+          { "page": "Vehicle Dispose", "route": "/transport-management/system/vehicle-dispose" },
+          { "page": "Vehicle Deallocation/Transfer", "route": "/transport-management/system/vehicle-deallocation-transfer" },
+          { "page": "Vehicle Maintenance Request", "route": "/transport-management/system/vehicle-maintenance-request" },
+          { "page": "Vehicle Maintenance Approval", "route": "/transport-management/system/vehicle-maintenance-approval" },
+          { "page": "Route Registration", "route": "/transport-management/system/route-registration" },
+          { "page": "Bus Stop Registration", "route": "/transport-management/system/bus-stop-registration" },
+          { "page": "Route To Bus Stop Mapping", "route": "/transport-management/system/route-to-bus-stop-mapping" }
+        ]},
+        { "subModule": "College/University Management System", "route": "/transport-management/college-university-management", "pages": [
+          { "page": "Driver/Attender Registration", "route": "/transport-management/college-university-management/driver-attender-registration" },
+          { "page": "Driver/Attender Leave Entry", "route": "/transport-management/college-university-management/driver-attender-leave-entry" },
+          { "page": "Route To Vehicle Mapping", "route": "/transport-management/college-university-management/route-to-vehicle-mapping" },
+          { "page": "Bus Stop Enrollment", "route": "/transport-management/college-university-management/bus-stop-enrollment" },
+          { "page": "Driver/Attender Route Details", "route": "/transport-management/college-university-management/driver-attender-route-details" }
+        ]},
+        { "subModule": "Bus Driver & Attender Process", "route": "/transport-management/bus-driver-attender-process", "pages": [
+          { "page": "View Route Location", "route": "/transport-management/bus-driver-attender-process/view-route-location" },
+          { "page": "Route Wise Pickup/Drop Route Details", "route": "/transport-management/bus-driver-attender-process/route-wise-pickup-drop-details" },
+          { "page": "Inform to Student", "route": "/transport-management/bus-driver-attender-process/inform-to-student" }
+        ]},
+        { "subModule": "Parent Process", "route": "/transport-management/parent-process", "pages": [
+          { "page": "Bus Route Details", "route": "/transport-management/parent-process/bus-route-details" },
+          { "page": "Pickup/Drop Details", "route": "/transport-management/parent-process/pickup-drop-details" }
+        ]},
+        { "subModule": "Gatekeeper Transport System", "route": "/transport-management/gatekeeper-system", "pages": [
+          { "page": "E-Challan Process", "route": "/transport-management/gatekeeper-system/e-challan-process" },
+          { "page": "Check Vehicle Details", "route": "/transport-management/gatekeeper-system/check-vehicle-details" }
+        ]}
+      ]
+    },
+    {
+      "module": "Exam Management",
+      "icon": "fa-file-alt",
+      "route": "/exam-management",
+      "subModules": [
+        { "subModule": "Exam Master", "route": "/exam-management/exam-master", "pages": [
+          { "page": "Exam Type", "route": "/exam-management/exam-master/exam-type" },
+          { "page": "Add Exam", "route": "/exam-management/exam-master/add-exam" }
+        ]},
+        { "subModule": "Exam Schedule", "route": "/exam-management/exam-schedule", "pages": [
+          { "page": "Schedule Exam", "route": "/exam-management/exam-schedule/schedule-exam" },
+          { "page": "View Exam Schedule", "route": "/exam-management/exam-schedule/view-schedule" }
+        ]},
+        { "subModule": "Question Papers", "route": "/exam-management/question-papers", "pages": [
+          { "page": "Set Question paper pattern", "route": "/exam-management/question-papers/set-pattern" },
+          { "page": "Add Questions Paper", "route": "/exam-management/question-papers/add-questions" }
+        ]},
+        { "subModule": "Exam Form", "route": "/exam-management/exam-form", "pages": [
+          { "page": "Set last date (with / without late fees)", "route": "/exam-management/exam-form/set-last-date" },
+          { "page": "Fill Exam Form and Pay Exam fee", "route": "/exam-management/exam-form/fill-pay-fee" },
+          { "page": "Forward Forms (Principal)", "route": "/exam-management/exam-form/forward-forms" }
+        ]},
+        { "subModule": "Admit Card", "route": "/exam-management/admit-card", "pages": [
+          { "page": "Generate Admit Cards (University)", "route": "/exam-management/admit-card/generate-university" },
+          { "page": "Admit Card download (Student)", "route": "/exam-management/admit-card/download-student" },
+          { "page": "Admit Card Verification (College)", "route": "/exam-management/admit-card/verification-college" }
+        ]},
+        { "subModule": "Evaluator", "route": "/exam-management/evaluator", "pages": [
+          { "page": "Apply as Evaluator", "route": "/exam-management/evaluator/apply" },
+          { "page": "Select evaluators", "route": "/exam-management/evaluator/select" },
+          { "page": "Sheet Distribution to evaluator", "route": "/exam-management/evaluator/sheet-distribution" }
+        ]},
+        { "subModule": "Result", "route": "/exam-management/result", "pages": [
+          { "page": "Maximum Days for Revaluation/Retotaling", "route": "/exam-management/result/max-days-revaluation" },
+          { "page": "Marks Entry", "route": "/exam-management/result/marks-entry" },
+          { "page": "Result Compilation", "route": "/exam-management/result/compilation" },
+          { "page": "Result Verification by I", "route": "/exam-management/result/verification-by-i" },
+          { "page": "Result Publication", "route": "/exam-management/result/publication" },
+          { "page": "TR Sheet Generation", "route": "/exam-management/result/tr-sheet-generation" },
+          { "page": "MarkSheet Generation & Printing", "route": "/exam-management/result/marksheet-generation-printing" },
+          { "page": "Apply for Revaluation", "route": "/exam-management/result/apply-revaluation" },
+          { "page": "Apply for Retotaling", "route": "/exam-management/result/apply-retotaling" },
+          { "page": "Result Verification after Issuing", "route": "/exam-management/result/verification-after-issuing" }
+        ]},
+        { "subModule": "Duplicate Marksheet", "route": "/exam-management/duplicate-marksheet", "pages": [
+          { "page": "Apply For Duplicate Marksheet", "route": "/exam-management/duplicate-marksheet/apply" },
+          { "page": "Duplicate Marksheet Applications", "route": "/exam-management/duplicate-marksheet/applications" },
+          { "page": "Generate Duplicate MarkSheet", "route": "/exam-management/duplicate-marksheet/generate" },
+          { "page": "Download Duplicate Marksheet", "route": "/exam-management/duplicate-marksheet/download" }
+        ]}
+      ]
+    },
+    {
+      "module": "Student Management System",
+      "icon": "fa-user-graduate",
+      "route": "/student-management-system",
+      "subModules": [
+        { "subModule": "Student Management", "route": "/student-management-system/student-management", "pages": [
+          { "page": "Student Achievement Tracking", "route": "/student-management-system/student-management/achievement-tracking" },
+          { "page": "Student Achievement Tracking Report", "route": "/student-management-system/student-management/achievement-tracking-report" },
+          { "page": "Student Tracking", "route": "/student-management-system/student-management/student-tracking" }
+        ]},
+        { "subModule": "Student Directory", "route": "/student-management-system/student-directory", "pages": [
+          { "page": "Student Registration", "route": "/student-management-system/student-directory/registration" },
+          { "page": "Student Detail", "route": "/student-management-system/student-directory/detail" },
+          { "page": "Student Promotion & TC", "route": "/student-management-system/student-directory/promotion-tc" },
+          { "page": "Generate TC", "route": "/student-management-system/student-directory/generate-tc" },
+          { "page": "Print TC", "route": "/student-management-system/student-directory/print-tc" },
+          { "page": "Generate Migration Certificate", "route": "/student-management-system/student-directory/generate-migration-certificate" },
+          { "page": "Print Migration Certificate", "route": "/student-management-system/student-directory/print-migration-certificate" }
+        ]},
+        { "subModule": "Reports", "route": "/student-management-system/reports", "pages": [
+          { "page": "Student Summary Report", "route": "/student-management-system/reports/summary-report" },
+          { "page": "Student Wise Counting Report", "route": "/student-management-system/reports/student-wise-counting" },
+          { "page": "Student Attendance Report", "route": "/student-management-system/reports/attendance-report" },
+          { "page": "Student Attendance Report", "route": "/student-management-system/reports/attendance-report-2" }
+        ]}
+      ]
+    },
+    {
+      "module": "CMS Portal (College Level)",
+      "icon": "fa-university",
+      "route": "/cms-portal-college-level",
+      "subModules": [
+        { "subModule": "About Us", "route": "/cms-portal-college-level/about-us", "pages": [
+          { "page": "At a Glance", "route": "/cms-portal-college-level/about-us/at-a-glance" },
+          { "page": "Principal Message", "route": "/cms-portal-college-level/about-us/principal-message" },
+          { "page": "Societies", "route": "/cms-portal-college-level/about-us/societies" },
+          { "page": "Vision Mission", "route": "/cms-portal-college-level/about-us/vision-mission" },
+          { "page": "Objectives", "route": "/cms-portal-college-level/about-us/objectives" },
+          { "page": "How to Reach", "route": "/cms-portal-college-level/about-us/how-to-reach" },
+          { "page": "Who is Who", "route": "/cms-portal-college-level/about-us/who-is-who" }
+        ]},
+        { "subModule": "Infrastructure", "route": "/cms-portal-college-level/infrastructure", "pages": [
+          { "page": "Building", "route": "/cms-portal-college-level/infrastructure/building" },
+          { "page": "Library", "route": "/cms-portal-college-level/infrastructure/library" },
+          { "page": "Canteen", "route": "/cms-portal-college-level/infrastructure/canteen" },
+          { "page": "Hostel", "route": "/cms-portal-college-level/infrastructure/hostel" },
+          { "page": "Sports", "route": "/cms-portal-college-level/infrastructure/sports" }
+        ]},
+        { "subModule": "Academics", "route": "/cms-portal-college-level/academics", "pages": [
+          { "page": "Departments", "route": "/cms-portal-college-level/academics/departments" },
+          { "page": "Regular Courses", "route": "/cms-portal-college-level/academics/regular-courses" },
+          { "page": "Distance Education Courses", "route": "/cms-portal-college-level/academics/distance-education-courses" },
+          { "page": "Prospectus", "route": "/cms-portal-college-level/academics/prospectus" },
+          { "page": "Time table", "route": "/cms-portal-college-level/academics/time-table" },
+          { "page": "Research", "route": "/cms-portal-college-level/academics/research" }
+        ]},
+        { "subModule": "Students", "route": "/cms-portal-college-level/students", "pages": [
+          { "page": "Student Details", "route": "/cms-portal-college-level/students/details" },
+          { "page": "List of Topper Students", "route": "/cms-portal-college-level/students/topper-list" },
+          { "page": "E-Learning", "route": "/cms-portal-college-level/students/e-learning" }
+        ]},
+        { "subModule": "Scholarship", "route": "/cms-portal-college-level/scholarship", "pages": [
+          { "page": "Scholarship", "route": "/cms-portal-college-level/scholarship/scholarship-main" }
+        ]},
+        { "subModule": "Alumni", "route": "/cms-portal-college-level/alumni", "pages": [
+          { "page": "Alumni", "route": "/cms-portal-college-level/alumni/alumni-main" }
+        ]},
+        { "subModule": "National Assessment and Accreditation Council (NAAC)", "route": "/cms-portal-college-level/naac", "pages": [
+          { "page": "AWARD", "route": "/cms-portal-college-level/naac/award" },
+          { "page": "Self study report (SSR)", "route": "/cms-portal-college-level/naac/ssr" },
+          { "page": "Recommendations of Previous Cycle", "route": "/cms-portal-college-level/naac/recommendations" }
+        ]},
+        { "subModule": "IQAC", "route": "/cms-portal-college-level/iqac", "pages": [
+          { "page": "IQAC", "route": "/cms-portal-college-level/iqac/iqac-main" },
+          { "page": "Institutional Distinctiveness", "route": "/cms-portal-college-level/iqac/institutional-distinctiveness" },
+          { "page": "Highlights of Achievements", "route": "/cms-portal-college-level/iqac/highlights-of-achievements" }
+        ]},
+        { "subModule": "New Course Started", "route": "/cms-portal-college-level/new-course-started", "pages": [
+          { "page": "New Course Started", "route": "/cms-portal-college-level/new-course-started/main" }
+        ]},
+        { "subModule": "Government Excellence Initiative", "route": "/cms-portal-college-level/government-excellence-initiative", "pages": [
+          { "page": "Government Excellence Initiative", "route": "/cms-portal-college-level/government-excellence-initiative/main" }
+        ]},
+        { "subModule": "Idea House, Idea Hub", "route": "/cms-portal-college-level/idea-house-hub", "pages": [
+          { "page": "Idea House, Idea Hub", "route": "/cms-portal-college-level/idea-house-hub/main" }
+        ]},
+        { "subModule": "Policies", "route": "/cms-portal-college-level/policies", "pages": [
+          { "page": "Policies", "route": "/cms-portal-college-level/policies/main" }
+        ]},
+        { "subModule": "Audits", "route": "/cms-portal-college-level/audits", "pages": [
+          { "page": "Audits", "route": "/cms-portal-college-level/audits/main" }
+        ]},
+        { "subModule": "Research Activities", "route": "/cms-portal-college-level/research-activities", "pages": [
+          { "page": "Research Activities", "route": "/cms-portal-college-level/research-activities/main" }
+        ]},
+        { "subModule": "Extension Activities", "route": "/cms-portal-college-level/extension-activities", "pages": [
+          { "page": "Extension Activities", "route": "/cms-portal-college-level/extension-activities/main" }
+        ]},
+        { "subModule": "Placement", "route": "/cms-portal-college-level/placement", "pages": [
+          { "page": "Placement", "route": "/cms-portal-college-level/placement/main" }
+        ]},
+        { "subModule": "Others", "route": "/cms-portal-college-level/others", "pages": [
+          { "page": "RUSA", "route": "/cms-portal-college-level/others/rusa" },
+          { "page": "World Bank", "route": "/cms-portal-college-level/others/world-bank" },
+          { "page": "Press Release", "route": "/cms-portal-college-level/others/press-release" },
+          { "page": "MOU", "route": "/cms-portal-college-level/others/mou" },
+          { "page": "Extra Co-Curricular", "route": "/cms-portal-college-level/others/extra-co-curricular" },
+          { "page": "NCC, NSS", "route": "/cms-portal-college-level/others/ncc-nss" }
+        ]},
+        { "subModule": "CMS Login", "route": "/cms-portal-college-level/cms-login", "pages": [
+          { "page": "CMS Login", "route": "/cms-portal-college-level/cms-login/main" }
+        ]},
+        { "subModule": "English/Hindi", "route": "/cms-portal-college-level/english-hindi", "pages": [
+          { "page": "English/Hindi", "route": "/cms-portal-college-level/english-hindi/main" }
+        ]},
+        { "subModule": "Events", "route": "/cms-portal-college-level/events", "pages": [
+          { "page": "Events", "route": "/cms-portal-college-level/events/main" }
+        ]},
+        { "subModule": "Notifications", "route": "/cms-portal-college-level/notifications", "pages": [
+          { "page": "Notifications", "route": "/cms-portal-college-level/notifications/main" }
+        ]},
+        { "subModule": "Circulars", "route": "/cms-portal-college-level/circulars", "pages": [
+          { "page": "Circulars", "route": "/cms-portal-college-level/circulars/main" }
+        ]},
+        { "subModule": "Video Gallery", "route": "/cms-portal-college-level/video-gallery", "pages": [
+          { "page": "Video Gallery", "route": "/cms-portal-college-level/video-gallery/main" }
+        ]}
+      ]
+    },
+    {
+      "module": "Hostel Management",
+      "icon": "fa-bed",
+      "route": "/hostel-management",
+      "subModules": [
+        {
+          "subModule": "Hostel Management",
+          "route": "/hostel-management/main",
+          "pages": [
+            { "page": "Hostel Registration", "route": "/hostel-management/main/hostel-registration" },
+            { "page": "Student Register Report", "route": "/hostel-management/main/student-register-report" },
+            { "page": "Student Register", "route": "/hostel-management/main/student-register" },
+            { "page": "Lock Student", "route": "/hostel-management/main/lock-student" }
+          ]
+        },
+        {
+          "subModule": "Student De Register In Hostel",
+          "route": "/hostel-management/student-de-register",
+          "pages": [
+            { "page": "Student De Register", "route": "/hostel-management/student-de-register/student-de-register" },
+            { "page": "Student De Register Report", "route": "/hostel-management/student-de-register/student-de-register-report" }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Teacher Management",
+      "icon": "fa-users",
+      "route": "/teacher-management",
+      "subModules": [
+        {
+          "subModule": "Teacher Management",
+          "route": "/teacher-management/main",
+          "pages": [
+            { "page": "Teacher to Class Mapping", "route": "/teacher-management/main/teacher-to-class-mapping" },
+            { "page": "Teacher to Class Mapping Report", "route": "/teacher-management/main/teacher-to-class-mapping-report" },
+            { "page": "Teacher Attendance", "route": "/teacher-management/main/teacher-attendance" },
+            { "page": "Teacher Attendance Report", "route": "/teacher-management/main/teacher-attendance-report" },
+            { "page": "Teacher/Employee Daily Activity", "route": "/teacher-management/main/teacher-employee-daily-activity" },
+            { "page": "Student Daily Activity", "route": "/teacher-management/main/student-daily-activity" }
+          ]
+        },
+        {
+          "subModule": "Teacher Management Report",
+          "route": "/teacher-management/report",
+          "pages": [
+            { "page": "Teacher Attendance Report", "route": "/teacher-management/report/teacher-attendance-report" }
+          ]
+        }
+      ]
+    }
+  ]
+}

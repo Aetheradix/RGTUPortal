@@ -1,0 +1,35 @@
+{
+  "module": "Library Management",
+  "icon": "fa-book",
+  "route": "/library-management",
+  "subModules": [
+    {
+      "subModule": "Transaction History",
+      "route": "/library-management/transaction-history",
+      "pages": [
+        { "page": "Transaction History", "route": "/library-management/transaction-history/history" }
+      ]
+    },
+    {
+      "subModule": "Return",
+      "route": "/library-management/return",
+      "pages": [
+        { "page": "Return", "route": "/library-management/return/return" }
+      ]
+    },
+    {
+      "subModule": "Issue",
+      "route": "/library-management/issue",
+      "pages": [
+        { "page": "Issue", "route": "/library-management/issue/issue" }
+      ]
+    },
+    {
+      "subModule": "QR/Bar Code",
+      "route": "/library-management/qr-bar-code",
+      "pages": [
+        { "page": "QR/Bar Code", "route": "/library-management/qr-bar-code/code" }
+      ]
+    }
+  ]
+}

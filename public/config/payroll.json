@@ -1,0 +1,66 @@
+{
+  "module": "Payroll",
+  "icon": "fa-money-check-alt",
+  "route": "/payroll",
+  "subModules": [
+    {
+      "subModule": "Payroll Baseline Data",
+      "route": "/payroll/payroll-baseline-data",
+      "pages": [
+        { "page": "Earning And Deduction", "route": "/payroll/payroll-baseline-data/earning-and-deduction" }
+      ]
+    },
+    {
+      "subModule": "Set Head Value",
+      "route": "/payroll/set-head-value",
+      "pages": [
+        { "page": "Salary Head", "route": "/payroll/set-head-value/salary-head" },
+        { "page": "Salary Optional Head", "route": "/payroll/set-head-value/salary-optional-head" },
+        { "page": "Salary Monthly Head", "route": "/payroll/set-head-value/salary-monthly-head" },
+        { "page": "Insurance Policy", "route": "/payroll/set-head-value/insurance-policy" },
+        { "page": "Loan Information", "route": "/payroll/set-head-value/loan-information" }
+      ]
+    },
+    {
+      "subModule": "Salary Process",
+      "route": "/payroll/salary-process",
+      "pages": [
+        { "page": "Set Attendance", "route": "/payroll/salary-process/set-attendance" },
+        { "page": "Generate Salary", "route": "/payroll/salary-process/generate-salary" },
+        { "page": "Salary Process", "route": "/payroll/salary-process/main-salary-process" }
+       
+      ]
+    },
+    {
+      "subModule": "Payroll Reports",
+      "route": "/payroll/payroll-reports",
+      "pages": [
+        { "page": "Bank Wise Monthly Pay Bill Details", "route": "/payroll/salary-process/bank-wise-pay-bill-details" },
+        { "page": "Monthly Pay Bill Sheet", "route": "/payroll/salary-process/monthly-pay-bill-sheet" },
+        { "page": "Final Summary Report", "route": "/payroll/salary-process/final-summary-report" },
+        { "page": "Employee Wise Salary Slip", "route": "/payroll/payroll-reports/employee-wise-salary-slip" },
+        { "page": "FY Earn Deduction Report", "route": "/payroll/payroll-reports/fy-earn-deduction-report" },
+        { "page": "Monthly Policy Report", "route": "/payroll/payroll-reports/monthly-policy-report" },
+        { "page": "Salary Generation Status Report", "route": "/payroll/payroll-reports/salary-generation-status-report" },
+        { "page": "Office Wise Salary Slip", "route": "/payroll/payroll-reports/office-wise-salary-slip" },
+        { "page": "Tax Challan Report", "route": "/payroll/payroll-reports/tax-challan-report" },
+        { "page": "Monthly Earning Deduction Report", "route": "/payroll/payroll-reports/monthly-earning-deduction-report" },
+        { "page": "Employee Salary Ledger", "route": "/payroll/payroll-reports/employee-salary-ledger" }
+      ]
+    },
+    {
+      "subModule": "Gratuity",
+      "route": "/payroll/gratuity",
+      "pages": [
+        { "page": "Gratuity", "route": "/payroll/gratuity/main" }
+      ]
+    },
+    {
+      "subModule": "Leave Encashment",
+      "route": "/payroll/leave-encashment",
+      "pages": [
+        { "page": "Leave Encashment", "route": "/payroll/leave-encashment/main" }
+      ]
+    }
+  ]
+}

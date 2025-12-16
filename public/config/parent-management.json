@@ -1,0 +1,14 @@
+{
+  "module": "Parents Management",
+  "icon": "fa-user-tie",
+  "route": "/parents-management",
+  "subModules": [
+    {
+      "subModule": "Student Diary",
+      "route": "/parents-management/student-diary",
+      "pages": [
+        { "page": "Student Diary", "route": "/parents-management/student-diary/student-diary" }
+      ]
+    }
+  ]
+}

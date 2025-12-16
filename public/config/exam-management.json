@@ -1,0 +1,84 @@
+{
+  "module": "Exam Management",
+  "icon": "fa-file-alt",
+  "route": "/exam-management",
+  "subModules": [
+    {
+      "subModule": "Exam Master",
+      "route": "/exam-management/exam-master",
+      "pages": [
+        { "page": "Exam Type", "route": "/exam-management/exam-master/exam-type" },
+        { "page": "Add Exam", "route": "/exam-management/exam-master/add-exam" }
+      ]
+    },
+    {
+      "subModule": "Exam Schedule",
+      "route": "/exam-management/exam-schedule",
+      "pages": [
+        { "page": "Schedule Exam", "route": "/exam-management/exam-schedule/schedule-exam" },
+        { "page": "View Exam Schedule", "route": "/exam-management/exam-schedule/view-schedule" }
+      ]
+    },
+    {
+      "subModule": "Question Papers",
+      "route": "/exam-management/question-papers",
+      "pages": [
+        { "page": "Set Question paper pattern", "route": "/exam-management/question-papers/set-pattern" },
+        { "page": "Add Questions Paper", "route": "/exam-management/question-papers/add-questions" }
+      ]
+    },
+    {
+      "subModule": "Exam Form",
+      "route": "/exam-management/exam-form",
+      "pages": [
+        { "page": "Set last date (with / without late fees)", "route": "/exam-management/exam-form/set-last-date" },
+        { "page": "Fill Exam Form and Pay Exam fee", "route": "/exam-management/exam-form/fill-pay-fee" },
+        { "page": "Forward Forms (Principal)", "route": "/exam-management/exam-form/forward-forms" }
+      ]
+    },
+    {
+      "subModule": "Admit Card",
+      "route": "/exam-management/admit-card",
+      "pages": [
+        { "page": "Generate Admit Cards (University)", "route": "/exam-management/admit-card/generate-university" },
+        { "page": "Admit Card download (Student)", "route": "/exam-management/admit-card/download-student" },
+        { "page": "Admit Card Verification (College)", "route": "/exam-management/admit-card/verification-college" }
+      ]
+    },
+    {
+      "subModule": "Evaluator",
+      "route": "/exam-management/evaluator",
+      "pages": [
+        { "page": "Apply as Evaluator", "route": "/exam-management/evaluator/apply" },
+        { "page": "Select evaluators", "route": "/exam-management/evaluator/select" },
+        { "page": "Sheet Distribution to evaluator", "route": "/exam-management/evaluator/sheet-distribution" }
+      ]
+    },
+    {
+      "subModule": "Result",
+      "route": "/exam-management/result",
+      "pages": [
+        { "page": "Maximum Days for Revaluation/Retotaling", "route": "/exam-management/result/max-days-revaluation" },
+        { "page": "Marks Entry", "route": "/exam-management/result/marks-entry" },
+        { "page": "Result Compilation", "route": "/exam-management/result/compilation" },
+        { "page": "Result Verification by I", "route": "/exam-management/result/verification-by-i" },
+        { "page": "Result Publication", "route": "/exam-management/result/publication" },
+        { "page": "TR Sheet Generation", "route": "/exam-management/result/tr-sheet-generation" },
+        { "page": "MarkSheet Generation & Printing", "route": "/exam-management/result/marksheet-generation-printing" },
+        { "page": "Apply for Revaluation", "route": "/exam-management/result/apply-revaluation" },
+        { "page": "Apply for Retotaling", "route": "/exam-management/result/apply-retotaling" },
+        { "page": "Result Verification after Issuing", "route": "/exam-management/result/verification-after-issuing" }
+      ]
+    },
+    {
+      "subModule": "Duplicate Marksheet",
+      "route": "/exam-management/duplicate-marksheet",
+      "pages": [
+        { "page": "Apply For Duplicate Marksheet", "route": "/exam-management/duplicate-marksheet/apply" },
+        { "page": "Duplicate Marksheet Applications", "route": "/exam-management/duplicate-marksheet/applications" },
+        { "page": "Generate Duplicate MarkSheet", "route": "/exam-management/duplicate-marksheet/generate" },
+        { "page": "Download Duplicate Marksheet", "route": "/exam-management/duplicate-marksheet/download" }
+      ]
+    }
+  ]
+}

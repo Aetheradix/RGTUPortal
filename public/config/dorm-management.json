@@ -1,0 +1,42 @@
+{
+  "module": "Dorm Management",
+  "icon": "fa-bed",
+  "route": "/dorm-management",
+  "subModules": [
+    {
+      "subModule": "Building Management",
+      "route": "/dorm-management/building-management",
+      "pages": [
+        { "page": "Building Management", "route": "/dorm-management/building-management/management" }
+      ]
+    },
+    {
+      "subModule": "Statistics",
+      "route": "/dorm-management/statistics",
+      "pages": [
+        { "page": "Statistics", "route": "/dorm-management/statistics/stats" }
+      ]
+    },
+    {
+      "subModule": "Time Table",
+      "route": "/dorm-management/time-table",
+      "pages": [
+        { "page": "Time Table", "route": "/dorm-management/time-table/table" }
+      ]
+    },
+    {
+      "subModule": "Room Management",
+      "route": "/dorm-management/room-management",
+      "pages": [
+        { "page": "Room Management", "route": "/dorm-management/room-management/management" }
+      ]
+    },
+    {
+      "subModule": "Warden Management",
+      "route": "/dorm-management/warden-management",
+      "pages": [
+        { "page": "Warden Management", "route": "/dorm-management/warden-management/management" }
+      ]
+    }
+  ]
+}

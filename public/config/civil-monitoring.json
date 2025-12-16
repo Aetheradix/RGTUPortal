@@ -1,0 +1,35 @@
+{
+  "module": "Civil Monitoring",
+  "icon": "fa-hard-hat",
+  "route": "/civil-monitoring",
+  "subModules": [
+    {
+      "subModule": "Civil Monitoring Master",
+      "route": "/civil-monitoring/master",
+      "pages": [
+        { "page": "Post Code Report", "route": "/civil-monitoring/master/post-code-report" },
+        { "page": "Inspection Agency Type", "route": "/civil-monitoring/master/inspection-agency-type" },
+        { "page": "Construction Work Type", "route": "/civil-monitoring/master/construction-work-type" },
+        { "page": "Construction Work Details", "route": "/civil-monitoring/master/construction-work-details" }
+      ]
+    },
+    {
+      "subModule": "Construction Work Process",
+      "route": "/civil-monitoring/work-process",
+      "pages": [
+        { "page": "Update Construction Work Details", "route": "/civil-monitoring/work-process/update-work-details" },
+        { "page": "Pending Work Request", "route": "/civil-monitoring/work-process/pending-work-request" },
+        { "page": "Construction Work Request", "route": "/civil-monitoring/work-process/construction-work-request" },
+        { "page": "Construction Work Report", "route": "/civil-monitoring/work-process/construction-work-report" }
+      ]
+    },
+    {
+      "subModule": "Civil Monitoring Report",
+      "route": "/civil-monitoring/reports",
+      "pages": [
+        { "page": "Construction Work Status", "route": "/civil-monitoring/reports/construction-work-status" },
+        { "page": "Construction Work Status", "route": "/civil-monitoring/reports/construction-work-status-2" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "module": "Career Guidance and Test Preparation",
+  "icon": "fa-graduation-cap",
+  "route": "/career-guidance-test-preparation",
+  "subModules": [
+    {
+      "subModule": "Career Guidance and Test Preparation",
+      "route": "/career-guidance-test-preparation/main",
+      "pages": [
+        { "page": "Test Preparation Master", "route": "/career-guidance-test-preparation/main/test-preparation-master" },
+        { "page": "Test Preparation Master Report", "route": "/career-guidance-test-preparation/main/test-preparation-master-report" }
+      ]
+    }
+  ]
+}

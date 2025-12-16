@@ -1,0 +1,9 @@
+{
+  "subModule": "Department Enquiry Management",
+  "route": "/hrms/department-enquiry-management",
+  "pages": [
+    { "page": "Fill Department Enquiry Details", "route": "/hrms/department-enquiry-management/fill-details" },
+    { "page": "Update Department Enquiry", "route": "/hrms/department-enquiry-management/update-enquiry" },
+    { "page": "Department Enquiry Report", "route": "/hrms/department-enquiry-management/report" }
+  ]
+}

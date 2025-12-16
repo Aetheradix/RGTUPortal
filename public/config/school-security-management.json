@@ -1,0 +1,15 @@
+{
+  "module": "School Security Management",
+  "icon": "fa-shield-alt",
+  "route": "/school-security-management",
+  "subModules": [
+    {
+      "subModule": "School Security Management",
+      "route": "/school-security-management/main",
+      "pages": [
+        { "page": "School Security Registration", "route": "/school-security-management/main/registration" },
+        { "page": "School Security Registration Report", "route": "/school-security-management/main/registration-report" }
+      ]
+    }
+  ]
+}

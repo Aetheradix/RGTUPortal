@@ -1,0 +1,10 @@
+{
+  "subModule": "Tour Management",
+  "route": "/hrms/tour-management",
+  "pages": [
+    { "page": "Apply Tour", "route": "/hrms/tour-management/apply-tour" },
+    { "page": "Tour Report", "route": "/hrms/tour-management/tour-report-1" },
+    { "page": "Approve Tour", "route": "/hrms/tour-management/approve-tour" },
+    { "page": "Tour Report", "route": "/hrms/tour-management/tour-report-2" }
+  ]
+}

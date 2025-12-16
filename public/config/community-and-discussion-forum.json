@@ -1,0 +1,15 @@
+{
+  "module": "Community and Discussion Forum",
+  "icon": "fa-comments",
+  "route": "/community-discussion-forum",
+  "subModules": [
+    {
+      "subModule": "Community and Discussion Forum",
+      "route": "/community-discussion-forum/main",
+      "pages": [
+        { "page": "Topic Master", "route": "/community-discussion-forum/main/topic-master" },
+        { "page": "Discussion Chat box", "route": "/community-discussion-forum/main/discussion-chat-box" }
+      ]
+    }
+  ]
+}

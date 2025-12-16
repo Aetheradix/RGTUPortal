@@ -1,0 +1,46 @@
+{
+  "module": "Academics",
+  "icon": "fa-graduation-cap",
+  "route": "/academics",
+  "subModules": [
+    {
+      "subModule": "Lectures",
+      "route": "/academics/lectures",
+      "pages": [
+        { "page": "Offline Lectures", "route": "/academics/lectures/offline-lectures" },
+        { "page": "Lecture Resources", "route": "/academics/lectures/lecture-resources" }
+      ]
+    },
+    {
+      "subModule": "Attendance Management",
+      "route": "/academics/attendance-management",
+      "pages": [
+        { "page": "View Attendance Records", "route": "/academics/attendance-management/view-records" },
+        { "page": "Mark Attendance", "route": "/academics/attendance-management/mark-attendance" },
+        { "page": "Attendance Policies", "route": "/academics/attendance-management/policies" },
+        { "page": "Request Leave", "route": "/academics/attendance-management/request-leave" },
+        { "page": "Attendance Reports", "route": "/academics/attendance-management/reports" }
+      ]
+    },
+    {
+      "subModule": "Syllabus & Study Material",
+      "route": "/academics/syllabus-study-material",
+      "pages": [
+        { "page": "Add Study Materials", "route": "/academics/syllabus-study-material/add-materials" },
+        { "page": "Saved Notes And Videos", "route": "/academics/syllabus-study-material/saved-notes-videos" },
+        { "page": "View Study Materials", "route": "/academics/syllabus-study-material/view-materials" }
+      ]
+    },
+    {
+      "subModule": "College Transfer",
+      "route": "/academics/college-transfer",
+      "pages": [
+        { "page": "Apply College Transfer", "route": "/academics/college-transfer/apply-transfer" },
+        { "page": "Approve Transfer Request (University)", "route": "/academics/college-transfer/approve-request-university" },
+        { "page": "Transfer In", "route": "/academics/college-transfer/transfer-in" },
+        { "page": "Transfer out", "route": "/academics/college-transfer/transfer-out" },
+        { "page": "Credit Transfer to New College/University", "route": "/academics/college-transfer/credit-transfer" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "module": "Employee Directory Management",
+  "icon": "fa-users",
+  "route": "/employee-directory-management",
+  "subModules": [
+    {
+      "subModule": "Employee Directory",
+      "route": "/employee-directory-management/employee-directory",
+      "pages": [
+        { "page": "Official Details Update", "route": "/employee-directory-management/official-details-update" },
+        { "page": "Official Details Update", "route": "/employee-directory-management/official-details-update-2" },
+        { "page": "Employee Data Change Request", "route": "/employee-directory-management/employee-data-change-request" },
+        { "page": "Employee Verification", "route": "/employee-directory-management/employee-verification" },
+        { "page": "Employee Verification Pdf", "route": "/employee-directory-management/employee-verification-pdf" },
+        { "page": "Employee Verification HO Level", "route": "/employee-directory-management/employee-verification-ho-level" },
+        { "page": "Exam Wise Employee Enrolment", "route": "/employee-directory-management/exam-wise-employee-enrolment" },
+        { "page": "Employee Verification", "route": "/employee-directory-management/employee-verification-2" },
+        { "page": "Employee Registration", "route": "/employee-directory-management/employee-registration" },
+        { "page": "Print Employee Card", "route": "/employee-directory-management/print-employee-card" }
+      ]
+    },
+    {
+      "subModule": "Employee ID Card Management System",
+      "route": "/employee-directory-management/id-card-management-system",
+      "pages": [
+        { "page": "Approve Employee Id Card", "route": "/employee-directory-management/approve-employee-id-card" },
+        { "page": "Employee ID Card Generate", "route": "/employee-directory-management/employee-id-card-generate" },
+        { "page": "District Wise ID Card", "route": "/employee-directory-management/district-wise-id-card" }
+      ]
+    },
+    {
+      "subModule": "Employee ID Card Reports",
+      "route": "/employee-directory-management/id-card-reports",
+      "pages": [
+        { "page": "District Wise ID Card", "route": "/employee-directory-management/district-wise-id-card" },
+        { "page": "College Wise ID Details", "route": "/employee-directory-management/college-wise-id-details" },
+        { "page": "Missing Employee Details", "route": "/employee-directory-management/missing-employee-details" },
+        { "page": "Employee Details Report", "route": "/employee-directory-management/employee-details-report" }
+      ]
+    },
+    {
+      "subModule": "Employee Reports",
+      "route": "/employee-directory-management/employee-reports",
+      "pages": [
+        { "page": "Employee Details Report", "route": "/employee-directory-management/employee-details-report" },
+        { "page": "Change Request Statistic Report", "route": "/employee-directory-management/change-request-statistic-report" },
+        { "page": "Employee Verification Statistic Report", "route": "/employee-directory-management/employee-verification-statistic-report" },
+        { "page": "Employee Details Report", "route": "/employee-directory-management/employee-details-report-2" },
+        { "page": "Exam Wise Employee Enrolment Report", "route": "/employee-directory-management/exam-wise-employee-enrolment-report" },
+        { "page": "Employee Verification Report", "route": "/employee-directory-management/employee-verification-report" },
+        { "page": "Handicapped Employees Report", "route": "/employee-directory-management/handicapped-employees-report" },
+        { "page": "Employee Customized Report", "route": "/employee-directory-management/employee-customized-report" },
+        { "page": "About Voluntary and Mutuall Transfer", "route": "/employee-directory-management/about-voluntary-and-mutual-transfer" }
+      ]
+    }
+  ]
+}
