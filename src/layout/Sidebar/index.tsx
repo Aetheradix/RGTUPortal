@@ -1,57 +1,61 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { MdClose } from 'react-icons/md';
+import { FaHome } from 'react-icons/fa';
 import { getIcon } from '../../utils/iconMapper'; 
-import type { Module, SidebarConfig, SidebarProps } from './types';
+import type { Module, SidebarProps } from './types';
 import SidebarItem from './components/SidebarItems';
 import SubModuleItem from './components/SubModuleItems';
+import sidebarMenu from '@/config/sidebar';
+; 
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, collapsed, onClose }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [sidebarModules, setSidebarModules] = useState<Module[]>([]);
   const [expandedModules, setExpandedModules] = useState<Set<string>>(new Set());
-
+  const [clickedModule, setClickedModule] = useState<string | null>(null);
 
   useEffect(() => {
-    const loadSidebarConfig = async () => {
-      try {
-        const response = await fetch('/config/modules.json');
-        const data: SidebarConfig = await response.json();
-        const modules = data.sidebarMenu || [];
-        setSidebarModules(modules);
+   
+    const modules: Module[] = (sidebarMenu as any)?.sidebar || [];
+    setSidebarModules(modules);
 
-        
-        const currentPath = location.pathname;
-        const modulesToExpand = new Set<string>();
+    const currentPath = location.pathname;
+    const modulesToExpand = new Set<string>();
 
-        modules.forEach((module) => {
-          if (
-            currentPath === module.route ||
-            (module.subModules && module.subModules.some(subModule => {
-              const isSubModuleRoute = currentPath === subModule.route || currentPath.startsWith(subModule.route + '/');
-              const isPageRoute = subModule.pages?.some(page => currentPath === page.route);
-              return isSubModuleRoute || isPageRoute;
-            }))
-          ) {
-            modulesToExpand.add(module.module);
-          }
-        });
-
-        if (modulesToExpand.size > 0) {
-          setExpandedModules(modulesToExpand);
-        }
-      } catch (error) {
-        console.error('Failed to load sidebar config:', error);
-        setSidebarModules([]);
+    modules.forEach((module) => {
+      if (
+        currentPath === module.route ||
+        (module.subModules && module.subModules.some(subModule => {
+          const isSubModuleRoute = currentPath === subModule.route || currentPath.startsWith(subModule.route + '/');
+          const isPageRoute = subModule.pages?.some(page => currentPath === page.route);
+          return isSubModuleRoute || isPageRoute;
+        }))
+      ) {
+        modulesToExpand.add(module.module);
       }
-    };
+    });
 
-    loadSidebarConfig();
+    if (modulesToExpand.size > 0) {
+      setExpandedModules(modulesToExpand);
+      
+      const firstExpanded = Array.from(modulesToExpand)[0];
+      if (firstExpanded && clickedModule === null) {
+        setClickedModule(firstExpanded);
+      } else if (firstExpanded) {
+       
+        setClickedModule(firstExpanded);
+      }
+    } else {
+      setClickedModule(null);
+    }
   }, [location.pathname]);
 
   
   const toggleModule = (moduleName: string) => {
+    
+    setClickedModule(moduleName);
     setExpandedModules((prev) => {
       const newSet = new Set(prev);
       if (newSet.has(moduleName)) {
@@ -65,7 +69,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, collapsed, onClose }) => {
 
   const handleNavigate = (route: string) => {
     navigate(route);
-    // Close sidebar on mobile after navigation
+   
+    setClickedModule(null);
+  
     if (window.innerWidth < 1024) {
       onClose();
     }
@@ -73,15 +79,22 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, collapsed, onClose }) => {
 
 
   const isModuleActive = (module: Module): boolean => {
+    
+    if (clickedModule !== null) {
+      return clickedModule === module.module;
+    }
+    
+    
     const currentPath = location.pathname;
-    // Exact match
+    
+    
     if (currentPath === module.route) return true;
 
-    // Check submodules and pages
+   
     if (module.subModules) {
       return module.subModules.some(subModule => {
         if (currentPath === subModule.route) return true;
-        if (currentPath.startsWith(subModule.route + '/')) return true; // For nested routes under submodule
+        if (currentPath.startsWith(subModule.route + '/')) return true; 
         if (subModule.pages) {
           return subModule.pages.some(page => currentPath === page.route);
         }
@@ -138,7 +151,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, collapsed, onClose }) => {
         {/* Navigation */}
         <nav className="flex-1 py-6 overflow-y-auto overflow-x-hidden scrollbar-hide px-0">
           {sidebarModules.map((module) => {
-            const Icon = getIcon(module.icon);
+            const IconFromString = typeof module.icon === 'string' ? getIcon(module.icon) : null;
+            const Icon = (typeof module.icon === 'string' ? IconFromString : module.icon) || FaHome;
             const hasSubModules = module.subModules && module.subModules.length > 0;
             const isExpanded = expandedModules.has(module.module);
 
@@ -153,7 +167,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, collapsed, onClose }) => {
                   isExpanded={isExpanded}
                   onToggle={() => toggleModule(module.module)}
                   onClick={() => {
-                    // Only navigate directly if it has no submodules or is collapsed
+                   
+                    setClickedModule(module.module);
+                    
                     if (!hasSubModules || collapsed) {
                       handleNavigate(module.route);
                     }

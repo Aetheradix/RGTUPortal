@@ -1,5 +1,7 @@
 // --- Data Structure Interfaces ---
 
+import type React from 'react';
+
 export interface Page {
   page: string;
   route: string;
@@ -13,7 +15,7 @@ export interface SubModule {
 
 export interface Module {
   module: string;
-  icon: string;
+  icon: string | React.ElementType;
   route: string;
   subModules?: SubModule[];
 }
