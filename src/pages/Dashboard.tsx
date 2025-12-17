@@ -1,9 +1,6 @@
 import { Calendar, DollarSign, Download, Package, ShoppingCart, TrendingDown, TrendingUp, Users } from 'lucide-react';
-import { useState } from 'react';
 
 const Dashboard = () => {
-  const [selectedPeriod, setSelectedPeriod] = useState('month');
-
   const stats = [
     {
       title: 'Total Revenue',
@@ -51,7 +48,7 @@ const Dashboard = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 ">
+    <div className="min-h-screen bg-linear-to-br from-slate-50 to-slate-100 ">
       <div className="w-full  mx-auto space-y-6">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
@@ -78,7 +75,7 @@ const Dashboard = () => {
             return (
               <div key={index} className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex items-start justify-between mb-4">
-                  <div className={`p-3 rounded-xl bg-gradient-to-br ${stat.bgGradient} bg-opacity-10`}>
+                  <div className={`p-3 rounded-xl bg-linear-to-br ${stat.bgGradient} bg-opacity-10`}>
                     <Icon className={`text-${stat.color}-600`} size={24} />
                   </div>
                   <div className={`flex items-center gap-1 text-sm font-semibold ${stat.trend === 'up' ? 'text-green-600' : 'text-red-600'}`}>
