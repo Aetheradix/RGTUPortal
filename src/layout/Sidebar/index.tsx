@@ -1,97 +1,96 @@
-import React from 'react';
-import {
-  MdAssignment,
-  MdAttachMoney,
-  MdBook,
-  MdClose,
-  MdDashboard,
-  MdDirectionsBus,
-  MdLocalLibrary,
-  MdPeople,
-  MdSchool,
-} from 'react-icons/md';
-
-const navItems = [
-  { name: 'Dashboard', icon: MdDashboard, active: false },
-  { name: 'Students', icon: MdPeople, active: true },
-  { name: 'Faculty', icon: MdSchool, active: false },
-  { name: 'Courses', icon: MdBook, active: false },
-  { name: 'Examinations', icon: MdAssignment, active: false },
-  { name: 'Finance', icon: MdAttachMoney, active: false },
-  { name: 'Library', icon: MdLocalLibrary, active: false },
-  { name: 'Transport', icon: MdDirectionsBus, active: false },
-];
-
-
-
-interface SidebarItemProps {
-  name: string;
-  Icon: React.ElementType; // Or the specific icon type you are using
-  active?: boolean;
-  collapsed?: boolean;
-  onClick?: () => void;
-}
-
-const SidebarItem: React.FC<SidebarItemProps> = ({ name, Icon, active, collapsed, onClick }) => {
-  return (
-    <button
-      onClick={onClick}
-      className={`
-        relative flex items-center transition-all duration-300 group mb-2
-        ${collapsed ? 'justify-center w-12 h-12 mx-auto rounded-full' : 'w-[90%] mx-auto py-4 px-6 rounded-full'}
-        ${
-          active
-            ? 'bg-gradient-to-r from-[#1c1f3b] to-[#8b5cf6] text-white shadow-lg shadow-purple-900/20'
-            : 'text-gray-400 hover:text-white hover:bg-slate-700/30 rounded-full'
-        }
-      `}
-      title={collapsed ? name : undefined}
-    >
-      {/* Icon Wrapper: Handles the circular border when active */}
-      <div 
-        className={`
-          flex items-center justify-center rounded-full transition-all duration-300
-          ${active ? ' w-8 h-8 p-1' : 'w-5 h-5 border-0 p-0'}
-        `}
-      >
-        <Icon 
-          className={`
-            transition-all duration-300
-            ${active ? 'w-6 h-6' : collapsed  && 'w-5 h-5'}
-          `} 
-        />
-      </div>
-
-      {/* Text Label */}
-      <span 
-        className={`
-          font-medium whitespace-nowrap transition-all duration-300 overflow-hidden text-lg tracking-wide
-          ${collapsed ? 'w-0 opacity-0 ml-0' : 'w-auto opacity-100 ml-4'}
-          ${active ? 'text-white' : ''}
-        `}
-      >
-        {name}
-      </span>
-
-      {/* Tooltip for collapsed state */}
-      {collapsed && (
-        <div className="absolute left-full ml-4 px-3 py-2 bg-[#1c1f3b] text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap z-50 shadow-xl border border-purple-500/20">
-          {name}
-        </div>
-      )}
-    </button>
-  );
-};
-
-
-
-type SidebarProps = {
-  isOpen: boolean;
-  collapsed: boolean;
-  onClose: () => void;
-};
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { MdClose } from 'react-icons/md';
+import { getIcon } from '../../utils/iconMapper'; 
+import type { Module, SidebarConfig, SidebarProps } from './types';
+import SidebarItem from './components/SidebarItems';
+import SubModuleItem from './components/SubModuleItems';
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, collapsed, onClose }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [sidebarModules, setSidebarModules] = useState<Module[]>([]);
+  const [expandedModules, setExpandedModules] = useState<Set<string>>(new Set());
+
+
+  useEffect(() => {
+    const loadSidebarConfig = async () => {
+      try {
+        const response = await fetch('/config/modules.json');
+        const data: SidebarConfig = await response.json();
+        const modules = data.sidebarMenu || [];
+        setSidebarModules(modules);
+
+        
+        const currentPath = location.pathname;
+        const modulesToExpand = new Set<string>();
+
+        modules.forEach((module) => {
+          if (
+            currentPath === module.route ||
+            (module.subModules && module.subModules.some(subModule => {
+              const isSubModuleRoute = currentPath === subModule.route || currentPath.startsWith(subModule.route + '/');
+              const isPageRoute = subModule.pages?.some(page => currentPath === page.route);
+              return isSubModuleRoute || isPageRoute;
+            }))
+          ) {
+            modulesToExpand.add(module.module);
+          }
+        });
+
+        if (modulesToExpand.size > 0) {
+          setExpandedModules(modulesToExpand);
+        }
+      } catch (error) {
+        console.error('Failed to load sidebar config:', error);
+        setSidebarModules([]);
+      }
+    };
+
+    loadSidebarConfig();
+  }, [location.pathname]);
+
+  
+  const toggleModule = (moduleName: string) => {
+    setExpandedModules((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(moduleName)) {
+        newSet.delete(moduleName);
+      } else {
+        newSet.add(moduleName);
+      }
+      return newSet;
+    });
+  };
+
+  const handleNavigate = (route: string) => {
+    navigate(route);
+    // Close sidebar on mobile after navigation
+    if (window.innerWidth < 1024) {
+      onClose();
+    }
+  };
+
+
+  const isModuleActive = (module: Module): boolean => {
+    const currentPath = location.pathname;
+    // Exact match
+    if (currentPath === module.route) return true;
+
+    // Check submodules and pages
+    if (module.subModules) {
+      return module.subModules.some(subModule => {
+        if (currentPath === subModule.route) return true;
+        if (currentPath.startsWith(subModule.route + '/')) return true; // For nested routes under submodule
+        if (subModule.pages) {
+          return subModule.pages.some(page => currentPath === page.route);
+        }
+        return false;
+      });
+    }
+    return false;
+  };
+
   return (
     <>
       {/* Sidebar drawer */}
@@ -99,7 +98,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, collapsed, onClose }) => {
         className={`
           fixed lg:static top-0 left-0 h-full bg-sidebar-bg z-30
           transform transition-all duration-300 ease-in-out
-          flex flex-col
+          flex flex-col 
           ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
           ${collapsed ? 'lg:w-20' : 'lg:w-72'}
           w-72
@@ -112,6 +111,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, collapsed, onClose }) => {
         `}>
           <div className={`flex items-center gap-3 ${collapsed ? 'lg:flex-col lg:gap-2' : ''}`}>
             <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shrink-0">
+              {/* Logo SVG */}
               <svg className="w-6 h-6 text-slate-800" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z" />
               </svg>
@@ -137,21 +137,50 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, collapsed, onClose }) => {
 
         {/* Navigation */}
         <nav className="flex-1 py-6 overflow-y-auto overflow-x-hidden scrollbar-hide px-0">
-          {navItems.map((item) => (
-            <SidebarItem
-              key={item.name}
-              name={item.name}
-              Icon={item.icon}
-              active={item.active}
-              collapsed={collapsed}
-              onClick={() => {
+          {sidebarModules.map((module) => {
+            const Icon = getIcon(module.icon);
+            const hasSubModules = module.subModules && module.subModules.length > 0;
+            const isExpanded = expandedModules.has(module.module);
 
-                if (window.innerWidth < 1024) {
-                  onClose();
-                }
-              }}
-            />
-          ))}
+            return (
+              <div key={module.module} className="mb-2">
+                <SidebarItem
+                  name={module.module}
+                  Icon={Icon}
+                  active={isModuleActive(module)}
+                  collapsed={collapsed}
+                  hasChildren={hasSubModules}
+                  isExpanded={isExpanded}
+                  onToggle={() => toggleModule(module.module)}
+                  onClick={() => {
+                    // Only navigate directly if it has no submodules or is collapsed
+                    if (!hasSubModules || collapsed) {
+                      handleNavigate(module.route);
+                    }
+                  }}
+                />
+
+                {/* SubModules - only show when expanded and not collapsed */}
+                {hasSubModules && !collapsed && (
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ${isExpanded ? 'max-h-500 opacity-100' : 'max-h-0 opacity-0'
+                      }`}
+                  >
+                    <div className="mt-1 space-y-1">
+                      {module.subModules!.map((subModule) => (
+                        <SubModuleItem
+                          key={subModule.route}
+                          subModule={subModule}
+                          collapsed={collapsed}
+                          onNavigate={handleNavigate}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </nav>
 
         {/* Footer - hidden when collapsed */}
