@@ -1,5 +1,5 @@
 import { Route } from 'react-router-dom';
-import RoleCreation from '../../../../pages/user-management/RoleCreation';
+import RoleCreation from '../../../../pages/masters/user-management/RoleCreation';
 
 export const roleCreationRoute = (
   <Route 

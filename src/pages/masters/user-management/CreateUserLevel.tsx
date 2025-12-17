@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import PageLayout from '../../components/PageLayout';
+import PageLayout from '../../../components/PageLayout';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { DataTable } from 'primereact/datatable';

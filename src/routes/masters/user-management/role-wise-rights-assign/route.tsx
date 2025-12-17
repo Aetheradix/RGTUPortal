@@ -1,5 +1,5 @@
 import { Route } from 'react-router-dom';
-import RoleWiseRightsAssign from '../../../../pages/user-management/RoleWiseRightsAssign';
+import RoleWiseRightsAssign from '../../../../pages/masters/user-management/RoleWiseRightsAssign';
 
 export const roleWiseRightsAssignRoute = (
   <Route 

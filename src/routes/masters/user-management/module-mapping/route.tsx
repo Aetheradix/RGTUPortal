@@ -1,5 +1,5 @@
 import { Route } from 'react-router-dom';
-import ModuleMapping from '../../../../pages/user-management/ModuleMapping';
+import ModuleMapping from '../../../../pages/masters/user-management/ModuleMapping';
 
 export const moduleMappingRoute = (
   <Route 

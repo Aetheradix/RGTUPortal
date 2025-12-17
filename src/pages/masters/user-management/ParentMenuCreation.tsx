@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import PageLayout from '../../components/PageLayout';
+import PageLayout from '../../../components/PageLayout';
 import { Button } from 'primereact/button';
-import { Input, Textarea, NumberInput } from '../../ui/shared';
-import { Table, type TableColumn } from '../../ui/shared';
-import { DUMMY_PARENT_MENUS, type ParentMenu } from '../../constants';
+import { Input, Textarea, NumberInput } from '../../../ui/shared';
+import { Table, type TableColumn } from '../../../ui/shared';
+import { DUMMY_PARENT_MENUS, type ParentMenu } from '../../../constants';
 
 const ParentMenuCreation: React.FC = () => {
   const [formData, setFormData] = useState({

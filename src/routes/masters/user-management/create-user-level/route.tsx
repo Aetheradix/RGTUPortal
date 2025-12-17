@@ -1,5 +1,5 @@
 import { Route } from 'react-router-dom';
-import CreateUserLevel from '../../../../pages/user-management/CreateUserLevel';
+import CreateUserLevel from '../../../../pages/masters/user-management/CreateUserLevel';
 
 export const createUserLevelRoute = (
   <Route 

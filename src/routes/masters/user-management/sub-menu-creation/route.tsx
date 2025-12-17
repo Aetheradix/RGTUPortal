@@ -1,5 +1,5 @@
 import { Route } from 'react-router-dom';
-import SubMenuCreation from '../../../../pages/user-management/SubMenuCreation';
+import SubMenuCreation from '../../../../pages/masters/user-management/SubMenuCreation';
 
 export const subMenuCreationRoute = (
   <Route 

@@ -1,5 +1,5 @@
 import { Route } from 'react-router-dom';
-import FormWiseRightsAssign from '../../../../pages/user-management/FormWiseRightsAssign';
+import FormWiseRightsAssign from '../../../../pages/masters/user-management/FormWiseRightsAssign';
 
 export const formWiseRightsAssignRoute = (
   <Route 

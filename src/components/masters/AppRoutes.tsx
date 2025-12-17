@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import GenericPage from '../../pages/GenericPage';
 import { mastersRoutes } from '../../routes/masters/route';
+import { locationMasterRoutes } from '../../routes/masters/location-master/route';
 
 const AppRoutes: React.FC = () => {
   return (
@@ -11,7 +12,9 @@ const AppRoutes: React.FC = () => {
 
       {/* Masters Routes - includes all nested routes */}
       {mastersRoutes}
-      
+      {/* Location Master Routes */}
+      {locationMasterRoutes}
+
       {/* Catch all route - handles all routes dynamically */}
       <Route path="*" element={<GenericPage />} />
     </Routes>
