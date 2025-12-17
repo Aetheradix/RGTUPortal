@@ -1,5 +1,5 @@
 import AppLayout from './layout/AppLayout'
-import AppRoutes from './components/AppRoutes'
+import AppRoutes from './components/masters/AppRoutes'
 
 const App = () => {
   return (
