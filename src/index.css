@@ -71,7 +71,7 @@
   color: var(--sidebar-text);
 }
 
-/* You might need to define more if you use them directly: */
+
 .bg-sidebar-hover {
   background-color: var(--sidebar-hover);
 }
@@ -82,7 +82,7 @@
 
 /* Sidebar Component */
 .sidebar {
-  /* Use plain CSS instead of @apply for custom colors */
+  
   background-color: var(--sidebar-bg);
   color: var(--sidebar-text);
   width: 16rem;
@@ -100,7 +100,7 @@
 }
 
 .sidebar-item:hover {
-  /* Use plain CSS for custom colors, keep Tailwind for the rest */
+ 
   background-color: var(--sidebar-hover);
   color: var(--sidebar-text-active);
 }
@@ -108,4 +108,14 @@
 .sidebar-item.active {
   background-color: var(--sidebar-active);
   color: var(--sidebar-text-active);
+}
+
+
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }

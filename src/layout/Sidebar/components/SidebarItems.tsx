@@ -1,5 +1,3 @@
-// src/components/Sidebar/SidebarItem.tsx
-
 import React from 'react';
 import { MdChevronRight, MdExpandLess } from 'react-icons/md';
 import type { SidebarItemProps } from '../types';
@@ -16,12 +14,12 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
   onToggle
 }) => {
   const handleClick = (e: React.MouseEvent) => {
-    // If it has children and is not collapsed, trigger the toggle/expand function
+    
     if (hasChildren && !collapsed && onToggle) {
       e.stopPropagation();
       onToggle();
     } 
-    // Otherwise, execute the click (navigation) function
+    
     else if (onClick) {
       onClick();
     }
