@@ -22,12 +22,14 @@ export const locationMasterRoutes = (
     <Route path="state-master" element={<StateMaster />} />
     <Route path="division-master" element={<DivisionMaster />} />
     <Route path="district-master" element={<DistrictMaster />} />
+    {/* Support both correct and common-typo paths for Tehsil */}
+    {/* <Route path="tehsil-master" element={<TehsilMaster />} /> */}
     <Route path="tehsil-master" element={<TehsilMaster />} />
     <Route path="block-master" element={<BlockMaster />} />
     <Route path="parliamentary-master" element={<ParliamentaryMaster />} />
     <Route path="assembly-master" element={<AssemblyMaster />} />
     <Route path="nagar-nigam-master" element={<NagarNigamMaster />} />
-    <Route path="nagar-palik a-master" element={<NagarPalikaMaster />} />
+    <Route path="nagar-palika-master" element={<NagarPalikaMaster />} />
     <Route path="jila-panchayat-master" element={<JilaPanchayatMaster />} />
     <Route path="nagar-panchayat-master" element={<NagarPanchayatMaster />} />
     <Route path="janpad-panchayat-master" element={<JanpadPanchayatMaster />} />

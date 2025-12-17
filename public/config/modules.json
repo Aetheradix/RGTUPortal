@@ -349,6 +349,32 @@
                     ]
                 },
                 {
+                    "subModule": "Transfer Request",
+                    "route": "/hrms/transfer-request",
+                    "pages": [
+                        {
+                            "page": "About Voluntary and Mutual Transfer",
+                            "route": "/hrms/transfer-request/about-voluntary-mutual-transfer"
+                        },
+                        {
+                            "page": "Apply Voluntary Transfer",
+                            "route": "/hrms/transfer-request/apply-voluntary-transfer"
+                        },
+                        {
+                            "page": "Apply Mutual Transfer",
+                            "route": "/hrms/transfer-request/apply-mutual-transfer"
+                        },
+                        {
+                            "page": "Print Draft Application",
+                            "route": "/hrms/transfer-request/print-draft-application"
+                        },
+                        {
+                            "page": "Lock Application",
+                            "route": "/hrms/transfer-request/lock-application"
+                        }
+                    ]
+                },
+                {
                     "subModule": "Payroll",
                     "route": "/hrms/payroll",
                     "pages": [

@@ -64,8 +64,8 @@
                             "route": "/masters/location-master/district-master"
                         },
                         {
-                            "page": "Tasil Master Data",
-                            "route": "/masters/location-master/tasil-master"
+                            "page": "Tehsil Master Data",
+                            "route": "/masters/location-master/tehsil-master"
                         },
                         {
                             "page": "Block Master Data",
@@ -299,6 +299,32 @@
             "route": "/hrms",
             "subModules": [
                 {
+                    "subModule": "Transfer Request",
+                    "route": "/hrms/transfer-request",
+                    "pages": [
+                        {
+                            "page": "About Voluntary and Mutual Transfer",
+                            "route": "/hrms/transfer-request/about-voluntary-mutual-transfer"
+                        },
+                        {
+                            "page": "Apply Voluntary Transfer",
+                            "route": "/hrms/transfer-request/apply-voluntary-transfer"
+                        },
+                        {
+                            "page": "Apply Mutual Transfer",
+                            "route": "/hrms/transfer-request/apply-mutual-transfer"
+                        },
+                        {
+                            "page": "Print Draft Application",
+                            "route": "/hrms/transfer-request/print-draft-application"
+                        },
+                        {
+                            "page": "Lock Application",
+                            "route": "/hrms/transfer-request/lock-application"
+                        }
+                    ]
+                },
+                {
                     "subModule": "Employee Management",
                     "route": "/hrms/employee-management",
                     "pages": [
@@ -345,6 +371,32 @@
                         {
                             "page": "Employee Self-Service Portal",
                             "route": "/hrms/employee-management/self-service-portal"
+                        }
+                    ]
+                },
+                {
+                    "subModule": "Transfer Request",
+                    "route": "/hrms/transfer-request",
+                    "pages": [
+                        {
+                            "page": "About Voluntary and Mutual Transfer",
+                            "route": "/hrms/transfer-request/about-voluntary-mutual-transfer"
+                        },
+                        {
+                            "page": "Apply Voluntary Transfer",
+                            "route": "/hrms/transfer-request/apply-voluntary-transfer"
+                        },
+                        {
+                            "page": "Apply Mutual Transfer",
+                            "route": "/hrms/transfer-request/apply-mutual-transfer"
+                        },
+                        {
+                            "page": "Print Draft Application",
+                            "route": "/hrms/transfer-request/print-draft-application"
+                        },
+                        {
+                            "page": "Lock Application",
+                            "route": "/hrms/transfer-request/lock-application"
                         }
                     ]
                 },
