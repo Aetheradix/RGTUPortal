@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import PageLayout from '../../../components/PageLayout';
-import { Dropdown } from 'primereact/dropdown';
-import { InputText } from 'primereact/inputtext';
 import { Checkbox } from 'primereact/checkbox';
 import { Button } from 'primereact/button';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
+import { Input, Dropdown, Table, type TableColumn } from '../../../ui/shared';
 
 interface StateRow {
   id: number;
@@ -36,7 +33,6 @@ const StateMaster: React.FC = () => {
   });
 
   const [rows] = useState<StateRow[]>(dummyStates);
-  const [globalFilter, setGlobalFilter] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,74 +40,85 @@ const StateMaster: React.FC = () => {
     console.log('State saved:', formData);
   };
 
-  const statusBody = (row: StateRow) => (
-    <span
-      className={`px-2 py-1 rounded text-xs font-medium ${
-        row.isActive ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
-      }`}
-    >
-      {row.isActive ? 'Active' : 'Inactive'}
-    </span>
-  );
-
-  const countryBody = (row: StateRow) => {
-    const c = countries.find((x) => x.value === row.country);
-    return c?.label ?? row.country;
-  };
+  const columns: TableColumn[] = [
+    {
+      field: 'id',
+      header: 'ID',
+      sortable: true,
+      style: { width: '70px' },
+    },
+    {
+      field: 'country',
+      header: 'Country',
+      sortable: true,
+      body: (row: StateRow) => countries.find((x) => x.value === row.country)?.label ?? row.country,
+    },
+    {
+      field: 'stateCode',
+      header: 'State Code',
+      sortable: true,
+    },
+    {
+      field: 'stateName',
+      header: 'State Name',
+      sortable: true,
+    },
+    {
+      field: 'isActive',
+      header: 'Status',
+      sortable: true,
+      body: (row: StateRow) => (
+        <span
+          className={`px-2 py-1 rounded text-xs font-medium ${
+            row.isActive ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+          }`}
+        >
+          {row.isActive ? 'Active' : 'Inactive'}
+        </span>
+      ),
+    },
+    {
+      header: 'Actions',
+      body: () => (
+        <div className="flex gap-2">
+          <Button icon="pi pi-pencil" className="p-button-rounded p-button-text p-button-sm" />
+          <Button icon="pi pi-trash" className="p-button-rounded p-button-text p-button-danger p-button-sm" />
+        </div>
+      ),
+      field: ''
+    },
+  ];
 
   return (
     <PageLayout title="State Master Data">
       {/* Form */}
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Country */}
-          <div>
-            <label htmlFor="country" className="block text-sm font-medium text-gray-700 mb-2">
-              Country <span className="text-red-500">*</span>
-            </label>
-            <Dropdown
-              id="country"
-              value={formData.country}
-              options={countries}
-              optionLabel="label"
-              optionValue="value"
-              onChange={(e) => setFormData({ ...formData, country: e.value })}
-              className="w-full"
-              placeholder="Select country"
-              required
-            />
-          </div>
+          <Dropdown
+            label="Country"
+            required
+            value={formData.country}
+            options={countries}
+            onChange={(e) => setFormData({ ...formData, country: e.value })}
+            placeholder="Select country"
+          />
 
-          {/* State Code */}
-          <div>
-            <label htmlFor="stateCode" className="block text-sm font-medium text-gray-700 mb-2">
-              State Code <span className="text-red-500">*</span>
-            </label>
-            <InputText
-              id="stateCode"
-              value={formData.stateCode}
-              onChange={(e) => setFormData({ ...formData, stateCode: e.target.value.toUpperCase() })}
-              maxLength={5}
-              className="w-full"
-              placeholder="e.g. MP"
-              required
-            />
-          </div>
+          <Input
+            label="State Code"
+            required
+            value={formData.stateCode}
+            onChange={(e) => setFormData({ ...formData, stateCode: e.target.value.toUpperCase() })}
+            maxLength={5}
+            placeholder="e.g. MP"
+          />
 
-          {/* State Name */}
-          <div>
-            <label htmlFor="stateName" className="block text-sm font-medium text-gray-700 mb-2">
-              State Name <span className="text-red-500">*</span>
-            </label>
-            <InputText
-              id="stateName"
-              value={formData.stateName}
-              onChange={(e) => setFormData({ ...formData, stateName: e.target.value })}
-              className="w-full"
-              placeholder="Enter state name"
-              required
-            />
-          </div>
+          <Input
+            label="State Name"
+            required
+            value={formData.stateName}
+            onChange={(e) => setFormData({ ...formData, stateName: e.target.value })}
+            placeholder="Enter state name"
+          />
         </div>
 
         <div className="flex items-center gap-4">
@@ -129,49 +136,32 @@ const StateMaster: React.FC = () => {
 
         <div className="flex gap-3">
           <Button type="submit" label="Save" icon="pi pi-save" className="p-button-primary" />
-          <Button type="button" label="Reset" icon="pi pi-refresh" className="p-button-outlined" onClick={() => setFormData({ country: 'IN', stateCode: '', stateName: '', isActive: true })} />
+          <Button
+            type="button"
+            label="Reset"
+            icon="pi pi-refresh"
+            className="p-button-outlined"
+            onClick={() =>
+              setFormData({
+                country: 'IN',
+                stateCode: '',
+                stateName: '',
+                isActive: true,
+              })
+            }
+          />
         </div>
       </form>
 
       {/* Table */}
       <div className="mt-8">
-        <div className="flex items-center justify-between mb-3">
-          <h2 className="text-xl font-semibold text-gray-800">States List</h2>
-          <span className="p-input-icon-left">
-            <i className="pi pi-search" />
-            <InputText
-              value={globalFilter}
-              onChange={(e) => setGlobalFilter(e.target.value)}
-              placeholder="Search by name/code"
-              className="w-64"
-            />
-          </span>
-        </div>
-
-        <DataTable
-          value={rows}
-          paginator
-          rows={10}
-          globalFilter={globalFilter}
-          filterDisplay="menu"
-          size="small"
-          emptyMessage="No states found"
-        >
-          <Column field="id" header="ID" sortable style={{ width: '70px' }} />
-          <Column field="country" header="Country" body={countryBody} sortable />
-          <Column field="stateCode" header="State Code" sortable />
-          <Column field="stateName" header="State Name" sortable />
-          <Column field="isActive" header="Status" body={statusBody} sortable />
-          <Column
-            header="Actions"
-            body={() => (
-              <div className="flex gap-2">
-                <Button icon="pi pi-pencil" className="p-button-rounded p-button-text p-button-sm" />
-                <Button icon="pi pi-trash" className="p-button-rounded p-button-text p-button-danger p-button-sm" />
-              </div>
-            )}
-          />
-        </DataTable>
+        <Table
+          title="States List"
+          columns={columns}
+          data={rows}
+          showPagination
+          rowsPerPage={10}
+        />
       </div>
     </PageLayout>
   );

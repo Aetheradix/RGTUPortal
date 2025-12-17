@@ -64,8 +64,8 @@
                             "route": "/masters/location-master/district-master"
                         },
                         {
-                            "page": "Tasil Master Data",
-                            "route": "/masters/location-master/tasil-master"
+                            "page": "Tehsil Master Data",
+                            "route": "/masters/location-master/tehsil-master"
                         },
                         {
                             "page": "Block Master Data",
