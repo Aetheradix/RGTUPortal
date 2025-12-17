@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import PageLayout from '../../components/PageLayout';
 import { Button } from 'primereact/button';
-import { Dropdown } from 'primereact/dropdown';
+import { Dropdown, type DropdownOption } from '../../ui/shared';
 import { Checkbox } from 'primereact/checkbox';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
+import { Table, type TableColumn } from '../../ui/shared';
 
 interface FormRights {
   id: number;
@@ -30,6 +29,9 @@ const FormWiseRightsAssign: React.FC = () => {
   const roles = ['Super Admin', 'Admin', 'HR Manager', 'Finance Manager', 'User'];
   const forms = ['User Management', 'Employee Registration', 'Payroll', 'Attendance', 'Leave Management', 'Reports'];
 
+  const roleOptions: DropdownOption[] = roles.map((role) => ({ label: role, value: role }));
+  const formOptions: DropdownOption[] = forms.map((form) => ({ label: form, value: form }));
+
   const [formRights] = useState<FormRights[]>([
     { id: 1, formName: 'User Management', roleName: 'Super Admin', canView: true, canAdd: true, canEdit: true, canDelete: true, status: 'Active' },
     { id: 2, formName: 'Employee Registration', roleName: 'HR Manager', canView: true, canAdd: true, canEdit: true, canDelete: false, status: 'Active' },
@@ -45,35 +47,23 @@ const FormWiseRightsAssign: React.FC = () => {
     <PageLayout title="Form Wise Right's Assign">
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label htmlFor="roleName" className="block text-sm font-medium text-gray-700 mb-2">
-              Select Role <span className="text-red-500">*</span>
-            </label>
-            <Dropdown
-              id="roleName"
-              value={formData.roleName}
-              options={roles}
-              onChange={(e) => setFormData({ ...formData, roleName: e.value })}
-              className="w-full"
-              placeholder="Select role"
-              required
-            />
-          </div>
+          <Dropdown
+            label="Select Role"
+            required
+            value={formData.roleName}
+            options={roleOptions}
+            onChange={(e) => setFormData({ ...formData, roleName: e.value })}
+            placeholder="Select role"
+          />
 
-          <div>
-            <label htmlFor="formName" className="block text-sm font-medium text-gray-700 mb-2">
-              Select Form <span className="text-red-500">*</span>
-            </label>
-            <Dropdown
-              id="formName"
-              value={formData.formName}
-              options={forms}
-              onChange={(e) => setFormData({ ...formData, formName: e.value })}
-              className="w-full"
-              placeholder="Select form"
-              required
-            />
-          </div>
+          <Dropdown
+            label="Select Form"
+            required
+            value={formData.formName}
+            options={formOptions}
+            onChange={(e) => setFormData({ ...formData, formName: e.value })}
+            placeholder="Select form"
+          />
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -130,42 +120,63 @@ const FormWiseRightsAssign: React.FC = () => {
       </form>
 
       <div className="mt-8">
-        <h2 className="text-xl font-semibold text-gray-800 mb-4">Form Wise Rights Assignments</h2>
-        <DataTable value={formRights} paginator rows={10}>
-          <Column field="id" header="ID" sortable style={{ width: '80px' }} />
-          <Column field="formName" header="Form Name" sortable />
-          <Column field="roleName" header="Role Name" sortable />
-          <Column 
-            field="canView" 
-            header="View" 
-            body={(rowData: FormRights) => rowData.canView ? 'Yes' : 'No'}
-          />
-          <Column 
-            field="canAdd" 
-            header="Add" 
-            body={(rowData: FormRights) => rowData.canAdd ? 'Yes' : 'No'}
-          />
-          <Column 
-            field="canEdit" 
-            header="Edit" 
-            body={(rowData: FormRights) => rowData.canEdit ? 'Yes' : 'No'}
-          />
-          <Column 
-            field="canDelete" 
-            header="Delete" 
-            body={(rowData: FormRights) => rowData.canDelete ? 'Yes' : 'No'}
-          />
-          <Column field="status" header="Status" />
-          <Column
-            header="Actions"
-            body={() => (
-              <div className="flex gap-2">
-                <Button icon="pi pi-pencil" className="p-button-rounded p-button-text p-button-sm" />
-                <Button icon="pi pi-trash" className="p-button-rounded p-button-text p-button-danger p-button-sm" />
-              </div>
-            )}
-          />
-        </DataTable>
+        <Table
+          title="Form Wise Rights Assignments"
+          columns={[
+            {
+              field: 'id',
+              header: 'ID',
+              sortable: true,
+              style: { width: '80px' },
+            },
+            {
+              field: 'formName',
+              header: 'Form Name',
+              sortable: true,
+            },
+            {
+              field: 'roleName',
+              header: 'Role Name',
+              sortable: true,
+            },
+            {
+              field: 'canView',
+              header: 'View',
+              body: (rowData: FormRights) => (rowData.canView ? 'Yes' : 'No'),
+            },
+            {
+              field: 'canAdd',
+              header: 'Add',
+              body: (rowData: FormRights) => (rowData.canAdd ? 'Yes' : 'No'),
+            },
+            {
+              field: 'canEdit',
+              header: 'Edit',
+              body: (rowData: FormRights) => (rowData.canEdit ? 'Yes' : 'No'),
+            },
+            {
+              field: 'canDelete',
+              header: 'Delete',
+              body: (rowData: FormRights) => (rowData.canDelete ? 'Yes' : 'No'),
+            },
+            {
+              field: 'status',
+              header: 'Status',
+            },
+            {
+              header: 'Actions',
+              body: () => (
+                <div className="flex gap-2">
+                  <Button icon="pi pi-pencil" className="p-button-rounded p-button-text p-button-sm" />
+                  <Button icon="pi pi-trash" className="p-button-rounded p-button-text p-button-danger p-button-sm" />
+                </div>
+              ),
+            },
+          ] as TableColumn[]}
+          data={formRights}
+          showPagination={true}
+          rowsPerPage={10}
+        />
       </div>
     </PageLayout>
   );

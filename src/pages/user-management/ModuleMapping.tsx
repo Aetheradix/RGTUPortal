@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import PageLayout from '../../components/PageLayout';
 import { Button } from 'primereact/button';
 import { MultiSelect } from 'primereact/multiselect';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
+import { Table, type TableColumn } from '../../ui/shared';
 
 interface Module {
   id: number;
@@ -74,26 +73,43 @@ const ModuleMapping: React.FC = () => {
       </form>
 
       <div className="mt-8">
-        <h2 className="text-xl font-semibold text-gray-800 mb-4">Module Mappings</h2>
-        <DataTable value={moduleMappings} paginator rows={10}>
-          <Column field="id" header="ID" sortable style={{ width: '80px' }} />
-          <Column field="moduleName" header="Module Name" sortable />
-          <Column
-            field="mappedUsers"
-            header="Mapped Users"
-            body={(rowData: Module) => rowData.mappedUsers.join(', ')}
-          />
-          <Column field="status" header="Status" />
-          <Column
-            header="Actions"
-            body={() => (
-              <div className="flex gap-2">
-                <Button icon="pi pi-pencil" className="p-button-rounded p-button-text p-button-sm" />
-                <Button icon="pi pi-trash" className="p-button-rounded p-button-text p-button-danger p-button-sm" />
-              </div>
-            )}
-          />
-        </DataTable>
+        <Table
+          title="Module Mappings"
+          columns={[
+            {
+              field: 'id',
+              header: 'ID',
+              sortable: true,
+              style: { width: '80px' },
+            },
+            {
+              field: 'moduleName',
+              header: 'Module Name',
+              sortable: true,
+            },
+            {
+              field: 'mappedUsers',
+              header: 'Mapped Users',
+              body: (rowData: Module) => rowData.mappedUsers.join(', '),
+            },
+            {
+              field: 'status',
+              header: 'Status',
+            },
+            {
+              header: 'Actions',
+              body: () => (
+                <div className="flex gap-2">
+                  <Button icon="pi pi-pencil" className="p-button-rounded p-button-text p-button-sm" />
+                  <Button icon="pi pi-trash" className="p-button-rounded p-button-text p-button-danger p-button-sm" />
+                </div>
+              ),
+            },
+          ] as TableColumn[]}
+          data={moduleMappings}
+          showPagination={true}
+          rowsPerPage={10}
+        />
       </div>
     </PageLayout>
   );
