@@ -7,3 +7,4 @@ export const parentMenuCreationRoute = (
     element={<ParentMenuCreation />} 
   />
 );
+

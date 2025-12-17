@@ -7,3 +7,4 @@ export const formWiseRightsAssignRoute = (
     element={<FormWiseRightsAssign />} 
   />
 );
+

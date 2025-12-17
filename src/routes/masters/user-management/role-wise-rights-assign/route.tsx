@@ -7,3 +7,4 @@ export const roleWiseRightsAssignRoute = (
     element={<RoleWiseRightsAssign />} 
   />
 );
+
