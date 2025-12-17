@@ -6,8 +6,7 @@ import { getIcon } from '../../utils/iconMapper';
 import type { Module, SidebarProps } from './types';
 import SidebarItem from './components/SidebarItems';
 import SubModuleItem from './components/SubModuleItems';
-import sidebarMenu from '@/config/sidebar';
-; 
+import sidebarMenu from '@/config/sidebar'; 
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, collapsed, onClose }) => {
   const navigate = useNavigate();
