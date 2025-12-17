@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import PageLayout from '../../components/PageLayout';
 import { Button } from 'primereact/button';
-import { Input, Textarea } from '../../ui/shared';
-import { Table, type TableColumn } from '../../ui/shared';
+import { InputText } from 'primereact/inputtext';
+import { InputTextarea } from 'primereact/inputtextarea';
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
 
 interface Role {
   id: number;
@@ -35,27 +37,43 @@ const RoleCreation: React.FC = () => {
     <PageLayout title="Role Creation">
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Input
-            label="Role Name"
-            required
-            value={formData.roleName}
-            onChange={(e) => setFormData({ ...formData, roleName: e.target.value })}
-            placeholder="Enter role name"
-          />
+          <div>
+            <label htmlFor="roleName" className="block text-sm font-medium text-gray-700 mb-2">
+              Role Name <span className="text-red-500">*</span>
+            </label>
+            <InputText
+              id="roleName"
+              value={formData.roleName}
+              onChange={(e) => setFormData({ ...formData, roleName: e.target.value })}
+              className="w-full"
+              placeholder="Enter role name"
+              required
+            />
+          </div>
 
-          <Input
-            label="Role Code"
-            required
-            value={formData.roleCode}
-            onChange={(e) => setFormData({ ...formData, roleCode: e.target.value.toUpperCase() })}
-            placeholder="Enter role code"
-          />
+          <div>
+            <label htmlFor="roleCode" className="block text-sm font-medium text-gray-700 mb-2">
+              Role Code <span className="text-red-500">*</span>
+            </label>
+            <InputText
+              id="roleCode"
+              value={formData.roleCode}
+              onChange={(e) => setFormData({ ...formData, roleCode: e.target.value.toUpperCase() })}
+              className="w-full"
+              placeholder="Enter role code"
+              required
+            />
+          </div>
 
           <div className="md:col-span-2">
-            <Textarea
-              label="Description"
+            <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
+              Description
+            </label>
+            <InputTextarea
+              id="description"
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+              className="w-full"
               rows={3}
               placeholder="Enter description"
             />
@@ -70,47 +88,23 @@ const RoleCreation: React.FC = () => {
       </form>
 
       <div className="mt-8">
-        <Table
-          title="Roles List"
-          columns={[
-            {
-              field: 'id',
-              header: 'ID',
-              sortable: true,
-              style: { width: '80px' },
-            },
-            {
-              field: 'roleName',
-              header: 'Role Name',
-              sortable: true,
-            },
-            {
-              field: 'roleCode',
-              header: 'Role Code',
-              sortable: true,
-            },
-            {
-              field: 'description',
-              header: 'Description',
-            },
-            {
-              field: 'status',
-              header: 'Status',
-            },
-            {
-              header: 'Actions',
-              body: () => (
-                <div className="flex gap-2">
-                  <Button icon="pi pi-pencil" className="p-button-rounded p-button-text p-button-sm" />
-                  <Button icon="pi pi-trash" className="p-button-rounded p-button-text p-button-danger p-button-sm" />
-                </div>
-              ),
-            },
-          ] as TableColumn[]}
-          data={roles}
-          showPagination={true}
-          rowsPerPage={10}
-        />
+        <h2 className="text-xl font-semibold text-gray-800 mb-4">Roles List</h2>
+        <DataTable value={roles} paginator rows={10}>
+          <Column field="id" header="ID" sortable style={{ width: '80px' }} />
+          <Column field="roleName" header="Role Name" sortable />
+          <Column field="roleCode" header="Role Code" sortable />
+          <Column field="description" header="Description" />
+          <Column field="status" header="Status" />
+          <Column
+            header="Actions"
+            body={() => (
+              <div className="flex gap-2">
+                <Button icon="pi pi-pencil" className="p-button-rounded p-button-text p-button-sm" />
+                <Button icon="pi pi-trash" className="p-button-rounded p-button-text p-button-danger p-button-sm" />
+              </div>
+            )}
+          />
+        </DataTable>
       </div>
     </PageLayout>
   );

@@ -6,9 +6,9 @@ import { mastersRoutes } from '../../routes/masters/route';
 const AppRoutes: React.FC = () => {
   return (
     <Routes>
-      {/* Redirect root to a default route */}
-      <Route path="/" element={<Navigate to="/masters" replace />} />
-      
+      {/* Redirect root directly to default user-management screen */}
+      <Route path="/" element={<Navigate to="/masters/user-management/create-user-level" replace />} />
+
       {/* Masters Routes - includes all nested routes */}
       {mastersRoutes}
       

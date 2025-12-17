@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import PageLayout from '../../components/PageLayout';
 import { Button } from 'primereact/button';
-import { Dropdown, type DropdownOption } from '../../ui/shared';
-import { Table, type TableColumn } from '../../ui/shared';
+import { Dropdown } from 'primereact/dropdown';
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
 
 interface InchargeMapping {
   id: number;
@@ -27,8 +28,6 @@ const InchargeMapping: React.FC = () => {
     { label: 'Sarah Williams (EMP004)', value: 'EMP004' },
   ];
 
-  const departmentOptions: DropdownOption[] = departments.map((d) => ({ label: d, value: d }));
-
   const [inchargeMappings] = useState<InchargeMapping[]>([
     { id: 1, department: 'HR', inchargeName: 'John Doe', employeeId: 'EMP001', status: 'Active' },
     { id: 2, department: 'Finance', inchargeName: 'Jane Smith', employeeId: 'EMP002', status: 'Active' },
@@ -44,32 +43,42 @@ const InchargeMapping: React.FC = () => {
     <PageLayout title="Incharge Mapping">
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Dropdown
-            label="Department"
-            required
-            value={formData.department}
-            options={departmentOptions}
-            onChange={(e) => setFormData({ ...formData, department: e.value })}
-            placeholder="Select department"
-          />
+          <div>
+            <label htmlFor="department" className="block text-sm font-medium text-gray-700 mb-2">
+              Department <span className="text-red-500">*</span>
+            </label>
+            <Dropdown
+              id="department"
+              value={formData.department}
+              options={departments}
+              onChange={(e) => setFormData({ ...formData, department: e.value })}
+              className="w-full"
+              placeholder="Select department"
+              required
+            />
+          </div>
 
-          <Dropdown
-            label="Select Incharge"
-            required
-            value={formData.employeeId}
-            options={employees}
-            optionLabel="label"
-            optionValue="value"
-            onChange={(e) => {
-              const selectedEmployee = employees.find((emp) => emp.value === e.value);
-              setFormData({
-                ...formData,
-                employeeId: e.value,
-                inchargeName: selectedEmployee?.label.split(' (')[0] || '',
-              });
-            }}
-            placeholder="Select incharge"
-          />
+          <div>
+            <label htmlFor="employeeId" className="block text-sm font-medium text-gray-700 mb-2">
+              Select Incharge <span className="text-red-500">*</span>
+            </label>
+            <Dropdown
+              id="employeeId"
+              value={formData.employeeId}
+              options={employees}
+              onChange={(e) => {
+                const selectedEmployee = employees.find(emp => emp.value === e.value);
+                setFormData({ 
+                  ...formData, 
+                  employeeId: e.value,
+                  inchargeName: selectedEmployee?.label.split(' (')[0] || ''
+                });
+              }}
+              className="w-full"
+              placeholder="Select incharge"
+              required
+            />
+          </div>
         </div>
 
         <div className="flex gap-3">
@@ -80,48 +89,23 @@ const InchargeMapping: React.FC = () => {
       </form>
 
       <div className="mt-8">
-        <Table
-          title="Incharge Mappings List"
-          columns={[
-            {
-              field: 'id',
-              header: 'ID',
-              sortable: true,
-              style: { width: '80px' },
-            },
-            {
-              field: 'department',
-              header: 'Department',
-              sortable: true,
-            },
-            {
-              field: 'inchargeName',
-              header: 'Incharge Name',
-              sortable: true,
-            },
-            {
-              field: 'employeeId',
-              header: 'Employee ID',
-              sortable: true,
-            },
-            {
-              field: 'status',
-              header: 'Status',
-            },
-            {
-              header: 'Actions',
-              body: () => (
-                <div className="flex gap-2">
-                  <Button icon="pi pi-pencil" className="p-button-rounded p-button-text p-button-sm" />
-                  <Button icon="pi pi-trash" className="p-button-rounded p-button-text p-button-danger p-button-sm" />
-                </div>
-              ),
-            },
-          ] as TableColumn[]}
-          data={inchargeMappings}
-          showPagination={true}
-          rowsPerPage={10}
-        />
+        <h2 className="text-xl font-semibold text-gray-800 mb-4">Incharge Mappings List</h2>
+        <DataTable value={inchargeMappings} paginator rows={10}>
+          <Column field="id" header="ID" sortable style={{ width: '80px' }} />
+          <Column field="department" header="Department" sortable />
+          <Column field="inchargeName" header="Incharge Name" sortable />
+          <Column field="employeeId" header="Employee ID" sortable />
+          <Column field="status" header="Status" />
+          <Column
+            header="Actions"
+            body={() => (
+              <div className="flex gap-2">
+                <Button icon="pi pi-pencil" className="p-button-rounded p-button-text p-button-sm" />
+                <Button icon="pi pi-trash" className="p-button-rounded p-button-text p-button-danger p-button-sm" />
+              </div>
+            )}
+          />
+        </DataTable>
       </div>
     </PageLayout>
   );

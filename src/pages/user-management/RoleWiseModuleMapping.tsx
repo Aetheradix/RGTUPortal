@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import PageLayout from '../../components/PageLayout';
 import { Button } from 'primereact/button';
 import { MultiSelect } from 'primereact/multiselect';
-import { Dropdown, type DropdownOption } from '../../ui/shared';
-import { Table, type TableColumn } from '../../ui/shared';
+import { Dropdown } from 'primereact/dropdown';
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
 
 interface RoleModuleMapping {
   id: number;
@@ -18,8 +19,6 @@ const RoleWiseModuleMapping: React.FC = () => {
 
   const roles = ['Super Admin', 'Admin', 'HR Manager', 'Finance Manager', 'User'];
   const availableModules = ['HRMS', 'Finance', 'Library', 'Transport', 'Hostel', 'Examinations', 'Admissions'];
-
-  const roleOptions: DropdownOption[] = roles.map((role) => ({ label: role, value: role }));
 
   const [roleModuleMappings] = useState<RoleModuleMapping[]>([
     { id: 1, roleName: 'Super Admin', modules: ['HRMS', 'Finance', 'Library', 'Transport', 'Hostel'], status: 'Active' },
@@ -36,14 +35,20 @@ const RoleWiseModuleMapping: React.FC = () => {
     <PageLayout title="Role Wise Module Mapping">
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Dropdown
-            label="Select Role"
-            required
-            value={selectedRole}
-            options={roleOptions}
-            onChange={(e) => setSelectedRole(e.value)}
-            placeholder="Select role"
-          />
+          <div>
+            <label htmlFor="role" className="block text-sm font-medium text-gray-700 mb-2">
+              Select Role <span className="text-red-500">*</span>
+            </label>
+            <Dropdown
+              id="role"
+              value={selectedRole}
+              options={roles}
+              onChange={(e) => setSelectedRole(e.value)}
+              className="w-full"
+              placeholder="Select role"
+              required
+            />
+          </div>
 
           <div>
             <label htmlFor="modules" className="block text-sm font-medium text-gray-700 mb-2">
@@ -69,43 +74,26 @@ const RoleWiseModuleMapping: React.FC = () => {
       </form>
 
       <div className="mt-8">
-        <Table
-          title="Role Wise Module Mappings"
-          columns={[
-            {
-              field: 'id',
-              header: 'ID',
-              sortable: true,
-              style: { width: '80px' },
-            },
-            {
-              field: 'roleName',
-              header: 'Role Name',
-              sortable: true,
-            },
-            {
-              field: 'modules',
-              header: 'Mapped Modules',
-              body: (rowData: RoleModuleMapping) => rowData.modules.join(', '),
-            },
-            {
-              field: 'status',
-              header: 'Status',
-            },
-            {
-              header: 'Actions',
-              body: () => (
-                <div className="flex gap-2">
-                  <Button icon="pi pi-pencil" className="p-button-rounded p-button-text p-button-sm" />
-                  <Button icon="pi pi-trash" className="p-button-rounded p-button-text p-button-danger p-button-sm" />
-                </div>
-              ),
-            },
-          ] as TableColumn[]}
-          data={roleModuleMappings}
-          showPagination={true}
-          rowsPerPage={10}
-        />
+        <h2 className="text-xl font-semibold text-gray-800 mb-4">Role Wise Module Mappings</h2>
+        <DataTable value={roleModuleMappings} paginator rows={10}>
+          <Column field="id" header="ID" sortable style={{ width: '80px' }} />
+          <Column field="roleName" header="Role Name" sortable />
+          <Column
+            field="modules"
+            header="Mapped Modules"
+            body={(rowData: RoleModuleMapping) => rowData.modules.join(', ')}
+          />
+          <Column field="status" header="Status" />
+          <Column
+            header="Actions"
+            body={() => (
+              <div className="flex gap-2">
+                <Button icon="pi pi-pencil" className="p-button-rounded p-button-text p-button-sm" />
+                <Button icon="pi pi-trash" className="p-button-rounded p-button-text p-button-danger p-button-sm" />
+              </div>
+            )}
+          />
+        </DataTable>
       </div>
     </PageLayout>
   );

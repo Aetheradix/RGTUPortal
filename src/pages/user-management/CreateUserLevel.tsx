@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import PageLayout from '../../components/PageLayout';
 import { Button } from 'primereact/button';
-import { Input } from '../../ui/shared';
-import { Table, type TableColumn } from '../../ui/shared';
+import { InputText } from 'primereact/inputtext';
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
 
 interface UserLevel {
   id: number;
@@ -34,20 +35,32 @@ const CreateUserLevel: React.FC = () => {
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Form Fields */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Input
-            label="User Level Name"
-            required
-            value={formData.levelName}
-            onChange={(e) => setFormData({ ...formData, levelName: e.target.value })}
-            placeholder="Enter user level name"
-          />
+          <div>
+            <label htmlFor="levelName" className="block text-sm font-medium text-gray-700 mb-2">
+              User Level Name <span className="text-red-500">*</span>
+            </label>
+            <InputText
+              id="levelName"
+              value={formData.levelName}
+              onChange={(e) => setFormData({ ...formData, levelName: e.target.value })}
+              className="w-full"
+              placeholder="Enter user level name"
+              required
+            />
+          </div>
 
-          <Input
-            label="Description"
-            value={formData.description}
-            onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-            placeholder="Enter description"
-          />
+          <div>
+            <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
+              Description
+            </label>
+            <InputText
+              id="description"
+              value={formData.description}
+              onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+              className="w-full"
+              placeholder="Enter description"
+            />
+          </div>
         </div>
 
         {/* Action Buttons */}
@@ -60,42 +73,22 @@ const CreateUserLevel: React.FC = () => {
 
       {/* Data Table */}
       <div className="mt-8">
-        <Table
-          title="User Levels List"
-          columns={[
-            {
-              field: 'id',
-              header: 'ID',
-              sortable: true,
-              style: { width: '80px' },
-            },
-            {
-              field: 'levelName',
-              header: 'Level Name',
-              sortable: true,
-            },
-            {
-              field: 'description',
-              header: 'Description',
-            },
-            {
-              field: 'status',
-              header: 'Status',
-            },
-            {
-              header: 'Actions',
-              body: () => (
-                <div className="flex gap-2">
-                  <Button icon="pi pi-pencil" className="p-button-rounded p-button-text p-button-sm" />
-                  <Button icon="pi pi-trash" className="p-button-rounded p-button-text p-button-danger p-button-sm" />
-                </div>
-              ),
-            },
-          ] as TableColumn[]}
-          data={userLevels}
-          showPagination={true}
-          rowsPerPage={10}
-        />
+        <h2 className="text-xl font-semibold text-gray-800 mb-4">User Levels List</h2>
+        <DataTable value={userLevels} paginator rows={10} className="p-datatable-sm">
+          <Column field="id" header="ID" sortable style={{ width: '80px' }} />
+          <Column field="levelName" header="Level Name" sortable />
+          <Column field="description" header="Description" />
+          <Column field="status" header="Status" />
+          <Column
+            header="Actions"
+            body={() => (
+              <div className="flex gap-2">
+                <Button icon="pi pi-pencil" className="p-button-rounded p-button-text p-button-sm" />
+                <Button icon="pi pi-trash" className="p-button-rounded p-button-text p-button-danger p-button-sm" />
+              </div>
+            )}
+          />
+        </DataTable>
       </div>
     </PageLayout>
   );

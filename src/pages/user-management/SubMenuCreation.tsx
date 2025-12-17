@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import PageLayout from '../../components/PageLayout';
 import { Button } from 'primereact/button';
-import { Input, Textarea, NumberInput, Dropdown, type DropdownOption } from '../../ui/shared';
-import { Table, type TableColumn } from '../../ui/shared';
+import { InputText } from 'primereact/inputtext';
+import { InputTextarea } from 'primereact/inputtextarea';
+import { Dropdown } from 'primereact/dropdown';
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
 
 interface SubMenu {
   id: number;
@@ -20,11 +23,10 @@ const SubMenuCreation: React.FC = () => {
     subMenuCode: '',
     parentMenu: '',
     description: '',
-    order: null as number | null,
+    order: '',
   });
 
   const parentMenus = ['Dashboard', 'Masters', 'Reports', 'HRMS', 'Finance'];
-  const parentMenuOptions: DropdownOption[] = parentMenus.map((menu) => ({ label: menu, value: menu }));
 
   const [subMenus] = useState<SubMenu[]>([
     { id: 1, subMenuName: 'User Management', subMenuCode: 'UMGT', parentMenu: 'Masters', description: 'User management module', order: 1, status: 'Active' },
@@ -41,44 +43,72 @@ const SubMenuCreation: React.FC = () => {
     <PageLayout title="Sub Menu Creation">
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Input
-            label="Sub Menu Name"
-            required
-            value={formData.subMenuName}
-            onChange={(e) => setFormData({ ...formData, subMenuName: e.target.value })}
-            placeholder="Enter sub menu name"
-          />
+          <div>
+            <label htmlFor="subMenuName" className="block text-sm font-medium text-gray-700 mb-2">
+              Sub Menu Name <span className="text-red-500">*</span>
+            </label>
+            <InputText
+              id="subMenuName"
+              value={formData.subMenuName}
+              onChange={(e) => setFormData({ ...formData, subMenuName: e.target.value })}
+              className="w-full"
+              placeholder="Enter sub menu name"
+              required
+            />
+          </div>
 
-          <Input
-            label="Sub Menu Code"
-            required
-            value={formData.subMenuCode}
-            onChange={(e) => setFormData({ ...formData, subMenuCode: e.target.value.toUpperCase() })}
-            placeholder="Enter sub menu code"
-          />
+          <div>
+            <label htmlFor="subMenuCode" className="block text-sm font-medium text-gray-700 mb-2">
+              Sub Menu Code <span className="text-red-500">*</span>
+            </label>
+            <InputText
+              id="subMenuCode"
+              value={formData.subMenuCode}
+              onChange={(e) => setFormData({ ...formData, subMenuCode: e.target.value.toUpperCase() })}
+              className="w-full"
+              placeholder="Enter sub menu code"
+              required
+            />
+          </div>
 
-          <Dropdown
-            label="Parent Menu"
-            required
-            value={formData.parentMenu}
-            options={parentMenuOptions}
-            onChange={(e) => setFormData({ ...formData, parentMenu: e.value })}
-            placeholder="Select parent menu"
-          />
+          <div>
+            <label htmlFor="parentMenu" className="block text-sm font-medium text-gray-700 mb-2">
+              Parent Menu <span className="text-red-500">*</span>
+            </label>
+            <Dropdown
+              id="parentMenu"
+              value={formData.parentMenu}
+              options={parentMenus}
+              onChange={(e) => setFormData({ ...formData, parentMenu: e.value })}
+              className="w-full"
+              placeholder="Select parent menu"
+              required
+            />
+          </div>
 
-          <NumberInput
-            label="Display Order"
-            value={formData.order}
-            onValueChange={(e) => setFormData({ ...formData, order: e.value ?? null })}
-            placeholder="Enter display order"
-            min={0}
-          />
+          <div>
+            <label htmlFor="order" className="block text-sm font-medium text-gray-700 mb-2">
+              Display Order
+            </label>
+            <InputText
+              id="order"
+              type="number"
+              value={formData.order}
+              onChange={(e) => setFormData({ ...formData, order: e.target.value })}
+              className="w-full"
+              placeholder="Enter display order"
+            />
+          </div>
 
           <div className="md:col-span-2">
-            <Textarea
-              label="Description"
+            <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
+              Description
+            </label>
+            <InputTextarea
+              id="description"
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+              className="w-full"
               rows={3}
               placeholder="Enter description"
             />
@@ -93,57 +123,25 @@ const SubMenuCreation: React.FC = () => {
       </form>
 
       <div className="mt-8">
-        <Table
-          title="Sub Menus List"
-          columns={[
-            {
-              field: 'id',
-              header: 'ID',
-              sortable: true,
-              style: { width: '80px' },
-            },
-            {
-              field: 'subMenuName',
-              header: 'Sub Menu Name',
-              sortable: true,
-            },
-            {
-              field: 'subMenuCode',
-              header: 'Sub Menu Code',
-              sortable: true,
-            },
-            {
-              field: 'parentMenu',
-              header: 'Parent Menu',
-              sortable: true,
-            },
-            {
-              field: 'description',
-              header: 'Description',
-            },
-            {
-              field: 'order',
-              header: 'Order',
-              sortable: true,
-            },
-            {
-              field: 'status',
-              header: 'Status',
-            },
-            {
-              header: 'Actions',
-              body: () => (
-                <div className="flex gap-2">
-                  <Button icon="pi pi-pencil" className="p-button-rounded p-button-text p-button-sm" />
-                  <Button icon="pi pi-trash" className="p-button-rounded p-button-text p-button-danger p-button-sm" />
-                </div>
-              ),
-            },
-          ] as TableColumn[]}
-          data={subMenus}
-          showPagination={true}
-          rowsPerPage={10}
-        />
+        <h2 className="text-xl font-semibold text-gray-800 mb-4">Sub Menus List</h2>
+        <DataTable value={subMenus} paginator rows={10}>
+          <Column field="id" header="ID" sortable style={{ width: '80px' }} />
+          <Column field="subMenuName" header="Sub Menu Name" sortable />
+          <Column field="subMenuCode" header="Sub Menu Code" sortable />
+          <Column field="parentMenu" header="Parent Menu" sortable />
+          <Column field="description" header="Description" />
+          <Column field="order" header="Order" sortable />
+          <Column field="status" header="Status" />
+          <Column
+            header="Actions"
+            body={() => (
+              <div className="flex gap-2">
+                <Button icon="pi pi-pencil" className="p-button-rounded p-button-text p-button-sm" />
+                <Button icon="pi pi-trash" className="p-button-rounded p-button-text p-button-danger p-button-sm" />
+              </div>
+            )}
+          />
+        </DataTable>
       </div>
     </PageLayout>
   );
