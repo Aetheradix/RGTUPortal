@@ -430,30 +430,30 @@ const sidebarMenu = {
         {
             module: "Exam Management",
             icon: FaClipboardList,
-            route: "/exam",
+            route: "/exam-management",
             subModules: [
                 {
                     subModule: "Exam Master",
-                    route: "/exam/master",
+                    route: "/exam-management/exam-master",
                     pages: [
-                        { page: "Exam Type", route: "/exam/master/exam-type" },
-                        { page: "Add Exam", route: "/exam/master/add-exam" }
+                        { page: "Exam Type", route: "/exam-management/exam-master/exam-type" },
+                        { page: "Add Exam", route:  "/exam-management/exam-master/add-exam" }
                     ]
                 },
                 {
                     subModule: "Exam Schedule",
-                    route: "/exam/schedule",
+                    route: "/exam-management/exam-schedule",
                     pages: [
-                        { page: "Schedule Exam", route: "/exam/schedule/schedule-exam" },
-                        { page: "View Exam Schedule", route: "/exam/schedule/view" }
+                        { page: "Schedule Exam", route: "/exam-management/exam-schedule/schedule-exam" },
+                        { page: "View Exam Schedule", route: "/exam-management/exam-schedule/view-exam-schedule"}
                     ]
                 },
                 {
                     subModule: "Question Papers",
-                    route: "/exam/question-papers",
+                    route: "/exam-management/question-paper",
                     pages: [
-                        { page: "Set Question Paper Pattern", route: "/exam/question-papers/set-pattern" },
-                        { page: "Add Question Paper", route: "/exam/question-papers/add" }
+                        { page: "Set Question Paper Pattern", route: "/exam-management/question-paper/set-question-paper-pattern" },
+                        { page: "Add Question Paper", route: "/exam-management/question-paper/add-question-paper" }
                     ]
                 },
                 {
