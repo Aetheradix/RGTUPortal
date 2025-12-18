@@ -479,25 +479,37 @@
         {
             "module": "Admission Management",
             "icon": "fa-user-plus",
-            "route": "/admission-management",
+            "route": "/admission-management-system",
             "subModules": [
                 {
-                    "subModule": "Student",
-                    "route": "/admission-management/student",
+                    "subModule": "registration-form",
+                    "route": "/admission-management-system/registration-form",
                     "pages": [
                         {
-                            "page": "Student Admission",
-                            "route": "/admission-management/student/admission"
+                            "page": "Student Registration",
+                            "route": "/admission-management-system/registration-form/fill-registration-form"
+                        },
+                        {
+                            "page": "Edit Registration",
+                            "route": "/admission-management-system/registration-form/edit-registration-form"
                         }
                     ]
                 },
                 {
-                    "subModule": "Web Forms",
-                    "route": "/admission-management/web-forms",
+                    "subModule": "Upload Documents",
+                    "route": "/admission-management-system/upload-document",
                     "pages": [
                         {
-                            "page": "Web Forms",
-                            "route": "/admission-management/web-forms/forms"
+                            "page": "Configure Document Requirement",
+                            "route": "/admission-management-system/upload-document/configure-document-requirement"
+                        },
+                        {
+                            "page": "Upload Documents",
+                            "route": "/admission-management-system/upload-document/upload-documents"
+                        },
+                        {
+                            "page": "Uploaded Documents",
+                            "route": "/admission-management-system/upload-document/uploaded-documents"
                         }
                     ]
                 },
