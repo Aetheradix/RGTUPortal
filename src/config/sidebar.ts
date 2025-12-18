@@ -430,57 +430,57 @@ const sidebarMenu = {
         {
             module: "Exam Management",
             icon: FaClipboardList,
-            route: "/exam",
+            route: "/exam-management",
             subModules: [
                 {
                     subModule: "Exam Master",
-                    route: "/exam/master",
+                    route: "/exam-management/exam-master",
                     pages: [
-                        { page: "Exam Type", route: "/exam/master/exam-type" },
-                        { page: "Add Exam", route: "/exam/master/add-exam" }
+                        { page: "Exam Type", route: "/exam-management/exam-master/exam-type" },
+                        { page: "Add Exam", route:  "/exam-management/exam-master/add-exam"}
                     ]
                 },
                 {
                     subModule: "Exam Schedule",
-                    route: "/exam/schedule",
+                    route: "/exam-management/exam-schedule",
                     pages: [
-                        { page: "Schedule Exam", route: "/exam/schedule/schedule-exam" },
-                        { page: "View Exam Schedule", route: "/exam/schedule/view" }
+                        { page: "Schedule Exam", route: "/exam-management/exam-schedule/schedule-exam" },
+                        { page: "View Exam Schedule", route: "/exam-management/exam-schedule/view-exam-schedule" }
                     ]
                 },
                 {
                     subModule: "Question Papers",
-                    route: "/exam/question-papers",
+                    route: "/exam-management/question-paper",
                     pages: [
-                        { page: "Set Question Paper Pattern", route: "/exam/question-papers/set-pattern" },
-                        { page: "Add Question Paper", route: "/exam/question-papers/add" }
+                        { page: "Set Question Paper Pattern", route:  "/exam-management/question-paper/set-question-paper-pattern"},
+                        { page: "Add Question Paper", route: "/exam-management/question-paper/add-question-paper" }
                     ]
                 },
                 {
                     subModule: "Exam Form",
-                    route: "/exam/form",
+                    route: "/exam-management/exam-form",
                     pages: [
-                        { page: "Set last date with/without late fees", route: "/exam/form/set-last-date" },
-                        { page: "Fill Exam Form and Pay Exam Fee", route: "/exam/form/fill-and-pay" },
-                        { page: "Forward Forms Principal", route: "/exam/form/forward-forms" }
+                        { page: "Set last date with/without late fees", route: "/exam-management/exam-form/set-last-date" },
+                        { page: "Fill Exam Form and Pay Exam Fee", route: "/exam-management/exam-form/fill-exam-form" },
+                        { page: "Forward Forms Principal", route: "/exam-management/exam-form/forward-form" }
                     ]
                 },
                 {
                     subModule: "Admit Card",
-                    route: "/exam/admit-card",
+                    route: "/exam-management/admit-card",
                     pages: [
-                        { page: "Generate Admit Cards University", route: "/exam/admit-card/generate" },
-                        { page: "Admit Card Download Student", route: "/exam/admit-card/download" },
-                        { page: "Admit Card Verification College", route: "/exam/admit-card/verification" }
+                        { page: "Generate Admit Cards University", route: "/exam-management/admit-card/generate-admit-card" },
+                        { page: "Admit Card Download Student", route: "/exam-management/admit-card/admit-card-download" },
+                        { page: "Admit Card Verification College", route: "/exam-management/admit-card/admit-card-verification" }
                     ]
                 },
                 {
                     subModule: "Evaluator",
-                    route: "/exam/evaluator",
+                    route: "/exam-management/evaluator",
                     pages: [
-                        { page: "Apply as Evaluator", route: "/exam/evaluator/apply" },
-                        { page: "Select Evaluators", route: "/exam/evaluator/select" },
-                        { page: "Sheet Distribution to Evaluator", route: "/exam/evaluator/sheet-distribution" }
+                        { page: "Apply as Evaluator", route: "/exam-management/evaluator/apply-as-evaluator" },
+                        { page: "Select Evaluators", route: "/exam-management/evaluator/select-evaluator" },
+                        { page: "Sheet Distribution to Evaluator", route: "/exam-management/evaluator/sheet-distribution-to-evaluator" }
                     ]
                 },
                 {
