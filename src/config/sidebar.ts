@@ -552,41 +552,41 @@ const sidebarMenu = {
         {
             module: "Scheme Management",
             icon: FaGlobe,
-            route: "/scheme",
+            route: "/scheme-management",
             subModules: [
                 {
                     subModule: "New Scheme Management",
-                    route: "/scheme/new",
+                    route: "/scheme-management/new-scheme-management",
                     pages: [
-                        { page: "Apply For Scheme", route: "/scheme/new/apply" },
-                        { page: "View Scheme Wise Generate List", route: "/scheme/new/view-generate-list" },
-                        { page: "Scheme Wise Generate Payment File", route: "/scheme/new/generate-payment-file" }
+                        { page: "Apply For Scheme", route: "/scheme-management/new-scheme-management/apply-for-scheme" },
+                        { page: "View Scheme Wise Generate List", route: "/scheme-management/new-scheme-management/view-scheme-wise-generate-list" },
+                        { page: "Scheme Wise Generate Payment File", route: "/scheme-management/new-scheme-management/scheme-wise-generate-payment-file" }
                     ]
                 },
                 {
                     subModule: "Student Profile Management",
-                    route: "/scheme/student-profile",
+                    route: "/scheme-management/student-profile-management",
                     pages: [
-                        { page: "Student Profile View Edit Lock", route: "/scheme/student-profile/view-edit-lock" },
-                        { page: "Student Profile Management", route: "/scheme/student-profile/management" },
-                        { page: "Update Student Profile for Scholarships", route: "/scheme/student-profile/update-for-scholarships" }
+                        { page: "Student Profile View Edit Lock", route: "/scheme-management/student-profile-management/student-profile-view-edit-lock" },
+                        { page: "Student Profile Management", route: "/scheme-management/student-profile-management/student-profile-sub-management" },
+                        { page: "Update Student Profile for Scholarships", route: "/scheme-management/student-profile-management/update-student-profile" }
                     ]
                 },
                 {
                     subModule: "E-KYC",
-                    route: "/scheme/e-kyc",
+                    route: "/scheme-management/e-kyc",
                     pages: [
-                        { page: "eKYC Verification", route: "/scheme/e-kyc/verification" },
-                        { page: "Student Details KYC", route: "/scheme/e-kyc/student-details" },
-                        { page: "eKYC Approval", route: "/scheme/e-kyc/approval" },
-                        { page: "Student Samagra e-KYC Approval", route: "/scheme/e-kyc/samagra-approval" }
+                        { page: "eKYC Verification", route: "/scheme-management/e-kyc/e-kyc-verification" },
+                        { page: "Student Details KYC", route: "/scheme-management/e-kyc/student-details-kyc" },
+                        { page: "eKYC Approval", route: "/scheme-management/e-kyc/e-kyc-approval" },
+                        { page: "Student Samagra e-KYC Approval", route: "/scheme-management/e-kyc/student-samagra-e-kyc-approval" }
                     ]
                 },
                 {
                     subModule: "Scheme Reports",
-                    route: "/scheme/reports",
+                    route: "/scheme-management/reports",
                     pages: [
-                        { page: "Various Level Reports - HO, JD, District, University, College", route: "/scheme/reports/various-level" }
+                        { page: "Various Level Reports - HO, JD, District, University, College", route: "/scheme-management/reports/various-level-reports" }
                     ]
                 }
             ]
