@@ -60,6 +60,25 @@ export default function VehicleRegistration() {
     setShowForm(false);
   };
 
+  const actionBodyTemplate = () => {
+    return (
+      <div className="flex justify-center gap-3">
+        <button
+          type="button"
+          className="w-8 h-8 rounded bg-blue-600 text-white flex items-center justify-center"
+        >
+          ✎
+        </button>
+        <button
+          type="button"
+          className="w-8 h-8 rounded bg-red-600 text-white flex items-center justify-center"
+        >
+          🗑
+        </button>
+      </div>
+    );
+  };
+
   return (
     <PageLayout title="Vehicle Registration Master">
       {!showForm && (
@@ -82,7 +101,7 @@ export default function VehicleRegistration() {
               paginator
               rows={10}
               className="p-datatable-sm"
-              responsiveLayout="scroll"
+            
             >
               <Column field="vehicleNumber" header="Vehicle Number" sortable />
               <Column field="company" header="Company" sortable />
@@ -94,18 +113,9 @@ export default function VehicleRegistration() {
               />
               <Column
                 header="Actions"
-                body={() => (
-                  <div className="flex gap-1">
-                    <Button
-                      icon="pi pi-pencil"
-                      className="p-button-rounded p-button-text p-button-sm text-blue-600"
-                    />
-                    <Button
-                      icon="pi pi-trash"
-                      className="p-button-rounded p-button-text p-button-danger p-button-sm"
-                    />
-                  </div>
-                )}
+                body={actionBodyTemplate}
+                align="center"
+                style={{ width: "120px" }}
               />
             </DataTable>
           </div>

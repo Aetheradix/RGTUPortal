@@ -35,26 +35,30 @@ export default function VehicaleMaintenanceType() {
       maintananceTypeCategory: "Tire Replacement",
       categoryCriteria: "Replace tires after 40000 km",
       isActive: true,
-    },
-    {
-      id: 3,
-      maintananceTypeName: "Routine Maintenance",
-      maintananceTypeCategory: "Oil Change",
-      categoryCriteria: "Change engine oil after every 3000 km",
-      isActive: false,
-    },
-    {
-      id: 4,
-      maintananceTypeName: "Emergency Maintenance",
-      maintananceTypeCategory: "Battery Replacement",
-      categoryCriteria: "Replace if voltage drops below 12V",
-      isActive: true,
-    },
+    }
   ]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+  };
+
+  const actionBodyTemplate = () => {
+    return (
+      <div className="flex justify-center gap-3">
+        <button
+          type="button"
+          className="w-8 h-8 rounded bg-blue-600 text-white flex items-center justify-center"
+        >
+          ✎
+        </button>
+        <button
+          type="button"
+          className="w-8 h-8 rounded bg-red-600 text-white flex items-center justify-center"
+        >
+          🗑
+        </button>
+      </div>
+    );
   };
 
   return (
@@ -68,126 +72,48 @@ export default function VehicaleMaintenanceType() {
               </label>
               <InputText
                 value={formData.maintananceTypeName}
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    maintananceTypeName: e.target.value,
-                  })
-                }
+                onChange={(e) => setFormData({ ...formData, maintananceTypeName: e.target.value })}
                 className="w-full"
                 placeholder="Enter Maintenance Type Name"
               />
             </div>
-
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Maintenance Type Category
               </label>
               <InputText
                 value={formData.maintananceTypeCategory}
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    maintananceTypeCategory: e.target.value,
-                  })
-                }
+                onChange={(e) => setFormData({ ...formData, maintananceTypeCategory: e.target.value })}
                 className="w-full"
                 placeholder="Enter Category"
               />
             </div>
-
-            <div className="md:col-span-2 lg:col-span-1">
+            <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Category Criteria
               </label>
               <InputText
                 value={formData.categoryCriteria}
-                onChange={(e) =>
-                  setFormData({ ...formData, categoryCriteria: e.target.value })
-                }
+                onChange={(e) => setFormData({ ...formData, categoryCriteria: e.target.value })}
                 className="w-full"
                 placeholder="Enter Criteria Details"
               />
             </div>
           </div>
-
           <div className="flex justify-end gap-3 border-t pt-4">
-            <Button
-              type="button"
-              label="Reset"
-              icon="pi pi-refresh"
-              className="p-button-outlined p-button-secondary px-4"
-              onClick={() =>
-                setFormData({
-                  maintananceTypeName: "",
-                  maintananceTypeCategory: "",
-                  categoryCriteria: "",
-                  isActive: false,
-                })
-              }
-            />
-            <Button
-              type="button"
-              label="Cancel"
-              icon="pi pi-times"
-              className="p-button-secondary"
-            />
-            <Button
-              type="submit"
-              label="Save"
-              icon="pi pi-save"
-              className="p-button-primary px-6"
-            />
+            <Button label="Reset" icon="pi pi-refresh" className="p-button-outlined p-button-secondary" />
+            <Button label="Save" icon="pi pi-save" className="p-button-primary px-6" />
           </div>
         </form>
       </div>
 
       <div className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
-        <DataTable
-          value={VehicaleMaintenanceTypes}
-          paginator
-          rows={10}
-          className="p-datatable-sm"
-          tableStyle={{ minWidth: "50rem" }}
-        >
-          <Column field="id" header="ID" sortable style={{ width: "70px" }} />
-          <Column
-            field="maintananceTypeName"
-            header="Maintenance Type Name"
-            sortable
-          />
-          <Column field="maintananceTypeCategory" header="Category" sortable />
+        <DataTable value={VehicaleMaintenanceTypes} paginator rows={10} className="p-datatable-sm">
+          <Column field="id" header="ID" style={{ width: "70px" }} />
+          <Column field="maintananceTypeName" header="Maintenance Name" />
+          <Column field="maintananceTypeCategory" header="Category" />
           <Column field="categoryCriteria" header="Criteria" />
-          <Column
-            field="isActive"
-            header="Status"
-            body={(row) => (
-              <span
-                className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                  row.isActive
-                    ? "bg-green-100 text-green-700 border border-green-200"
-                    : "bg-red-100 text-red-700 border border-red-200"
-                }`}
-              >
-                {row.isActive ? "Active" : "Inactive"}
-              </span>
-            )}
-          />
-          <Column
-            header="Actions"
-            body={() => (
-              <div className="flex gap-1">
-                <Button
-                  icon="pi pi-pencil"
-                  className="p-button-rounded p-button-text p-button-sm text-blue-600"
-                />
-                <Button
-                  icon="pi pi-trash"
-                  className="p-button-rounded p-button-text p-button-danger p-button-sm"
-                />
-              </div>
-            )}
-          />
+          <Column header="Actions" body={actionBodyTemplate} align="center" style={{ width: "120px" }} />
         </DataTable>
       </div>
     </PageLayout>

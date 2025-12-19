@@ -112,7 +112,7 @@ export default function VehicleMaintenanceRequest() {
               paginator
               rows={10}
               className="p-datatable-sm"
-              responsiveLayout="scroll"
+            
             >
               <Column field="id" header="Sr.No." style={{ width: "70px" }} />
               <Column field="maintenanceType" header="Type" sortable />
@@ -157,7 +157,7 @@ export default function VehicleMaintenanceRequest() {
             </div>
 
             <div className="space-y-8">
-              {/* Vehicle Selection Block */}
+          
               <div className="p-5 bg-gray-50 rounded-lg border border-gray-200">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6 items-end">
                   <div className="md:col-span-2">
@@ -184,7 +184,7 @@ export default function VehicleMaintenanceRequest() {
 
               {showVehicleDetails && (
                 <div className="animate-fadein space-y-8">
-                  {/* Read-only Vehicle Info */}
+              
                   <div className="p-5 bg-white rounded-lg border border-gray-200">
                     <h4 className="text-md font-bold mb-4 text-gray-700 border-l-4 border-blue-500 pl-3">
                       Vehicle & User Information
@@ -273,7 +273,7 @@ export default function VehicleMaintenanceRequest() {
                     </div>
                   </div>
 
-                  {/* Maintenance Input Block */}
+           
                   <div className="p-5 bg-white rounded-lg border border-gray-200 shadow-sm">
                     <h4 className="text-md font-bold mb-4 text-gray-800 border-b pb-2">
                       Maintenance Requirements

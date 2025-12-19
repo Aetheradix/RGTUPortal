@@ -87,7 +87,7 @@ export default function VehicleMaintenanceApproval() {
   };
 
   return (
-    <PageLayout title="Vehicle Maintenance Approval">
+    <PageLayout title="Vehicle Maintenance Approval">     
       <ConfirmDialog />
 
       <div className="flex justify-between items-center mb-4">
@@ -272,5 +272,5 @@ export default function VehicleMaintenanceApproval() {
         </div>
       </Dialog>
     </PageLayout>
-  );
+  ); 
 }

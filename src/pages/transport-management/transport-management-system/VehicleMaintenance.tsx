@@ -370,9 +370,9 @@ export default function VehicleMaintenance() {
                   className="w-full"
                 />
               </div>
-            </div>
+            </div> 
 
-            <div className="flex justify-end gap-3 border-t pt-6">
+            <div className="flex justify-end gap-3 border-t pt-6"> 
               <Button
                 type="button"
                 label="Cancel"

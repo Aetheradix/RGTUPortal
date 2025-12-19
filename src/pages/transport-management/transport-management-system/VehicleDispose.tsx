@@ -121,7 +121,7 @@ export default function VehicleDispose() {
                 paginator
                 rows={10}
                 className="p-datatable-sm"
-                responsiveLayout="scroll"
+                
               >
                 <Column field="id" header="Sr No." style={{ width: "70px" }} />
                 <Column field="orderDate" header="Order Date" />

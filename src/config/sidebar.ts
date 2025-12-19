@@ -807,7 +807,7 @@ const sidebarMenu = {
             },
             {
               page: "Route To Bus Stop Mapping",
-              route: "/transport-management/university-management-system/route-bus-stop-mapping",
+              route: "/transport-management/university-management-system/route-to-bus-stop-mapping",
             },
             {
               page: "Driver Attender Registration",
@@ -821,7 +821,7 @@ const sidebarMenu = {
             },
             {
               page: "Route To Vehicle Mapping",
-              route: "/transport-management/university-management-system/route-vehicle-mapping",
+              route: "/transport-management/university-management-system/route-to-vehicle-mapping",
             },
             {
               page: "Bus Stop Enrollment",

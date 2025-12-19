@@ -1,64 +1,82 @@
-import { useState } from 'react';
-import { Button } from 'primereact/button';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
-import { InputText } from 'primereact/inputtext';
-import { Checkbox } from 'primereact/checkbox';
-import PageLayout from '../../../components/PageLayout';
+import { useState } from "react";
+import { Button } from "primereact/button";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column";
+import { InputText } from "primereact/inputtext";
+import { Dropdown } from "primereact/dropdown";
+import { Calendar } from "primereact/calendar";
+import PageLayout from "@/components/PageLayout";
 
-type RouteItem = {
+type DisposeItem = {
   id: number;
-  routeCode: string;
-  status: boolean;
+  orderDate: string;
+  vehicleNumber: string;
+  model: string;
+  chassis: string;
+  orderNo: string;
+  sellingAmount: number;
+  buyingAmount: number;
+  buyer: string;
 };
 
-export default function RouteRegistration() {
-  const [showList, setShowList] = useState(true);
+export default function VehicleDispose() {
+  const [showList, setShowList] = useState(false);
   const [showAdd, setShowAdd] = useState(false);
 
-  const [form, setForm] = useState({
-    routeCode: '',
-    status: true,
-  });
-
-  const list: RouteItem[] = [
-    { id: 1, routeCode: 'RUT001', status: true },
-    { id: 2, routeCode: 'RUT002', status: true },
-    { id: 3, routeCode: 'RUT003', status: false },
-    { id: 4, routeCode: 'RUT004', status: true },
-    { id: 5, routeCode: 'RUT005', status: false },
+  const districts = [
+    { label: "Bhopal", value: "Bhopal" },
+    { label: "Indore", value: "Indore" },
   ];
 
-  const statusTemplate = (rowData: RouteItem) => (
-    <span
-      className={`px-3 py-1 rounded-full text-xs font-semibold ${
-        rowData.status
-          ? 'bg-green-100 text-green-700'
-          : 'bg-red-100 text-red-700'
-      }`}
-    >
-      {rowData.status ? 'Active' : 'Inactive'}
-    </span>
-  );
+  const vehicles = [{ label: "MP04CB4473", value: "MP04CB4473" }];
 
-  const actionTemplate = () => (
-    <div className="flex gap-2">
-      <Button icon="pi pi-pencil" rounded text severity="info" />
-      <Button icon="pi pi-trash" rounded text severity="danger" />
-    </div>
-  );
+  const data: DisposeItem[] = [
+    {
+      id: 1,
+      orderDate: "01/06/2024",
+      vehicleNumber: "MP04CB4473",
+      model: "2007",
+      chassis: "MA3ECA12S02671501",
+      orderNo: "444",
+      sellingAmount: 25000,
+      buyingAmount: 65000,
+      buyer: "Raj",
+    },
+  ];
+
+ 
+  const actionBodyTemplate = () => {
+    return (
+      <div className="flex justify-center gap-3">
+        <button
+          type="button"
+          className="w-8 h-8 rounded bg-blue-600 text-white flex items-center justify-center hover:bg-blue-700 transition-colors"
+          onClick={() => {}}
+        >
+          ✎
+        </button>
+        <button
+          type="button"
+          className="w-8 h-8 rounded bg-red-600 text-white flex items-center justify-center hover:bg-red-700 transition-colors"
+          onClick={() => {}}
+        >
+          🗑
+        </button>
+      </div>
+    );
+  };
 
   return (
-    <PageLayout title="Route Registration">
-      {showList && (
+    <PageLayout title="Vehicle Disposal Management">
+      {!showAdd && (
         <div className="space-y-6">
           <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
             <div className="flex justify-between items-center mb-6 border-b pb-4">
               <h2 className="text-xl font-bold text-gray-800">
-                Route Registration List
+                Disposal Records
               </h2>
               <Button
-                label="Add Route Registration"
+                label="Add Disposal Entry"
                 icon="pi pi-plus"
                 onClick={() => {
                   setShowAdd(true);
@@ -67,26 +85,88 @@ export default function RouteRegistration() {
               />
             </div>
 
-            <DataTable
-              value={list}
-              paginator
-              rows={10}
-              className="p-datatable-sm"
-            >
-              <Column field="id" header="Sr No." style={{ width: '80px' }} />
-              <Column field="routeCode" header="Route Code" sortable />
-              <Column
-                header="Status"
-                body={statusTemplate}
-                style={{ width: '150px' }}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  From Date *
+                </label>
+                <Calendar
+                  placeholder="dd/mm/yyyy"
+                  className="w-full"
+                  showIcon
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  To Date *
+                </label>
+                <Calendar
+                  placeholder="dd/mm/yyyy"
+                  className="w-full"
+                  showIcon
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Select District *
+                </label>
+                <Dropdown
+                  options={districts}
+                  placeholder="Select District"
+                  className="w-full"
+                />
+              </div>
+            </div>
+
+            <div className="flex justify-end gap-3 mt-8 border-t pt-6">
+              <Button
+                label="Clear Filters"
+                icon="pi pi-times"
+                className="p-button-secondary"
+                onClick={() => setShowList(false)}
               />
-              <Column
-                header="Actions"
-                body={actionTemplate}
-                style={{ width: '150px' }}
+              <Button
+                label="Search"
+                icon="pi pi-search"
+                className="px-6"
+                onClick={() => setShowList(true)}
               />
-            </DataTable>
+            </div>
           </div>
+
+          {showList && (
+            <div className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+              <DataTable
+                value={data}
+                paginator
+                rows={10}
+                className="p-datatable-sm"
+               
+              >
+                <Column field="id" header="Sr No." style={{ width: "70px" }} />
+                <Column field="orderDate" header="Order Date" />
+                <Column
+                  field="vehicleNumber"
+                  header="Vehicle Number"
+                  sortable
+                />
+                <Column field="model" header="Model" />
+                <Column field="chassis" header="Chassis No." />
+                <Column field="orderNo" header="Order No." />
+                <Column field="sellingAmount" header="Selling (₹)" />
+                <Column field="buyingAmount" header="Buying (₹)" />
+                <Column field="buyer" header="Buyer" />
+                <Column
+                  header="Actions"
+                  body={actionBodyTemplate}
+                  align="center"
+                  style={{ width: "120px" }}
+                />
+              </DataTable>
+            </div>
+          )}
         </div>
       )}
 
@@ -94,61 +174,145 @@ export default function RouteRegistration() {
         <div className="space-y-6">
           <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
             <div className="flex justify-between items-center mb-6 border-b pb-4">
-              <h2 className="text-xl font-bold text-gray-800">
-                Add Route Registration
+              <h2 className="text-xl font-bold text-blue-700">
+                Vehicle Disposal Entry
               </h2>
               <Button
                 label="Go Back"
                 icon="pi pi-arrow-left"
                 className="p-button-text p-button-secondary"
-                onClick={() => {
-                  setShowAdd(false);
-                  setShowList(true);
-                }}
+                onClick={() => setShowAdd(false)}
               />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Enter Route Details *
-                </label>
-                <InputText
-                  value={form.routeCode}
-                  placeholder="Enter Route Number"
-                  onChange={(e) =>
-                    setForm({ ...form, routeCode: e.target.value })
-                  }
-                  className="w-full"
-                />
+            <div className="space-y-8">
+              <div className="p-4 bg-gray-50 rounded-lg border border-gray-100">
+                <h4 className="text-md font-bold mb-4 text-gray-700 border-l-4 border-blue-500 pl-3">
+                  Vehicle Specifications
+                </h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Vehicle Number *
+                    </label>
+                    <Dropdown
+                      options={vehicles}
+                      placeholder="Select Vehicle"
+                      className="w-full"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Vehicle Model *
+                    </label>
+                    <InputText
+                      placeholder="e.g. 2015 Edition"
+                      className="w-full"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Chassis Number *
+                    </label>
+                    <InputText
+                      placeholder="Enter Chassis No."
+                      className="w-full"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Registration Number *
+                    </label>
+                    <InputText placeholder="Enter Reg No." className="w-full" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Vehicle Company *
+                    </label>
+                    <InputText placeholder="e.g. Mahindra" className="w-full" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Year of Manufacture *
+                    </label>
+                    <InputText placeholder="YYYY" className="w-full" />
+                  </div>
+                </div>
               </div>
 
-              <div className="flex items-center gap-3 mt-6">
-                <Checkbox
-                  checked={form.status}
-                  onChange={(e) =>
-                    setForm({ ...form, status: e.checked ?? false })
-                  }
-                />
-                <label className="text-sm font-semibold text-gray-700">
-                  Active *
-                </label>
+              <div className="p-4 bg-gray-50 rounded-lg border border-gray-100">
+                <h4 className="text-md font-bold mb-4 text-gray-700 border-l-4 border-blue-500 pl-3">
+                  Disposal Order Details
+                </h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Order Number *
+                    </label>
+                    <InputText
+                      placeholder="Enter Order No."
+                      className="w-full"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Order Date *
+                    </label>
+                    <Calendar
+                      placeholder="dd/mm/yyyy"
+                      className="w-full"
+                      showIcon
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Current Reading (Km) *
+                    </label>
+                    <InputText placeholder="0" className="w-full" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Base Selling Price *
+                    </label>
+                    <InputText placeholder="₹ 0.00" className="w-full" />
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-4 bg-gray-50 rounded-lg border border-gray-100">
+                <h4 className="text-md font-bold mb-4 text-gray-700 border-l-4 border-blue-500 pl-3">
+                  Buyer Information
+                </h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Final Buying Amount *
+                    </label>
+                    <InputText placeholder="₹ 0.00" className="w-full" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Full Name of Buyer *
+                    </label>
+                    <InputText
+                      placeholder="Enter Buyer Name"
+                      className="w-full"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div className="flex justify-center gap-4 border-t pt-6">
-              <Button label="Save" icon="pi pi-save" />
+            <div className="flex justify-end gap-3 mt-10 border-t pt-6">
               <Button
-                label="Clear"
-                icon="pi pi-refresh"
-                severity="danger"
-                className="p-button-outlined"
-                onClick={() =>
-                  setForm({
-                    routeCode: '',
-                    status: true,
-                  })
-                }
+                label="Clear Form"
+                icon="pi pi-times"
+                className="p-button-secondary"
+              />
+              <Button
+                label="Submit Disposal"
+                icon="pi pi-check"
+                className="p-button-primary px-6"
               />
             </div>
           </div>

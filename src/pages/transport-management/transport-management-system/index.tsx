@@ -11,7 +11,7 @@ import VehicleMaintenanceRequest from "./VehicleMaintenanceRequest";
 
 export default function TransportManagementSystemRoutes(){
     return(
-        <Routes>
+        <Routes>            
             <Route path="vehicle-maintenance-type-master" element={<VehicaleMaintenanceType/>}/>
             <Route path="vehicle-registration" element={<VehicleRegistration/>}/>
             <Route path="vehicle-maintenance" element={<VehicleMaintenance/>}/>
