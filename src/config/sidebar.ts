@@ -594,27 +594,27 @@ const sidebarMenu = {
         {
             module: "Budget & Finance",
             icon: FaMoneyBillWave,
-            route: "/finance",
+            route: "/budget-and-finance",
             subModules: [
                 {
                     subModule: "Finance Master",
-                    route: "/finance/master",
+                    route: "/budget-and-finance/finance-master",
                     pages: [
-                        { page: "Group Management", route: "/finance/master/group-management" },
-                        { page: "Ledger Creation Management", route: "/finance/master/ledger-creation" },
-                        { page: "HSN/SAC Master", route: "/finance/master/hsn-sac" },
-                        { page: "Group Wise Ledger List", route: "/finance/master/group-wise-ledger" },
-                        { page: "Office Wise Ledger List Details", route: "/finance/master/office-wise-ledger" },
-                        { page: "Ledger for Office Mapping", route: "/finance/master/ledger-office-mapping" },
-                        { page: "Ledger Altercation", route: "/finance/master/ledger-altercation" }
+                        { page: "Group Management", route: "/budget-and-finance/finance-master/group-management" },
+                        { page: "Ledger Creation Management", route: "/budget-and-finance/finance-master/ledger-creation-management" },
+                        { page: "HSN/SAC Master", route: "/budget-and-finance/finance-master/hsn-sac-master" },
+                        { page: "Group Wise Ledger List", route: "/budget-and-finance/finance-master/group-wise-ledger-list" },
+                        { page: "Office Wise Ledger List Details", route: "/budget-and-finance/finance-master/office-wise-ledger" },
+                        { page: "Ledger for Office Mapping", route: "/budget-and-finance/finance-master/ledger-for-office-mapping" },
+                        { page: "Ledger Altercation", route: "/budget-and-finance/finance-master/ledger-altercation" }
                     ]
                 },
                 {
                     subModule: "Proposed Budget Process",
-                    route: "/finance/proposed-budget",
+                    route: "/budget-and-finance/proposed-budget",
                     pages: [
-                        { page: "Proposed Budget", route: "/finance/proposed-budget/proposed-budget" },
-                        { page: "Update Proposed Budget", route: "/finance/proposed-budget/update-proposed-budget" }
+                        { page: "Proposed Budget", route: "/budget-and-finance/proposed-budget/proposed-sub-budget" },
+                        { page: "Update Proposed Budget", route: "/budget-and-finance/proposed-budget/update-proposed-budget" }
                     ]
                 },
                 {

@@ -1,6 +1,6 @@
-import { Route, Routes } from 'react-router-dom';
-import UserMangement from './user-management';
-import LocationMaster from './location-master';
+import { Route, Routes } from "react-router-dom";
+import UserMangement from "./user-management";
+import LocationMaster from "./location-master";
 
 export default function Master() {
   return (
