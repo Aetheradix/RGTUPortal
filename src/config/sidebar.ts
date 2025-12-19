@@ -625,139 +625,94 @@ const sidebarMenu = {
     {
       module: "Admission",
       icon: FaUserGraduate,
-      route: "/admission",
+      route: "/admission-management-system",
       subModules: [
         {
-          subModule: "Admission Management System",
-          route: "/admission/management",
+          subModule: "Registration Form",
+          route: "/admission-management-system/registration-form",
           pages: [
             {
               page: "Fill Registration Form",
-              route: "/admission/management/fill-registration-form",
+              route:
+                "/admission-management-system/registration-form/fill-registration-form",
             },
             {
               page: "Edit Registration Form",
-              route: "/admission/management/edit-registration-form",
+              route:
+                "/admission-management-system/registration-form/edit-registration-form",
             },
+          ],
+        },
+        {
+          subModule: "Upload Document",
+          route: "/admission-management-system/upload-document",
+          pages: [
             {
               page: "Configure Document Requirement",
-              route: "/admission/management/configure-document-requirement",
+              route:
+                "/admission-management-system/upload-document/configure-document-requirement",
             },
             {
               page: "Upload Documents",
-              route: "/admission/management/upload-documents",
+              route:
+                "/admission-management-system/upload-document/upload-documents",
             },
             {
               page: "Uploaded Documents",
-              route: "/admission/management/uploaded-documents",
+              route:
+                "/admission-management-system/upload-document/uploaded-documents",
+            },
+          ],
+        },
+        {
+          subModule: "College selection ",
+          route: "/admission-management-system/choices-filling",
+          pages: [
+            {
+              page: "Seat Availability Updates",
+              route:
+                "/admission-management-system/choices-filling/seat-availability-updates",
             },
             {
-              page: "Choices Filling & Seat Availability",
-              route: "/admission/management/choices-seat-availability",
-            },
-            {
-              page: "Fill Choices by Priority and Lock Choices",
-              route: "/admission/management/fill-and-lock-choices",
+              page: "Fill Choices by Priority and lock choices ",
+              route:
+                "/admission-management-system/choices-filling/fill-choices-by-priority-and-lock-choices",
             },
             {
               page: "Student Preferences Report",
-              route: "/admission/management/student-preferences-report",
+              route:
+                "/admission-management-system/choices-filling/student-preferences-report",
             },
             {
               page: "Choice Report",
-              route: "/admission/management/choice-report",
+              route:
+                "/admission-management-system/choices-filling/choice-report",
             },
+          ],
+        },
+        {
+          subModule: "Document Verification",
+          route: "/admission-management-system/document-verification",
+          pages: [
             {
-              page: "Configure Document Requirement to Verify",
-              route: "/admission/management/configure-document-verification",
+              page: "Configure Document Requirement to Verify ",
+              route:
+                "/admission-management-system/document-verification/configure-document-requirement-toVerify",
             },
             {
               page: "Documents Verification",
-              route: "/admission/management/documents-verification",
+              route:
+                "/admission-management-system/document-verification/documents-verification",
             },
             {
-              page: "Document Verification Report",
-              route: "/admission/management/document-verification-report",
+              page: "Document Verification  Report",
+              route:
+                "/admission-management-system/document-verification/document-verification-report",
             },
             {
-              page: "College-wise Verification Report",
-              route: "/admission/management/college-wise-verification-report",
-            },
-          ],
-        },
-        {
-          subModule: "Merit List",
-          route: "/admission/merit-list",
-          pages: [
-            {
-              page: "Candidates Rank",
-              route: "/admission/merit-list/candidates-rank",
-            },
-            {
-              page: "Set Tie Breaking Criteria of Rank",
-              route: "/admission/merit-list/tie-breaking-criteria",
-            },
-            {
-              page: "Generate Merit List",
-              route: "/admission/merit-list/generate-merit-list",
-            },
-            { page: "Merit List", route: "/admission/merit-list/view" },
-          ],
-        },
-        {
-          subModule: "Seat Allocation",
-          route: "/admission/seat-allocation",
-          pages: [
-            {
-              page: "View Allocation Status",
-              route: "/admission/seat-allocation/view-status",
-            },
-            {
-              page: "Accept/Reject Allocation",
-              route: "/admission/seat-allocation/accept-reject",
-            },
-            {
-              page: "Reserved Categories/Quota Head",
-              route: "/admission/seat-allocation/reserved-categories",
-            },
-            {
-              page: "Set Categories/Quota Percentages Head",
-              route: "/admission/seat-allocation/quota-percentages",
-            },
-            {
-              page: "Seat Allocation per Course Head/University",
-              route: "/admission/seat-allocation/per-course",
-            },
-            {
-              page: "Seat Acceptance Window College/University",
-              route: "/admission/seat-allocation/acceptance-window",
-            },
-            {
-              page: "View Available Seats",
-              route: "/admission/seat-allocation/available-seats",
-            },
-            {
-              page: "Allocation Report",
-              route: "/admission/seat-allocation/allocation-report",
-            },
-          ],
-        },
-        {
-          subModule: "Allotment Letter",
-          route: "/admission/allotment",
-          pages: [
-            { page: "Get Allotment Letter", route: "/admission/allotment/get" },
-            {
-              page: "Generate Allotment Letters",
-              route: "/admission/allotment/generate",
-            },
-            {
-              page: "Manage Allotment Status",
-              route: "/admission/allotment/manage-status",
-            },
-            {
-              page: "College-wise Allotment Status",
-              route: "/admission/allotment/college-wise-status",
+              page: "College-wise Verification  Report",
+              route:
+                "/admission-management-system/document-verification/collegewise-verification-report",
             },
           ],
         },
