@@ -1,13 +1,33 @@
-import AppFeature from './pages'
-import AppLayout from './layout/AppLayout'
-import 'primeicons/primeicons.css';
+import "primeicons/primeicons.css";
+import { Navigate, Route, Routes } from "react-router-dom";
+import Login from "./components/auth";
+import { AuthProvider, useAuth } from "./context/AuthContext";
+import AppLayout from "./layout/AppLayout";
+import AppFeature from "./pages";
 
-const App = () => {
+const ProtectedApp = () => {
+  const { isAuthenticated } = useAuth();
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
+
   return (
     <AppLayout>
       <AppFeature />
     </AppLayout>
-  )
-}
+  );
+};
 
-export default App
+const App = () => {
+  return (
+    <AuthProvider>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/*" element={<ProtectedApp />} />
+      </Routes>
+    </AuthProvider>
+  );
+};
+
+export default App;

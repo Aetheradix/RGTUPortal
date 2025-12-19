@@ -66,31 +66,25 @@ const SubModuleItem: React.FC<SubModuleItemProps> = ({ subModule, collapsed, onN
         )}
       </button>
       
-      {/* Pages list with animation */}
-      {hasPages && (
-        <div 
-          className={`overflow-hidden transition-all duration-300 ${
-            isExpanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-          }`}
-        >
-          <div className="ml-4 space-y-1 pt-1">
-            {subModule.pages!.map((page) => {
-              const isPageActive = location.pathname === page.route;
-              return (
-                <button
-                  key={page.route}
-                  onClick={() => onNavigate && onNavigate(page.route)}
-                  className={`w-full text-left py-1.5 px-4 rounded-lg transition-all duration-200 text-xs ${
-                    isPageActive
-                      ? 'text-white bg-slate-700/40'
-                      : 'text-gray-500 hover:text-white hover:bg-slate-700/20'
-                  }`}
-                >
-                  {page.page}
-                </button>
-              );
-            })}
-          </div>
+      {/* Pages list */}
+      {hasPages && isExpanded && (
+        <div className="ml-4 space-y-1 pt-1">
+          {subModule.pages!.map((page) => {
+            const isPageActive = location.pathname === page.route;
+            return (
+              <button
+                key={page.route}
+                onClick={() => onNavigate && onNavigate(page.route)}
+                className={`w-full text-left py-1.5 px-4 rounded-lg transition-all duration-200 text-xs ${
+                  isPageActive
+                    ? 'text-white bg-slate-700/40'
+                    : 'text-gray-500 hover:text-white hover:bg-slate-700/20'
+                }`}
+              >
+                {page.page}
+              </button>
+            );
+          })}
         </div>
       )}
     </div>

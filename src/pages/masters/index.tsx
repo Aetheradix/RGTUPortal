@@ -1,10 +1,12 @@
 import { Route, Routes } from 'react-router-dom';
 import UserMangement from './user-management';
+import LocationMaster from './location-master';
 
 export default function Master() {
   return (
     <Routes>
       <Route path="user-management/*" element={<UserMangement />} />
+      <Route path="location-master/*" element={<LocationMaster />} />
       {/* <Route path="exam-medium/*" element={<ExamMedium />} />
       <Route path="exam-grade/*" element={<ExamGrade />} />
       <Route path="exam-center/*" element={<ExamCenter />} />
