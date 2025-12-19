@@ -1,8 +1,8 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider, useAuth } from './context/AuthContext';
-import AppFeature from './pages';
-import AppLayout from './layout/AppLayout';
-import Login from './components/auth';
+import { Routes, Route, Navigate } from "react-router-dom";
+import { AuthProvider, useAuth } from "./context/AuthContext";
+import AppFeature from "./pages";
+import AppLayout from "./layout/AppLayout";
+import Login from "./components/auth";
 
 const ProtectedApp = () => {
   const { isAuthenticated } = useAuth();
@@ -28,5 +28,4 @@ const App = () => {
     </AuthProvider>
   );
 };
-
 export default App;
