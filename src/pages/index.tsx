@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import Dashboard from './Dashboard';
 import GenericPage from './GenericPage';
 import Master from './masters';
+import TransportManagementSYS from './transport-management';
 import Admissonmanagementsystem from './admission-management-system';
 import Academics from './academics';
 import StudentManagementSystem from './student-management-system';
@@ -12,6 +13,7 @@ export default function AppFeature() {
     <Routes>
       <Route index element={<Dashboard />} />
       <Route path="masters/*" element={<Master />} />
+      <Route path ="transport-management/*" element={<TransportManagementSYS/>}/>
       <Route path="admission-management-system/*" element={<Admissonmanagementsystem />} />
       <Route path="academics/*" element={<Academics />} />
       <Route path="student-management-system/*" element={<StudentManagementSystem />} />
