@@ -1,18 +1,18 @@
 import {
-    FaBook,
-    FaBus,
-    FaChalkboardTeacher,
-    FaClipboardList,
-    FaCogs,
-    FaGlobe,
-    FaHome,
-    FaMoneyBillWave,
-    FaUniversity,
-    FaUserFriends,
-    FaUserGraduate
-} from 'react-icons/fa';
+  FaBook,
+  FaBus,
+  FaChalkboardTeacher,
+  FaClipboardList,
+  FaCogs,
+  FaGlobe,
+  FaHome,
+  FaMoneyBillWave,
+  FaUniversity,
+  FaUserFriends,
+  FaUserGraduate,
+} from "react-icons/fa";
 
-import type { IconType } from 'react-icons';
+import type { IconType } from "react-icons";
 
 /* Page level */
 export interface Page {
@@ -262,33 +262,33 @@ const sidebarMenu = {
                 },
                 {
                     subModule: "Attendance Management",
-                    route: "/academics/attendance-management",
+                    route: "/academics/attendance",
                     pages: [
-                        { page: "View Attendance Records", route: "/academics/attendance-management/view-attendance-records" },
-                        { page: "Mark Attendance", route: "/academics/attendance-management/mark-attendance" },
-                        { page: "Attendance Policies", route: "/academics/attendance-management/attendance-policy-master" },
-                        { page: "Request Leave", route: "/academics/attendance-management/request-leave-master" },
-                        { page: "Attendance Reports", route: "/academics/attendance-management/attendance-report" }
+                        { page: "View Attendance Records", route: "/academics/attendance/view" },
+                        { page: "Mark Attendance", route: "/academics/attendance/mark" },
+                        { page: "Attendance Policies", route: "/academics/attendance/policies" },
+                        { page: "Request Leave", route: "/academics/attendance/request-leave" },
+                        { page: "Attendance Reports", route: "/academics/attendance/reports" }
                     ]
                 },
                 {
                     subModule: "Syllabus Study Material",
-                    route: "/academics/syllabus-and-study-material",
+                    route: "/academics/study-material",
                     pages: [
-                        { page: "Add Study Materials", route: "/academics/syllabus-and-study-material/study-material-add" },
-                        { page: "Saved Notes And Videos", route: "/academics/syllabus-and-study-material/saved-notes-and-videos" },
-                        { page: "View Study Materials", route: "/academics/syllabus-and-study-material/view-study-materials" }
+                        { page: "Add Study Materials", route: "/academics/study-material/add" },
+                        { page: "Saved Notes And Videos", route: "/academics/study-material/saved" },
+                        { page: "View Study Materials", route: "/academics/study-material/view" }
                     ]
                 },
                 {
                     subModule: "College Transfer",
                     route: "/academics/college-transfer",
                     pages: [
-                        { page: "Apply College Transfer", route: "/academics/college-transfer/apply-college-transfer" },
-                        { page: "Approve Transfer Request University", route: "/academics/college-transfer/approve-transfer-request" },
-                        { page: "Transfer In", route: "/academics/college-transfer/add-transfer-in" },
-                        { page: "Transfer Out", route: "/academics/college-transfer/add-transfer-out" },
-                        { page: "Credit Transfer to new college/university", route: "/academics/college-transfer/add-credit-transfer" }
+                        { page: "Apply College Transfer", route: "/academics/college-transfer/apply" },
+                        { page: "Approve Transfer Request University", route: "/academics/college-transfer/approve" },
+                        { page: "Transfer In", route: "/academics/college-transfer/transfer-in" },
+                        { page: "Transfer Out", route: "/academics/college-transfer/transfer-out" },
+                        { page: "Credit Transfer to new college/university", route: "/academics/college-transfer/credit-transfer" }
                     ]
                 }
             ]
@@ -430,57 +430,57 @@ const sidebarMenu = {
         {
             module: "Exam Management",
             icon: FaClipboardList,
-            route: "/exam-management",
+            route: "/exam",
             subModules: [
                 {
                     subModule: "Exam Master",
-                    route: "/exam-management/exam-master",
+                    route: "/exam/master",
                     pages: [
-                        { page: "Exam Type", route: "/exam-management/exam-master/exam-type" },
-                        { page: "Add Exam", route:  "/exam-management/exam-master/add-exam"}
+                        { page: "Exam Type", route: "/exam/master/exam-type" },
+                        { page: "Add Exam", route: "/exam/master/add-exam" }
                     ]
                 },
                 {
                     subModule: "Exam Schedule",
-                    route: "/exam-management/exam-schedule",
+                    route: "/exam/schedule",
                     pages: [
-                        { page: "Schedule Exam", route: "/exam-management/exam-schedule/schedule-exam" },
-                        { page: "View Exam Schedule", route: "/exam-management/exam-schedule/view-exam-schedule" }
+                        { page: "Schedule Exam", route: "/exam/schedule/schedule-exam" },
+                        { page: "View Exam Schedule", route: "/exam/schedule/view" }
                     ]
                 },
                 {
                     subModule: "Question Papers",
-                    route: "/exam-management/question-paper",
+                    route: "/exam/question-papers",
                     pages: [
-                        { page: "Set Question Paper Pattern", route:  "/exam-management/question-paper/set-question-paper-pattern"},
-                        { page: "Add Question Paper", route: "/exam-management/question-paper/add-question-paper" }
+                        { page: "Set Question Paper Pattern", route: "/exam/question-papers/set-pattern" },
+                        { page: "Add Question Paper", route: "/exam/question-papers/add" }
                     ]
                 },
                 {
                     subModule: "Exam Form",
-                    route: "/exam-management/exam-form",
+                    route: "/exam/form",
                     pages: [
-                        { page: "Set last date with/without late fees", route: "/exam-management/exam-form/set-last-date" },
-                        { page: "Fill Exam Form and Pay Exam Fee", route: "/exam-management/exam-form/fill-exam-form" },
-                        { page: "Forward Forms Principal", route: "/exam-management/exam-form/forward-form" }
+                        { page: "Set last date with/without late fees", route: "/exam/form/set-last-date" },
+                        { page: "Fill Exam Form and Pay Exam Fee", route: "/exam/form/fill-and-pay" },
+                        { page: "Forward Forms Principal", route: "/exam/form/forward-forms" }
                     ]
                 },
                 {
                     subModule: "Admit Card",
-                    route: "/exam-management/admit-card",
+                    route: "/exam/admit-card",
                     pages: [
-                        { page: "Generate Admit Cards University", route: "/exam-management/admit-card/generate-admit-card" },
-                        { page: "Admit Card Download Student", route: "/exam-management/admit-card/admit-card-download" },
-                        { page: "Admit Card Verification College", route: "/exam-management/admit-card/admit-card-verification" }
+                        { page: "Generate Admit Cards University", route: "/exam/admit-card/generate" },
+                        { page: "Admit Card Download Student", route: "/exam/admit-card/download" },
+                        { page: "Admit Card Verification College", route: "/exam/admit-card/verification" }
                     ]
                 },
                 {
                     subModule: "Evaluator",
-                    route: "/exam-management/evaluator",
+                    route: "/exam/evaluator",
                     pages: [
-                        { page: "Apply as Evaluator", route: "/exam-management/evaluator/apply-as-evaluator" },
-                        { page: "Select Evaluators", route: "/exam-management/evaluator/select-evaluator" },
-                        { page: "Sheet Distribution to Evaluator", route: "/exam-management/evaluator/sheet-distribution-to-evaluator" }
+                        { page: "Apply as Evaluator", route: "/exam/evaluator/apply" },
+                        { page: "Select Evaluators", route: "/exam/evaluator/select" },
+                        { page: "Sheet Distribution to Evaluator", route: "/exam/evaluator/sheet-distribution" }
                     ]
                 },
                 {
@@ -514,17 +514,16 @@ const sidebarMenu = {
         {
             module: "Student Management",
             icon: FaUserFriends,
-            route: "/student-management-system",
+            route: "/students",
             subModules: [
                 {
                     subModule: "Student Management",
-                    route: "/student-management-system/student-management",
+                    route: "/students/management",
                     pages: [
-                        { page: "Student Attendance", route: "/student-management-system/student-management/student-attendance" },
-                        { page: "Student Attendance Report", route: "/student-management-system/student-management/student-attendance-report" },
-                        { page: "Student Achievement Tracking ", route: "/student-management-system/student-management/student-achievement-tracking" },
-                        { page: "Student Achievement Tracking Report", route: "/student-management-system/student-management/student-achievement-tracking-report" },
-                        { page: "Student Tracking", route: "/student-management-system/student-management/student-tracking" },
+                        { page: "Student Attendance Report", route: "/students/management/attendance-report" },
+                        { page: "Student Achievement Tracking", route: "/students/management/achievement-tracking" },
+                        { page: "Student Achievement Tracking Report", route: "/students/management/achievement-report" },
+                        { page: "Student Tracking", route: "/students/management/student-tracking" }
                     ]
                 },
                 {
@@ -827,4 +826,4 @@ const sidebarMenu = {
     ]
 }
 
-export default sidebarMenu
+export default sidebarMenu;
