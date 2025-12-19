@@ -262,33 +262,33 @@ const sidebarMenu = {
                 },
                 {
                     subModule: "Attendance Management",
-                    route: "/academics/attendance",
+                    route: "/academics/attendance-management",
                     pages: [
-                        { page: "View Attendance Records", route: "/academics/attendance/view" },
-                        { page: "Mark Attendance", route: "/academics/attendance/mark" },
-                        { page: "Attendance Policies", route: "/academics/attendance/policies" },
-                        { page: "Request Leave", route: "/academics/attendance/request-leave" },
-                        { page: "Attendance Reports", route: "/academics/attendance/reports" }
+                        { page: "View Attendance Records", route: "/academics/attendance-management/view-attendance-records" },
+                        { page: "Mark Attendance", route: "/academics/attendance-management/mark-attendance" },
+                        { page: "Attendance Policies", route: "/academics/attendance-management/attendance-policy-master" },
+                        { page: "Request Leave", route: "/academics/attendance-management/request-leave-master" },
+                        { page: "Attendance Reports", route: "/academics/attendance-management/attendance-report" }
                     ]
                 },
                 {
                     subModule: "Syllabus Study Material",
-                    route: "/academics/study-material",
+                    route: "/academics/syllabus-and-study-material",
                     pages: [
-                        { page: "Add Study Materials", route: "/academics/study-material/add" },
-                        { page: "Saved Notes And Videos", route: "/academics/study-material/saved" },
-                        { page: "View Study Materials", route: "/academics/study-material/view" }
+                        { page: "Add Study Materials", route: "/academics/syllabus-and-study-material/study-material-add" },
+                        { page: "Saved Notes And Videos", route: "/academics/syllabus-and-study-material/saved-notes-and-videos" },
+                        { page: "View Study Materials", route: "/academics/syllabus-and-study-material/view-study-materials" }
                     ]
                 },
                 {
                     subModule: "College Transfer",
                     route: "/academics/college-transfer",
                     pages: [
-                        { page: "Apply College Transfer", route: "/academics/college-transfer/apply" },
-                        { page: "Approve Transfer Request University", route: "/academics/college-transfer/approve" },
-                        { page: "Transfer In", route: "/academics/college-transfer/transfer-in" },
-                        { page: "Transfer Out", route: "/academics/college-transfer/transfer-out" },
-                        { page: "Credit Transfer to new college/university", route: "/academics/college-transfer/credit-transfer" }
+                        { page: "Apply College Transfer", route: "/academics/college-transfer/apply-college-transfer" },
+                        { page: "Approve Transfer Request University", route: "/academics/college-transfer/approve-transfer-request" },
+                        { page: "Transfer In", route: "/academics/college-transfer/add-transfer-in" },
+                        { page: "Transfer Out", route: "/academics/college-transfer/add-transfer-out" },
+                        { page: "Credit Transfer to new college/university", route: "/academics/college-transfer/add-credit-transfer" }
                     ]
                 }
             ]
@@ -514,16 +514,17 @@ const sidebarMenu = {
         {
             module: "Student Management",
             icon: FaUserFriends,
-            route: "/students",
+            route: "/student-management-system",
             subModules: [
                 {
                     subModule: "Student Management",
-                    route: "/students/management",
+                    route: "/student-management-system/student-management",
                     pages: [
-                        { page: "Student Attendance Report", route: "/students/management/attendance-report" },
-                        { page: "Student Achievement Tracking", route: "/students/management/achievement-tracking" },
-                        { page: "Student Achievement Tracking Report", route: "/students/management/achievement-report" },
-                        { page: "Student Tracking", route: "/students/management/student-tracking" }
+                        { page: "Student Attendance", route: "/student-management-system/student-management/student-attendance" },
+                        { page: "Student Attendance Report", route: "/student-management-system/student-management/student-attendance-report" },
+                        { page: "Student Achievement Tracking ", route: "/student-management-system/student-management/student-achievement-tracking" },
+                        { page: "Student Achievement Tracking Report", route: "/student-management-system/student-management/student-achievement-tracking-report" },
+                        { page: "Student Tracking", route: "/student-management-system/student-management/student-tracking" },
                     ]
                 },
                 {

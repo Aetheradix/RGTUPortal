@@ -8,11 +8,11 @@ import AttendanceReport from './AttendanceReport';
 export default function AttendanceManagement() {
   return (
     <Routes>
-      <Route path="view-attendance-records/*" element={<ViewAttendanceRecords />} />
-      <Route path="mark-attendance/*" element={<MarkAttendance />} />
-      <Route path="attendance-policy-master/*" element={<AttendancePolicyMaster />} />
-      <Route path="request-leave-master/*" element={<RequestLeaveMaster />} />
-        <Route path="attendance-report/*" element={<AttendanceReport />} />
+      <Route path="view-attendance-records" element={<ViewAttendanceRecords />} />
+      <Route path="mark-attendance" element={<MarkAttendance />} />
+      <Route path="attendance-policy-master" element={<AttendancePolicyMaster />} />
+      <Route path="request-leave-master" element={<RequestLeaveMaster />} />
+        <Route path="attendance-report" element={<AttendanceReport />} />
     </Routes>
   );
 }

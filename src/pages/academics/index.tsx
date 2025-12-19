@@ -9,8 +9,8 @@ export default function Academics() {
     <Routes>
       <Route path="lectures/*" element={<Lectures />} />
       <Route path="attendance-management/*" element={<AttendanceManagement />} />
-<Route path="syllabus-and-study-material/*" element={<SyllabusAndStudyMaterial />} />
-<Route path="college-transfer/*" element={<CollegeTransfer />} />
+      <Route path="syllabus-and-study-material/*" element={<SyllabusAndStudyMaterial />} />
+      <Route path="college-transfer/*" element={<CollegeTransfer />} />
     </Routes>
   );
 }

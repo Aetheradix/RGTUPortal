@@ -6,7 +6,10 @@ import { Dropdown } from "primereact/dropdown";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Tag } from "primereact/tag";
-import 'primeicons/primeicons.css';
+
+
+
+
 interface Student {
   id: number;
   studentName: string;

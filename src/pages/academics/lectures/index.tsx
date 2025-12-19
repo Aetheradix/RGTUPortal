@@ -1,14 +1,12 @@
 import { Route, Routes } from 'react-router-dom';
-import OfflineLectureScheduling from './OfflineLectures';
 import LectureResources from './LectureResources';
-import ViewAttendanceRecords from '../attendance-management/ViewAttendanceRecords';
+import OfflineLectureScheduling from './OfflineLectures';
 
 export default function Lectures() {
   return (
     <Routes>
-      <Route path="offline-lecture-scheduling/*" element={<OfflineLectureScheduling />} />
-      <Route path="lecture-resources/*" element={<LectureResources />} />
-      <Route path="view-attendance-records/*" element={<ViewAttendanceRecords />} />    
+      <Route path="offline-lectures" element={<OfflineLectureScheduling />} />
+      <Route path="resources" element={<LectureResources />} />
     </Routes>
   );
 }

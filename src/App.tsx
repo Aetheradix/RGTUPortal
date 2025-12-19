@@ -1,4 +1,4 @@
-import "primeicons/primeicons.css";
+
 import { Navigate, Route, Routes } from "react-router-dom";
 import Login from "./components/auth";
 import { AuthProvider, useAuth } from "./context/AuthContext";
