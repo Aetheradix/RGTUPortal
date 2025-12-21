@@ -1,8 +1,9 @@
-import { Routes, Route, Navigate } from "react-router-dom";
-import { AuthProvider, useAuth } from "./context/AuthContext";
-import AppFeature from "./pages";
-import AppLayout from "./layout/AppLayout";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Login from "./components/auth";
+import { AuthProvider, useAuth } from "./context/AuthContext";
+import AppLayout from "./layout/AppLayout";
+import AppFeature from "./pages";
+
 
 const ProtectedApp = () => {
   const { isAuthenticated } = useAuth();
