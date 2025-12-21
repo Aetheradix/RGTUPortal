@@ -11,7 +11,6 @@ const ProtectedApp = () => {
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
   }
-
   return (
     <AppLayout>
       <AppFeature />
