@@ -1,16 +1,16 @@
 import {
-    FaBook,
-    FaBus,
-    FaChalkboardTeacher,
-    FaClipboardList,
-    FaCogs,
-    FaGlobe,
-    FaHome,
-    FaMoneyBillWave,
-    FaUniversity,
-    FaUserFriends,
-    FaUserGraduate
-} from 'react-icons/fa';
+  FaBook,
+  FaBus,
+  FaChalkboardTeacher,
+  FaClipboardList,
+  FaCogs,
+  FaGlobe,
+  FaHome,
+  FaMoneyBillWave,
+  FaUniversity,
+  FaUserFriends,
+  FaUserGraduate,
+} from "react-icons/fa";
 
 import type { IconType } from 'react-icons';
 
