@@ -18,11 +18,7 @@ export default function AppFeature() {
       <Route path="admission-management-system/*" element={<Admissonmanagementsystem />} />
       <Route path="academics/*" element={<Academics />} />
       <Route path="student-management-system/*" element={<StudentManagementSystem />} />
-      {/* <Route path="exam-management/*" element={<ExamManagement />} />
-        <Route path="home/*" element={<Home />} /> */}
       <Route path="exam-management/*" element={<ExamManagement/>} />
-
-      {/* Fallback for any route where dedicated UI is not implemented yet */}
       <Route path="*" element={<GenericPage />} />
       <Route path="scheme-management/*" element={<SchemeManagement />} />
     </Routes>
