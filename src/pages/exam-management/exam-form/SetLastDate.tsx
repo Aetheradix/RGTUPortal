@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
@@ -46,7 +45,7 @@ const SetExamFeeLastDate: React.FC = () => {
 
   return (
     <PageLayout title="Set last date (with / Without late fees)">
-      {/* ================= LIST ================= */}
+     
       {view === 'list' && (
         <>
           <div className="flex justify-between items-center mb-4">
@@ -89,7 +88,6 @@ const SetExamFeeLastDate: React.FC = () => {
         </>
       )}
 
-      {/* ================= DETAILS VIEW ================= */}
       {view === 'details' && selectedRow && (
         <>
           <div className="flex justify-between items-center mb-6">
@@ -120,7 +118,6 @@ const SetExamFeeLastDate: React.FC = () => {
         </>
       )}
 
-      {/* ================= ADD FORM ================= */}
       {view === 'add' && (
         <>
           <div className="flex justify-between items-center mb-6">

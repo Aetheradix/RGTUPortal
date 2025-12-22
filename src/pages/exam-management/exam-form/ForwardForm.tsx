@@ -6,7 +6,7 @@ import { Button } from 'primereact/button';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 
-/* ================= DUMMY DATA ================= */
+
 const dummyList = Array.from({ length: 10 }).map((_, i) => ({
   id: i + 1,
   enrollment: `0501CS${100 + i}C00${i}`,
@@ -27,7 +27,6 @@ const dummyList = Array.from({ length: 10 }).map((_, i) => ({
   semester: '1st Semester'
 }));
 
-/* ================= FILTERS COMPONENT ================= */
 const Filters: React.FC = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
@@ -54,7 +53,7 @@ const Filters: React.FC = () => {
   );
 };
 
-/* ================= MAIN COMPONENT ================= */
+
 const ForwardFormsPrincipal: React.FC = () => {
   const [showList, setShowList] = useState(false);
   const [addMode, setAddMode] = useState(false);
@@ -63,7 +62,7 @@ const ForwardFormsPrincipal: React.FC = () => {
   return (
     <PageLayout title="Forward Forms">
 
-      {/* ================= HEADER ACTION ================= */}
+
       <div className="flex justify-end mb-4">
         {!addMode && (
           <Button
@@ -78,7 +77,6 @@ const ForwardFormsPrincipal: React.FC = () => {
         )}
       </div>
 
-      {/* ================= MAIN LIST ================= */}
       {!addMode && (
         <Card className="shadow-sm border border-gray-200 rounded-lg">
           <h3 className="text-lg font-semibold mb-5">Forward Forms</h3>
@@ -116,7 +114,6 @@ const ForwardFormsPrincipal: React.FC = () => {
         </Card>
       )}
 
-      {/* ================= ADD FORWARD FORM ================= */}
       {addMode && (
         <Card className="shadow-sm border border-gray-200 rounded-lg">
           <div className="flex justify-between items-center mb-5">

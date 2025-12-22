@@ -890,11 +890,11 @@ const sidebarMenu = {
         {
             module: "Exam Management",
             icon: FaClipboardList,
-            route: "/exam",
+            route: "/exam-management",
             subModules: [
                 {
                     subModule: "Exam Master",
-                    route: "/exam/master",
+                    route: "/exam-management/exam-master",
                     pages: [
                         { page: "Exam Type", route: "/exam/master/exam-type" },
                         { page: "Add Exam", route: "/exam/master/add-exam" },
@@ -902,7 +902,7 @@ const sidebarMenu = {
                 },
                 {
                     subModule: "Exam Schedule",
-                    route: "/exam/schedule",
+                    route: "/exam-management/exam-schedule",
                     pages: [
                         { page: "Schedule Exam", route: "/exam/schedule/schedule-exam" },
                         { page: "View Exam Schedule", route: "/exam/schedule/view" },
@@ -910,7 +910,7 @@ const sidebarMenu = {
                 },
                 {
                     subModule: "Question Papers",
-                    route: "/exam/question-papers",
+                    route: "/exam-management/question-paper",
                     pages: [
                         {
                             page: "Set Question Paper Pattern",
