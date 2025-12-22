@@ -1094,44 +1094,26 @@ const sidebarMenu = {
                 },
                 {
                     subModule: "Student Directory",
-                    route: "/students/directory",
+                    route: "/student-management-system/student-directory",
                     pages: [
-                        {
-                            page: "Student Registration",
-                            route: "/students/directory/registration",
-                        },
-                        { page: "Student Detail", route: "/students/directory/detail" },
-                        {
-                            page: "Student Promotion TC",
-                            route: "/students/directory/promotion-tc",
-                        },
-                        { page: "Generate TC", route: "/students/directory/generate-tc" },
-                        { page: "Print TC", route: "/students/directory/print-tc" },
-                        {
-                            page: "Generate Migration Certificate",
-                            route: "/students/directory/generate-migration",
-                        },
-                        {
-                            page: "Print Migration Certificate",
-                            route: "/students/directory/print-migration",
-                        },
-                    ],
+                        { page: "Student Registration", route: "/student-management-system/student-directory/student-registration" },
+                        { page: "Student Detail", route: "/student-management-system/student-directory/detail" },
+                        { page: "Student Promotion TC", route: "/student-management-system/student-directory/promotion-tc" },
+                        { page: "Generate TC", route: "/student-management-system/student-directory/generate-tc" },
+                        { page: "Print TC", route: "/student-management-system/student-directory/print-tc" },
+                        { page: "Generate Migration Certificate", route: "/student-management-system/student-directory/generate-migration-certificate" },
+                        { page: "Print Migration Certificate", route: "/student-management-system/student-directory/print-migration" }
+                    ]
                 },
                 {
                     subModule: "Student Reports",
-                    route: "/students/reports",
+                    route: "/student-management-system/student-report",
                     pages: [
-                        {
-                            page: "Student Summary Report",
-                            route: "/students/reports/summary",
-                        },
-                        {
-                            page: "Student Wise Counting Report",
-                            route: "/students/reports/counting",
-                        },
-                    ],
-                },
-            ],
+                        { page: "Student Summary Report", route: "/student-management-system/student-report/student-summary-report" },
+                        { page: "Student Wise Counting Report", route: "/student-management-system/student-report/student-wise-counting-report" }
+                    ]
+                }
+            ]
         },
         {
             module: "Scheme Management",
