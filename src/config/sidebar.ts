@@ -896,16 +896,28 @@ const sidebarMenu = {
                     subModule: "Exam Master",
                     route: "/exam-management/exam-master",
                     pages: [
-                        { page: "Exam Type", route: "/exam/master/exam-type" },
-                        { page: "Add Exam", route: "/exam/master/add-exam" },
+                        {
+                            page: "Exam Type",
+                            route: "/exam-management/exam-master/exam-type",
+                        },
+                        {
+                            page: "Add Exam",
+                            route: "/exam-management/exam-master/add-exam",
+                        },
                     ],
                 },
                 {
                     subModule: "Exam Schedule",
                     route: "/exam-management/exam-schedule",
                     pages: [
-                        { page: "Schedule Exam", route: "/exam/schedule/schedule-exam" },
-                        { page: "View Exam Schedule", route: "/exam/schedule/view" },
+                        {
+                            page: "Schedule Exam",
+                            route: "/exam-management/exam-schedule/schedule-exam",
+                        },
+                        {
+                            page: "View Exam Schedule",
+                            route: "/exam-management/exam-schedule/view-exam-schedule",
+                        },
                     ],
                 },
                 {
@@ -914,112 +926,140 @@ const sidebarMenu = {
                     pages: [
                         {
                             page: "Set Question Paper Pattern",
-                            route: "/exam/question-papers/set-pattern",
+                            route:
+                                "/exam-management/question-paper/set-question-paper-pattern",
                         },
-                        { page: "Add Question Paper", route: "/exam/question-papers/add" },
+                        {
+                            page: "Add Question Paper",
+                            route: "/exam-management/question-paper/add-question-paper",
+                        },
                     ],
                 },
                 {
                     subModule: "Exam Form",
-                    route: "/exam/form",
+                    route: "/exam-management/exam-form",
                     pages: [
                         {
                             page: "Set last date with/without late fees",
-                            route: "/exam/form/set-last-date",
+                            route: "/exam-management/exam-form/set-last-date",
                         },
                         {
                             page: "Fill Exam Form and Pay Exam Fee",
-                            route: "/exam/form/fill-and-pay",
+                            route: "/exam-management/exam-form/fill-exam-form",
                         },
                         {
                             page: "Forward Forms Principal",
-                            route: "/exam/form/forward-forms",
+                            route: "/exam-management/exam-form/forward-form",
                         },
                     ],
                 },
                 {
                     subModule: "Admit Card",
-                    route: "/exam/admit-card",
+                    route: "/exam-management/admit-card",
                     pages: [
                         {
-                            page: "Generate Admit Cards University",
-                            route: "/exam/admit-card/generate",
-                        },
-                        {
                             page: "Admit Card Download Student",
-                            route: "/exam/admit-card/download",
+                            route: "/exam-management/admit-card/admit-card-download",
                         },
                         {
                             page: "Admit Card Verification College",
-                            route: "/exam/admit-card/verification",
+                            route: "/exam-management/admit-card/admit-card-verification",
+                        },
+                        {
+                            page: "Generate Admit Card",
+                            route: "/exam-management/admit-card/generate-admit-card",
                         },
                     ],
                 },
                 {
                     subModule: "Evaluator",
-                    route: "/exam/evaluator",
+                    route: "/exam-management/evaluator",
                     pages: [
-                        { page: "Apply as Evaluator", route: "/exam/evaluator/apply" },
-                        { page: "Select Evaluators", route: "/exam/evaluator/select" },
+                        {
+                            page: "Apply as Evaluator",
+                            route: "/exam-management/evaluator/apply-as-evaluator",
+                        },
+                        {
+                            page: "Select Evaluators",
+                            route: "/exam-management/evaluator/select-evaluator",
+                        },
                         {
                             page: "Sheet Distribution to Evaluator",
-                            route: "/exam/evaluator/sheet-distribution",
+                            route:
+                                "/exam-management/evaluator/sheet-distribution-to-evaluator",
                         },
                     ],
                 },
                 {
                     subModule: "Result",
-                    route: "/exam/result",
+                    route: "/exam-management/result",
                     pages: [
                         {
-                            page: "Maximum Days for Revaluation/Retotaling",
-                            route: "/exam/result/max-days",
-                        },
-                        { page: "Marks Entry", route: "/exam/result/marks-entry" },
-                        { page: "Result Compilation", route: "/exam/result/compilation" },
-                        { page: "Result Verification", route: "/exam/result/verification" },
-                        { page: "Result Publication", route: "/exam/result/publication" },
-                        {
-                            page: "TR Sheet Generation",
-                            route: "/exam/result/tr-sheet-generation",
+                            page: "Result Verification By",
+                            route: "/exam-management/result/result-verification-by",
                         },
                         {
-                            page: "Marksheet Generation Printing",
-                            route: "/exam/result/marksheet-generation",
+                            page: "Result Compilation",
+                            route: "/exam-management/result/result-compliation",
+                        },
+                        {
+                            page: "Marks Entry",
+                            route: "/exam-management/result/marks-entry",
                         },
                         {
                             page: "Apply for Revaluation",
-                            route: "/exam/result/apply-revaluation",
+                            route: "/exam-management/result/apply-for-revaluation",
                         },
                         {
                             page: "Apply for Retotaling",
-                            route: "/exam/result/apply-retotaling",
+                            route: "/exam-management/result/apply-for-retotaling",
                         },
                         {
-                            page: "Result Verification after issuing",
-                            route: "/exam/result/post-issue-verification",
+                            page: "TR Sheet Generation",
+                            route: "/exam-management/result/tr-sheet-generation",
+                        },
+                        {
+                            page: "Result Verification After Issuing",
+                            route:
+                                "/exam-management/result/result-verification-after-issuing",
+                        },
+                        {
+                            page: "Maximum Days for Revaluation",
+                            route: "/exam-management/result/maximum-days-for-revaluation",
+                        },
+                        {
+                            page: "Result Publication",
+                            route: "/exam-management/result/result-publication",
+                        },
+                        {
+                            page: "Marksheet Generation",
+                            route: "/exam-management/result/marksheet-generation",
                         },
                     ],
                 },
                 {
                     subModule: "Duplicate Marksheet",
-                    route: "/exam/duplicate-marksheet",
+                    route: "/exam-management/duplicate-marksheet",
                     pages: [
                         {
-                            page: "Apply For Duplicate Marksheet",
-                            route: "/exam/duplicate-marksheet/apply",
-                        },
-                        {
-                            page: "Duplicate Marksheet Applications",
-                            route: "/exam/duplicate-marksheet/applications",
-                        },
-                        {
-                            page: "Generate Duplicate Marksheet",
-                            route: "/exam/duplicate-marksheet/generate",
+                            page: "Apply for Duplicate Marksheet",
+                            route:
+                                "/exam-management/duplicate-marksheet/apply-for-duplicate-marksheet",
                         },
                         {
                             page: "Download Duplicate Marksheet",
-                            route: "/exam/duplicate-marksheet/download",
+                            route:
+                                "/exam-management/duplicate-marksheet/download-duplicate-marksheet",
+                        },
+                        {
+                            page: "Generate Duplicate Marksheet",
+                            route:
+                                "/exam-management/duplicate-marksheet/generate-duplicate-marksheet",
+                        },
+                        {
+                            page: "Duplicate Marksheet Applications",
+                            route:
+                                "/exam-management/duplicate-marksheet/duplicate-marksheet-applications",
                         },
                     ],
                 },
