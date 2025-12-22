@@ -9,10 +9,10 @@ export default function StudentManagement() {
   return (
     <Routes>
         <Route path="student-attendance" element={<StudentAttendance />} />
-        <Route path="student-attendance-report" element={<StudentAttendanceReport />} />
-        <Route path="student-achievement-tracking" element={<StudentAchievementTracking />} />
-        <Route path="student-achievement-tracking-report" element={<StudentAchievementTrackingReport />} />
-        <Route path="student-tracking" element={<StudentTracking />} />
+        <Route path="attendance-report" element={<StudentAttendanceReport />} />
+        <Route path="achievement-tracking" element={<StudentAchievementTracking />} />
+        <Route path="achievement-tracking-report" element={<StudentAchievementTrackingReport />} />
+        <Route path="tracking" element={<StudentTracking />} />
     </Routes>
   );
 }

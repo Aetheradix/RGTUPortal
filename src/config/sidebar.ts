@@ -1068,27 +1068,31 @@ const sidebarMenu = {
         {
             module: "Student Management",
             icon: FaUserFriends,
-            route: "/students",
+            route: "/student-management-system",
             subModules: [
                 {
                     subModule: "Student Management",
-                    route: "/students/management",
+                    route: "/student-management-system/student-management",
                     pages: [
                         {
+                            page: "Student Attendance",
+                            route: "/student-management-system/student-management/student-attendance",
+                        },
+                        {
                             page: "Student Attendance Report",
-                            route: "/students/management/attendance-report",
+                            route: "/student-management-system/student-management/attendance-report",
                         },
                         {
                             page: "Student Achievement Tracking",
-                            route: "/students/management/achievement-tracking",
+                            route: "/student-management-system/student-management/achievement-tracking",
                         },
                         {
                             page: "Student Achievement Tracking Report",
-                            route: "/students/management/achievement-report",
+                            route: "/student-management-system/student-management/achievement-tracking-report",
                         },
                         {
                             page: "Student Tracking",
-                            route: "/students/management/student-tracking",
+                            route: "/student-management-system/student-management/tracking",
                         },
                     ],
                 },
