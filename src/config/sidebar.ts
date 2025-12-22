@@ -364,10 +364,6 @@ const sidebarMenu = {
                                 "/masters/payroll-master/all-earning-all-employee-wise-head-wise",
                         },
                         {
-                            page: "Arrear Type Master",
-                            route: "/masters/payroll-master/arrear-type-master",
-                        },
-                        {
                             page: "Challan Details Master Data",
                             route: "/masters/payroll-master/challan-details-master",
                         },

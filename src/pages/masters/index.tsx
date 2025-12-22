@@ -5,6 +5,11 @@ import CourseMaster from './course-master';
 import FacultyMaster from './faculty-master';
 import UniversityMaster from './university-master';
 import CollegeMaster from './college-master';
+import HRMaster from './hr-masters';
+import PayrollMaster from './payroll-master';
+import SchemeMaster from './scheme-master';
+import GrantMaster from './grant-master';
+import GrantApplication from './grant-application';
 
 export default function Master() {
   return (
@@ -15,16 +20,12 @@ export default function Master() {
       <Route path="faculty-master/*" element={<FacultyMaster />} />
       <Route path="university-master/*" element={<UniversityMaster />} />
       <Route path="college-master/*" element={<CollegeMaster />} />
-      {/* <Route path="exam-medium/*" element={<ExamMedium />} />
-      <Route path="exam-grade/*" element={<ExamGrade />} />
-      <Route path="exam-center/*" element={<ExamCenter />} />
-      <Route path="class-section/*" element={<ClassSection />} />
-      <Route path="exam-type/*" element={<ExamType />} />
-      <Route path="exam-schedule/*" element={<ExamScheduleMaster />} />
-      <Route path="stream/*" element={<Stream />} />
-      <Route path="exam-subject/*" element={<Subject />} />
-      <Route path="subject-category/*" element={<SubjectCategory />} />
-      <Route path="grace/*" element={<Grace />} /> */}
+      {/* HR and related scheme/payroll/grant masters */}
+      <Route path="hr-master-data/*" element={<HRMaster />} />
+      <Route path="payroll-master/*" element={<PayrollMaster />} />
+      <Route path="scheme-master/*" element={<SchemeMaster />} />
+      <Route path="grant-master/*" element={<GrantMaster />} />
+      <Route path="grant-application/*" element={<GrantApplication />} />
     </Routes>
   );
 }
