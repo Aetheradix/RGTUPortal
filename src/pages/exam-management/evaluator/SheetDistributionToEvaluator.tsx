@@ -66,7 +66,6 @@ const SheetDistributionToEvaluator: React.FC = () => {
   return (
     <PageLayout title="Sheet Distribution To Evaluator">
 
-      {/* ================= LIST ================= */}
       {view === 'list' && (
         <Card className="mb-4">
           <div className="flex justify-between items-center mb-4">
@@ -102,7 +101,6 @@ const SheetDistributionToEvaluator: React.FC = () => {
         </Card>
       )}
 
-      {/* ================= DETAILS ================= */}
       {view === 'details' && selectedRow && (
         <Card className="mb-4">
           <div className="flex justify-between items-center mb-4">
@@ -129,8 +127,6 @@ const SheetDistributionToEvaluator: React.FC = () => {
         </Card>
       )}
 
-      {/* ================= ADD ================= */}
-{/* ================= ADD ================= */}
 {view === 'add' && (
   <Card>
     <div className="flex justify-between items-center mb-4">
@@ -148,13 +144,13 @@ const SheetDistributionToEvaluator: React.FC = () => {
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
       <div>
         <label className="block mb-1">Select Evaluator *</label>
-        {/* FIXED: Added className="w-full" */}
+      
         <Dropdown options={evaluatorOptions} placeholder="Select" className="w-full" />
       </div>
 
       <div>
         <label className="block mb-1">Select Sheet *</label>
-        {/* FIXED: Added className="w-full" */}
+    
         <Dropdown options={sheetOptions} placeholder="Select" className="w-full" />
       </div>
 
@@ -174,7 +170,7 @@ const SheetDistributionToEvaluator: React.FC = () => {
 
       <div>
         <label className="block mb-1">Status *</label>
-        {/* FIXED: Added className="w-full" */}
+ 
         <Dropdown
           options={[
             { label: 'Active', value: 'Active' },

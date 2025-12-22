@@ -3,7 +3,7 @@ import { Dropdown as PrimeDropdown, type DropdownProps as PrimeDropdownProps } f
 
 export interface DropdownOption {
   label: string;
-  value: any;
+  value: undefined;
   disabled?: boolean;
 }
 
@@ -30,6 +30,7 @@ const Dropdown: React.FC<DropdownProps> = ({
   placeholder = 'Select an option',
   ...dropdownProps
 }) => {
+  // eslint-disable-next-line react-hooks/purity
   const dropdownId = id || `dropdown-${label?.toLowerCase().replace(/\s+/g, '-') || Math.random()}`;
 
   return (
