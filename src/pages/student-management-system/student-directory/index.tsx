@@ -1,11 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
-import StudentRegistration from './StudentRegistration';
+import GenerateMigrationCertificate from './GenerateMigrationCertificate';
+import GenerateTC from './GenerateTC';
+import PrintMigrationCertificate from './PrintMigrationCertificate';
+import PrintTC from './PrintTC';
 import StudentDetail from './StudentDetail';
 import StudentPromotionTC from './StudentPromotionTC';
-import GenerateTC from './GenerateTC';
-import PrintTC from './PrintTC';
-import GenerateMigrationCertificate from './GenerateMigrationCertificate';
-import PrintMigrationCertificate from './PrintMigrationCertificate';
+import StudentRegistration from './StudentRegistration';
 
 export default function StudentDirectory() {
   return (
