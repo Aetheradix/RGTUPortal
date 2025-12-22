@@ -84,7 +84,7 @@ const SelectEvaluators: React.FC = () => {
   return (
     <PageLayout title="Select Evaluators">
 
-      {/* ================= SEARCH ================= */}
+  
       {view === 'list' && (
         <Card className="mb-4">
           <h3 className="text-lg font-semibold mb-4">Select Evaluator</h3>
@@ -92,7 +92,7 @@ const SelectEvaluators: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
             <div>
               <label className="block mb-1">Select Evaluator *</label>
-              {/* SIZE FIXED HERE */}
+
               <Dropdown options={evaluatorOptions} placeholder="Select Evaluator" className="w-full" />
             </div>
 
@@ -108,7 +108,7 @@ const SelectEvaluators: React.FC = () => {
         </Card>
       )}
 
-      {/* ================= LIST ================= */}
+
       {view === 'list' && (
         <Card>
           <div className="flex justify-between items-center mb-4">
@@ -142,7 +142,7 @@ const SelectEvaluators: React.FC = () => {
         </Card>
       )}
 
-      {/* ================= DETAILS ================= */}
+   
       {view === 'details' && selectedEvaluator && (
         <Card>
           <div className="flex justify-between items-center mb-4">
@@ -179,7 +179,7 @@ const SelectEvaluators: React.FC = () => {
         </Card>
       )}
 
-      {/* ================= ADD ================= */}
+   
       {view === 'add' && (
         <Card>
           <div className="flex justify-between items-center mb-4">
@@ -210,25 +210,25 @@ const SelectEvaluators: React.FC = () => {
 
             <div>
               <label className="block mb-1">Role *</label>
-              {/* SIZE FIXED HERE */}
+     
               <Dropdown options={roleOptions} placeholder="Select" className="w-full" />
             </div>
 
             <div>
               <label className="block mb-1">Qualifications *</label>
-              {/* SIZE FIXED HERE */}
+      
               <Dropdown options={qualificationOptions} placeholder="Select" className="w-full" />
             </div>
 
             <div>
               <label className="block mb-1">Experience</label>
-              {/* SIZE FIXED HERE */}
+             
               <Dropdown options={experienceOptions} placeholder="Select" className="w-full" />
             </div>
 
             <div>
               <label className="block mb-1">Status *</label>
-              {/* SIZE FIXED HERE */}
+          
               <Dropdown
                 options={[
                   { label: 'Active', value: 'Active' },

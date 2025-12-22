@@ -7,9 +7,6 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Tag } from "primereact/tag";
 
-
-
-
 interface Student {
   id: number;
   studentName: string;
@@ -83,10 +80,10 @@ const AdmitCardVerification: React.FC = () => {
   const [verificationStatus, setVerificationStatus] = useState("");
   const [remark, setRemark] = useState("");
 
-  const student = studentsData[0]; // dummy data for UI
+  const student = studentsData[0]; 
 
   const handleSearch = () => {
-    setIsSearched(true); // no validation
+    setIsSearched(true); 
   };
 
   const handleClear = () => {
@@ -98,7 +95,7 @@ const AdmitCardVerification: React.FC = () => {
 
   return (
     <PageLayout title="Admit Card Verification">
-      {/* ================= SEARCH ================= */}
+  
       <div className="border rounded p-4 mb-6">
         <h3 className="font-semibold mb-2">Enter Roll Number *</h3>
 
@@ -119,10 +116,10 @@ const AdmitCardVerification: React.FC = () => {
         </div>
       </div>
 
-      {/* ================= AFTER SEARCH ================= */}
+
       {isSearched && (
         <>
-          {/* STUDENT DETAILS */}
+        
           <div className="border rounded p-4 mb-6 bg-gray-50">
             <h3 className="font-semibold mb-3">Student Details</h3>
 
@@ -151,16 +148,10 @@ const AdmitCardVerification: React.FC = () => {
                   />
                 </div>
               </div>
-              {/* <div>
-                <label>View Admit Card</label>
-                <div>
-                  <Button  icon="pi pi-eye" />
-                </div>
-              </div> */}
+            
             </div>
           </div>
 
-          {/* VERIFICATION STATUS */}
           <div className="border rounded p-4 mb-8">
             <h3 className="font-semibold mb-3">Verification Status</h3>
 
@@ -191,7 +182,6 @@ const AdmitCardVerification: React.FC = () => {
             </div>
           </div>
 
-          {/* ================= LIST ================= */}
           <div className="border rounded p-4">
             <div className="flex justify-between items-center mb-3">
               <h3 className="font-semibold">Admit Card Verification List</h3>
@@ -203,7 +193,10 @@ const AdmitCardVerification: React.FC = () => {
             </div>
 
             <DataTable value={studentsData} paginator rows={10} showGridlines>
-              <Column header="Sr No." body={(_, i) => i + 1} />
+              <Column
+                header="Sr No."
+                body={(_, options) => options.rowIndex + 1}
+              />
               <Column field="studentName" header="Student Name" />
               <Column field="rollNumber" header="Roll Number" />
               <Column field="courseName" header="Course Name" />

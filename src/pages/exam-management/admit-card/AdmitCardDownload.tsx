@@ -55,7 +55,7 @@ const AdmitCardDownloadPage: React.FC = () => {
         <h3 className="text-lg font-semibold mb-6">Admit Card Download</h3>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-          {/* Roll Number */}
+    
           <div>
             <label className="block text-sm font-medium mb-1">Enter Roll Number *</label>
             <InputText
@@ -66,7 +66,6 @@ const AdmitCardDownloadPage: React.FC = () => {
             />
           </div>
 
-          {/* Year Term */}
           <div>
             <label className="block text-sm font-medium mb-1">Select Year Term *</label>
             <Dropdown
@@ -78,7 +77,7 @@ const AdmitCardDownloadPage: React.FC = () => {
             />
           </div>
 
-          {/* Semester */}
+         
           <div>
             <label className="block text-sm font-medium mb-1">Select Semester *</label>
             <Dropdown
@@ -90,7 +89,6 @@ const AdmitCardDownloadPage: React.FC = () => {
             />
           </div>
 
-          {/* Status */}
           <div>
             <label className="block text-sm font-medium mb-1">Select Status *</label>
             <Dropdown

@@ -79,7 +79,7 @@ const EvaluatAsApply: React.FC = () => {
 
   return (
     <PageLayout title="Evaluat As Apply">
-      {/* ================= LIST ================= */}
+ 
       {view === "list" && (
         <Card className="mb-4">
           <div className="flex justify-between items-center mb-4">
@@ -113,7 +113,7 @@ const EvaluatAsApply: React.FC = () => {
         </Card>
       )}
 
-      {/* ================= DETAILS ================= */}
+   
       {view === "details" && selectedEvaluator && (
         <Card className="mb-4">
           <div className="flex justify-between items-center mb-4">
@@ -150,8 +150,6 @@ const EvaluatAsApply: React.FC = () => {
         </Card>
       )}
 
-      {/* ================= ADD ================= */}
-      {/* ================= ADD ================= */}
       {view === "add" && (
         <Card>
           <div className="flex justify-between items-center mb-4">
@@ -188,7 +186,7 @@ const EvaluatAsApply: React.FC = () => {
               <Dropdown
                 options={roleOptions}
                 placeholder="Select"
-                className="w-full" // Added w-full here
+                className="w-full" 
               />
             </div>
 
@@ -197,7 +195,7 @@ const EvaluatAsApply: React.FC = () => {
               <Dropdown
                 options={qualificationOptions}
                 placeholder="Select"
-                className="w-full" // Added w-full here
+                className="w-full" 
               />
             </div>
 
@@ -206,7 +204,7 @@ const EvaluatAsApply: React.FC = () => {
               <Dropdown
                 options={experienceOptions}
                 placeholder="Select"
-                className="w-full" // Added w-full here
+                className="w-full" 
               />
             </div>
           </div>
