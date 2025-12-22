@@ -2,6 +2,9 @@ import { Route, Routes } from 'react-router-dom';
 import ExamMaster from './exam-master';
 import ExamSchedule from './exam-schedule';
 import QuestionPapers from './question-papers';
+import ExamForm from './exam-form';
+import AdmitCard from './admit-card';
+import Evaluator from './evaluator';
 
 
 export default function ExamManagement() {
@@ -10,6 +13,9 @@ export default function ExamManagement() {
       <Route path="exam-master/*" element={<ExamMaster />} />
       <Route path="exam-schedule/*" element={<ExamSchedule />} />
       <Route path="question-paper/*" element={<QuestionPapers />} />
+      <Route path="exam-form/*" element={<ExamForm/>} />
+      <Route path="admit-card/*" element={<AdmitCard/>} />
+      <Route path="evaluator/*" element={<Evaluator/>} />
     </Routes>
   );
 }
