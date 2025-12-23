@@ -53,7 +53,7 @@ const StudentAchievementTracking: React.FC = () => {
   ];
 
   // --- Action Column Template ---
-  const actionTemplate = (rowData: AchievementRow) => (
+  const actionTemplate = (_rowData: AchievementRow) => (
     <div className="flex gap-2">
       <Button 
         icon="pi pi-pencil" 

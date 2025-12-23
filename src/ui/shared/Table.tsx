@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { DataTable, type DataTableProps } from 'primereact/datatable';
-import { Column,type ColumnProps } from 'primereact/column';
-import { Paginator,type PaginatorProps } from 'primereact/paginator';
+import { Column, type ColumnProps } from 'primereact/column';
+import { Paginator } from 'primereact/paginator';
 
 export interface TableColumn extends ColumnProps {
   field: string;
@@ -12,7 +12,7 @@ export interface TableColumn extends ColumnProps {
   body?: (rowData: any) => React.ReactNode;
 }
 
-export interface TableProps extends Omit<DataTableProps<any>, 'paginator' | 'rows'> {
+export interface TableProps extends Omit<DataTableProps<any>, 'paginator' | 'rows' | 'cellSelection'> {
   columns: TableColumn[];
   data: any[];
   title?: string;
@@ -68,7 +68,6 @@ const Table: React.FC<TableProps> = ({
         loading={loading}
         emptyMessage={emptyMessage}
         className={`w-full ${className || ''}`}
-        {...(cellSelection === true && { cellSelection: true })}
         {...restProps}
       >
         {columns.map((column, index) => (

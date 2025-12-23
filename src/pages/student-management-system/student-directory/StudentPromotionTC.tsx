@@ -12,13 +12,6 @@ const StudentPromotionTC: React.FC = () => {
   
     const [viewMode, setViewMode] = useState<'list' | 'add'>('list');
 
-    const [filters, setFilters] = useState({
-        academicYear: null,
-        course: null,
-        specialization: null,
-        semester: null
-    });
-
     const promotionList = [
         { id: 1, enrollment: '0501CS221C01', name: 'Arnav Gupta', father: 'Maakhan Gupta', dob: '26/05/2001', percentage: '75%', result: 'Pass', college: 'Same', status: true },
         { id: 2, enrollment: '0501CS221C02', name: 'Neha Sharma', father: 'Vishnu Sharma', dob: '21/04/2001', percentage: '95%', result: 'Pass', college: 'Same', status: true },
