@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import PageLayout from "../../../components/PageLayout";
 import { Button } from "primereact/button";
 import { DataTable } from "primereact/datatable";
@@ -6,6 +6,7 @@ import { Column } from "primereact/column";
 import { Dropdown } from "primereact/dropdown";
 import { Calendar } from "primereact/calendar";
 import { InputText } from "primereact/inputtext";
+import { Toast } from "primereact/toast";
 
 interface BudgetAllocationData {
   srNo: number;
@@ -21,8 +22,9 @@ interface BudgetAllocationData {
 
 const BudgetAllocation: React.FC = () => {
   const [step, setStep] = useState(1);
+  const toast = useRef<Toast>(null);
 
-  // Reusing Filter States from your code
+  // Filter States
   const [selectedDate, setSelectedDate] = useState<Date | null>(
     new Date(1923, 11, 12)
   );
@@ -68,7 +70,6 @@ const BudgetAllocation: React.FC = () => {
   ];
   const collegeOptions = [{ label: "M.L.B. Girls PG College", value: "MLB" }];
 
-  // Table Data based on Image 50
   const allocationData: BudgetAllocationData[] = [
     {
       srNo: 1,
@@ -80,17 +81,6 @@ const BudgetAllocation: React.FC = () => {
       budgetHeadName: "Training Infrastructure",
       expenditureLastYear: "₹15,00,000",
       amountRequested: "₹12,00,000",
-    },
-    {
-      srNo: 2,
-      mainAccountTitle: "Education Department",
-      descriptionMain: "Budget for online learning",
-      accountTitle: "E-Learning",
-      descriptionAccount: "Digital education infrastructure",
-      subAccountTitle: "Online Courses",
-      budgetHeadName: "IT Support",
-      expenditureLastYear: "₹10,00,000",
-      amountRequested: "₹8,00,000",
     },
     {
       srNo: 3,
@@ -125,25 +115,65 @@ const BudgetAllocation: React.FC = () => {
       expenditureLastYear: "₹8,00,000",
       amountRequested: "₹5,00,000",
     },
+    {
+      srNo: 2,
+      mainAccountTitle: "Education Department",
+      descriptionMain: "Budget for online learning",
+      accountTitle: "E-Learning",
+      descriptionAccount: "Digital education infrastructure",
+      subAccountTitle: "Online Courses",
+      budgetHeadName: "IT Support",
+      expenditureLastYear: "₹10,00,000",
+      amountRequested: "₹8,00,000",
+    },
   ];
 
-  const handleSearch = () => setStep(2);
+  const handleSearch = () => {
+    setStep(2);
+    toast.current?.show({
+      severity: "success",
+      summary: "Search Complete",
+      detail: "Budget allocation records loaded.",
+      life: 3000,
+    });
+  };
 
   const handleClear = () => {
     setOicType(null);
     setOfficeType(null);
     setOfficeName(null);
+    setDivision(null);
+    setDistrict(null);
+    setBlock(null);
+    setUniversity(null);
+    setCollege(null);
     setStep(1);
+    toast.current?.show({
+      severity: "info",
+      summary: "Cleared",
+      detail: "Filters have been reset.",
+      life: 2000,
+    });
+  };
+
+  const handleSave = () => {
+    toast.current?.show({
+      severity: "success",
+      summary: "Saved",
+      detail: "Budget allocation saved successfully.",
+      life: 3000,
+    });
   };
 
   return (
     <PageLayout title="Budget Allocation">
-      {/* FORM SECTION - REUSED LOGIC FROM YOUR CODE */}
-      <div className="bg-white ">
+      <Toast ref={toast} />
+
+      <div className="bg-white p-4 rounded shadow-sm border border-gray-100">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
           <div className="flex flex-col gap-1">
-            <label className="text-xs font-bold text-gray-600">
-              Select Date*
+            <label className="text-sm font-bold text-gray-600">
+              Select Date<span className="text-red-500">*</span>
             </label>
             <Calendar
               value={selectedDate}
@@ -153,7 +183,9 @@ const BudgetAllocation: React.FC = () => {
             />
           </div>
           <div className="flex flex-col gap-1">
-            <label className="text-xs font-bold text-gray-600">Head Type</label>
+            <label className="text-sm font-bold text-gray-600">
+              Head Type<span className="text-red-500">*</span>
+            </label>
             <Dropdown
               value={headType}
               options={headTypeOptions}
@@ -163,8 +195,8 @@ const BudgetAllocation: React.FC = () => {
             />
           </div>
           <div className="flex flex-col gap-1">
-            <label className="text-xs font-bold text-gray-600">
-              Budget Type
+            <label className="text-sm font-bold text-gray-600">
+              Budget Type<span className="text-red-500">*</span>
             </label>
             <Dropdown
               value={budgetType}
@@ -175,8 +207,8 @@ const BudgetAllocation: React.FC = () => {
             />
           </div>
           <div className="flex flex-col gap-1">
-            <label className="text-xs font-bold text-gray-600">
-              Select OIC Type*
+            <label className="text-sm font-bold text-gray-600">
+              Select OIC Type<span className="text-red-500">*</span>
             </label>
             <Dropdown
               value={oicType}
@@ -188,13 +220,12 @@ const BudgetAllocation: React.FC = () => {
           </div>
         </div>
 
-        {/* DYNAMIC DROPDOWNS BASED ON OIC TYPE */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           {oicType === "Office" && (
             <>
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select Office Type*
+                <label className="text-sm font-bold text-gray-600">
+                  Select Office Type<span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={officeType}
@@ -205,8 +236,8 @@ const BudgetAllocation: React.FC = () => {
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select Office Name*
+                <label className="text-sm font-bold text-gray-600">
+                  Select Office Name<span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={officeName}
@@ -221,59 +252,59 @@ const BudgetAllocation: React.FC = () => {
           {(oicType === "University" || oicType === "College") && (
             <>
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select Division Name*
+                <label className="text-sm font-bold text-gray-600">
+                  Select Division Name<span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={division}
                   options={divisionOptions}
                   onChange={(e) => setDivision(e.value)}
                   placeholder="Select"
-                  className="p-inputtext-sm w-full"
+                  className="w-full"
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select District Name*
+                <label className="text-sm font-bold text-gray-600">
+                  Select District Name<span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={district}
                   options={districtOptions}
                   onChange={(e) => setDistrict(e.value)}
                   placeholder="Select"
-                  className="p-inputtext-sm w-full"
+                  className="w-full"
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select Block Name*
+                <label className="text-sm font-bold text-gray-600">
+                  Select Block Name<span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={block}
                   options={blockOptions}
                   onChange={(e) => setBlock(e.value)}
                   placeholder="Select"
-                  className="p-inputtext-sm w-full"
+                  className="w-full"
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select University Name*
+                <label className="text-sm font-bold text-gray-600">
+                  Select University Name<span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={university}
                   options={universityOptions}
                   onChange={(e) => setUniversity(e.value)}
                   placeholder="Select"
-                  className="p-inputtext-sm w-full"
+                  className="w-full"
                 />
               </div>
             </>
           )}
           {oicType === "College" && (
             <div className="flex flex-col gap-1">
-              <label className="text-xs font-bold text-gray-600">
-                Select College Name*
+              <label className="text-sm font-bold text-gray-600">
+                Select College Name<span className="text-red-500">*</span>
               </label>
               <Dropdown
                 value={college}
@@ -286,7 +317,8 @@ const BudgetAllocation: React.FC = () => {
           )}
         </div>
 
-        <div className="flex justify-center gap-3 mt-8">
+        {/* Action Buttons - Left Aligned */}
+        <div className="flex gap-3 mt-8">
           <Button
             label="Search"
             icon="pi pi-search"
@@ -303,22 +335,18 @@ const BudgetAllocation: React.FC = () => {
         </div>
       </div>
 
-      {/* NEW GRID SECTION BASED ON IMAGE 50 */}
       {step === 2 && (
-        <div className="bg-white mt-6">
+        <div className="bg-white mt-6 p-4 rounded shadow-sm border border-gray-100 animate-fade-in">
           <div className="flex justify-between items-center mb-4 text-sm">
-            <div className="flex items-center gap-2">
-              <span>Show</span>
-              <Dropdown
-                value={10}
-                options={[10, 25, 50]}
-                className="p-inputtext-sm"
-              />
-              <span>entries</span>
-            </div>
+            <h3 className="text-md font-bold text-gray-700">
+              Allocation Details
+            </h3>
             <div className="flex items-center gap-2">
               <span>Search:</span>
-              <InputText className="p-inputtext-sm w-48" />
+              <InputText
+                className="p-inputtext-sm w-48"
+                placeholder="Filter records"
+              />
             </div>
           </div>
 
@@ -344,9 +372,9 @@ const BudgetAllocation: React.FC = () => {
               header="Main Account Title"
               sortable
             />
-            <Column field="descriptionMain" header="Description" sortable />
+            <Column field="descriptionMain" header="Description" />
             <Column field="accountTitle" header="Account Title" sortable />
-            <Column field="descriptionAccount" header="Description" sortable />
+            <Column field="descriptionAccount" header="Description" />
             <Column
               field="subAccountTitle"
               header="Sub-Account Title"
@@ -356,24 +384,34 @@ const BudgetAllocation: React.FC = () => {
             <Column
               field="expenditureLastYear"
               header="Expenditure Last Year"
-              sortable
             />
             <Column
               field="amountRequested"
-              header="Amount Requested by Office (from 1st April to current date)"
-              sortable
+              header="Amount Requested by Office"
             />
           </DataTable>
 
-          <div className="flex justify-center gap-3 mt-8">
+          {/* Table Footer Buttons - Left Aligned */}
+          <div className="flex gap-3 mt-8 pt-4 border-t">
             <Button
               label="Save"
+              icon="pi pi-check"
               className="p-button-sm px-10 p-button-primary"
               style={{ backgroundColor: "#6366f1" }}
+              onClick={handleSave}
             />
             <Button
-              label="Clear"
-              className="p-button-sm px-10 p-button-danger"
+              label="Clear Selection"
+              icon="pi pi-refresh"
+              className="p-button-sm px-10 p-button-danger p-button-outlined"
+              onClick={() =>
+                toast.current?.show({
+                  severity: "info",
+                  summary: "Reset",
+                  detail: "Table selections cleared.",
+                  life: 2000,
+                })
+              }
             />
           </div>
         </div>

@@ -4,14 +4,61 @@ import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { Dropdown } from "primereact/dropdown";
 import { Calendar } from "primereact/calendar";
-import { useState } from "react";
+import { Toast } from "primereact/toast";
+import { useState, useRef } from "react";
 
 const UpdateStudentProfile: React.FC = () => {
   const [step, setStep] = useState(1);
-  //   const [formData, setFormData] = useState({});
+  const [samagraId, setSamagraId] = useState("");
+  const toast = useRef<Toast>(null); 
 
   const nextStep = () => setStep((prev) => prev + 1);
-  const reset = () => setStep(1);
+  const reset = () => {
+    setStep(1);
+    setSamagraId("");
+  };
+
+  const handleSearch = () => {
+    if (!samagraId.trim()) {
+      toast.current?.show({
+        severity: "error",
+        summary: "Error",
+        detail: "Please enter Student Samagra ID",
+        life: 3000,
+      });
+      return;
+    }
+    setStep(2);
+    toast.current?.show({
+      severity: "success",
+      summary: "Success",
+      detail: "Student Record Found",
+      life: 3000,
+    });
+  };
+
+  const handleClear = () => {
+    setSamagraId("");
+    if (step > 1) {
+      toast.current?.show({
+        severity: "info",
+        summary: "Cleared",
+        detail: "Form fields have been reset",
+        life: 2000,
+      });
+    }
+  };
+
+  const handleFinalUpdate = () => {
+    toast.current?.show({
+      severity: "success",
+      summary: "Profile Updated",
+      detail: "Student information has been saved successfully",
+      life: 4000,
+    });
+    setTimeout(() => reset(), 2000);
+  };
+
   const Label = ({
     text,
     required = false,
@@ -26,6 +73,8 @@ const UpdateStudentProfile: React.FC = () => {
 
   return (
     <PageLayout title="Update Student Profile For Scholarships">
+      <Toast ref={toast} />
+      
       {step === 1 && (
         <div className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -33,25 +82,32 @@ const UpdateStudentProfile: React.FC = () => {
               <Label text="Enter Student Samagra ID" required />
               <InputText
                 className="w-full"
+                value={samagraId}
+                onChange={(e) => setSamagraId(e.target.value)}
                 placeholder="Enter Student Samagra ID"
               />
             </div>
           </div>
-          <div className="flex justify-center gap-3 ">
+          <div className="flex gap-3">
             <Button
+              type="button"
               label="Search"
-              className="bg-indigo-500 border-none px-8"
-              onClick={nextStep}
+              icon="pi pi-search"
+              className="p-button-primary px-6"
+              onClick={handleSearch}
             />
             <Button
+              type="button"
               label="Clear"
-              className="bg-red-100 text-red-500 border-none px-8"
+              icon="pi pi-refresh"
+              className="p-button-outlined px-6"
+              onClick={handleClear}
             />
           </div>
         </div>
       )}
 
-      {/* STEP 2: PERSONAL DETAILS & ADDRESS (Capture115.PNG) */}
+      {/* STEP 2: PERSONAL DETAILS & ADDRESS */}
       {step === 2 && (
         <div className="space-y-8">
           <section>
@@ -175,12 +231,13 @@ const UpdateStudentProfile: React.FC = () => {
             <Button
               label="Clear"
               className="bg-red-100 text-red-500 border-none px-6"
+              onClick={handleClear}
             />
           </div>
         </div>
       )}
 
-      {/* STEP 3: FAMILY OTHER INFO (Capture116.PNG) */}
+      {/* STEP 3: FAMILY OTHER INFO */}
       {step === 3 && (
         <div className="space-y-6">
           <h3 className="text-lg font-medium mb-6 border-b pb-2">
@@ -244,12 +301,13 @@ const UpdateStudentProfile: React.FC = () => {
             <Button
               label="Clear"
               className="bg-red-100 text-red-500 border-none px-6"
+              onClick={handleClear}
             />
           </div>
         </div>
       )}
 
-      {/* STEP 4: ACADEMIC INFO (Capture117.PNG) */}
+      {/* STEP 4: ACADEMIC INFO */}
       {step === 4 && (
         <div className="space-y-8">
           <section>
@@ -350,12 +408,13 @@ const UpdateStudentProfile: React.FC = () => {
             <Button
               label="Clear"
               className="bg-red-100 text-red-500 border-none px-6"
+              onClick={handleClear}
             />
           </div>
         </div>
       )}
 
-      {/* STEP 5: BANK INFO (Capture118.PNG) */}
+      {/* STEP 5: BANK INFO */}
       {step === 5 && (
         <div className="space-y-6">
           <h3 className="text-lg font-medium mb-6 border-b pb-2">
@@ -392,12 +451,13 @@ const UpdateStudentProfile: React.FC = () => {
             <Button
               label="Clear"
               className="bg-red-100 text-red-500 border-none px-6"
+              onClick={handleClear}
             />
           </div>
         </div>
       )}
 
-      {/* STEP 6: DOCUMENT UPLOAD (Capture119.PNG) */}
+      {/* STEP 6: DOCUMENT UPLOAD */}
       {step === 6 && (
         <div className="space-y-6">
           <h3 className="text-lg font-medium mb-6 border-b pb-2">
@@ -431,11 +491,12 @@ const UpdateStudentProfile: React.FC = () => {
             <Button
               label="Update"
               className="bg-indigo-600 border-none px-10"
-              onClick={reset}
+              onClick={handleFinalUpdate}
             />
             <Button
               label="Clear"
               className="bg-red-100 text-red-500 border-none px-10"
+              onClick={handleClear}
             />
           </div>
         </div>

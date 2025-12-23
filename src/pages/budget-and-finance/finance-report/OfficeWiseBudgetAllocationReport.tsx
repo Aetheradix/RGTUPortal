@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import PageLayout from "../../../components/PageLayout";
 import { Button } from "primereact/button";
 import { DataTable } from "primereact/datatable";
@@ -6,6 +6,7 @@ import { Column } from "primereact/column";
 import { Dropdown } from "primereact/dropdown";
 import { Calendar } from "primereact/calendar";
 import { InputText } from "primereact/inputtext";
+import { Toast } from "primereact/toast";
 
 interface OfficeWiseAllocationData {
   srNo: number;
@@ -18,7 +19,9 @@ interface OfficeWiseAllocationData {
 
 const OfficeWiseBudgetAllocationReport: React.FC = () => {
   const [step, setStep] = useState(1);
-  //dropdowns
+  const toast = useRef<Toast>(null);
+
+  // dropdowns
   const [fromDate, setFromDate] = useState<Date | null>(null);
   const [toDate, setToDate] = useState<Date | null>(null);
   const [headType, setHeadType] = useState<string | null>(null);
@@ -143,7 +146,24 @@ const OfficeWiseBudgetAllocationReport: React.FC = () => {
     },
   ];
 
-  const handleSearch = () => setStep(2);
+  const handleSearch = () => {
+    if (fromDate && toDate && headType && budgetType && oicType) {
+      setStep(2);
+      toast.current?.show({
+        severity: "success",
+        summary: "Success",
+        detail: "Report generated successfully",
+        life: 3000,
+      });
+    } else {
+      toast.current?.show({
+        severity: "error",
+        summary: "Error",
+        detail: "Please fill all mandatory fields marked with *",
+        life: 3000,
+      });
+    }
+  };
 
   const handleClear = () => {
     setOicType(null);
@@ -151,16 +171,29 @@ const OfficeWiseBudgetAllocationReport: React.FC = () => {
     setToDate(null);
     setHeadType(null);
     setBudgetType(null);
+    setOfficeType(null);
+    setOfficeName(null);
+    setDivision(null);
+    setDistrict(null);
+    setBlock(null);
+    setUniversity(null);
     setStep(1);
+    toast.current?.show({
+      severity: "info",
+      summary: "Cleared",
+      detail: "Filters reset successfully",
+      life: 2000,
+    });
   };
 
   return (
     <PageLayout title="Office Wise Budget Allocation Report">
-      <div className="bg-white p-4 shadow-sm rounded">
+      <Toast ref={toast} />
+      <div className="bg-white p-6 shadow-sm rounded border border-gray-100">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-4">
           <div className="flex flex-col gap-1">
-            <label className="text-xs font-bold text-gray-600">
-              Select From Date*
+            <label className="text-sm font-bold text-gray-600">
+              Select From Date<span className="text-red-500">*</span>
             </label>
             <Calendar
               value={fromDate}
@@ -170,8 +203,8 @@ const OfficeWiseBudgetAllocationReport: React.FC = () => {
             />
           </div>
           <div className="flex flex-col gap-1">
-            <label className="text-xs font-bold text-gray-600">
-              Select To Date*
+            <label className="text-sm font-bold text-gray-600">
+              Select To Date<span className="text-red-500">*</span>
             </label>
             <Calendar
               value={toDate}
@@ -181,67 +214,68 @@ const OfficeWiseBudgetAllocationReport: React.FC = () => {
             />
           </div>
           <div className="flex flex-col gap-1">
-            <label className="text-xs font-bold text-gray-600">
-              Head Type*
+            <label className="text-sm font-bold text-gray-600">
+              Head Type<span className="text-red-500">*</span>
             </label>
             <Dropdown
               value={headType}
               options={headTypeOptions}
               onChange={(e) => setHeadType(e.value)}
               placeholder="Select"
-              className="p-inputtext-sm w-full"
+              className="p-inputtext-sm w-full border-gray-300"
             />
           </div>
           <div className="flex flex-col gap-1">
-            <label className="text-xs font-bold text-gray-600">
-              Budget Type*
+            <label className="text-sm font-bold text-gray-600">
+              Budget Type<span className="text-red-500">*</span>
             </label>
             <Dropdown
               value={budgetType}
               options={budgetTypeOptions}
               onChange={(e) => setBudgetType(e.value)}
               placeholder="Select"
-              className="p-inputtext-sm w-full"
+              className="p-inputtext-sm w-full border-gray-300"
             />
           </div>
           <div className="flex flex-col gap-1">
-            <label className="text-xs font-bold text-gray-600">
-              Select OIC Type*
+            <label className="text-sm font-bold text-gray-600">
+              Select OIC Type<span className="text-red-500">*</span>
             </label>
             <Dropdown
               value={oicType}
               options={oicOptions}
               onChange={(e) => setOicType(e.value)}
               placeholder="Select"
-              className="p-inputtext-sm w-full"
+              className="p-inputtext-sm w-full border-gray-300"
             />
           </div>
         </div>
+
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           {oicType === "Office" && (
             <>
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select Office Type*
+                <label className="text-sm font-bold text-gray-600">
+                  Select Office Type<span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={officeType}
                   options={officeTypeOptions}
                   onChange={(e) => setOfficeType(e.value)}
                   placeholder="Select"
-                  className="p-inputtext-sm w-full"
+                  className="p-inputtext-sm w-full border-gray-300"
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select Office Name*
+                <label className="text-sm font-bold text-gray-600">
+                  Select Office Name<span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={officeName}
                   options={officeNameOptions}
                   onChange={(e) => setOfficeName(e.value)}
                   placeholder="Select"
-                  className="p-inputtext-sm w-full"
+                  className="p-inputtext-sm w-full border-gray-300"
                 />
               </div>
             </>
@@ -249,62 +283,63 @@ const OfficeWiseBudgetAllocationReport: React.FC = () => {
           {(oicType === "University" || oicType === "College") && (
             <>
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select Division Name*
+                <label className="text-sm font-bold text-gray-600">
+                  Select Division Name<span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={division}
                   options={divisionOptions}
                   onChange={(e) => setDivision(e.value)}
                   placeholder="Select"
-                  className="p-inputtext-sm w-full"
+                  className="p-inputtext-sm w-full border-gray-300"
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select District Name*
+                <label className="text-sm font-bold text-gray-600">
+                  Select District Name<span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={district}
                   options={districtOptions}
                   onChange={(e) => setDistrict(e.value)}
                   placeholder="Select"
-                  className="p-inputtext-sm w-full"
+                  className="p-inputtext-sm w-full border-gray-300"
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select Block Name*
+                <label className="text-sm font-bold text-gray-600">
+                  Select Block Name<span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={block}
                   options={blockOptions}
                   onChange={(e) => setBlock(e.value)}
                   placeholder="Select"
-                  className="p-inputtext-sm w-full"
+                  className="p-inputtext-sm w-full border-gray-300"
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select University Name*
+                <label className="text-sm font-bold text-gray-600">
+                  Select University Name<span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={university}
                   options={universityOptions}
                   onChange={(e) => setUniversity(e.value)}
                   placeholder="Select"
-                  className="p-inputtext-sm w-full"
+                  className="p-inputtext-sm w-full border-gray-300"
                 />
               </div>
             </>
           )}
         </div>
-        <div className="flex justify-center gap-3 mt-8">
+
+        <div className="flex justify-start gap-3 mt-8">
           <Button
             label="Search"
             icon="pi pi-search"
             className="p-button-sm px-8"
-            style={{ backgroundColor: "#6366f1" }}
+            style={{ backgroundColor: "#6366f1", border: "none" }}
             onClick={handleSearch}
           />
           <Button
@@ -315,17 +350,20 @@ const OfficeWiseBudgetAllocationReport: React.FC = () => {
           />
         </div>
       </div>
+
       {step === 2 && (
-        <div className="bg-white p-6 rounded-lg shadow-sm mt-6 overflow-x-auto">
+        <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100 mt-6 animate-fade-in">
           <div className="text-center mb-6">
-            <h4 className="font-bold text-gray-700">
+            <h4 className="font-bold text-gray-700 text-lg">
               Office Wise Budget Allocation Report
             </h4>
-            <p className="text-sm text-gray-600">01-04-2024 To 31-03-2025</p>
+            <p className="text-sm text-gray-600 italic">
+              Period: 01-04-2024 To 31-03-2025
+            </p>
           </div>
 
           <div className="flex justify-between items-center mb-4 text-sm">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 font-medium text-gray-600">
               <span>Show</span>
               <Dropdown
                 value={10}
@@ -335,8 +373,11 @@ const OfficeWiseBudgetAllocationReport: React.FC = () => {
               <span>entries</span>
             </div>
             <div className="flex items-center gap-2">
-              <span>Search:</span>
-              <InputText className="p-inputtext-sm w-48" />
+              <span className="font-medium text-gray-600">Search:</span>
+              <InputText
+                className="p-inputtext-sm w-48 border-gray-300"
+                placeholder="Filter records..."
+              />
             </div>
           </div>
 
@@ -348,27 +389,35 @@ const OfficeWiseBudgetAllocationReport: React.FC = () => {
             showGridlines
             responsiveLayout="scroll"
           >
-            <Column field="srNo" header="Sr No." sortable />
+            <Column
+              field="srNo"
+              header="Sr No."
+              sortable
+              style={{ width: "5rem" }}
+            />
             <Column field="officeType" header="Office Type" sortable />
             <Column field="officeName" header="Office Name" sortable />
             <Column
               field="budgetEstimateLastYear"
               header="Budget Estimate (Last Financial Year)"
               sortable
+              className="font-semibold text-right"
             />
             <Column
               field="totalExpenditureLastYear"
               header="Total Expenditure (Last Financial Year)"
               sortable
+              className="font-semibold text-right"
             />
             <Column
               field="totalAllocation"
               header="Total Allocation"
               sortable
+              className="font-bold text-right text-indigo-600"
             />
           </DataTable>
 
-          <div className="text-xs text-gray-500 mt-2">
+          <div className="text-xs text-gray-500 mt-4 font-medium border-t pt-2">
             Showing 1 to 10 of 10 entries
           </div>
         </div>

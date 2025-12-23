@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import PageLayout from "../../../components/PageLayout";
 import { Button } from "primereact/button";
 import { DataTable } from "primereact/datatable";
@@ -6,6 +6,7 @@ import { Column } from "primereact/column";
 import { Dropdown } from "primereact/dropdown";
 import { Calendar } from "primereact/calendar";
 import { InputText } from "primereact/inputtext";
+import { Toast } from "primereact/toast";
 
 interface BudgetAssignReportData {
   srNo: number;
@@ -18,6 +19,7 @@ interface BudgetAssignReportData {
 
 const BudgetAssignReport: React.FC = () => {
   const [step, setStep] = useState(1);
+  const toast = useRef<Toast>(null);
 
   // Filter States - Reusing logic with Date fields
   const [fromDate, setFromDate] = useState<Date | null>(null);
@@ -49,6 +51,7 @@ const BudgetAssignReport: React.FC = () => {
   const blockOptions = [{ label: "Phanda Block", value: "Phanda" }];
   const universityOptions = [
     { label: "Barkatullah University (BU)", value: "BU" },
+    { label: "Rajiv Gandhi Proudyogiki Vishwavidyalaya (RGPV)", value: "RGPV" },
   ];
   const collegeOptions = [{ label: "M.L.B. Girls PG College", value: "MLB" }];
 
@@ -96,23 +99,53 @@ const BudgetAssignReport: React.FC = () => {
     },
   ];
 
-  const handleSearch = () => setStep(2);
+  const handleSearch = () => {
+    if (fromDate && toDate && oicType) {
+      setStep(2);
+      toast.current?.show({
+        severity: "success",
+        summary: "Success",
+        detail: "Budget assign report loaded successfully.",
+        life: 3000,
+      });
+    } else {
+      toast.current?.show({
+        severity: "error",
+        summary: "Validation Error",
+        detail: "Please fill all mandatory fields marked with *",
+        life: 3000,
+      });
+    }
+  };
 
   const handleClear = () => {
     setFromDate(null);
     setToDate(null);
     setOicType(null);
+    setOfficeType(null);
+    setOfficeName(null);
+    setDivision(null);
+    setDistrict(null);
+    setBlock(null);
+    setUniversity(null);
+    setCollege(null);
     setStep(1);
+    toast.current?.show({
+      severity: "info",
+      summary: "Cleared",
+      detail: "Filters have been reset.",
+      life: 2000,
+    });
   };
 
   return (
     <PageLayout title="Budget Assign Report">
-      <div className="bg-white ">
-        {/* MINI FORM START (Reused Logic) */}
+      <Toast ref={toast} />
+      <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
           <div className="flex flex-col gap-1">
-            <label className="text-xs font-bold text-gray-600">
-              Select From Date*
+            <label className="text-sm font-bold text-gray-600">
+              Select From Date<span className="text-red-500">*</span>
             </label>
             <Calendar
               value={fromDate}
@@ -122,8 +155,8 @@ const BudgetAssignReport: React.FC = () => {
             />
           </div>
           <div className="flex flex-col gap-1">
-            <label className="text-xs font-bold text-gray-600">
-              Select To Date
+            <label className="text-sm font-bold text-gray-600">
+              Select To Date<span className="text-red-500">*</span>
             </label>
             <Calendar
               value={toDate}
@@ -133,15 +166,15 @@ const BudgetAssignReport: React.FC = () => {
             />
           </div>
           <div className="flex flex-col gap-1">
-            <label className="text-xs font-bold text-gray-600">
-              Select OIC Type*
+            <label className="text-sm font-bold text-gray-600">
+              Select OIC Type<span className="text-red-500">*</span>
             </label>
             <Dropdown
               value={oicType}
               options={oicOptions}
               onChange={(e) => setOicType(e.value)}
               placeholder="Select"
-              className="p-inputtext-sm w-full"
+              className="p-inputtext-sm w-full border-gray-300"
             />
           </div>
         </div>
@@ -151,27 +184,27 @@ const BudgetAssignReport: React.FC = () => {
           {oicType === "Office" && (
             <>
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select Office Type*
+                <label className="text-sm font-bold text-gray-600">
+                  Select Office Type<span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={officeType}
                   options={officeTypeOptions}
                   onChange={(e) => setOfficeType(e.value)}
                   placeholder="Select"
-                  className="p-inputtext-sm w-full"
+                  className="p-inputtext-sm w-full border-gray-300"
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select Office Name*
+                <label className="text-sm font-bold text-gray-600">
+                  Select Office Name<span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={officeName}
                   options={officeNameOptions}
                   onChange={(e) => setOfficeName(e.value)}
                   placeholder="Select"
-                  className="p-inputtext-sm w-full"
+                  className="p-inputtext-sm w-full border-gray-300"
                 />
               </div>
             </>
@@ -179,72 +212,73 @@ const BudgetAssignReport: React.FC = () => {
           {(oicType === "University" || oicType === "College") && (
             <>
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select Division Name*
+                <label className="text-sm font-bold text-gray-600">
+                  Select Division Name<span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={division}
                   options={divisionOptions}
                   onChange={(e) => setDivision(e.value)}
                   placeholder="Select"
-                  className="p-inputtext-sm w-full"
+                  className="p-inputtext-sm w-full border-gray-300"
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select District Name*
+                <label className="text-sm font-bold text-gray-600">
+                  Select District Name<span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={district}
                   options={districtOptions}
                   onChange={(e) => setDistrict(e.value)}
                   placeholder="Select"
-                  className="p-inputtext-sm w-full"
+                  className="p-inputtext-sm w-full border-gray-300"
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select Block Name*
+                <label className="text-sm font-bold text-gray-600">
+                  Select Block Name<span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={block}
                   options={blockOptions}
                   onChange={(e) => setBlock(e.value)}
                   placeholder="Select"
-                  className="p-inputtext-sm w-full"
+                  className="p-inputtext-sm w-full border-gray-300"
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select University Name*
+                <label className="text-sm font-bold text-gray-600">
+                  Select University Name<span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={university}
                   options={universityOptions}
                   onChange={(e) => setUniversity(e.value)}
                   placeholder="Select"
-                  className="p-inputtext-sm w-full"
+                  className="p-inputtext-sm w-full border-gray-300"
                 />
               </div>
             </>
           )}
           {oicType === "College" && (
             <div className="flex flex-col gap-1">
-              <label className="text-xs font-bold text-gray-600">
-                Select College Name*
+              <label className="text-sm font-bold text-gray-600">
+                Select College Name<span className="text-red-500">*</span>
               </label>
               <Dropdown
                 value={college}
                 options={collegeOptions}
                 onChange={(e) => setCollege(e.value)}
                 placeholder="Select"
-                className="p-inputtext-sm w-full"
+                className="p-inputtext-sm w-full border-gray-300"
               />
             </div>
           )}
         </div>
 
-        <div className="flex justify-center gap-3 mt-8">
+        {/* Action Buttons Aligned LEFT */}
+        <div className="flex gap-3 mt-8">
           <Button
             label="Search"
             icon="pi pi-search"
@@ -261,11 +295,10 @@ const BudgetAssignReport: React.FC = () => {
         </div>
       </div>
 
-      {/* FRESH GRID SECTION (Image 53) */}
       {step === 2 && (
-        <div className="bg-white mt-6 ">
+        <div className="bg-white mt-6 p-6 rounded-lg shadow-md border border-gray-100 animate-fade-in">
           <h3 className="text-md font-bold text-gray-700 mb-4">
-            Budget Assign Report
+            Budget Assign Report List
           </h3>
           <div className="flex justify-between items-center mb-4 text-sm">
             <div className="flex items-center gap-2">
@@ -279,7 +312,7 @@ const BudgetAssignReport: React.FC = () => {
             </div>
             <div className="flex items-center gap-2">
               <span>Search:</span>
-              <InputText className="p-inputtext-sm w-48" />
+              <InputText className="p-inputtext-sm w-48 border-gray-300" placeholder="Filter details..." />
             </div>
           </div>
 
@@ -289,8 +322,19 @@ const BudgetAssignReport: React.FC = () => {
             showGridlines
             paginator
             rows={10}
+            responsiveLayout="scroll"
           >
-            <Column field="srNo" header="Sr No." sortable />
+            <Column
+              field="srNo"
+              header="Sr. No."
+              style={{ width: "5rem" }}
+              body={(rowData) => (
+                <div className="flex items-center gap-2">
+                  <i className="pi pi-plus-circle text-blue-600 cursor-pointer"></i>
+                  {rowData.srNo}
+                </div>
+              )}
+            />
             <Column field="assignDate" header="Assign Date" sortable />
             <Column
               field="budgetLetterNo"
@@ -310,14 +354,14 @@ const BudgetAssignReport: React.FC = () => {
             <Column field="letterDetail" header="Letter Detail" sortable />
             <Column
               header="View Letter"
+              style={{ textAlign: "center", width: "100px" }}
               body={() => (
-                <div className="flex justify-center">
-                  <Button
-                    icon="pi pi-eye"
-                    className="p-button-rounded p-button-info p-button-sm"
-                    style={{ backgroundColor: "#6366f1", border: "none" }}
-                  />
-                </div>
+                <Button
+                  icon="pi pi-eye"
+                  text
+                  className="p-button-rounded p-button-info"
+                  onClick={() => toast.current?.show({ severity: 'info', summary: 'View', detail: 'Displaying Letter Details', life: 2000 })}
+                />
               )}
             />
           </DataTable>

@@ -8,11 +8,13 @@ import { Dropdown } from "primereact/dropdown";
 import { InputText } from "primereact/inputtext";
 import { Calendar } from "primereact/calendar";
 import { InputTextarea } from "primereact/inputtextarea";
+import { Toast } from "primereact/toast";
 
 const ReceiptVoucher: React.FC = () => {
   const [step, setStep] = useState(1);
   const [credit, setCredit] = useState<string | null>(null);
   const [ledger, setLedger] = useState<string | null>(null);
+  const toast = useRef<Toast>(null);
 
   // Custom File Upload States
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -49,27 +51,74 @@ const ReceiptVoucher: React.FC = () => {
     { label: "Library Management (10.01.03)", value: "LM" },
   ];
 
-  // Logic for File Selection
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       setFileName(file.name);
+      toast.current?.show({
+        severity: "info",
+        summary: "File Selected",
+        detail: file.name,
+        life: 2000,
+      });
     }
+  };
+
+  const handleSearch = () => {
+    setStep(2);
+    toast.current?.show({
+      severity: "success",
+      summary: "Success",
+      detail: "Voucher details found",
+      life: 3000,
+    });
+  };
+
+  const handleAdd = () => {
+    setStep(3);
+    toast.current?.show({
+      severity: "success",
+      summary: "Added",
+      detail: "Entry added to receipt list",
+      life: 3000,
+    });
+  };
+
+  const handleAccept = () => {
+    setStep(1);
+    toast.current?.show({
+      severity: "success",
+      summary: "Voucher Accepted",
+      detail: "Receipt voucher processed successfully",
+      life: 3000,
+    });
+  };
+
+  const handleClear = () => {
+    setCredit(null);
+    setLedger(null);
+    setFileName("No file chosen");
+    toast.current?.show({
+      severity: "warn",
+      summary: "Cleared",
+      detail: "Form data reset",
+      life: 2000,
+    });
   };
 
   return (
     <PageLayout title="Receipt Voucher">
+      <Toast ref={toast} />
       <div className="space-y-6">
         {/* SECTION 1: TOP HEADER */}
         <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="flex flex-col gap-1">
-              <label className="text-xs font-bold text-blue-600 mb-2">
-                {" "}
-                (Previous Voucher No: H024-25VR001){" "}
+              <label className="text-sm font-bold text-blue-600 mb-2">
+                (Previous Voucher No: H024-25VR001)
               </label>
-              <label className="text-xs font-bold text-gray-600">
-                Enter Voucher/Bill No.*
+              <label className="text-sm font-bold text-gray-600">
+                Enter Voucher/Bill No.<span className="text-red-500">*</span>
               </label>
               <InputText
                 placeholder="Enter Receipt/Bill No."
@@ -77,8 +126,8 @@ const ReceiptVoucher: React.FC = () => {
               />
             </div>
             <div className="flex flex-col gap-1">
-              <label className="text-xs font-bold text-gray-600 mt-6.5">
-                Select Voucher Date*
+              <label className="text-sm font-bold text-gray-600 md:mt-8 mt-0">
+                Select Voucher Date<span className="text-red-500">*</span>
               </label>
               <Calendar
                 placeholder="dd/mm/yyyy"
@@ -87,16 +136,19 @@ const ReceiptVoucher: React.FC = () => {
             </div>
           </div>
           {step === 1 && (
-            <div className="flex justify-center gap-3 mt-6">
+            <div className="flex justify-start gap-3 mt-6">
               <Button
                 label="Search"
+                icon="pi pi-search"
                 className="p-button-sm px-8"
                 style={{ backgroundColor: "#6366f1" }}
-                onClick={() => setStep(2)}
+                onClick={handleSearch}
               />
               <Button
                 label="Clear"
-                className="p-button-sm px-8 p-button-danger"
+                icon="pi pi-refresh"
+                className="p-button-sm px-8 p-button-danger p-button-outlined"
+                onClick={handleClear}
               />
             </div>
           )}
@@ -104,14 +156,14 @@ const ReceiptVoucher: React.FC = () => {
 
         {/* SECTION 2: VOUCHER DETAILS FORM */}
         {step >= 2 && (
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-fade-in">
             <h2 className="text-md font-bold text-gray-700 mb-6 border-b pb-2">
               Receipt Voucher Details
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select Cr/Dr *
+                <label className="text-sm font-bold text-gray-600">
+                  Select Cr/Dr <span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={credit}
@@ -122,8 +174,9 @@ const ReceiptVoucher: React.FC = () => {
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select Ledger(Head Code) *
+                <label className="text-sm font-bold text-gray-600">
+                  Select Ledger(Head Code){" "}
+                  <span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={ledger}
@@ -134,18 +187,18 @@ const ReceiptVoucher: React.FC = () => {
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
+                <label className="text-sm font-bold text-gray-600">
                   Current Balance Amount
                 </label>
                 <InputText
-                  value="₹20000"
+                  value="₹20,000"
                   disabled
                   className="p-inputtext-sm bg-gray-100"
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Enter Amount *
+                <label className="text-sm font-bold text-gray-600">
+                  Enter Amount <span className="text-red-500">*</span>
                 </label>
                 <InputText
                   placeholder="Enter Amount"
@@ -153,16 +206,19 @@ const ReceiptVoucher: React.FC = () => {
                 />
               </div>
             </div>
-            <div className="flex justify-center gap-3 mt-6">
+            <div className="flex justify-start gap-3 mt-6">
               <Button
                 label="Add"
+                icon="pi pi-plus"
                 className="p-button-sm px-8"
                 style={{ backgroundColor: "#6366f1" }}
-                onClick={() => setStep(3)}
+                onClick={handleAdd}
               />
               <Button
                 label="Clear"
-                className="p-button-sm px-8 p-button-danger"
+                icon="pi pi-refresh"
+                className="p-button-sm px-8 p-button-danger p-button-outlined"
+                onClick={handleClear}
               />
             </div>
           </div>
@@ -170,7 +226,7 @@ const ReceiptVoucher: React.FC = () => {
 
         {/* SECTION 3: LIST AND FINAL FORM */}
         {step === 3 && (
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 animate-fade-in">
             <h2 className="text-md font-bold text-gray-700 mb-4 border-b pb-2">
               Receipt Voucher List
             </h2>
@@ -181,22 +237,25 @@ const ReceiptVoucher: React.FC = () => {
               paginator
               rows={5}
             >
-              <Column field="srNo" header="Sr No." />
+              <Column field="srNo" header="Sr No." style={{ width: "4rem" }} />
               <Column field="type" header="Cr./Dr. Type" />
               <Column field="ledger" header="Ledger(Head Code)" />
               <Column field="balance" header="Current Balance Amount" />
               <Column field="debit" header="Debit Amount" />
               <Column field="credit" header="Credit Amount" />
               <Column
-                header="Bill Detail"
+                header="Action"
+                style={{ width: "8rem", textAlign: "center" }}
                 body={() => (
                   <div className="flex gap-1 justify-center">
                     <Button
                       icon="pi pi-eye"
-                      className="p-button-rounded p-button-success p-button-sm"
+                      text
+                      className="p-button-rounded p-button-info p-button-sm"
                     />
                     <Button
                       icon="pi pi-pencil"
+                      text
                       className="p-button-rounded p-button-primary p-button-sm"
                     />
                   </div>
@@ -205,10 +264,9 @@ const ReceiptVoucher: React.FC = () => {
             </DataTable>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-              {/* CUSTOM MATCHING UPLOAD BOX */}
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Upload File*
+                <label className="text-sm font-bold text-gray-600">
+                  Upload File<span className="text-red-500">*</span>
                 </label>
                 <div
                   className="flex items-center border border-gray-300 rounded overflow-hidden cursor-pointer h-10 transition-colors hover:border-indigo-400"
@@ -230,8 +288,8 @@ const ReceiptVoucher: React.FC = () => {
               </div>
 
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Narration *
+                <label className="text-sm font-bold text-gray-600">
+                  Narration <span className="text-red-500">*</span>
                 </label>
                 <InputTextarea
                   rows={2}
@@ -241,19 +299,27 @@ const ReceiptVoucher: React.FC = () => {
               </div>
             </div>
 
-            <div className="flex justify-center gap-3 mt-10">
+            <div className="flex justify-start gap-3 mt-10">
               <Button
                 label="Accept"
-                className="px-12"
+                icon="pi pi-check"
+                className="px-12 p-button-sm"
                 style={{ backgroundColor: "#6366f1" }}
-                onClick={() => setStep(1)}
+                onClick={handleAccept}
               />
               <Button
                 label="Clear"
-                className="px-12 p-button-danger p-button-outlined"
+                icon="pi pi-refresh"
+                className="px-12 p-button-sm p-button-danger p-button-outlined"
                 onClick={() => {
                   setStep(2);
                   setFileName("No file chosen");
+                  toast.current?.show({
+                    severity: "info",
+                    summary: "Reset",
+                    detail: "Voucher list cleared",
+                    life: 2000,
+                  });
                 }}
               />
             </div>

@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import PageLayout from "../../../components/PageLayout";
 import { Button } from "primereact/button";
-import { DataTable } from "primereact/datatable";
+import {
+  DataTable,
+  type DataTableSelectionMultipleChangeEvent,
+} from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Dropdown } from "primereact/dropdown";
 import { InputText } from "primereact/inputtext";
-import { Checkbox } from "primereact/checkbox";
-import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog"; // Added for pop-up
+import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
+import { Toast } from "primereact/toast";
 
 interface BudgetApprovalData {
   srNo: number;
@@ -19,10 +22,10 @@ interface BudgetApprovalData {
 
 const BudgetApprovalProcess: React.FC = () => {
   const [step, setStep] = useState(1);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [selectedItems, setSelectedItems] = useState<any[]>([]);
+  const [selectedItems, setSelectedItems] = useState<BudgetApprovalData[]>([]);
+  const toast = useRef<Toast>(null);
 
-  // Filter States
+  // --- FILTER STATES ---
   const [financialYear, setFinancialYear] = useState<string | null>(null);
   const [month, setMonth] = useState<string | null>(null);
   const [headType, setHeadType] = useState<string | null>(null);
@@ -35,7 +38,7 @@ const BudgetApprovalProcess: React.FC = () => {
   const [officeType, setOfficeType] = useState<string | null>(null);
   const [officeName, setOfficeName] = useState<string | null>(null);
 
-  // Options
+  // --- OPTIONS ---
   const financialYearOptions = [
     { label: "2024-2025", value: "2024-2025" },
     { label: "2023-2024", value: "2023-2024" },
@@ -61,6 +64,7 @@ const BudgetApprovalProcess: React.FC = () => {
   const blockOptions = [{ label: "Phanda Block", value: "Phanda" }];
   const universityOptions = [
     { label: "Barkatullah University (BU)", value: "BU" },
+    { label: "Rajiv Gandhi Proudyogiki Vishwavidyalaya (RGPV)", value: "RGPV" },
   ];
   const collegeOptions = [{ label: "M.L.B. Girls PG College", value: "MLB" }];
   const officeTypeOptions = [{ label: "Directorate", value: "DIR" }];
@@ -68,7 +72,7 @@ const BudgetApprovalProcess: React.FC = () => {
     { label: "Directorate of Technical Education (DTE)", value: "DTE" },
   ];
 
-  // Table Data
+  // --- TABLE DATA ---
   const budgetData: BudgetApprovalData[] = [
     {
       srNo: 1,
@@ -96,8 +100,24 @@ const BudgetApprovalProcess: React.FC = () => {
     },
   ];
 
+  // --- HANDLERS ---
   const handleSearch = () => {
-    setStep(2);
+    if (financialYear && month && headType && oicType) {
+      setStep(2);
+      toast.current?.show({
+        severity: "success",
+        summary: "Search Successful",
+        detail: "Budget approval requests loaded.",
+        life: 3000,
+      });
+    } else {
+      toast.current?.show({
+        severity: "error",
+        summary: "Validation Error",
+        detail: "Please select all mandatory fields marked with *",
+        life: 3000,
+      });
+    }
   };
 
   const handleClear = () => {
@@ -105,279 +125,322 @@ const BudgetApprovalProcess: React.FC = () => {
     setMonth(null);
     setHeadType(null);
     setOicType(null);
+    setDivision(null);
+    setDistrict(null);
+    setBlock(null);
+    setUniversity(null);
+    setCollege(null);
+    setOfficeType(null);
+    setOfficeName(null);
     setStep(1);
     setSelectedItems([]);
+    toast.current?.show({
+      severity: "info",
+      summary: "Cleared",
+      detail: "Filters and selections have been reset.",
+      life: 2000,
+    });
   };
 
-  // Confirmation Pop-up logic
   const confirmAction = (actionType: "approve" | "reject") => {
+    if (selectedItems.length === 0) {
+      toast.current?.show({
+        severity: "warn",
+        summary: "Selection Required",
+        detail: "Please select at least one record to " + actionType,
+        life: 3000,
+      });
+      return;
+    }
+
     confirmDialog({
       message: `Are you sure you want to ${actionType} the selected requests?`,
       header: "Confirmation",
       icon: "pi pi-exclamation-triangle",
       acceptLabel: "Yes",
       rejectLabel: "No",
+      acceptClassName:
+        actionType === "approve" ? "p-button-success" : "p-button-danger",
       accept: () => {
-        console.log(`${actionType} successful`);
-      },
-      reject: () => {
-        console.log("Action cancelled");
+        toast.current?.show({
+          severity: "success",
+          summary: actionType === "approve" ? "Approved" : "Rejected",
+          detail: `Requests have been successfully ${actionType}d.`,
+          life: 3000,
+        });
+        setSelectedItems([]);
       },
     });
   };
 
   return (
     <PageLayout title="Budget Approval Process (Approval Authority)">
-      <ConfirmDialog />{" "}
-      {/* Hidden dialog component that pops up when triggered */}
-      <div className="bg-white ">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
-          <div className="flex flex-col gap-1">
-            <label className="text-xs font-bold text-gray-600">
-              Select Financial Year*
-            </label>
-            <Dropdown
-              value={financialYear}
-              options={financialYearOptions}
-              onChange={(e) => setFinancialYear(e.value)}
-              placeholder="Select"
-              className="p-inputtext-sm w-full"
-            />
-          </div>
-          <div className="flex flex-col gap-1">
-            <label className="text-xs font-bold text-gray-600">
-              Select Month*
-            </label>
-            <Dropdown
-              value={month}
-              options={monthOptions}
-              onChange={(e) => setMonth(e.value)}
-              placeholder="Select"
-              className="p-inputtext-sm w-full"
-            />
-          </div>
-          <div className="flex flex-col gap-1">
-            <label className="text-xs font-bold text-gray-600">
-              Select Head Type*
-            </label>
-            <Dropdown
-              value={headType}
-              options={headTypeOptions}
-              onChange={(e) => setHeadType(e.value)}
-              placeholder="Select"
-              className="p-inputtext-sm w-full"
-            />
-          </div>
-          <div className="flex flex-col gap-1">
-            <label className="text-xs font-bold text-gray-600">
-              Select OIC Type*
-            </label>
-            <Dropdown
-              value={oicType}
-              options={oicOptions}
-              onChange={(e) => setOicType(e.value)}
-              placeholder="Select"
-              className="p-inputtext-sm w-full"
-            />
-          </div>
-        </div>
+      <Toast ref={toast} />
+      <ConfirmDialog />
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          {(oicType === "University" || oicType === "College") && (
-            <>
-              <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select Division Name*
-                </label>
-                <Dropdown
-                  value={division}
-                  options={divisionOptions}
-                  onChange={(e) => setDivision(e.value)}
-                  placeholder="Select"
-                  className="p-inputtext-sm w-full"
-                />
-              </div>
-              <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select District Name*
-                </label>
-                <Dropdown
-                  value={district}
-                  options={districtOptions}
-                  onChange={(e) => setDistrict(e.value)}
-                  placeholder="Select"
-                  className="p-inputtext-sm w-full"
-                />
-              </div>
-              <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select Block Name*
-                </label>
-                <Dropdown
-                  value={block}
-                  options={blockOptions}
-                  onChange={(e) => setBlock(e.value)}
-                  placeholder="Select"
-                  className="p-inputtext-sm w-full"
-                />
-              </div>
-              <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select University Name*
-                </label>
-                <Dropdown
-                  value={university}
-                  options={universityOptions}
-                  onChange={(e) => setUniversity(e.value)}
-                  placeholder="Select"
-                  className="p-inputtext-sm w-full"
-                />
-              </div>
-            </>
-          )}
-          {oicType === "College" && (
+      <div className="space-y-6">
+        <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
             <div className="flex flex-col gap-1">
-              <label className="text-xs font-bold text-gray-600">
-                Select College Name*
+              <label className="text-sm font-bold text-gray-600">
+                Select Financial Year<span className="text-red-500">*</span>
               </label>
               <Dropdown
-                value={college}
-                options={collegeOptions}
-                onChange={(e) => setCollege(e.value)}
+                value={financialYear}
+                options={financialYearOptions}
+                onChange={(e) => setFinancialYear(e.value)}
                 placeholder="Select"
-                className="p-inputtext-sm w-full"
+                className="p-inputtext-sm w-full border-gray-300"
               />
             </div>
-          )}
-          {oicType === "Office" && (
-            <>
-              <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select Office Type*
-                </label>
-                <Dropdown
-                  value={officeType}
-                  options={officeTypeOptions}
-                  onChange={(e) => setOfficeType(e.value)}
-                  placeholder="Select"
-                  className="p-inputtext-sm w-full"
-                />
-              </div>
-              <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select Office Name*
-                </label>
-                <Dropdown
-                  value={officeName}
-                  options={officeNameOptions}
-                  onChange={(e) => setOfficeName(e.value)}
-                  placeholder="Select"
-                  className="p-inputtext-sm w-full"
-                />
-              </div>
-            </>
-          )}
-        </div>
-
-        <div className="flex justify-center gap-3 mt-8">
-          <Button
-            label="Search"
-            icon="pi pi-search"
-            className="p-button-sm px-8"
-            style={{ backgroundColor: "#6366f1" }}
-            onClick={handleSearch}
-          />
-          <Button
-            label="Clear"
-            icon="pi pi-refresh"
-            className="p-button-sm px-8 p-button-danger p-button-outlined"
-            onClick={handleClear}
-          />
-        </div>
-      </div>
-      {step === 2 && (
-        <div className="bg-white mt-6">
-          <div className="flex justify-between items-center mb-4">
-            <h3 className="text-md font-bold text-gray-700">
-              Budget Approval Process Detail
-            </h3>
-            <div className="flex items-center gap-2">
-              <span className="text-sm">Search:</span>
-              <InputText className="p-inputtext-sm w-48" />
+            <div className="flex flex-col gap-1">
+              <label className="text-sm font-bold text-gray-600">
+                Select Month<span className="text-red-500">*</span>
+              </label>
+              <Dropdown
+                value={month}
+                options={monthOptions}
+                onChange={(e) => setMonth(e.value)}
+                placeholder="Select"
+                className="p-inputtext-sm w-full border-gray-300"
+              />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label className="text-sm font-bold text-gray-600">
+                Select Head Type<span className="text-red-500">*</span>
+              </label>
+              <Dropdown
+                value={headType}
+                options={headTypeOptions}
+                onChange={(e) => setHeadType(e.value)}
+                placeholder="Select"
+                className="p-inputtext-sm w-full border-gray-300"
+              />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label className="text-sm font-bold text-gray-600">
+                Select OIC Type<span className="text-red-500">*</span>
+              </label>
+              <Dropdown
+                value={oicType}
+                options={oicOptions}
+                onChange={(e) => setOicType(e.value)}
+                placeholder="Select"
+                className="p-inputtext-sm w-full border-gray-300"
+              />
             </div>
           </div>
 
-          <DataTable
-            value={budgetData}
-            className="p-datatable-sm"
-            showGridlines
-            selection={selectedItems}
-            onSelectionChange={(e) => setSelectedItems(e.value)}
-          >
-            <Column field="srNo" header="Sr. No." sortable />
-            <Column
-              header="Action"
-              body={(rowData) => (
-                <Checkbox
-                  checked={selectedItems.some(
-                    (item) => item.srNo === rowData.srNo
-                  )}
-                  onChange={(e) => {
-                    let _selectedItems = [...selectedItems];
-                    if (e.checked) _selectedItems.push(rowData);
-                    else
-                      _selectedItems = _selectedItems.filter(
-                        (item) => item.srNo !== rowData.srNo
-                      );
-                    setSelectedItems(_selectedItems);
-                  }}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            {(oicType === "University" || oicType === "College") && (
+              <>
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm font-bold text-gray-600">
+                    Select Division Name
+                  </label>
+                  <Dropdown
+                    value={division}
+                    options={divisionOptions}
+                    onChange={(e) => setDivision(e.value)}
+                    placeholder="Select"
+                    className="p-inputtext-sm w-full border-gray-300"
+                  />
+                </div>
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm font-bold text-gray-600">
+                    Select District Name
+                  </label>
+                  <Dropdown
+                    value={district}
+                    options={districtOptions}
+                    onChange={(e) => setDistrict(e.value)}
+                    placeholder="Select"
+                    className="p-inputtext-sm w-full border-gray-300"
+                  />
+                </div>
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm font-bold text-gray-600">
+                    Select Block Name
+                  </label>
+                  <Dropdown
+                    value={block}
+                    options={blockOptions}
+                    onChange={(e) => setBlock(e.value)}
+                    placeholder="Select"
+                    className="p-inputtext-sm w-full border-gray-300"
+                  />
+                </div>
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm font-bold text-gray-600">
+                    Select University Name
+                  </label>
+                  <Dropdown
+                    value={university}
+                    options={universityOptions}
+                    onChange={(e) => setUniversity(e.value)}
+                    placeholder="Select"
+                    className="p-inputtext-sm w-full border-gray-300"
+                  />
+                </div>
+              </>
+            )}
+            {oicType === "College" && (
+              <div className="flex flex-col gap-1">
+                <label className="text-sm font-bold text-gray-600">
+                  Select College Name
+                </label>
+                <Dropdown
+                  value={college}
+                  options={collegeOptions}
+                  onChange={(e) => setCollege(e.value)}
+                  placeholder="Select"
+                  className="p-inputtext-sm w-full border-gray-300"
                 />
-              )}
-            />
-            <Column field="headType" header="Head Type" sortable />
-            <Column field="budgetHeadName" header="Budget Head Name" sortable />
-            <Column
-              field="budgetRequestDate"
-              header="Budget Request Date"
-              sortable
-            />
-            <Column field="budgetAmount" header="Budget Amount" sortable />
-            <Column
-              field="status"
-              header="Status"
-              body={(data) => (
-                <span className="px-2 py-1 rounded text-xs font-bold bg-red-100 text-red-600">
-                  {data.status}
-                </span>
-              )}
-            />
-          </DataTable>
-
-          <div className="flex justify-between p-3 bg-gray-50  font-bold text-sm">
-            <span>Total</span>
-            <span className="mr-32">743054.00</span>
+              </div>
+            )}
+            {oicType === "Office" && (
+              <>
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm font-bold text-gray-600">
+                    Select Office Type
+                  </label>
+                  <Dropdown
+                    value={officeType}
+                    options={officeTypeOptions}
+                    onChange={(e) => setOfficeType(e.value)}
+                    placeholder="Select"
+                    className="p-inputtext-sm w-full border-gray-300"
+                  />
+                </div>
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm font-bold text-gray-600">
+                    Select Office Name
+                  </label>
+                  <Dropdown
+                    value={officeName}
+                    options={officeNameOptions}
+                    onChange={(e) => setOfficeName(e.value)}
+                    placeholder="Select"
+                    className="p-inputtext-sm w-full border-gray-300"
+                  />
+                </div>
+              </>
+            )}
           </div>
 
-          {/* FOOTER ACTION BUTTONS */}
-          <div className="flex justify-center gap-3 mt-8">
+          <div className="flex gap-2 mt-8">
             <Button
-              label="Approve"
-              className="p-button-sm px-8 p-button-success p-button-outlined"
-              onClick={() => confirmAction("approve")}
-            />
-            <Button
-              label="Reject"
-              className="p-button-sm px-8 p-button-danger p-button-outlined"
-              onClick={() => confirmAction("reject")}
+              label="Search"
+              icon="pi pi-search"
+              className="p-button-primary px-8"
+              onClick={handleSearch}
             />
             <Button
               label="Clear"
-              className="p-button-sm px-8 p-button-danger p-button-outlined"
-              onClick={() => setSelectedItems([])}
+              icon="pi pi-refresh"
+              className="p-button-outlined p-button-danger px-8"
+              onClick={handleClear}
             />
           </div>
         </div>
-      )}
+
+        {step === 2 && (
+          <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100 animate-fade-in">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-md font-bold text-gray-700">
+                Budget Approval Process Detail
+              </h3>
+              <div className="flex items-center gap-2">
+                <span className="text-sm">Search:</span>
+                <InputText
+                  className="p-inputtext-sm w-48 border-gray-300"
+                  placeholder="Global Search"
+                />
+              </div>
+            </div>
+
+            <DataTable
+              value={budgetData}
+              className="p-datatable-sm"
+              showGridlines
+              selectionMode="multiple"
+              selection={selectedItems}
+              onSelectionChange={(
+                e: DataTableSelectionMultipleChangeEvent<BudgetApprovalData[]>
+              ) => setSelectedItems(e.value)}
+              dataKey="srNo"
+              responsiveLayout="scroll"
+            >
+              <Column
+                selectionMode="multiple"
+                headerStyle={{ width: "3rem" }}
+              ></Column>
+              <Column
+                field="srNo"
+                header="Sr. No."
+                sortable
+                style={{ width: "5rem" }}
+              />
+              <Column field="headType" header="Head Type" sortable />
+              <Column
+                field="budgetHeadName"
+                header="Budget Head Name"
+                sortable
+              />
+              <Column
+                field="budgetRequestDate"
+                header="Budget Request Date"
+                sortable
+              />
+              <Column field="budgetAmount" header="Budget Amount" sortable />
+              <Column
+                field="status"
+                header="Status"
+                body={(data) => (
+                  <span className="px-2 py-1 rounded text-xs font-bold bg-orange-100 text-orange-600">
+                    {data.status}
+                  </span>
+                )}
+                sortable
+              />
+            </DataTable>
+
+            <div className="flex justify-between p-3 bg-gray-50 border-x border-b font-bold text-sm">
+              <span>Total Amount</span>
+              <span className="mr-32 text-blue-700 font-black">653,054.00</span>
+            </div>
+
+            <div className="flex gap-2 mt-8 pt-4 border-t">
+              <Button
+                label="Approve"
+                icon="pi pi-check"
+                className="p-button-success p-button-outlined px-10"
+                onClick={() => confirmAction("approve")}
+              />
+              <Button
+                label="Reject"
+                icon="pi pi-times"
+                className="p-button-danger p-button-outlined px-10"
+                onClick={() => confirmAction("reject")}
+              />
+              <Button
+                label="Clear Selection"
+                icon="pi pi-refresh"
+                className="p-button-outlined p-button-secondary px-10"
+                onClick={() => {
+                  setSelectedItems([]);
+                  toast.current?.show({
+                    severity: "info",
+                    summary: "Selection Reset",
+                    detail: "Table selections have been cleared.",
+                    life: 2000,
+                  });
+                }}
+              />
+            </div>
+          </div>
+        )}
+      </div>
     </PageLayout>
   );
 };

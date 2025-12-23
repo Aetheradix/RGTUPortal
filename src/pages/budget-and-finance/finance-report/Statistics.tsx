@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import PageLayout from "../../../components/PageLayout";
 import { Button } from "primereact/button";
 import { DataTable } from "primereact/datatable";
@@ -6,6 +6,7 @@ import { Column } from "primereact/column";
 import { Dropdown } from "primereact/dropdown";
 import { Calendar } from "primereact/calendar";
 import { InputText } from "primereact/inputtext";
+import { Toast } from "primereact/toast";
 
 interface StatisticsData {
   voucherName: string;
@@ -16,6 +17,7 @@ interface StatisticsData {
 
 const Statistics: React.FC = () => {
   const [step, setStep] = useState(1);
+  const toast = useRef<Toast>(null);
 
   // Filter States
   const [fromDate, setFromDate] = useState<Date | null>(null);
@@ -108,7 +110,24 @@ const Statistics: React.FC = () => {
     },
   ];
 
-  const handleSearch = () => setStep(2);
+  const handleSearch = () => {
+    if (fromDate && toDate && oicType) {
+      setStep(2);
+      toast.current?.show({
+        severity: "success",
+        summary: "Success",
+        detail: "Statistics data loaded successfully",
+        life: 3000,
+      });
+    } else {
+      toast.current?.show({
+        severity: "error",
+        summary: "Error",
+        detail: "Please select mandatory fields marked with *",
+        life: 3000,
+      });
+    }
+  };
 
   const handleClear = () => {
     setFromDate(null);
@@ -116,16 +135,28 @@ const Statistics: React.FC = () => {
     setOicType(null);
     setOfficeType(null);
     setOfficeName(null);
+    setDivision(null);
+    setDistrict(null);
+    setBlock(null);
+    setUniversity(null);
+    setCollege(null);
     setStep(1);
+    toast.current?.show({
+      severity: "info",
+      summary: "Cleared",
+      detail: "Filters have been reset",
+      life: 2000,
+    });
   };
 
   return (
     <PageLayout title="Statistics">
-      <div className="bg-white p-4 shadow-sm rounded">
+      <Toast ref={toast} />
+      <div className="bg-white p-6 rounded shadow-sm border border-gray-100">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
           <div className="flex flex-col gap-1">
-            <label className="text-xs font-bold text-gray-600">
-              Select From Date*
+            <label className="text-sm font-bold text-gray-600">
+              Select From Date<span className="text-red-500">*</span>
             </label>
             <Calendar
               value={fromDate}
@@ -135,8 +166,8 @@ const Statistics: React.FC = () => {
             />
           </div>
           <div className="flex flex-col gap-1">
-            <label className="text-xs font-bold text-gray-600">
-              Select To Date*
+            <label className="text-sm font-bold text-gray-600">
+              Select To Date<span className="text-red-500">*</span>
             </label>
             <Calendar
               value={toDate}
@@ -146,8 +177,8 @@ const Statistics: React.FC = () => {
             />
           </div>
           <div className="flex flex-col gap-1">
-            <label className="text-xs font-bold text-gray-600">
-              Select OIC Type*
+            <label className="text-sm font-bold text-gray-600">
+              Select OIC Type<span className="text-red-500">*</span>
             </label>
             <Dropdown
               value={oicType}
@@ -162,8 +193,8 @@ const Statistics: React.FC = () => {
           {oicType === "Office" && (
             <>
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select Office Type*
+                <label className="text-sm font-bold text-gray-600">
+                  Select Office Type<span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={officeType}
@@ -174,8 +205,8 @@ const Statistics: React.FC = () => {
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select Office Name*
+                <label className="text-sm font-bold text-gray-600">
+                  Select Office Name<span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={officeName}
@@ -190,8 +221,8 @@ const Statistics: React.FC = () => {
           {(oicType === "University" || oicType === "College") && (
             <>
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select Division Name*
+                <label className="text-sm font-bold text-gray-600">
+                  Select Division Name<span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={division}
@@ -202,8 +233,8 @@ const Statistics: React.FC = () => {
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select District Name*
+                <label className="text-sm font-bold text-gray-600">
+                  Select District Name<span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={district}
@@ -214,8 +245,8 @@ const Statistics: React.FC = () => {
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select Block Name*
+                <label className="text-sm font-bold text-gray-600">
+                  Select Block Name<span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={block}
@@ -226,8 +257,8 @@ const Statistics: React.FC = () => {
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select University Name*
+                <label className="text-sm font-bold text-gray-600">
+                  Select University Name<span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={university}
@@ -241,8 +272,8 @@ const Statistics: React.FC = () => {
           )}
           {oicType === "College" && (
             <div className="flex flex-col gap-1">
-              <label className="text-xs font-bold text-gray-600">
-                Select College Name*
+              <label className="text-sm font-bold text-gray-600">
+                Select College Name<span className="text-red-500">*</span>
               </label>
               <Dropdown
                 value={college}
@@ -254,7 +285,7 @@ const Statistics: React.FC = () => {
             </div>
           )}
         </div>
-        <div className="flex justify-center gap-3 mt-8">
+        <div className="flex justify-start gap-3 mt-8">
           <Button
             label="Search"
             icon="pi pi-search"
@@ -271,11 +302,11 @@ const Statistics: React.FC = () => {
         </div>
       </div>
       {step === 2 && (
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 mt-6 overflow-x-auto">
+        <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100 mt-6 animate-fade-in">
           <h2 className="text-md font-bold text-gray-700 mb-4 border-b pb-2">
-            Statistics
+            Statistics Details
           </h2>
-          <div className="flex justify-between items-center mb-4 text-sm">
+          <div className="flex justify-between items-center mb-4 text-sm font-medium text-gray-600">
             <div className="flex items-center gap-2">
               <span>Show</span>
               <Dropdown
@@ -287,7 +318,10 @@ const Statistics: React.FC = () => {
             </div>
             <div className="flex items-center gap-2">
               <span>Search:</span>
-              <InputText className="p-inputtext-sm w-48" />
+              <InputText
+                className="p-inputtext-sm w-48 border-gray-300"
+                placeholder="Filter statistics..."
+              />
             </div>
           </div>
 
@@ -297,8 +331,11 @@ const Statistics: React.FC = () => {
             showGridlines
             paginator
             rows={10}
+            responsiveLayout="scroll"
             rowClassName={(data) =>
-              data.voucherName === "Total" ? "font-bold bg-gray-50" : ""
+              data.voucherName === "Total"
+                ? "font-bold bg-gray-50 text-indigo-700"
+                : ""
             }
           >
             <Column
@@ -309,27 +346,41 @@ const Statistics: React.FC = () => {
                 <span
                   className={
                     data.voucherName !== "Total"
-                      ? "text-blue-600 cursor-pointer hover:underline"
+                      ? "text-blue-600 cursor-pointer hover:underline font-medium"
                       : ""
                   }
+                  onClick={() => {
+                    if (data.voucherName !== "Total") {
+                      toast.current?.show({
+                        severity: "info",
+                        summary: "Voucher Details",
+                        detail: `Opening details for ${data.voucherName}`,
+                        life: 2000,
+                      });
+                    }
+                  }}
                 >
                   {data.voucherName}
                 </span>
               )}
             />
-            <Column field="totalVoucher" header="Total Voucher" sortable />
+            <Column
+              field="totalVoucher"
+              header="Total Voucher"
+              sortable
+              className="text-right"
+            />
             <Column field="typeOfAccounts" header="Type of Accounts" sortable />
             <Column
               field="totalNoOfAccounts"
               header="Total No. of Accounts"
               sortable
+              className="text-right"
             />
           </DataTable>
 
-          <div className="flex justify-between items-center mt-4">
-            <div className="text-xs text-gray-500">
-              Showing 1 to 9 of 9 entries
-            </div>
+          <div className="flex justify-between items-center mt-4 pt-2 border-t font-medium text-gray-500">
+            <div className="text-xs">Showing 1 to 9 of 9 entries</div>
           </div>
         </div>
       )}

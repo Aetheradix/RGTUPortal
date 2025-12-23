@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useState, useRef } from "react";
 import PageLayout from "../../../components/PageLayout";
 import { Button } from "primereact/button";
 import { DataTable } from "primereact/datatable";
@@ -7,6 +8,7 @@ import { Dropdown } from "primereact/dropdown";
 import { Calendar } from "primereact/calendar";
 import { InputText } from "primereact/inputtext";
 import { Checkbox } from "primereact/checkbox";
+import { Toast } from "primereact/toast";
 
 interface BudgetApprovalProcessData {
   srNo: number;
@@ -17,10 +19,10 @@ interface BudgetApprovalProcessData {
 
 const BudgetAllocationApprovalProcess: React.FC = () => {
   const [step, setStep] = useState(1);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [selectedItems, setSelectedItems] = useState<any[]>([]);
+  const toast = useRef<Toast>(null);
 
-  // Filter States - Reusing logic with new Date fields (Image 52)
+  // Filter States
   const [fromDate, setFromDate] = useState<Date | null>(null);
   const [toDate, setToDate] = useState<Date | null>(null);
   const [oicType, setOicType] = useState<string | null>(null);
@@ -50,10 +52,11 @@ const BudgetAllocationApprovalProcess: React.FC = () => {
   const blockOptions = [{ label: "Phanda Block", value: "Phanda" }];
   const universityOptions = [
     { label: "Barkatullah University (BU)", value: "BU" },
+    { label: "Rajiv Gandhi Proudyogiki Vishwavidyalaya (RGPV)", value: "RGPV" },
   ];
   const collegeOptions = [{ label: "M.L.B. Girls PG College", value: "MLB" }];
 
-  // Table Data based on Image 52
+  // Table Data
   const approvalData: BudgetApprovalProcessData[] = [
     {
       srNo: 1,
@@ -89,24 +92,54 @@ const BudgetAllocationApprovalProcess: React.FC = () => {
     },
   ];
 
-  const handleSearch = () => setStep(2);
+  const handleSearch = () => {
+    if (fromDate && toDate && oicType) {
+      setStep(2);
+      toast.current?.show({
+        severity: "success",
+        summary: "Search Successful",
+        detail: "Approval records fetched successfully.",
+        life: 3000,
+      });
+    } else {
+      toast.current?.show({
+        severity: "error",
+        summary: "Error",
+        detail: "Please fill all mandatory fields marked with *",
+        life: 3000,
+      });
+    }
+  };
 
   const handleClear = () => {
     setFromDate(null);
     setToDate(null);
     setOicType(null);
+    setOfficeType(null);
+    setOfficeName(null);
+    setDivision(null);
+    setDistrict(null);
+    setBlock(null);
+    setUniversity(null);
+    setCollege(null);
     setStep(1);
     setSelectedItems([]);
+    toast.current?.show({
+      severity: "info",
+      summary: "Cleared",
+      detail: "Filters and selections have been reset.",
+      life: 2000,
+    });
   };
 
   return (
     <PageLayout title="Budget Allocation Approval Process">
-      <div className="bg-white ">
-        {/* MINI FORM START (Reused Logic) */}
+      <Toast ref={toast} />
+      <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
           <div className="flex flex-col gap-1">
-            <label className="text-xs font-bold text-gray-600">
-              Select From Date*
+            <label className="text-sm font-bold text-gray-600">
+              Select From Date<span className="text-red-500">*</span>
             </label>
             <Calendar
               value={fromDate}
@@ -116,8 +149,8 @@ const BudgetAllocationApprovalProcess: React.FC = () => {
             />
           </div>
           <div className="flex flex-col gap-1">
-            <label className="text-xs font-bold text-gray-600">
-              Select To Date
+            <label className="text-sm font-bold text-gray-600">
+              Select To Date<span className="text-red-500">*</span>
             </label>
             <Calendar
               value={toDate}
@@ -127,26 +160,25 @@ const BudgetAllocationApprovalProcess: React.FC = () => {
             />
           </div>
           <div className="flex flex-col gap-1">
-            <label className="text-xs font-bold text-gray-600">
-              Select OIC Type*
+            <label className="text-sm font-bold text-gray-600">
+              Select OIC Type<span className="text-red-500">*</span>
             </label>
             <Dropdown
               value={oicType}
               options={oicOptions}
               onChange={(e) => setOicType(e.value)}
               placeholder="Select"
-              className="p-inputtext-sm w-full"
+              className="p-inputtext-sm w-full border-gray-300"
             />
           </div>
         </div>
 
-        {/* Dynamic OIC Filters */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           {oicType === "Office" && (
             <>
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select Office Type*
+                <label className="text-sm font-bold text-gray-600">
+                  Select Office Type<span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={officeType}
@@ -157,8 +189,8 @@ const BudgetAllocationApprovalProcess: React.FC = () => {
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select Office Name*
+                <label className="text-sm font-bold text-gray-600">
+                  Select Office Name<span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={officeName}
@@ -173,8 +205,8 @@ const BudgetAllocationApprovalProcess: React.FC = () => {
           {(oicType === "University" || oicType === "College") && (
             <>
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select Division Name*
+                <label className="text-sm font-bold text-gray-600">
+                  Select Division Name<span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={division}
@@ -185,8 +217,8 @@ const BudgetAllocationApprovalProcess: React.FC = () => {
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select District Name*
+                <label className="text-sm font-bold text-gray-600">
+                  Select District Name<span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={district}
@@ -197,8 +229,8 @@ const BudgetAllocationApprovalProcess: React.FC = () => {
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select Block Name*
+                <label className="text-sm font-bold text-gray-600">
+                  Select Block Name<span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={block}
@@ -209,8 +241,8 @@ const BudgetAllocationApprovalProcess: React.FC = () => {
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold text-gray-600">
-                  Select University Name*
+                <label className="text-sm font-bold text-gray-600">
+                  Select University Name<span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={university}
@@ -224,8 +256,8 @@ const BudgetAllocationApprovalProcess: React.FC = () => {
           )}
           {oicType === "College" && (
             <div className="flex flex-col gap-1">
-              <label className="text-xs font-bold text-gray-600">
-                Select College Name*
+              <label className="text-sm font-bold text-gray-600">
+                Select College Name<span className="text-red-500">*</span>
               </label>
               <Dropdown
                 value={college}
@@ -238,7 +270,8 @@ const BudgetAllocationApprovalProcess: React.FC = () => {
           )}
         </div>
 
-        <div className="flex justify-center gap-3 mt-8">
+        {/* Buttons Aligned LEFT */}
+        <div className="flex gap-3 mt-8">
           <Button
             label="Search"
             icon="pi pi-search"
@@ -255,9 +288,8 @@ const BudgetAllocationApprovalProcess: React.FC = () => {
         </div>
       </div>
 
-      {/* FRESH GRID SECTION (Image 52) */}
       {step === 2 && (
-        <div className="bg-white mt-6 ">
+        <div className="bg-white mt-6 p-6 rounded-lg shadow-md border border-gray-100 animate-fade-in">
           <h3 className="text-md font-bold text-gray-700 mb-4">
             Budget Allocation Approval Process
           </h3>
@@ -273,7 +305,10 @@ const BudgetAllocationApprovalProcess: React.FC = () => {
             </div>
             <div className="flex items-center gap-2">
               <span>Search:</span>
-              <InputText className="p-inputtext-sm w-48" />
+              <InputText
+                className="p-inputtext-sm w-48"
+                placeholder="Global Search"
+              />
             </div>
           </div>
 
@@ -283,8 +318,7 @@ const BudgetAllocationApprovalProcess: React.FC = () => {
             showGridlines
             paginator
             rows={10}
-            selection={selectedItems}
-            onSelectionChange={(e) => setSelectedItems(e.value)}
+            responsiveLayout="scroll"
           >
             <Column
               header="Select"
@@ -304,9 +338,14 @@ const BudgetAllocationApprovalProcess: React.FC = () => {
                   }}
                 />
               )}
-              style={{ width: "3rem", textAlign: "center" }}
+              style={{ width: "4rem", textAlign: "center" }}
             />
-            <Column field="srNo" header="Sr No." sortable />
+            <Column
+              field="srNo"
+              header="Sr No."
+              sortable
+              style={{ width: "5rem" }}
+            />
             <Column field="officeType" header="Office Type" sortable />
             <Column field="officeName" header="Office Name" sortable />
             <Column
@@ -316,17 +355,35 @@ const BudgetAllocationApprovalProcess: React.FC = () => {
             />
           </DataTable>
 
-          {/* FOOTER BUTTONS */}
-          <div className="flex justify-center gap-3 mt-8">
+          {/* Footer Buttons Aligned LEFT */}
+          <div className="flex gap-3 mt-8 pt-4 border-t">
             <Button
               label="Generate Letter"
+              icon="pi pi-file"
               className="p-button-sm px-10"
               style={{ backgroundColor: "#6366f1" }}
+              onClick={() =>
+                toast.current?.show({
+                  severity: "success",
+                  summary: "Success",
+                  detail: "Letter generation initiated.",
+                  life: 3000,
+                })
+              }
             />
             <Button
               label="Clear"
-              className="p-button-sm px-10 p-button-danger"
-              onClick={() => setSelectedItems([])}
+              icon="pi pi-times"
+              className="p-button-sm px-10 p-button-danger p-button-outlined"
+              onClick={() => {
+                setSelectedItems([]);
+                toast.current?.show({
+                  severity: "info",
+                  summary: "Reset",
+                  detail: "Selection cleared.",
+                  life: 2000,
+                });
+              }}
             />
           </div>
         </div>

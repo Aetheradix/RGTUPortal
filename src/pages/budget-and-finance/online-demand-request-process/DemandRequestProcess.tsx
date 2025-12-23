@@ -111,16 +111,23 @@ const DemandRequestProcess: React.FC = () => {
             />
           </div>
           <DataTable value={initialDemands} className="p-datatable-sm">
-            <Column field="srNo" header="Sr. No." />
-            <Column field="demandDate" header="Demand Date" />
-            <Column field="headType" header="Head Type" />
-            <Column field="budgetHeadName" header="Budget Head Name" />
+            <Column
+              field="srNo"
+              header="Sr. No."
+              style={{ width: "80px" }}
+              sortable
+            />
+            <Column field="demandDate" header="Demand Date" sortable />
+            <Column field="headType" header="Head Type" sortable />
+            <Column field="budgetHeadName" header="Budget Head Name" sortable />
             <Column
               field="budgetAmountRequest"
+              sortable
               header="Budget Amount Request"
             />
             <Column
               header="View Document"
+              sortable
               body={() => (
                 <Button
                   icon="pi pi-eye"
@@ -131,6 +138,7 @@ const DemandRequestProcess: React.FC = () => {
             />
             <Column
               field="status"
+              sortable
               header="Status"
               body={(rowData) => (
                 <span className="bg-green-100 text-green-600 px-2 py-1 rounded text-xs font-bold">
@@ -140,16 +148,20 @@ const DemandRequestProcess: React.FC = () => {
             />
             <Column
               header="Action"
+              sortable
               body={() => (
-                <div className="flex gap-2">
+                <div className="flex gap-1">
                   <Button
                     icon="pi pi-pencil"
-                    className="p-button-rounded p-button-primary p-button-sm"
-                    style={{ backgroundColor: "#6366f1" }}
+                    text
+                    className="p-button-sm p-button-info"
+                    style={{ padding: "0", width: "2rem" }}
                   />
                   <Button
                     icon="pi pi-trash"
-                    className="p-button-rounded p-button-danger p-button-sm"
+                    text
+                    className="p-button-sm p-button-danger"
+                    style={{ padding: "0", width: "2rem" }}
                   />
                 </div>
               )}
@@ -176,7 +188,9 @@ const DemandRequestProcess: React.FC = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold">Select Demand Date*</label>
+                <label className="text-xs font-bold">
+                  Select Demand Date<span className="text-red-500">*</span>
+                </label>
                 <Calendar
                   value={formData.demandDate}
                   onChange={(e) =>
@@ -188,7 +202,9 @@ const DemandRequestProcess: React.FC = () => {
               </div>
 
               <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold">Select Head Type*</label>
+                <label className="text-xs font-bold">
+                  Select Head Type<span className="text-red-500">*</span>
+                </label>
                 <Dropdown
                   value={formData.headType}
                   options={headTypeOptions}
@@ -202,7 +218,7 @@ const DemandRequestProcess: React.FC = () => {
 
               <div className="flex flex-col gap-1">
                 <label className="text-xs font-bold">
-                  Select Budget Head Name*
+                  Select Budget Head Name<span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={formData.budgetHeadName}
@@ -217,7 +233,8 @@ const DemandRequestProcess: React.FC = () => {
 
               <div className="flex flex-col gap-1">
                 <label className="text-xs font-bold">
-                  Enter Budget Amount Request*
+                  Enter Budget Amount Request
+                  <span className="text-red-500">*</span>
                 </label>
                 <InputText
                   value={formData.amount}
@@ -231,7 +248,8 @@ const DemandRequestProcess: React.FC = () => {
 
               <div className="flex flex-col md:col-span-2 gap-1">
                 <label className="text-xs font-bold">
-                  Budget Amount Request in Words*
+                  Budget Amount Request in Words
+                  <span className="text-red-500">*</span>
                 </label>
                 <InputText
                   value={getAmountInWords(formData.amount)}
@@ -242,7 +260,7 @@ const DemandRequestProcess: React.FC = () => {
 
               <div className="flex flex-col gap-1">
                 <label className="text-xs font-bold">
-                  Upload Demand Order*
+                  Upload Demand Order<span className="text-red-500">*</span>
                 </label>
                 <input
                   type="file"
@@ -265,16 +283,23 @@ const DemandRequestProcess: React.FC = () => {
             <div className="bg-white p-6 shadow-md ">
               <DataTable
                 value={addedItems}
-                className="p-datatable-sm border text-sm"
+                className="p-datatable-sm text-sm"
                 showGridlines
+                paginator
+                rows={10}
               >
-                <Column field="srNo" header="Sr. No." />
-                <Column field="demandDate" header="Demand Date" />
-                <Column field="headType" header="Head Type" />
-                <Column field="budgetHeadName" header="Budget Head Name" />
+                <Column field="srNo" header="Sr. No." sortable />
+                <Column field="demandDate" header="Demand Date" sortable />
+                <Column field="headType" header="Head Type" sortable />
+                <Column
+                  field="budgetHeadName"
+                  header="Budget Head Name"
+                  sortable
+                />
                 <Column
                   field="budgetAmountRequest"
                   header="Budget Amount Request"
+                  sortable
                 />
               </DataTable>
 

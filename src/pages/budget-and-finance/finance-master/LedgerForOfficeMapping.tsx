@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import PageLayout from "../../../components/PageLayout";
 import { Button } from "primereact/button";
 import { Dropdown } from "primereact/dropdown";
 import { Checkbox } from "primereact/checkbox";
+import { Toast } from "primereact/toast";
 
 const LedgerForOfficeMapping: React.FC = () => {
   const [step, setStep] = useState(1);
@@ -17,6 +18,8 @@ const LedgerForOfficeMapping: React.FC = () => {
   const [college, setCollege] = useState<string | null>(null);
   const [officeType, setOfficeType] = useState<string | null>(null);
   const [officeName, setOfficeName] = useState<string | null>(null);
+
+  const toast = useRef<Toast>(null);
 
   // --- CHECKBOX STATES ---
   const districtsList = [
@@ -39,12 +42,15 @@ const LedgerForOfficeMapping: React.FC = () => {
     "Seoni-(SE)",
     "Dewas-(DW)",
   ];
+
   const [selectedDistricts, setSelectedDistricts] = useState<string[]>([]);
+
   const oicOptions = [
     { label: "College", value: "College" },
     { label: "Office", value: "Office" },
     { label: "University", value: "University" },
   ];
+
   const ledgerOptions = [
     {
       label: "Basic Pay/Special Pay/Dearness Allowance(10.00.01)",
@@ -54,6 +60,7 @@ const LedgerForOfficeMapping: React.FC = () => {
     { label: "Medical Expense Reimbursement(10.00.03)", value: "10.00.03" },
     { label: "Stationery, Font Copy, Bidding(10.00.04)", value: "10.00.04" },
   ];
+
   const divisionOptions = [{ label: "Bhopal Division", value: "Bhopal" }];
   const districtOptions = [{ label: "Bhopal District", value: "Bhopal_Dist" }];
   const blockOptions = [
@@ -77,7 +84,7 @@ const LedgerForOfficeMapping: React.FC = () => {
     { label: "AICTE Regional Office", value: "AICTE_RO" },
   ];
 
-  // --- CHECKBOX LOGIC ---
+  // --- LOGIC ---
   const onDistrictChange = (e: any) => {
     const _selectedDistricts = [...selectedDistricts];
     if (e.checked) _selectedDistricts.push(e.value);
@@ -91,13 +98,28 @@ const LedgerForOfficeMapping: React.FC = () => {
   };
 
   const handleSearch = () => {
-    if (oicType2) setStep(2);
+    if (!oicType2 || !oicType1 || !ledgerType) {
+      toast.current?.show({
+        severity: "error",
+        summary: "Validation Error",
+        detail: "Please select all required fields marked with *",
+        life: 3000,
+      });
+      return;
+    }
+    setStep(2);
+    toast.current?.show({
+      severity: "success",
+      summary: "Search Successful",
+      detail: "Data fetched for office mapping.",
+      life: 3000,
+    });
   };
 
   const handleClear = () => {
     setOicType1(null);
-    setOicType2(null);
     setledgerType(null);
+    setOicType2(null);
     setDivision(null);
     setDistrict(null);
     setBlock(null);
@@ -107,10 +129,35 @@ const LedgerForOfficeMapping: React.FC = () => {
     setOfficeName(null);
     setSelectedDistricts([]);
     setStep(1);
+    toast.current?.show({
+      severity: "info",
+      summary: "Cleared",
+      detail: "Filters and selections have been reset.",
+      life: 2000,
+    });
+  };
+
+  const handleSave = () => {
+    if (selectedDistricts.length === 0) {
+      toast.current?.show({
+        severity: "warn",
+        summary: "Selection Required",
+        detail: "Please select at least one district to save.",
+        life: 3000,
+      });
+      return;
+    }
+    toast.current?.show({
+      severity: "success",
+      summary: "Success",
+      detail: "Ledger mapping saved successfully.",
+      life: 3000,
+    });
   };
 
   return (
     <PageLayout title="Ledger for Office Mapping">
+      <Toast ref={toast} />
       <div className="space-y-6">
         <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100">
           <h2 className="text-lg font-semibold text-gray-700 mb-4 border-b pb-2">
@@ -119,7 +166,7 @@ const LedgerForOfficeMapping: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div className="flex flex-col gap-2">
               <label className="text-sm font-bold text-gray-600">
-                Select OIC Type*
+                Select OIC Type<span className="text-red-500">*</span>
               </label>
               <Dropdown
                 value={oicType1}
@@ -133,7 +180,7 @@ const LedgerForOfficeMapping: React.FC = () => {
               <>
                 <div className="flex flex-col gap-2">
                   <label className="text-sm font-bold text-gray-600">
-                    Select Division Name*
+                    Select Division Name<span className="text-red-500">*</span>
                   </label>
                   <Dropdown
                     value={division}
@@ -145,7 +192,7 @@ const LedgerForOfficeMapping: React.FC = () => {
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="text-sm font-bold text-gray-600">
-                    Select District Name*
+                    Select District Name<span className="text-red-500">*</span>
                   </label>
                   <Dropdown
                     value={district}
@@ -157,7 +204,7 @@ const LedgerForOfficeMapping: React.FC = () => {
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="text-sm font-bold text-gray-600">
-                    Select Block Name*
+                    Select Block Name<span className="text-red-500">*</span>
                   </label>
                   <Dropdown
                     value={block}
@@ -169,7 +216,8 @@ const LedgerForOfficeMapping: React.FC = () => {
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="text-sm font-bold text-gray-600">
-                    Select University Name*
+                    Select University Name
+                    <span className="text-red-500">*</span>
                   </label>
                   <Dropdown
                     value={university}
@@ -185,7 +233,7 @@ const LedgerForOfficeMapping: React.FC = () => {
               <>
                 <div className="flex flex-col gap-2">
                   <label className="text-sm font-bold text-gray-600">
-                    Select Division Name*
+                    Select Division Name<span className="text-red-500">*</span>
                   </label>
                   <Dropdown
                     value={division}
@@ -197,7 +245,7 @@ const LedgerForOfficeMapping: React.FC = () => {
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="text-sm font-bold text-gray-600">
-                    Select District Name*
+                    Select District Name<span className="text-red-500">*</span>
                   </label>
                   <Dropdown
                     value={district}
@@ -209,7 +257,7 @@ const LedgerForOfficeMapping: React.FC = () => {
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="text-sm font-bold text-gray-600">
-                    Select Block Name*
+                    Select Block Name<span className="text-red-500">*</span>
                   </label>
                   <Dropdown
                     value={block}
@@ -221,7 +269,8 @@ const LedgerForOfficeMapping: React.FC = () => {
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="text-sm font-bold text-gray-600">
-                    Select University Name*
+                    Select University Name
+                    <span className="text-red-500">*</span>
                   </label>
                   <Dropdown
                     value={university}
@@ -233,7 +282,7 @@ const LedgerForOfficeMapping: React.FC = () => {
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="text-sm font-bold text-gray-600">
-                    Select College Name*
+                    Select College Name<span className="text-red-500">*</span>
                   </label>
                   <Dropdown
                     value={college}
@@ -249,7 +298,7 @@ const LedgerForOfficeMapping: React.FC = () => {
               <>
                 <div className="flex flex-col gap-2">
                   <label className="text-sm font-bold text-gray-600">
-                    Select Office Type*
+                    Select Office Type<span className="text-red-500">*</span>
                   </label>
                   <Dropdown
                     value={officeType}
@@ -261,7 +310,7 @@ const LedgerForOfficeMapping: React.FC = () => {
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="text-sm font-bold text-gray-600">
-                    Select Office Name*
+                    Select Office Name<span className="text-red-500">*</span>
                   </label>
                   <Dropdown
                     value={officeName}
@@ -275,7 +324,8 @@ const LedgerForOfficeMapping: React.FC = () => {
             )}
             <div className="flex flex-col gap-2">
               <label className="text-sm font-bold text-gray-600">
-                Select Created Ledger Name*
+                Select Created Ledger Name
+                <span className="text-red-500">*</span>
               </label>
               <Dropdown
                 value={ledgerType}
@@ -295,7 +345,7 @@ const LedgerForOfficeMapping: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
             <div className="flex flex-col gap-2">
               <label className="text-sm font-bold text-gray-600">
-                Select OIC Type*
+                Select OIC Type<span className="text-red-500">*</span>
               </label>
               <Dropdown
                 value={oicType2}
@@ -312,7 +362,7 @@ const LedgerForOfficeMapping: React.FC = () => {
               <>
                 <div className="flex flex-col gap-2">
                   <label className="text-sm font-bold text-gray-600">
-                    Select Division Name*
+                    Select Division Name<span className="text-red-500">*</span>
                   </label>
                   <Dropdown
                     value={division}
@@ -324,7 +374,7 @@ const LedgerForOfficeMapping: React.FC = () => {
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="text-sm font-bold text-gray-600">
-                    Select District Name*
+                    Select District Name<span className="text-red-500">*</span>
                   </label>
                   <Dropdown
                     value={district}
@@ -336,7 +386,7 @@ const LedgerForOfficeMapping: React.FC = () => {
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="text-sm font-bold text-gray-600">
-                    Select Block Name*
+                    Select Block Name<span className="text-red-500">*</span>
                   </label>
                   <Dropdown
                     value={block}
@@ -348,7 +398,8 @@ const LedgerForOfficeMapping: React.FC = () => {
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="text-sm font-bold text-gray-600">
-                    Select University Name*
+                    Select University Name
+                    <span className="text-red-500">*</span>
                   </label>
                   <Dropdown
                     value={university}
@@ -364,7 +415,7 @@ const LedgerForOfficeMapping: React.FC = () => {
               <>
                 <div className="flex flex-col gap-2">
                   <label className="text-sm font-bold text-gray-600">
-                    Select Division Name*
+                    Select Division Name<span className="text-red-500">*</span>
                   </label>
                   <Dropdown
                     value={division}
@@ -376,7 +427,7 @@ const LedgerForOfficeMapping: React.FC = () => {
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="text-sm font-bold text-gray-600">
-                    Select District Name*
+                    Select District Name<span className="text-red-500">*</span>
                   </label>
                   <Dropdown
                     value={district}
@@ -388,7 +439,7 @@ const LedgerForOfficeMapping: React.FC = () => {
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="text-sm font-bold text-gray-600">
-                    Select Block Name*
+                    Select Block Name<span className="text-red-500">*</span>
                   </label>
                   <Dropdown
                     value={block}
@@ -400,7 +451,8 @@ const LedgerForOfficeMapping: React.FC = () => {
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="text-sm font-bold text-gray-600">
-                    Select University Name*
+                    Select University Name
+                    <span className="text-red-500">*</span>
                   </label>
                   <Dropdown
                     value={university}
@@ -412,7 +464,7 @@ const LedgerForOfficeMapping: React.FC = () => {
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="text-sm font-bold text-gray-600">
-                    Select College Name*
+                    Select College Name<span className="text-red-500">*</span>
                   </label>
                   <Dropdown
                     value={college}
@@ -428,7 +480,7 @@ const LedgerForOfficeMapping: React.FC = () => {
               <>
                 <div className="flex flex-col gap-2">
                   <label className="text-sm font-bold text-gray-600">
-                    Select Office Type*
+                    Select Office Type<span className="text-red-500">*</span>
                   </label>
                   <Dropdown
                     value={officeType}
@@ -440,7 +492,7 @@ const LedgerForOfficeMapping: React.FC = () => {
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="text-sm font-bold text-gray-600">
-                    Select Office Name*
+                    Select Office Name<span className="text-red-500">*</span>
                   </label>
                   <Dropdown
                     value={officeName}
@@ -453,16 +505,17 @@ const LedgerForOfficeMapping: React.FC = () => {
               </>
             )}
           </div>
-          <div className="flex justify-center gap-3">
+          <div className="flex gap-2">
             <Button
               label="Search"
-              className="px-8"
-              style={{ backgroundColor: "#6366f1" }}
+              icon="pi pi-search"
+              className="p-button-primary px-8"
               onClick={handleSearch}
             />
             <Button
               label="Clear"
-              className="px-8 p-button-danger p-button-outlined"
+              icon="pi pi-refresh"
+              className="p-button-outlined p-button-danger px-8"
               onClick={handleClear}
             />
           </div>
@@ -506,16 +559,25 @@ const LedgerForOfficeMapping: React.FC = () => {
                 </div>
               ))}
             </div>
-            <div className="flex justify-center gap-3 mt-10">
+            <div className="flex gap-2 mt-10 pt-4 border-t">
               <Button
-                label="Save"
-                className="px-10"
-                style={{ backgroundColor: "#6366f1" }}
+                label="Save Mapping"
+                icon="pi pi-check"
+                className="p-button-primary px-10"
+                onClick={handleSave}
               />
               <Button
-                label="Clear"
-                className="px-10 p-button-danger p-button-outlined"
-                onClick={() => setSelectedDistricts([])}
+                label="Clear Selection"
+                icon="pi pi-refresh"
+                className="p-button-outlined p-button-danger px-10"
+                onClick={() => {
+                  setSelectedDistricts([]);
+                  toast.current?.show({
+                    severity: "info",
+                    summary: "Selection Reset",
+                    life: 2000,
+                  });
+                }}
               />
             </div>
           </div>

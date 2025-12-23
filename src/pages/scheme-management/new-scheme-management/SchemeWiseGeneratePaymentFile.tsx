@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import PageLayout from "../../../components/PageLayout";
 import { MultiSelect } from "primereact/multiselect";
 import { Button } from "primereact/button";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
+import { Toast } from "primereact/toast";
+import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
 
 interface SchemeWisePaymentFile {
   id: number;
@@ -26,6 +28,7 @@ const SchemeWiseGeneratePaymentFile: React.FC = () => {
   );
   const [selectedTitle, setSelectedTitles] = useState<string[]>([]);
   const [showGrid, setShowGrid] = useState(false);
+  const toast = useRef<Toast>(null);
 
   const academicYears = ["2024-25", "2023-24", "2022-23", "2021-22"];
   const schemeTitles = [
@@ -84,11 +87,33 @@ const SchemeWiseGeneratePaymentFile: React.FC = () => {
   ]);
 
   const handleSearch = () => {
-    if (selectedAcademicYear.length > 0 && selectedTitle.length > 0) {
-      setShowGrid(true);
-    } else {
-      alert("Please select required fields before searching.");
+    if (selectedAcademicYear.length === 0 || selectedTitle.length === 0) {
+      toast.current?.show({
+        severity: "error",
+        summary: "Error",
+        detail: "Please select required fields before searching.",
+        life: 3000,
+      });
+      return;
     }
+    setShowGrid(true);
+  };
+
+  const handleGenerateList = () => {
+    confirmDialog({
+      message: "Are you sure you want to generate the scheme-wise list?",
+      header: "Confirmation",
+      icon: "pi pi-exclamation-triangle",
+      acceptClassName: "p-button-primary",
+      accept: () => {
+        toast.current?.show({
+          severity: "success",
+          summary: "Success",
+          detail: "List Generated Successfully",
+          life: 3000,
+        });
+      },
+    });
   };
 
   const handleClear = () => {
@@ -99,8 +124,11 @@ const SchemeWiseGeneratePaymentFile: React.FC = () => {
 
   return (
     <PageLayout title="Scheme Wise Generate Payment File">
+      <Toast ref={toast} />
+      <ConfirmDialog />
+
       <div className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Select Academic Years <span className="text-red-500">*</span>
@@ -145,6 +173,7 @@ const SchemeWiseGeneratePaymentFile: React.FC = () => {
             onClick={handleClear}
           />
         </div>
+
         {showGrid && (
           <div className="mt-8 animate-fade-in">
             <h2 className="text-xl font-semibold text-gray-800 mb-4 border-t pt-6">
@@ -155,11 +184,10 @@ const SchemeWiseGeneratePaymentFile: React.FC = () => {
               paginator
               rows={10}
               className="p-datatable-sm"
-              responsiveLayout="scroll"
             >
               <Column
                 field="id"
-                header="S.No"
+                header="Sr.No"
                 sortable
                 style={{ width: "80px" }}
               />
@@ -183,6 +211,19 @@ const SchemeWiseGeneratePaymentFile: React.FC = () => {
               <Column field="ifsc" header="IFSC" />
               <Column field="accountNumber" header="Account Number" />
             </DataTable>
+
+            <div className="flex justify-center gap-4 mt-8">
+              <Button
+                label="Generate List"
+                className="p-button-primary bg-indigo-600 border-none px-8"
+                onClick={handleGenerateList}
+              />
+              <Button
+                label="Clear"
+                className="p-button-danger bg-red-100 text-red-600 border-red-200 px-8"
+                onClick={handleClear}
+              />
+            </div>
           </div>
         )}
       </div>
