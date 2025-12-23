@@ -1,8 +1,10 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider, useAuth } from './context/AuthContext';
-import AppFeature from './pages';
-import AppLayout from './layout/AppLayout';
-import Login from './components/auth';
+import { Routes, Route, Navigate } from "react-router-dom";
+import { AuthProvider, useAuth } from "./context/AuthContext";
+import AppFeature from "./pages";
+import AppLayout from "./layout/AppLayout";
+import React, { Suspense } from "react";
+
+const Login = React.lazy(() => import("./components/auth"));
 
 const ProtectedApp = () => {
   const { isAuthenticated } = useAuth();
@@ -21,10 +23,18 @@ const ProtectedApp = () => {
 const App = () => {
   return (
     <AuthProvider>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/*" element={<ProtectedApp />} />
-      </Routes>
+      <Suspense
+        fallback={
+          <div className="min-h-screen flex items-center justify-center">
+            Loading...
+          </div>
+        }
+      >
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/*" element={<ProtectedApp />} />
+        </Routes>
+      </Suspense>
     </AuthProvider>
   );
 };

@@ -6,7 +6,8 @@ import { getIcon } from '../../utils/iconMapper';
 import type { Module, SidebarProps } from './types';
 import SidebarItem from './components/SidebarItems';
 import SubModuleItem from './components/SubModuleItems';
-import sidebarMenu from '@/config/sidebar'; 
+import sidebarMenu, { type SidebarMenu } from '@/config/sidebar'; 
+import { Logo } from '@/ui/shared';
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, collapsed, onClose }) => {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, collapsed, onClose }) => {
 
   useEffect(() => {
    
-    const modules: Module[] = (sidebarMenu as any)?.sidebar || [];
+    const modules: Module[] = (sidebarMenu as SidebarMenu).sidebar || [];
     setSidebarModules(modules);
 
     const currentPath = location.pathname;
@@ -112,8 +113,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, collapsed, onClose }) => {
           transform transition-all duration-300 ease-in-out
           flex flex-col 
           ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
-          ${collapsed ? 'lg:w-20' : 'lg:w-72'}
-          w-72
+          ${collapsed ? 'lg:w-20' : 'lg:w-80'}
+          w-80
         `}
       >
         {/* Header with logo and close button */}
@@ -122,20 +123,13 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, collapsed, onClose }) => {
           ${collapsed ? 'lg:justify-center lg:px-0' : 'justify-between'}
         `}>
           <div className={`flex items-center gap-3 ${collapsed ? 'lg:flex-col lg:gap-2' : ''}`}>
-            <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shrink-0">
-              {/* Logo SVG */}
-              <svg className="w-6 h-6 text-slate-800" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z" />
-              </svg>
-            </div>
-            <h1
-              className={`
-                text-xl font-bold text-white transition-all duration-300
-                ${collapsed ? 'lg:opacity-0 lg:w-0 lg:overflow-hidden lg:hidden' : 'opacity-100'}
-              `}
-            >
-              NexusEdu
-            </h1>
+            <Logo
+              size="md"
+              variant="light"
+              showText={!collapsed}
+              text="RGPV ERP SYSTEM"
+              textClassName={`${collapsed ? 'lg:opacity-0 lg:w-0 lg:overflow-hidden lg:hidden' : 'opacity-100'}`}
+            />
           </div>
 
           {/* Close button - only visible on mobile */}

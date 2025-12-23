@@ -2,25 +2,21 @@ import React from 'react';
 import { MdChevronRight, MdExpandLess } from 'react-icons/md';
 import type { SidebarItemProps } from '../types';
 
-
-const SidebarItem: React.FC<SidebarItemProps> = ({ 
-  name, 
-  Icon, 
-  active, 
-  collapsed, 
+const SidebarItem: React.FC<SidebarItemProps> = ({
+  name,
+  Icon,
+  active = false,
+  collapsed = false,
   onClick,
-  hasChildren,
-  isExpanded,
-  onToggle
+  hasChildren = false,
+  isExpanded = false,
+  onToggle,
 }) => {
   const handleClick = (e: React.MouseEvent) => {
-    
     if (hasChildren && !collapsed && onToggle) {
       e.stopPropagation();
       onToggle();
-    } 
-    
-    else if (onClick) {
+    } else if (onClick) {
       onClick();
     }
   };
@@ -34,43 +30,43 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
         ${
           active
             ? 'bg-gradient-to-r from-[#1c1f3b] to-[#8b5cf6] text-white shadow-lg shadow-purple-900/20'
-            : 'text-gray-400 hover:text-white hover:bg-slate-700/30 rounded-full'
+            : 'text-gray-400 hover:text-white hover:bg-slate-700/30'
         }
       `}
       title={collapsed ? name : undefined}
     >
-      {/* Icon Wrapper */}
-      <div 
-        className={`
+      {/* Left side: Icon + Text */}
+      <div className="flex items-center flex-1 min-w-0">
+        {/* Icon Wrapper */}
+        <div className="flex-shrink-0">
+          <Icon
+            className={`
+              transition-all duration-300 text-current
+              ${active ? 'w-5 h-5' : collapsed ? 'w-5 h-5' : 'w-5 h-5'}
+            `}
+          />
+        </div>
 
-        `}
-      >
-        <Icon 
+        {/* Text Label */}
+        <span
           className={`
-            transition-all duration-300 text-current
-            ${active ? 'w-5 h-5' : collapsed ? 'w-5 h-5' : 'w-5 h-5'}
-          `} 
-        />
+            font-medium whitespace-nowrap transition-all duration-300 text-base tracking-wide
+            ${collapsed ? 'w-0 opacity-0 ml-0' : 'w-auto opacity-100 ml-4 '}
+            ${active ? 'text-white' : ''}
+            overflow-hidden
+          `}
+        >
+          {name}
+        </span>
       </div>
 
-      {/* Text Label */}
-      <span 
-        className={`
-          font-medium whitespace-nowrap transition-all duration-300 overflow-hidden text-lg tracking-wide
-          ${collapsed ? 'w-0 opacity-0 ml-0' : 'w-auto opacity-100 ml-4'}
-          ${active ? 'text-white' : ''}
-        `}
-      >
-        {name}
-      </span>
-
-      {/* Chevron Icon for expandable items */}
+      {/* Right side: Chevron Icon (Fixed at right end) */}
       {hasChildren && !collapsed && (
-        <div className="ml-auto">
+        <div className="flex-shrink-0 ml-2">
           {isExpanded ? (
-            <MdExpandLess className="w-5 h-5 text-gray-400" />
+            <MdExpandLess className="w-5 h-5 text-current transition-transform duration-300" />
           ) : (
-            <MdChevronRight className="w-5 h-5 text-gray-400" />
+            <MdChevronRight className="w-5 h-5 text-current transition-transform duration-300" />
           )}
         </div>
       )}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PageLayout from "../../../components/PageLayout";
 import { Button } from "primereact/button";
-import { Input, Dropdown, Table, type TableColumn } from "../../../ui/shared";
+import { Dropdown, Table, type TableColumn } from "../../../ui/shared";
 import { DateInput } from "../../../ui/shared/Input";
 
 interface AttendanceRow {
