@@ -735,154 +735,154 @@ const sidebarMenu = {
                 },
             ],
         },
+       {
+      module: "Transport",
+      icon: FaBus,
+      route: "/transport-management",
+      subModules: [
         {
-            module: "Transport",
-            icon: FaBus,
-            route: "/transport-management",
-            subModules: [
-                {
-                    subModule: "Transport Management System",
-                    route: "/transport-management/transport-management-system",
-                    pages: [
-                        {
-                            page: "Vehicle Maintenance Type Master",
-                            route:
-                                "/transport-management/transport-management-system/vehicle-maintenance-type-master",
-                        },
-                        {
-                            page: "Vehicle Registration",
-                            route:
-                                "/transport-management/transport-management-system/vehicle-registration",
-                        },
-                        {
-                            page: "Vehicle Allotment",
-                            route:
-                                "/transport-management/transport-management-system/vehicle-allotment",
-                        },
-                        {
-                            page: "Vehicle Maintenance",
-                            route:
-                                "/transport-management/transport-management-system/vehicle-maintenance",
-                        },
-                        {
-                            page: "Vehicle Insurance",
-                            route:
-                                "/transport-management/transport-management-system/vehicle-insurance",
-                        },
-                        {
-                            page: "Vehicle Dispose",
-                            route:
-                                "/transport-management/transport-management-system/vehicle-dispose",
-                        },
-                        {
-                            page: "Vehicle Deallocation Transfer",
-                            route:
-                                "/transport-management/transport-management-system/vehicle-deallocation-transfer",
-                        },
-                        {
-                            page: "Vehicle Maintenance Request",
-                            route: "/transport-management/transport-management-system/vehicle-maintenance-request",
-                        },
-                        {
-                            page: "Vehicle Maintenance Approval",
-                            route: "/transport-management/transport-management-system/vehicle-maintenance-approval",
-                        },
-                    ],
-                },
-                {
-                    subModule: "College/University Transport",
-                    route: "/transport-management/university-management-system",
-                    pages: [
-                        {
-                            page: "Route Registration",
-                            route: "/transport-management/university-management-system/route-registration",
-                        },
-                        {
-                            page: "Bus Stop Registration",
-                            route: "/transport-management/university-management-system/bus-stop-registration",
-                        },
-                        {
-                            page: "Route To Bus Stop Mapping",
-                            route: "/transport-management/university-management-system/route-bus-stop-mapping",
-                        },
-                        {
-                            page: "Driver Attender Registration",
-                            route:
-                                "/transport-management/university-management-system/driver-attender-registration",
-                        },
-                        {
-                            page: "Driver Attender Leave Entry",
-                            route:
-                                "/transport-management/university-management-system/driver-attender-leave-entry",
-                        },
-                        {
-                            page: "Route To Vehicle Mapping",
-                            route: "/transport-management/university-management-system/route-vehicle-mapping",
-                        },
-                        {
-                            page: "Bus Stop Enrollment",
-                            route: "/transport-management/university-management-system/bus-stop-enrollment",
-                        },
-                        {
-                            page: "Driver Attender Route Details",
-                            route:
-                                "/transport-management/university-management-system/driver-attender-route-details",
-                        },
-                    ],
-                },
-                {
-                    subModule: "Bus Driver Attender Process",
-                    route: "/transport/driver-attender-process",
-                    pages: [
-                        {
-                            page: "View Route Location",
-                            route: "/transport/driver-attender-process/view-route-location",
-                        },
-                        {
-                            page: "Route Wise Pickup/Drop",
-                            route:
-                                "/transport/driver-attender-process/route-wise-pickup-drop",
-                        },
-                        {
-                            page: "Route Details",
-                            route: "/transport/driver-attender-process/route-details",
-                        },
-                    ],
-                },
-                {
-                    subModule: "Parent Process",
-                    route: "/transport/parent-process",
-                    pages: [
-                        {
-                            page: "Inform to Student",
-                            route: "/transport/parent-process/inform-student",
-                        },
-                        {
-                            page: "Bus Route Details",
-                            route: "/transport/parent-process/bus-route-details",
-                        },
-                        {
-                            page: "Pickup/Drop Details",
-                            route: "/transport/parent-process/pickup-drop-details",
-                        },
-                    ],
-                },
-                {
-                    subModule: "Gatekeeper Transport System",
-                    route: "/transport/gatekeeper",
-                    pages: [
-                        {
-                            page: "E-Challan Process",
-                            route: "/transport/gatekeeper/e-challan",
-                        },
-                        {
-                            page: "Check Vehicle Details",
-                            route: "/transport/gatekeeper/check-vehicle-details",
-                        },
-                    ],
-                },
-            ],
+          subModule: "Transport Management System",
+          route: "/transport-management/transport-management-system",
+          pages: [
+            {
+              page: "Vehicle Maintenance Type Master",
+              route:
+                "/transport-management/transport-management-system/vehicle-maintenance-type-master",
+            },
+            {
+              page: "Vehicle Registration",
+              route:
+                "/transport-management/transport-management-system/vehicle-registration",
+            },
+            {
+              page: "Vehicle Allotment",
+              route:
+                "/transport-management/transport-management-system/vehicle-allotment",
+            },
+            {
+              page: "Vehicle Maintenance",
+              route:
+                "/transport-management/transport-management-system/vehicle-maintenance",
+            },
+            {
+              page: "Vehicle Insurance",
+              route:
+                "/transport-management/transport-management-system/vehicle-insurance",
+            },
+            {
+              page: "Vehicle Dispose",
+              route:
+                "/transport-management/transport-management-system/vehicle-dispose",
+            },
+            {
+              page: "Vehicle Deallocation Transfer",
+              route:
+                "/transport-management/transport-management-system/vehicle-deallocation-transfer",
+            },
+            {
+              page: "Vehicle Maintenance Request",
+              route: "/transport-management/transport-management-system/vehicle-maintenance-request",
+            },
+            {
+              page: "Vehicle Maintenance Approval",
+              route: "/transport-management/transport-management-system/vehicle-maintenance-approval",
+            },
+          ],
         },
+        {
+          subModule: "College/University Transport",
+          route: "/transport-management/university-management-system",
+          pages: [
+            {
+              page: "Route Registration",
+              route: "/transport-management/university-management-system/route-registration",
+            },
+            {
+              page: "Bus Stop Registration",
+              route: "/transport-management/university-management-system/bus-stop-registration",
+            },
+            {
+              page: "Route To Bus Stop Mapping",
+              route: "/transport-management/university-management-system/route-to-bus-stop-mapping",
+            },
+            {
+              page: "Driver Attender Registration",
+              route:
+                "/transport-management/university-management-system/driver-attender-registration",
+            },
+            {
+              page: "Driver Attender Leave Entry",
+              route:
+                "/transport-management/university-management-system/driver-attender-leave-entry",
+            },
+            {
+              page: "Route To Vehicle Mapping",
+              route: "/transport-management/university-management-system/route-to-vehicle-mapping",
+            },
+            {
+              page: "Bus Stop Enrollment",
+              route: "/transport-management/university-management-system/bus-stop-enrollment",
+            },
+            {
+              page: "Driver Attender Route Details",
+              route:
+                "/transport-management/university-management-system/driver-attender-route-details",
+            },
+          ],
+        },
+        {
+          subModule: "Bus Driver Attender Process",
+          route: "/transport-management/driver-attender-process",
+          pages: [
+            {
+              page: "View Route Location",
+              route: "/transport-management/driver-attender-process/view-route-location",
+            },
+            {
+              page: "Route Wise Pickup/Drop",
+              route:
+                "/transport-management/driver-attender-process/route-wise-pickup-drop",
+            },
+            {
+              page: "Route Details",
+              route: "/transport-management/driver-attender-process/route-details",
+            },
+          ],
+        },
+        {
+          subModule: "Parent Process",
+          route: "/transport-management/parent-process",
+          pages: [
+            {
+              page: "Inform to Student",
+              route: "/transport-management/parent-process/inform-to-student",
+            },
+            {
+              page: "Bus Route Details",
+              route: "/transport-management/parent-process/bus-route-details",
+            },
+            {
+              page: "Pickup/Drop Details",
+              route: "/transport-management/parent-process/pickup-drop-details",
+            },
+          ],
+        },
+        {
+          subModule: "Gatekeeper Transport System",
+          route: "/transport-management/gatekeeper-transport-system",
+          pages: [
+            {
+              page: "E-Challan Process",
+              route: "/transport-management/gatekeeper-transport-system/e-challan-process",
+            },
+            {
+              page: "Check Vehicle Details",
+              route: "/transport-management/gatekeeper-transport-system/check-vehicle-details",
+            },
+          ],
+        },
+      ],
+    },
         {
             module: "Exam Management",
             icon: FaClipboardList,

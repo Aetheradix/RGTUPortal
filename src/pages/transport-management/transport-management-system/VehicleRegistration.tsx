@@ -60,6 +60,25 @@ export default function VehicleRegistration() {
     setShowForm(false);
   };
 
+  const actionBodyTemplate = () => {
+    return (
+      <div className="flex justify-center gap-3">
+        <button
+          type="button"
+          className="w-8 h-8 rounded bg-blue-600 text-white flex items-center justify-center"
+        >
+          ✎
+        </button>
+        <button
+          type="button"
+          className="w-8 h-8 rounded bg-red-600 text-white flex items-center justify-center"
+        >
+          🗑
+        </button>
+      </div>
+    );
+  };
+
   return (
     <PageLayout title="Vehicle Registration Master">
       {!showForm && (
@@ -82,8 +101,8 @@ export default function VehicleRegistration() {
               paginator
               rows={10}
               className="p-datatable-sm"
-              responsiveLayout="scroll"
-            >
+            
+            > <Column field="id" header="Sr No" sortable/>
               <Column field="vehicleNumber" header="Vehicle Number" sortable />
               <Column field="company" header="Company" sortable />
               <Column field="model" header="Model" sortable />
@@ -94,18 +113,9 @@ export default function VehicleRegistration() {
               />
               <Column
                 header="Actions"
-                body={() => (
-                  <div className="flex gap-1">
-                    <Button
-                      icon="pi pi-pencil"
-                      className="p-button-rounded p-button-text p-button-sm text-blue-600"
-                    />
-                    <Button
-                      icon="pi pi-trash"
-                      className="p-button-rounded p-button-text p-button-danger p-button-sm"
-                    />
-                  </div>
-                )}
+                body={actionBodyTemplate}
+                align="center"
+                style={{ width: "120px" }}
               />
             </DataTable>
           </div>
@@ -131,7 +141,7 @@ export default function VehicleRegistration() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Transport Use *
+                    Transport Use <span className="text-red-500">*</span>
                   </label>
                   <Dropdown
                     options={dd}
@@ -142,7 +152,7 @@ export default function VehicleRegistration() {
 
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Transport Ownership *
+                    Transport Ownership <span className="text-red-500">*</span>
                   </label>
                   <Dropdown
                     options={dd}
@@ -153,28 +163,28 @@ export default function VehicleRegistration() {
 
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Vehicle Number *
+                    Vehicle Number <span className="text-red-500">*</span>
                   </label>
                   <InputText className="w-full" placeholder="e.g. MH12AB1234" />
                 </div>
 
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Vehicle Company Name *
+                    Vehicle Company Name <span className="text-red-500">*</span>
                   </label>
                   <InputText className="w-full" placeholder="e.g. Tata" />
                 </div>
 
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Vehicle Model Name *
+                    Vehicle Model Name <span className="text-red-500">*</span>
                   </label>
                   <InputText className="w-full" placeholder="e.g. Nexon" />
                 </div>
 
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Select Fuel Type *
+                    Select Fuel Type <span className="text-red-500">*</span>
                   </label>
                   <Dropdown
                     options={dd}
@@ -185,7 +195,7 @@ export default function VehicleRegistration() {
 
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Year Of Manufacture *
+                    Year Of Manufacture <span className="text-red-500">*</span>
                   </label>
                   <Dropdown
                     options={dd}
@@ -196,7 +206,7 @@ export default function VehicleRegistration() {
 
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Select Motor Vehicle *
+                    Select Motor Vehicle <span className="text-red-500">*</span>
                   </label>
                   <Dropdown
                     options={dd}
@@ -207,7 +217,7 @@ export default function VehicleRegistration() {
 
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Type Of Body *
+                    Type Of Body <span className="text-red-500">*</span>
                   </label>
                   <Dropdown
                     options={dd}
@@ -218,14 +228,14 @@ export default function VehicleRegistration() {
 
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Vehicle Color *
+                    Vehicle Color <span className="text-red-500">*</span>
                   </label>
                   <InputText className="w-full" placeholder="Enter Color" />
                 </div>
 
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Chassis Number *
+                    Chassis Number <span className="text-red-500">*</span>
                   </label>
                   <InputText
                     className="w-full"
@@ -235,14 +245,14 @@ export default function VehicleRegistration() {
 
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Seating Capacity *
+                    Seating Capacity <span className="text-red-500">*</span>
                   </label>
                   <InputText className="w-full" placeholder="e.g. 5" />
                 </div>
 
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Engine Number *
+                    Engine Number <span className="text-red-500">*</span>
                   </label>
                   <InputText
                     className="w-full"
@@ -252,28 +262,28 @@ export default function VehicleRegistration() {
 
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Weight (Unladen) KG *
+                    Weight (Unladen) KG <span className="text-red-500">*</span>
                   </label>
                   <InputText className="w-full" placeholder="e.g. 1200" />
                 </div>
 
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Cubic Capacity *
+                    Cubic Capacity <span className="text-red-500">*</span>
                   </label>
                   <InputText className="w-full" placeholder="Enter CC" />
                 </div>
 
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Horse Power (BHP/KW) *
+                    Horse Power (BHP/KW) <span className="text-red-500">*</span>
                   </label>
                   <InputText className="w-full" placeholder="Enter HP" />
                 </div>
 
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Wheel Base (mm) *
+                    Wheel Base (mm) <span className="text-red-500">*</span>
                   </label>
                   <InputText
                     className="w-full"
@@ -283,7 +293,7 @@ export default function VehicleRegistration() {
 
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Registration No *
+                    Registration No <span className="text-red-500">*</span>
                   </label>
                   <InputText
                     className="w-full"
@@ -293,7 +303,7 @@ export default function VehicleRegistration() {
 
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Registration Date *
+                    Registration Date <span className="text-red-500">*</span>
                   </label>
                   <Calendar
                     className="w-full"
@@ -304,7 +314,7 @@ export default function VehicleRegistration() {
 
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Registration Validity *
+                    Registration Validity <span className="text-red-500">*</span>
                   </label>
                   <Calendar
                     className="w-full"
@@ -322,7 +332,7 @@ export default function VehicleRegistration() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Insurance Company *
+                    Insurance Company <span className="text-red-500">*</span>
                   </label>
                   <InputText
                     className="w-full"
@@ -332,7 +342,7 @@ export default function VehicleRegistration() {
 
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Insurance Number *
+                    Insurance Number <span className="text-red-500">*</span>
                   </label>
                   <InputText
                     className="w-full"
@@ -342,7 +352,7 @@ export default function VehicleRegistration() {
 
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Start Date *
+                    Start Date <span className="text-red-500">*</span>
                   </label>
                   <Calendar
                     className="w-full"
@@ -353,7 +363,7 @@ export default function VehicleRegistration() {
 
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    End Date *
+                    End Date <span className="text-red-500">*</span>
                   </label>
                   <Calendar
                     className="w-full"
@@ -364,7 +374,7 @@ export default function VehicleRegistration() {
 
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Insurance Amount (Rs) *
+                    Insurance Amount (Rs) <span className="text-red-500">*</span>
                   </label>
                   <InputText className="w-full" placeholder="e.g. 15000" />
                 </div>
