@@ -298,7 +298,6 @@ const DocVerificationReport: React.FC = () => {
           rowsPerPageOptions={[10, 25, 50]}
           globalFilter={globalFilter}
           className="p-datatable-sm text-sm"
-          responsiveLayout="scroll"
           stripedRows
           paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport"
           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"

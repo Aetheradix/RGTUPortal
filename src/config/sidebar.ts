@@ -724,24 +724,66 @@ const sidebarMenu = {
           ],
         },
         {
-          subModule: "Admission Fee",
-          route: "/admission/fee",
+          subModule: "Allotment Letter",
+          route: "/admission-management-system/allotment-letter",
           pages: [
-            { page: "Set Admission Fee", route: "/admission/fee/set" },
+            {
+              page: "Get Allotment Letter",
+              route:
+                "/admission-management-system/allotment-letter/get-allotment-letter",
+            },
+            {
+              page: "Generate Allotment Letters",
+              route:
+                "/admission-management-system/allotment-letter/generate-allotment-letters",
+            },
+            {
+              page: "Manage Allotment Status",
+              route:
+                "/admission-management-system/allotment-letter/manage-allotment-status",
+            },
+            {
+              page: "College Wise Allotment Status",
+              route:
+                "/admission-management-system/allotment-letter/college-wise-allotment-status",
+            },
+          ],
+        },
+        {
+          subModule: "Admission Fee",
+          route: "/admission-management-system/admission-fee",
+          pages: [
+            { page: "Set Admission Fee", route: "/admission-management-system/admission-fee/set-admission-fee" },
             {
               page: "View Fee Structure",
-              route: "/admission/fee/view-structure",
+              route: "/admission-management-system/admission-fee/view-fee-structure",
             },
-            { page: "Make Payment", route: "/admission/fee/make-payment" },
+            { page: "Make Payment", route: "/admission-management-system/admission-fee/make-payment" },
             {
               page: "Payment Verification",
-              route: "/admission/fee/payment-verification",
+              route: "/admission-management-system/admission-fee/payment-verification",
             },
             {
               page: "Payment History Receipt Download",
-              route: "/admission/fee/payment-history",
+              route: "/admission-management-system/admission-fee/payment-history-and-receipt-download",
             },
-            { page: "Payment Report", route: "/admission/fee/payment-report" },
+            { page: "Payment Report", route: "/admission-management-system/admission-fee/payment-report" },
+          ],
+        },
+        {
+          subModule: "Merit List",
+          route: "/admission-management-system/merit-list",
+          pages: [
+            { page: "Candidates Rrank", route: "/admission-management-system/merit-list/candidates-rank" },
+            {
+              page: "Genrate Marit List",
+              route: "/admission-management-system/merit-list/genrate-marit-list",
+            },
+            { page: "Marit List", route: "/admission-management-system/merit-list/marit-list" },
+            {
+              page: "Set Tie Braking Criteria of Rank",
+              route: "/admission-management-system/merit-list/set-tie-braking-criteria-of-rank",
+            },
           ],
         },
       ],
