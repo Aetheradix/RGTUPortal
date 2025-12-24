@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/static-components */
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import PageLayout from "../../../components/PageLayout";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
@@ -7,12 +7,16 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Dialog } from "primereact/dialog";
 import { Checkbox } from "primereact/checkbox";
+import { Toast } from "primereact/toast";
 
 const StudentDetailsKYC: React.FC = () => {
   const [step, setStep] = useState(1);
   const [showInstituteModal, setShowInstituteModal] = useState(false);
   const [showOtpModal, setShowOtpModal] = useState(false);
   const [aadhaarConsent, setAadhaarConsent] = useState(false);
+  const [samagraId, setSamagraId] = useState("");
+
+  const toast = useRef<Toast>(null);
 
   const FieldLabel = ({
     text,
@@ -26,10 +30,31 @@ const StudentDetailsKYC: React.FC = () => {
     </label>
   );
 
-  const resetForm = () => {
+  const handleSearch = () => {
+    if (!samagraId.trim()) {
+      toast.current?.show({
+        severity: "error",
+        summary: "Error",
+        detail: "Please enter Samagra ID",
+        life: 3000,
+      });
+      return;
+    }
+    setShowInstituteModal(true);
+  };
+
+  const handleClear = () => {
     setStep(1);
     setAadhaarConsent(false);
+    setSamagraId("");
+    toast.current?.show({
+      severity: "info",
+      summary: "Reset",
+      detail: "Form cleared successfully",
+      life: 2000,
+    });
   };
+
   const instituteData = [
     {
       id: 1,
@@ -38,8 +63,8 @@ const StudentDetailsKYC: React.FC = () => {
       code: "12345",
       principal: "Dr. Rajesh Kumar",
       affiliation: "RGPV",
-      address: "9876543210",
-      contact: "XYZ Nagar, Bhopal",
+      address: "XYZ Nagar, Bhopal",
+      contact: "9876543210",
       pinCode: "462001",
       localBody: "Nagar Nigam",
       landmark: "Near Junction",
@@ -48,25 +73,43 @@ const StudentDetailsKYC: React.FC = () => {
 
   return (
     <PageLayout title="Student Details KYC">
-      <div>
+      <Toast ref={toast} />
+
+      <div className="space-y-6">
+        {/* STEP 1: INITIAL SEARCH */}
         {step === 1 && (
           <div className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
                 <FieldLabel text="Enter Samagra ID" required />
-                <InputText className="w-full" placeholder="Enter Samagra ID" />
+                <InputText
+                  className="w-full"
+                  placeholder="Enter Samagra ID"
+                  value={samagraId}
+                  onChange={(e) => setSamagraId(e.target.value)}
+                />
               </div>
             </div>
-            <div className="flex justify-center gap-3 pt-6 ">
+
+            {/* Buttons aligned to the left with reference styling */}
+            <div className="flex gap-2">
               <Button
                 label="View student information"
-                className="bg-indigo-500 border-none px-6"
-                onClick={() => setShowInstituteModal(true)}
+                icon="pi pi-search"
+                className="p-button-primary px-6"
+                onClick={handleSearch}
               />
-              <Button label="Clear" className="bg-red-600 border-none px-8" />
+              <Button
+                label="Clear"
+                icon="pi pi-refresh"
+                className="p-button-outlined px-6"
+                onClick={handleClear}
+              />
             </div>
           </div>
         )}
+
+        {/* STEP 2: MODAL WITH STUDENT INFO */}
         <Dialog
           header="Overall student information"
           visible={showInstituteModal}
@@ -101,7 +144,7 @@ const StudentDetailsKYC: React.FC = () => {
             <div className="flex justify-center">
               <Button
                 label="Click for E-kyc"
-                className="bg-indigo-500 border-none px-12"
+                className="p-button-primary px-12"
                 onClick={() => {
                   setShowInstituteModal(false);
                   setStep(3);
@@ -110,6 +153,7 @@ const StudentDetailsKYC: React.FC = () => {
             </div>
           </div>
         </Dialog>
+
         {/* STEP 3: AADHAAR E-KYC CONSENT */}
         {step === 3 && (
           <div className="space-y-8 animate-fade-in">
@@ -162,18 +206,20 @@ const StudentDetailsKYC: React.FC = () => {
             <div className="flex justify-center gap-4 pt-4">
               <Button
                 label="eKYC via OTP"
-                className="bg-indigo-500 border-none px-10"
+                className="p-button-primary px-10"
                 disabled={!aadhaarConsent}
                 onClick={() => setShowOtpModal(true)}
               />
               <Button
                 label="eKYC via Biometric"
-                className="bg-red-600 border-none px-10"
+                className="p-button-danger px-10"
                 disabled={!aadhaarConsent}
               />
             </div>
           </div>
         )}
+
+        {/* STEP 4: OTP DIALOG */}
         <Dialog
           header="Aadhaar e-KYC"
           visible={showOtpModal}
@@ -195,10 +241,16 @@ const StudentDetailsKYC: React.FC = () => {
             <div className="flex justify-center">
               <Button
                 label="Validate OTP"
-                className="bg-green-600 border-none px-12 font-bold"
+                className="p-button-success px-12 font-bold"
                 onClick={() => {
                   setShowOtpModal(false);
                   setStep(5);
+                  toast.current?.show({
+                    severity: "success",
+                    summary: "Success",
+                    detail: "OTP Validated",
+                    life: 2000,
+                  });
                 }}
               />
             </div>
@@ -211,7 +263,7 @@ const StudentDetailsKYC: React.FC = () => {
             <div className="text-center">
               <h2 className="text-xl font-bold text-red-800">ANIKET AHIRWAR</h2>
             </div>
-            <section className="shadow-sm ">
+            <section className="shadow-sm">
               <h4 className="text-xs font-black mb-5 text-gray-500 uppercase">
                 Basic Details Of Student From Aadhaar EKYC *
               </h4>
@@ -249,16 +301,26 @@ const StudentDetailsKYC: React.FC = () => {
                 <Column field="landmark" header="Landmark" />
               </DataTable>
             </section>
-            <div className="flex justify-center gap-4 pt-6">
+
+            <div className="flex gap-2 pt-6">
               <Button
                 label="Final Submit"
-                className="bg-indigo-600 border-none px-12 py-3"
-                onClick={resetForm}
+                className="p-button-primary px-12"
+                onClick={() => {
+                  toast.current?.show({
+                    severity: "success",
+                    summary: "Success",
+                    detail: "Record Submitted Successfully",
+                    life: 3000,
+                  });
+                  setStep(1);
+                }}
               />
               <Button
                 label="Clear"
-                className="bg-red-600 border-none px-12 py-3"
-                onClick={resetForm}
+                icon="pi pi-refresh"
+                className="p-button-outlined px-12"
+                onClick={handleClear}
               />
             </div>
           </div>
