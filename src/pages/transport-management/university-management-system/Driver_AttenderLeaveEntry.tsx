@@ -101,14 +101,14 @@ export default function DriverAttenderLeaveEntry() {
               <Column
                 header="Sr No."
                 body={(_, { rowIndex }) => rowIndex + 1}
-                style={{ width: "70px" }}
+                style={{ width: "90px" }} sortable
               />
               <Column field="authorizedDriver" header="Auth. Type" sortable />
               <Column field="registrationType" header="Reg. Type" sortable />
               <Column field="vehicleNo" header="Vehicle No." sortable />
-              <Column field="leaveFromDate" header="From Date" />
-              <Column field="leaveToDate" header="To Date" />
-              <Column field="driverName" header="Driver/Attender Name" />
+              <Column field="leaveFromDate" header="From Date" sortable/>
+              <Column field="leaveToDate" header="To Date" sortable/>
+              <Column field="driverName" header="Driver/Attender Name" sortable/>
               <Column
                 field="status"
                 header="Status"
@@ -142,12 +142,12 @@ export default function DriverAttenderLeaveEntry() {
             <div className="space-y-8">
               <div className="p-4 bg-gray-50 rounded-lg border border-gray-100">
                 <h4 className="text-md font-bold mb-4 text-gray-700 border-l-4 border-blue-500 pl-3">
-                  Leave Details
+                  Leave Details 
                 </h4>
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                   <div className="flex flex-col gap-2">
                     <label className="text-sm font-semibold text-gray-700">
-                      Select Registration Type *
+                      Select Registration Type <span className="text-red-500">*</span>
                     </label>
                     <Dropdown
                       options={registrationTypes}
@@ -157,7 +157,7 @@ export default function DriverAttenderLeaveEntry() {
                   </div>
                   <div className="flex flex-col gap-2">
                     <label className="text-sm font-semibold text-gray-700">
-                      Select Name *
+                      Select Name <span className="text-red-500">*</span>
                     </label>
                     <Dropdown
                       options={[]}
@@ -167,19 +167,19 @@ export default function DriverAttenderLeaveEntry() {
                   </div>
                   <div className="flex flex-col gap-2">
                     <label className="text-sm font-semibold text-gray-700">
-                      Enter Vehicle Number *
+                      Enter Vehicle Number <span className="text-red-500">*</span>
                     </label>
                     <InputText placeholder="MP04AB1234" className="w-full" />
                   </div>
                   <div className="flex flex-col gap-2">
                     <label className="text-sm font-semibold text-gray-700">
-                      Enter Route No *
+                      Enter Route No <span className="text-red-500">*</span>
                     </label>
                     <InputText placeholder="RUT001" className="w-full" />
                   </div>
                   <div className="flex flex-col gap-2">
                     <label className="text-sm font-semibold text-gray-700">
-                      Leave From Date *
+                      Leave From Date <span className="text-red-500">*</span>
                     </label>
                     <Calendar
                       placeholder="dd/mm/yyyy"
@@ -189,7 +189,7 @@ export default function DriverAttenderLeaveEntry() {
                   </div>
                   <div className="flex flex-col gap-2">
                     <label className="text-sm font-semibold text-gray-700">
-                      Leave To Date *
+                      Leave To Date <span className="text-red-500">*</span>
                     </label>
                     <Calendar
                       placeholder="dd/mm/yyyy"
@@ -199,13 +199,13 @@ export default function DriverAttenderLeaveEntry() {
                   </div>
                   <div className="flex flex-col gap-2">
                     <label className="text-sm font-semibold text-gray-700">
-                      Leave Reason *
+                      Leave Reason <span className="text-red-500">*</span>
                     </label>
                     <InputText placeholder="Enter Reason" className="w-full" />
                   </div>
                   <div className="flex flex-col gap-2">
                     <label className="text-sm font-semibold text-gray-700">
-                      Document Upload *
+                      Document Upload <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="file"
@@ -223,7 +223,7 @@ export default function DriverAttenderLeaveEntry() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="flex flex-col gap-2">
                       <label className="text-sm font-semibold text-gray-700">
-                        Auth. Driver/Attender *
+                        Auth. Driver/Attender <span className="text-red-500">*</span>
                       </label>
                       <Dropdown
                         options={authorizedOptions}
@@ -233,7 +233,7 @@ export default function DriverAttenderLeaveEntry() {
                     </div>
                     <div className="flex flex-col gap-2">
                       <label className="text-sm font-semibold text-gray-700">
-                        Select Driver/Attender *
+                        Select Driver/Attender <span className="text-red-500">*</span>
                       </label>
                       <Dropdown
                         options={[]}
@@ -243,13 +243,13 @@ export default function DriverAttenderLeaveEntry() {
                     </div>
                     <div className="flex flex-col gap-2">
                       <label className="text-sm font-semibold text-gray-700">
-                        App. From Date *
+                        App. From Date <span className="text-red-500">*</span>
                       </label>
                       <Calendar placeholder="dd/mm/yyyy" className="w-full" />
                     </div>
                     <div className="flex flex-col gap-2">
                       <label className="text-sm font-semibold text-gray-700">
-                        App. To Date *
+                        App. To Date <span className="text-red-500">*</span>
                       </label>
                       <Calendar placeholder="dd/mm/yyyy" className="w-full" />
                     </div>
@@ -263,7 +263,7 @@ export default function DriverAttenderLeaveEntry() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="flex flex-col gap-2">
                       <label className="text-sm font-semibold text-gray-700">
-                        Auth. Driver/Attender *
+                        Auth. Driver/Attender <span className="text-red-500">*</span>
                       </label>
                       <Dropdown
                         options={authorizedOptions}
@@ -273,13 +273,13 @@ export default function DriverAttenderLeaveEntry() {
                     </div>
                     <div className="flex flex-col gap-2">
                       <label className="text-sm font-semibold text-gray-700">
-                        Enter Name *
+                        Enter Name <span className="text-red-500">*</span>
                       </label>
                       <InputText placeholder="Enter Name" className="w-full" />
                     </div>
                     <div className="flex flex-col gap-2">
                       <label className="text-sm font-semibold text-gray-700">
-                        Licence Number *
+                        Licence Number <span className="text-red-500">*</span>
                       </label>
                       <InputText
                         placeholder="Enter Licence"
@@ -288,7 +288,7 @@ export default function DriverAttenderLeaveEntry() {
                     </div>
                     <div className="flex flex-col gap-2">
                       <label className="text-sm font-semibold text-gray-700">
-                        Upload Photo *
+                        Upload Photo <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="file"

@@ -66,7 +66,7 @@ export default function VehicleDispose() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  From Date *
+                  From Date <span className="text-red-500">*</span>
                 </label>
                 <Calendar
                   placeholder="dd/mm/yyyy"
@@ -77,7 +77,7 @@ export default function VehicleDispose() {
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  To Date *
+                  To Date <span className="text-red-500">*</span>
                 </label>
                 <Calendar
                   placeholder="dd/mm/yyyy"
@@ -88,7 +88,7 @@ export default function VehicleDispose() {
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Select District *
+                  Select District <span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   options={districts}
@@ -123,19 +123,19 @@ export default function VehicleDispose() {
                 className="p-datatable-sm"
                 
               >
-                <Column field="id" header="Sr No." style={{ width: "70px" }} />
-                <Column field="orderDate" header="Order Date" />
+                <Column field="id" header="Sr No." style={{ width: "70px" }} sortable/>
+                <Column field="orderDate" header="Order Date" sortable/>
                 <Column
                   field="vehicleNumber"
                   header="Vehicle Number"
                   sortable
                 />
-                <Column field="model" header="Model" />
-                <Column field="chassis" header="Chassis No." />
-                <Column field="orderNo" header="Order No." />
-                <Column field="sellingAmount" header="Selling (₹)" />
-                <Column field="buyingAmount" header="Buying (₹)" />
-                <Column field="buyer" header="Buyer" />
+                <Column field="model" header="Model" sortable/>
+                <Column field="chassis" header="Chassis No."sortable />
+                <Column field="orderNo" header="Order No." sortable/>
+                <Column field="sellingAmount" header="Selling (₹)" sortable/>
+                <Column field="buyingAmount" header="Buying (₹)" sortable/>
+                <Column field="buyer" header="Buyer" sortable/>
               </DataTable>
             </div>
           )}
@@ -165,7 +165,7 @@ export default function VehicleDispose() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Vehicle Number *
+                      Vehicle Number <span className="text-red-500">*</span>
                     </label>
                     <Dropdown
                       options={vehicles}
@@ -175,7 +175,7 @@ export default function VehicleDispose() {
                   </div>
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Vehicle Model *
+                      Vehicle Model <span className="text-red-500">*</span>
                     </label>
                     <InputText
                       placeholder="e.g. 2015 Edition"
@@ -184,7 +184,7 @@ export default function VehicleDispose() {
                   </div>
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Chassis Number *
+                      Chassis Number <span className="text-red-500">*</span>
                     </label>
                     <InputText
                       placeholder="Enter Chassis No."
@@ -193,19 +193,19 @@ export default function VehicleDispose() {
                   </div>
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Registration Number *
+                      Registration Number <span className="text-red-500">*</span>
                     </label>
                     <InputText placeholder="Enter Reg No." className="w-full" />
                   </div>
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Vehicle Company *
+                      Vehicle Company <span className="text-red-500">*</span>
                     </label>
                     <InputText placeholder="e.g. Mahindra" className="w-full" />
                   </div>
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Year of Manufacture *
+                      Year of Manufacture <span className="text-red-500">*</span>
                     </label>
                     <InputText placeholder="YYYY" className="w-full" />
                   </div>
@@ -219,7 +219,7 @@ export default function VehicleDispose() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Order Number *
+                      Order Number <span className="text-red-500">*</span>
                     </label>
                     <InputText
                       placeholder="Enter Order No."
@@ -228,7 +228,7 @@ export default function VehicleDispose() {
                   </div>
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Order Date *
+                      Order Date <span className="text-red-500">*</span>
                     </label>
                     <Calendar
                       placeholder="dd/mm/yyyy"
@@ -238,13 +238,13 @@ export default function VehicleDispose() {
                   </div>
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Current Reading (Km) *
+                      Current Reading (Km) <span className="text-red-500">*</span>
                     </label>
                     <InputText placeholder="0" className="w-full" />
                   </div>
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Base Selling Price *
+                      Base Selling Price <span className="text-red-500">*</span>
                     </label>
                     <InputText placeholder="₹ 0.00" className="w-full" />
                   </div>
@@ -258,13 +258,13 @@ export default function VehicleDispose() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Final Buying Amount *
+                      Final Buying Amount <span className="text-red-500">*</span>
                     </label>
                     <InputText placeholder="₹ 0.00" className="w-full" />
                   </div>
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Full Name of Buyer *
+                      Full Name of Buyer <span className="text-red-500">*</span>
                     </label>
                     <InputText
                       placeholder="Enter Buyer Name"

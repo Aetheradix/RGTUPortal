@@ -92,13 +92,12 @@ export default function BusStopRegistration() {
               <Column 
                 header="Sr No." 
                 body={(_, { rowIndex }) => rowIndex + 1} 
-                style={{ width: "80px" }} 
+                style={{ width: "90px" }} sortable
               />
               <Column field="name" header="Bus Stop Name" sortable />
               <Column 
                 header="Status" 
                 body={statusTemplate} 
-                sortable 
                 align="center"
                 style={{ width: "150px" }} 
               />
@@ -132,10 +131,9 @@ export default function BusStopRegistration() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-              {/* Bus Stop Name Input */}
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-semibold text-gray-700">
-                  Enter Bus Stop Name *
+                  Enter Bus Stop Name <span className="text-red-500">*</span>
                 </label>
                 <InputText
                   value={form.name}
@@ -148,7 +146,7 @@ export default function BusStopRegistration() {
        
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-semibold text-gray-700">
-                  Status *
+                  Status <span className="text-red-500">*</span>
                 </label>
                 <div className="flex items-center gap-3 mt-2">
                   <span className="text-sm font-medium text-gray-700">Active</span>

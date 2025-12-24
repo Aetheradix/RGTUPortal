@@ -87,7 +87,7 @@ export default function VehicleDeallocationTransfer() {
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Office Type *
+                  Office Type <span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   options={officeTypes}
@@ -98,7 +98,7 @@ export default function VehicleDeallocationTransfer() {
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Office Name *
+                  Office Name <span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   options={officeNames}
@@ -109,7 +109,7 @@ export default function VehicleDeallocationTransfer() {
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Vehicle Number *
+                  Vehicle Number <span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   options={vehicles}
@@ -120,7 +120,7 @@ export default function VehicleDeallocationTransfer() {
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  From Date
+                  From Date <span className="text-red-500">*</span>
                 </label>
                 <Calendar
                   placeholder="dd/mm/yyyy"
@@ -131,7 +131,7 @@ export default function VehicleDeallocationTransfer() {
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  To Date
+                  To Date <span className="text-red-500">*</span>
                 </label>
                 <Calendar
                   placeholder="dd/mm/yyyy"
@@ -164,20 +164,19 @@ export default function VehicleDeallocationTransfer() {
                 paginator
                 rows={10}
                 className="p-datatable-sm"
-                responsiveLayout="scroll"
               >
-                <Column field="id" header="Sr No." style={{ width: "70px" }} />
+                <Column field="id" header="Sr No." style={{ width: "90px" }} sortable/>
                 <Column
                   field="employeeName"
                   header="Employee Name (Code)"
                   sortable
                 />
-                <Column field="orderDate" header="Order Date" />
-                <Column field="district" header="District" />
-                <Column field="vehicleNumber" header="Vehicle No." />
-                <Column field="designation" header="Designation" />
-                <Column field="orderNumber" header="Order No." />
-                <Column field="vehicleType" header="Type" />
+                <Column field="orderDate" header="Order Date" sortable/>
+                <Column field="district" header="District" sortable/>
+                <Column field="vehicleNumber" header="Vehicle No." sortable/>
+                <Column field="designation" header="Designation" sortable/>
+                <Column field="orderNumber" header="Order No." sortable/>
+                <Column field="vehicleType" header="Type" sortable/>
               </DataTable>
             </div>
           )}
@@ -204,7 +203,7 @@ export default function VehicleDeallocationTransfer() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Select Vehicle to Process *
+                      Select Vehicle to Process <span className="text-red-500">*</span>
                     </label>
                     <Dropdown
                       options={vehicles}
@@ -217,10 +216,6 @@ export default function VehicleDeallocationTransfer() {
                       label="Fetch Details"
                       icon="pi pi-search"
                       className="p-button-sm"
-                    />
-                    <Button
-                      icon="pi pi-refresh"
-                      className="p-button-outlined p-button-secondary p-button-sm"
                     />
                   </div>
                 </div>
@@ -248,7 +243,7 @@ export default function VehicleDeallocationTransfer() {
 
               <div className="p-5 border-l-4 border-blue-500 bg-blue-50 rounded-r-lg">
                 <label className="block text-sm font-bold text-blue-900 mb-3 uppercase tracking-wider">
-                  Select Action Type
+                  Select Action Type <span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   options={vehicleProcessOptions}
@@ -265,7 +260,7 @@ export default function VehicleDeallocationTransfer() {
                   <div className="flex gap-2 items-end">
                     <div className="flex-grow">
                       <label className="block text-sm font-semibold text-gray-700 mb-2">
-                        Employee ID
+                        Employee ID <span className="text-red-500">*</span>
                       </label>
                       <InputText placeholder="Search ID" className="w-full" />
                     </div>
@@ -276,7 +271,7 @@ export default function VehicleDeallocationTransfer() {
                   </div>
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Employee Name With Code *
+                      Employee Name With Code <span className="text-red-500">*</span>
                     </label>
                     <InputText
                       placeholder="Auto-populated name"
@@ -286,7 +281,7 @@ export default function VehicleDeallocationTransfer() {
                   </div>
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Select District *
+                      Select District <span className="text-red-500">*</span>
                     </label>
                     <Dropdown
                       options={district}
@@ -296,13 +291,13 @@ export default function VehicleDeallocationTransfer() {
                   </div>
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      DDO/College Code *
+                      DDO/College Code <span className="text-red-500">*</span>
                     </label>
                     <InputText placeholder="Enter Code" className="w-full" />
                   </div>
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Designation *
+                      Designation <span className="text-red-500">*</span>
                     </label>
                     <InputText
                       placeholder="Enter Designation"
@@ -319,7 +314,7 @@ export default function VehicleDeallocationTransfer() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Order Number *
+                      Order Number <span className="text-red-500">*</span>
                     </label>
                     <InputText
                       placeholder="Enter Order No."
@@ -328,7 +323,7 @@ export default function VehicleDeallocationTransfer() {
                   </div>
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Order Date *
+                      Order Date <span className="text-red-500">*</span>
                     </label>
                     <Calendar
                       placeholder="DD/MM/YYYY"
@@ -338,7 +333,7 @@ export default function VehicleDeallocationTransfer() {
                   </div>
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Upload Order Copy *
+                      Upload Order Copy <span className="text-red-500">*</span>
                     </label>
                     <div className="flex w-full">
                       <InputText
@@ -350,7 +345,7 @@ export default function VehicleDeallocationTransfer() {
                   </div>
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Driver Name
+                      Driver Name <span className="text-red-500">*</span>
                     </label>
                     <InputText
                       placeholder="Name of driver"
@@ -359,7 +354,7 @@ export default function VehicleDeallocationTransfer() {
                   </div>
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Driver's Mobile Number
+                      Driver's Mobile Number <span className="text-red-500">*</span>
                     </label>
                     <InputText
                       placeholder="10-digit mobile"
@@ -368,7 +363,7 @@ export default function VehicleDeallocationTransfer() {
                   </div>
                   <div className="lg:col-span-1">
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Remarks
+                      Remarks <span className="text-red-500">*</span>
                     </label>
                     <InputText
                       placeholder="Any internal notes"

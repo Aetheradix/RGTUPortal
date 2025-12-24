@@ -114,10 +114,10 @@ export default function VehicleMaintenanceRequest() {
               className="p-datatable-sm"
             
             >
-              <Column field="id" header="Sr.No." style={{ width: "70px" }} />
+              <Column field="id" header="Sr.No." style={{ width: "70px" }} sortable/>
               <Column field="maintenanceType" header="Type" sortable />
               <Column field="vehicleNumber" header="Vehicle Number" sortable />
-              <Column field="allotmentDate" header="Allotment Date" />
+              <Column field="allotmentDate" header="Allotment Date" sortable/>
               <Column
                 field="reason"
                 header="Reason for Maintenance"
@@ -162,7 +162,7 @@ export default function VehicleMaintenanceRequest() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6 items-end">
                   <div className="md:col-span-2">
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Target Vehicle Number *
+                      Target Vehicle Number <span className="text-red-500">*</span>
                     </label>
                     <Dropdown
                       options={vehicleOptions}
@@ -192,82 +192,74 @@ export default function VehicleMaintenanceRequest() {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                       <div>
                         <label className="block text-xs font-bold text-gray-500 uppercase mb-1">
-                          Vehicle Type
+                          Vehicle Type <span className="text-red-500">*</span>
                         </label>
                         <InputText
                           value="XUV"
                           className="w-full bg-gray-50 font-medium"
-                          readOnly
                         />
                       </div>
                       <div>
                         <label className="block text-xs font-bold text-gray-500 uppercase mb-1">
-                          Chassis Number
+                          Chassis Number <span className="text-red-500">*</span>
                         </label>
                         <InputText
                           value="1HGC65648946585"
                           className="w-full bg-gray-50 font-medium"
-                          readOnly
                         />
                       </div>
                       <div>
                         <label className="block text-xs font-bold text-gray-500 uppercase mb-1">
-                          Registration No.
+                          Registration No. <span className="text-red-500">*</span>
                         </label>
                         <InputText
                           value="MP04-HA-1985"
                           className="w-full bg-gray-50 font-medium"
-                          readOnly
                         />
                       </div>
                       <div>
                         <label className="block text-xs font-bold text-gray-500 uppercase mb-1">
-                          Allotment Date
+                          Allotment Date <span className="text-red-500">*</span>
                         </label>
                         <Calendar
                           value={new Date("2024-01-01")}
                           className="w-full"
-                          disabled
                         />
                       </div>
                       <div>
                         <label className="block text-xs font-bold text-gray-500 uppercase mb-1">
-                          Office Type
+                          Office Type <span className="text-red-500">*</span>
                         </label>
                         <InputText
                           value="JD"
                           className="w-full bg-gray-50"
-                          readOnly
                         />
                       </div>
                       <div>
                         <label className="block text-xs font-bold text-gray-500 uppercase mb-1">
-                          Office Name
+                          Office Name <span className="text-red-500">*</span>
                         </label>
                         <InputText
                           value="Bhopal"
                           className="w-full bg-gray-50"
-                          readOnly
                         />
                       </div>
                       <div>
                         <label className="block text-xs font-bold text-gray-500 uppercase mb-1">
-                          Employee (Code)
+                          Employee (Code) <span className="text-red-500">*</span>
                         </label>
                         <InputText
                           value="E0561-Raj"
                           className="w-full bg-gray-50"
-                          readOnly
                         />
                       </div>
                       <div>
                         <label className="block text-xs font-bold text-gray-500 uppercase mb-1">
-                          Designation
+                          Designation <span className="text-red-500">*</span>
                         </label>
                         <InputText
                           value="Adhyapak"
                           className="w-full bg-gray-50"
-                          readOnly
                         />
                       </div>
                     </div>
@@ -281,7 +273,7 @@ export default function VehicleMaintenanceRequest() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                       <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-2">
-                          Maintenance Category *
+                          Maintenance Category <span className="text-red-500">*</span>
                         </label>
                         <Dropdown
                           options={maintenanceTypeOptions}
@@ -292,7 +284,7 @@ export default function VehicleMaintenanceRequest() {
 
                       <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-2">
-                          Detailed Reason *
+                          Detailed Reason <span className="text-red-500">*</span>
                         </label>
                         <InputTextarea
                           placeholder="Describe the issues or work required..."
@@ -304,7 +296,7 @@ export default function VehicleMaintenanceRequest() {
 
                       <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-2">
-                          Upload Quotation (PDF/Image) *
+                          Upload Quotation (PDF/Image) <span className="text-red-500">*</span>
                         </label>
                         <div className="flex w-full">
                           <input

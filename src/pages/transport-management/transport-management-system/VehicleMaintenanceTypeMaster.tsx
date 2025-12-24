@@ -35,7 +35,7 @@ export default function VehicaleMaintenanceType() {
       maintananceTypeCategory: "Tire Replacement",
       categoryCriteria: "Replace tires after 40000 km",
       isActive: true,
-    }
+    },
   ]);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -68,52 +68,91 @@ export default function VehicaleMaintenanceType() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Maintenance Type Name
+                Maintenance Type Name <span className="text-red-500">*</span>
               </label>
               <InputText
                 value={formData.maintananceTypeName}
-                onChange={(e) => setFormData({ ...formData, maintananceTypeName: e.target.value })}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    maintananceTypeName: e.target.value,
+                  })
+                }
                 className="w-full"
                 placeholder="Enter Maintenance Type Name"
               />
             </div>
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Maintenance Type Category
+                Maintenance Type Category <span className="text-red-500">*</span>
               </label>
               <InputText
                 value={formData.maintananceTypeCategory}
-                onChange={(e) => setFormData({ ...formData, maintananceTypeCategory: e.target.value })}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    maintananceTypeCategory: e.target.value,
+                  })
+                }
                 className="w-full"
                 placeholder="Enter Category"
               />
             </div>
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Category Criteria
+                Category Criteria <span className="text-red-500">*</span>
               </label>
               <InputText
                 value={formData.categoryCriteria}
-                onChange={(e) => setFormData({ ...formData, categoryCriteria: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, categoryCriteria: e.target.value })
+                }
                 className="w-full"
                 placeholder="Enter Criteria Details"
               />
             </div>
           </div>
           <div className="flex justify-end gap-3 border-t pt-4">
-            <Button label="Reset" icon="pi pi-refresh" className="p-button-outlined p-button-secondary" />
-            <Button label="Save" icon="pi pi-save" className="p-button-primary px-6" />
+            <Button
+              label="Reset"
+              icon="pi pi-refresh"
+              className="p-button-outlined p-button-secondary"
+            />
+            <Button
+              label="Save"
+              icon="pi pi-save"
+              className="p-button-primary px-6"
+            />
           </div>
         </form>
       </div>
 
       <div className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
-        <DataTable value={VehicaleMaintenanceTypes} paginator rows={10} className="p-datatable-sm">
-          <Column field="id" header="ID" style={{ width: "70px" }} />
-          <Column field="maintananceTypeName" header="Maintenance Name" />
-          <Column field="maintananceTypeCategory" header="Category" />
-          <Column field="categoryCriteria" header="Criteria" />
-          <Column header="Actions" body={actionBodyTemplate} align="center" style={{ width: "120px" }} />
+        <DataTable
+          value={VehicaleMaintenanceTypes}
+          paginator
+          rows={10}
+          className="p-datatable-sm"
+        >
+          <Column
+            field="id"
+            header="Sr No."
+            style={{ width: "90px" }}
+            sortable
+          />
+          <Column
+            field="maintananceTypeName"
+            header="Maintenance Name"
+            sortable
+          />
+          <Column field="maintananceTypeCategory" header="Category" sortable />
+          <Column field="categoryCriteria" header="Criteria" sortable />
+          <Column
+            header="Actions"
+            body={actionBodyTemplate}
+            align="center"
+            style={{ width: "120px" }}
+          />
         </DataTable>
       </div>
     </PageLayout>

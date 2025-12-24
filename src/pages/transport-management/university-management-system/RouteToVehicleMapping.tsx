@@ -71,7 +71,9 @@ export default function RouteToVehicleMapping() {
         <div className="space-y-6">
           <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
             <div className="flex justify-between items-center mb-6 border-b pb-4">
-              <h2 className="text-xl font-bold text-gray-800">Route To Vehicle Mapping List</h2>
+              <h2 className="text-xl font-bold text-gray-800">
+                Route To Vehicle Mapping List
+              </h2>
               <Button
                 label="Add Route To Vehicle Mapping"
                 icon="pi pi-plus"
@@ -79,18 +81,32 @@ export default function RouteToVehicleMapping() {
               />
             </div>
 
-            <DataTable 
-              value={mappingList} 
-              paginator 
-              rows={10} 
+            <DataTable
+              value={mappingList}
+              paginator
+              rows={10}
               className="p-datatable-sm"
-            
             >
-              <Column header="Sr No." body={(_, { rowIndex }) => rowIndex + 1} style={{ width: "80px" }} />
+              <Column
+                header="Sr No."
+                body={(_, { rowIndex }) => rowIndex + 1}
+                style={{ width: "90px" }}
+                sortable
+              />
               <Column field="routeNo" header="Route No." sortable />
               <Column field="vehicleNo" header="Vehicle No." sortable />
-              <Column field="status" header="Status" body={statusBodyTemplate} align="center" />
-              <Column header="Actions" body={actionBodyTemplate} align="center" style={{ width: "120px" }} />
+              <Column
+                field="status"
+                header="Status"
+                body={statusBodyTemplate}
+                align="center"
+              />
+              <Column
+                header="Actions"
+                body={actionBodyTemplate}
+                align="center"
+                style={{ width: "120px" }}
+              />
             </DataTable>
           </div>
         </div>
@@ -98,45 +114,52 @@ export default function RouteToVehicleMapping() {
         <div className="space-y-6">
           <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
             <div className="flex justify-between items-center mb-6 border-b pb-4">
-              <h2 className="text-xl font-bold text-gray-800">Add Route To Vehicle Mapping</h2>
-              <Button 
-                label="Go Back" 
+              <h2 className="text-xl font-bold text-gray-800">
+                Add Route To Vehicle Mapping
+              </h2>
+              <Button
+                label="Go Back"
                 icon="pi pi-arrow-left"
-                className="p-button-secondary p-button-text" 
-                onClick={() => setShowForm(false)} 
+                className="p-button-secondary p-button-text"
+                onClick={() => setShowForm(false)}
               />
             </div>
 
             <div className="p-4 bg-gray-50 rounded-lg border border-gray-100">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              
                 <div className="flex flex-col gap-2">
-                  <label className="text-sm font-semibold text-gray-700">Select Route No. *</label>
-                  <Dropdown 
-                    options={routeOptions} 
-                    placeholder="Select Route" 
-                    className="w-full" 
+                  <label className="text-sm font-semibold text-gray-700">
+                    Select Route No. <span className="text-red-500">*</span>
+                  </label>
+                  <Dropdown
+                    options={routeOptions}
+                    placeholder="Select Route"
+                    className="w-full"
                   />
                 </div>
 
-               
                 <div className="flex flex-col gap-2">
-                  <label className="text-sm font-semibold text-gray-700">Select Vehicle No. *</label>
-                  <Dropdown 
-                    options={vehicleOptions} 
-                    placeholder="Select Vehicle" 
-                    className="w-full" 
+                  <label className="text-sm font-semibold text-gray-700">
+                    Select Vehicle No. <span className="text-red-500">*</span>
+                  </label>
+                  <Dropdown
+                    options={vehicleOptions}
+                    placeholder="Select Vehicle"
+                    className="w-full"
                   />
                 </div>
 
-             
                 <div className="flex flex-col gap-2">
-                  <label className="text-sm font-semibold text-gray-700">Status *</label>
+                  <label className="text-sm font-semibold text-gray-700">
+                    Status <span className="text-red-500">*</span>
+                  </label>
                   <div className="flex items-center gap-2 mt-1">
-                    <span className="text-sm text-gray-700 font-medium">Active</span>
-                    <Checkbox 
-                      onChange={e => setIsActive(e.checked ?? false)} 
-                      checked={isActive} 
+                    <span className="text-sm text-gray-700 font-medium">
+                      Active
+                    </span>
+                    <Checkbox
+                      onChange={(e) => setIsActive(e.checked ?? false)}
+                      checked={isActive}
                     />
                   </div>
                 </div>
@@ -144,18 +167,18 @@ export default function RouteToVehicleMapping() {
             </div>
 
             <div className="flex justify-center gap-4 mt-10 border-t pt-8">
-              <Button 
-                label="Save Mapping" 
+              <Button
+                label="Save Mapping"
                 icon="pi pi-check"
-                className="px-8 shadow-md" 
-                onClick={() => setShowForm(false)} 
+                className="px-8 shadow-md"
+                onClick={() => setShowForm(false)}
               />
-              <Button 
-                label="Clear" 
+              <Button
+                label="Clear"
                 icon="pi pi-refresh"
-                severity="danger" 
+                severity="danger"
                 outlined
-                className="px-8" 
+                className="px-8"
                 onClick={() => setIsActive(true)}
               />
             </div>

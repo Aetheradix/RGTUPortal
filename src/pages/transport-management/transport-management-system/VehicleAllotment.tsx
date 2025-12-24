@@ -89,12 +89,12 @@ const VehicleAllotment: React.FC = () => {
             paginator
             rows={10}
           >
-            <Column field="id" header="Sr No." style={{ width: "70px" }} />
+            <Column field="id" header="Sr No." style={{ width: "90px" }} sortable />
             <Column field="employeeId" header="Employee ID" sortable />
             <Column field="employeeName" header="Employee Name" sortable />
-            <Column field="district" header="District" />
-            <Column field="designation" header="Designation" />
-            <Column field="vehicleNumber" header="Vehicle No." />
+            <Column field="district" header="District" sortable/>
+            <Column field="designation" header="Designation" sortable/>
+            <Column field="vehicleNumber" header="Vehicle No." sortable/>
             <Column
               header="Actions"
               body={actionBodyTemplate}
@@ -127,7 +127,7 @@ const VehicleAllotment: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
               <div className="md:col-span-1">
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Employee ID *
+                  Employee ID <span className="text-red-500">*</span>
                 </label>
                 <div className="p-inputgroup">
                   <InputText
@@ -145,7 +145,7 @@ const VehicleAllotment: React.FC = () => {
                 <>
                   <div>
                     <label className="block text-sm font-semibold text-gray-600 mb-2">
-                      Employee Name
+                      Employee Name <span className="text-red-500">*</span>
                     </label>
                     <InputText
                       value={form.employeeName}
@@ -155,7 +155,7 @@ const VehicleAllotment: React.FC = () => {
                   </div>
                   <div>
                     <label className="block text-sm font-semibold text-gray-600 mb-2">
-                      District
+                      District <span className="text-red-500">*</span>
                     </label>
                     <InputText
                       value={form.district}
@@ -165,7 +165,7 @@ const VehicleAllotment: React.FC = () => {
                   </div>
                   <div>
                     <label className="block text-sm font-semibold text-gray-600 mb-2">
-                      Designation
+                      Designation <span className="text-red-500">*</span>
                     </label>
                     <InputText
                       value={form.designation}
@@ -188,7 +188,7 @@ const VehicleAllotment: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end mb-6">
                 <div className="md:col-span-1">
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Vehicle Number *
+                    Vehicle Number <span className="text-red-500">*</span>
                   </label>
                   <div className="p-inputgroup">
                     <InputText
@@ -210,7 +210,7 @@ const VehicleAllotment: React.FC = () => {
                   <>
                     <div>
                       <label className="block text-sm font-semibold text-gray-600 mb-2">
-                        Company
+                        Company <span className="text-red-500">*</span>
                       </label>
                       <InputText
                         value={form.vehicleCompany}
@@ -220,7 +220,7 @@ const VehicleAllotment: React.FC = () => {
                     </div>
                     <div>
                       <label className="block text-sm font-semibold text-gray-600 mb-2">
-                        Model
+                        Model <span className="text-red-500">*</span>
                       </label>
                       <InputText
                         value={form.vehicleModel}
@@ -230,7 +230,7 @@ const VehicleAllotment: React.FC = () => {
                     </div>
                     <div>
                       <label className="block text-sm font-semibold text-gray-600 mb-2">
-                        Fuel Type
+                        Fuel Type <span className="text-red-500">*</span>
                       </label>
                       <InputText
                         value={form.fuelType}
@@ -255,7 +255,7 @@ const VehicleAllotment: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Order Number *
+                    Order Number <span className="text-red-500">*</span>
                   </label>
                   <InputText
                     placeholder="Enter Order No."
@@ -268,7 +268,7 @@ const VehicleAllotment: React.FC = () => {
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Order Date *
+                    Order Date <span className="text-red-500">*</span>
                   </label>
                   <Calendar
                     value={form.orderDate}
@@ -282,7 +282,7 @@ const VehicleAllotment: React.FC = () => {
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Driver Name *
+                    Driver Name <span className="text-red-500">*</span>
                   </label>
                   <InputText
                     placeholder="Full Name"
@@ -295,7 +295,7 @@ const VehicleAllotment: React.FC = () => {
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Driver Mobile *
+                    Driver Mobile <span className="text-red-500">*</span>
                   </label>
                   <InputText
                     placeholder="10 digit number"
@@ -308,7 +308,7 @@ const VehicleAllotment: React.FC = () => {
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Upload Allotment Copy *
+                    Upload Allotment Copy <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="file"
@@ -317,7 +317,7 @@ const VehicleAllotment: React.FC = () => {
                 </div>
                 <div className="md:col-span-3">
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Remark
+                    Remark <span className="text-red-500">*</span>
                   </label>
                   <InputText
                     placeholder="Enter any additional notes..."

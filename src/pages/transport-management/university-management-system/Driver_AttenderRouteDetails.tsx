@@ -129,7 +129,7 @@ export default function DriverAttenderRouteDetails() {
               className="p-datatable-sm"
              
             >
-              <Column header="Sr No." body={(_, { rowIndex }) => rowIndex + 1} style={{ width: "80px" }} />
+              <Column header="Sr No." body={(_, { rowIndex }) => rowIndex + 1} style={{ width: "90px" }} sortable/>
               <Column field="routeNo" header="Route No." sortable />
               <Column field="registrationType" header="Registration Type" sortable />
               <Column field="nameDriverAttender" header="Name Driver / Attender" sortable />

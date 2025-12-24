@@ -116,7 +116,7 @@ export default function VehicleMaintenanceApproval() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
             <div>
               <label className="block mb-2 font-medium text-sm">
-                Select Year*
+                Select Year <span className="text-red-500">*</span>
               </label>
               <Dropdown
                 value={filters.year}
@@ -128,7 +128,7 @@ export default function VehicleMaintenanceApproval() {
             </div>
             <div>
               <label className="block mb-2 font-medium text-sm">
-                Select Maintenance Type*
+                Select Maintenance Type <span className="text-red-500">*</span>
               </label>
               <Dropdown
                 value={filters.maintType}
@@ -171,11 +171,11 @@ export default function VehicleMaintenanceApproval() {
             size="small"
             className="p-datatable-gridlines"
           >
-            <Column field="id" header="Sr.No." />
-            <Column field="maintenanceType" header="Maintenance Type" />
-            <Column field="vehicleNo" header="Vehicle Number" />
-            <Column field="allotmentDate" header="Allotment Date" />
-            <Column field="reason" header="Reason for Maintenance" />
+            <Column field="id" header="Sr.No." style={{width:"10px"}} sortable/>
+            <Column field="maintenanceType" header="Maintenance Type" sortable/>
+            <Column field="vehicleNo" header="Vehicle Number" sortable/>
+            <Column field="allotmentDate" header="Allotment Date" sortable/>
+            <Column field="reason" header="Reason for Maintenance" sortable/>
             <Column
               header="Document"
               body={() => (
@@ -196,12 +196,12 @@ export default function VehicleMaintenanceApproval() {
             size="small"
             className="p-datatable-gridlines"
           >
-            <Column field="id" header="Sr.No." />
-            <Column field="vehicleNo" header="Vehicle Number" />
-            <Column header="Office Name" body={() => "DDO"} />
-            <Column header="Office Code" body={() => "Bhopal"} />
-            <Column header="Employee Name" body={() => "E0561-Raj"} />
-            <Column field="maintenanceType" header="Maintenance Type" />
+            <Column field="id" header="Sr.No." style={{width:"10px"}} sortable/>
+            <Column field="vehicleNo" header="Vehicle Number" sortable/>
+            <Column header="Office Name" body={() => "DDO"} sortable/>
+            <Column header="Office Code" body={() => "Bhopal"} sortable/>
+            <Column header="Employee Name" body={() => "E0561-Raj"} sortable/>
+            <Column field="maintenanceType" header="Maintenance Type"sortable />
             <Column
               header="Document View"
               body={() => (

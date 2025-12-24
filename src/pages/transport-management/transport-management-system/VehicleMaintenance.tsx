@@ -76,7 +76,7 @@ export default function VehicleMaintenance() {
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-6">
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Year *
+                  Year <span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={filters.year}
@@ -89,7 +89,7 @@ export default function VehicleMaintenance() {
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  District *
+                  District <span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={filters.district}
@@ -104,7 +104,7 @@ export default function VehicleMaintenance() {
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Office Type *
+                  Office Type <span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={filters.officeType}
@@ -119,7 +119,7 @@ export default function VehicleMaintenance() {
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Office Name *
+                  Office Name <span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={filters.officeName}
@@ -134,7 +134,7 @@ export default function VehicleMaintenance() {
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Maintenance Type *
+                  Maintenance Type <span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={filters.maintenanceType}
@@ -172,19 +172,19 @@ export default function VehicleMaintenance() {
                 rows={10}
                 className="p-datatable-sm"
               >
-                <Column field="id" header="Sr No" style={{ width: "70px" }} />
-                <Column field="year" header="Year" />
+                <Column field="id" header="Sr No" style={{ width: "70px" }} sortable/>
+                <Column field="year" header="Year" sortable/>
                 <Column
                   field="vehicleNumber"
                   header="Vehicle Number"
                   sortable
                 />
-                <Column field="maintenanceType" header="Type" />
-                <Column field="previousReading" header="Prev Km" />
-                <Column field="currentReading" header="Curr Km" />
-                <Column field="difference" header="Diff" />
-                <Column field="billAmount" header="Amount" />
-                <Column field="details" header="Details" />
+                <Column field="maintenanceType" header="Type" sortable/>
+                <Column field="previousReading" header="Prev Km" sortable/>
+                <Column field="currentReading" header="Curr Km" sortable/>
+                <Column field="difference" header="Diff" sortable/>
+                <Column field="billAmount" header="Amount" sortable/>
+                <Column field="details" header="Details" sortable/>
               </DataTable>
             </div>
           )}
@@ -209,7 +209,7 @@ export default function VehicleMaintenance() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Vehicle Number *
+                  Vehicle Number <span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={form.vehicleNumber}
@@ -222,7 +222,7 @@ export default function VehicleMaintenance() {
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Type Of Body *
+                  Type Of Body <span className="text-red-500">*</span>
                 </label>
                 <InputText
                   value={form.bodyType}
@@ -236,7 +236,7 @@ export default function VehicleMaintenance() {
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Previous Reading (Km) *
+                  Previous Reading (Km) <span className="text-red-500">*</span>
                 </label>
                 <InputText
                   value={form.previousReading}
@@ -250,7 +250,7 @@ export default function VehicleMaintenance() {
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Previous Bill Date *
+                  Previous Bill Date <span className="text-red-500">*</span>
                 </label>
                 <InputText
                   value={form.previousBillDate}
@@ -264,7 +264,7 @@ export default function VehicleMaintenance() {
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Previous Bill Amount *
+                  Previous Bill Amount <span className="text-red-500">*</span>
                 </label>
                 <InputText
                   value={form.previousBillAmount}
@@ -278,7 +278,7 @@ export default function VehicleMaintenance() {
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Current Reading (Km) *
+                  Current Reading (Km) <span className="text-red-500">*</span>
                 </label>
                 <InputText
                   value={form.currentReading}
@@ -292,7 +292,7 @@ export default function VehicleMaintenance() {
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Difference Reading (Km) *
+                  Difference Reading (Km) <span className="text-red-500">*</span>
                 </label>
                 <InputText
                   value={form.differenceReading}
@@ -306,7 +306,7 @@ export default function VehicleMaintenance() {
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Bill Number *
+                  Bill Number <span className="text-red-500">*</span>
                 </label>
                 <InputText
                   value={form.billNumber}
@@ -320,7 +320,7 @@ export default function VehicleMaintenance() {
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Bill Date *
+                  Bill Date <span className="text-red-500">*</span>
                 </label>
                 <Calendar
                   value={form.billDate}
@@ -335,7 +335,7 @@ export default function VehicleMaintenance() {
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Bill Amount *
+                  Bill Amount <span className="text-red-500">*</span>
                 </label>
                 <InputText
                   value={form.billAmount}
@@ -349,7 +349,7 @@ export default function VehicleMaintenance() {
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Upload Quotation *
+                  Upload Quotation <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="file"
@@ -359,7 +359,7 @@ export default function VehicleMaintenance() {
 
               <div className="lg:col-span-2">
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Vehicle Expenses Details *
+                  Vehicle Expenses Details <span className="text-red-500">*</span>
                 </label>
                 <InputText
                   value={form.expensesDetails}

@@ -82,12 +82,12 @@ export default function BusStopEnrollment() {
               paginator
               rows={10}
               className="p-datatable-sm"
-             
             >
               <Column
                 header="Sr No."
                 body={(_, { rowIndex }) => rowIndex + 1}
-                style={{ width: "70px" }}
+                style={{ width: "90px" }}
+                sortable
               />
               <Column field="busRouteNo" header="Bus Route No." sortable />
               <Column field="studentName" header="Student Name" sortable />
@@ -128,7 +128,8 @@ export default function BusStopEnrollment() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                   <div className="flex flex-col gap-2">
                     <label className="text-sm font-semibold text-gray-700">
-                      Select Enrollment Type*
+                      Select Enrollment Type{" "}
+                      <span className="text-red-500">*</span>
                     </label>
                     <Dropdown
                       options={[]}
@@ -136,10 +137,9 @@ export default function BusStopEnrollment() {
                       className="w-full"
                     />
                   </div>
-
                   <div className="flex flex-col gap-2">
                     <label className="text-sm font-semibold text-gray-700">
-                      Select Course*
+                      Select Course <span className="text-red-500">*</span>
                     </label>
                     <Dropdown
                       options={[]}
@@ -147,10 +147,10 @@ export default function BusStopEnrollment() {
                       className="w-full"
                     />
                   </div>
-
                   <div className="flex flex-col gap-2">
                     <label className="text-sm font-semibold text-gray-700">
-                      Select Student Name *
+                      Select Student Name{" "}
+                      <span className="text-red-500">*</span>
                     </label>
                     <Dropdown
                       options={[]}
@@ -158,10 +158,10 @@ export default function BusStopEnrollment() {
                       className="w-full"
                     />
                   </div>
-
                   <div className="flex flex-col gap-2">
                     <label className="text-sm font-semibold text-gray-700">
-                      Select Bus Stop Route No.*
+                      Select Bus Stop Route No.
+                      <span className="text-red-500">*</span>
                     </label>
                     <Dropdown
                       options={[]}
@@ -169,21 +169,21 @@ export default function BusStopEnrollment() {
                       className="w-full"
                     />
                   </div>
-
                   <div className="flex flex-col gap-2">
                     <label className="text-sm font-semibold text-gray-700">
-                      Select Bus Stop Name*
+                      Select Bus Stop Name{" "}
+                      <span className="text-red-500">*</span>
                     </label>
                     <Dropdown
                       options={[]}
                       placeholder="Select"
                       className="w-full"
                     />
-                  </div>  <div></div>
-
+                  </div>{" "}
+                  <div></div>
                   <div className="flex flex-col gap-2">
                     <label className="text-sm font-semibold text-gray-700">
-                      Status *
+                      Status <span className="text-red-500">*</span>
                     </label>
                     <div className="flex items-center gap-2 mt-1">
                       <span className="text-sm text-gray-700 font-medium">
@@ -253,6 +253,5 @@ export default function BusStopEnrollment() {
         </div>
       )}
     </PageLayout>
-  
   );
 }
