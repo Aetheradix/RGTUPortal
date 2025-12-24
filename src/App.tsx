@@ -1,8 +1,10 @@
+import React, { Suspense } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import Login from "./components/auth";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import AppLayout from "./layout/AppLayout";
 import AppFeature from "./pages";
+
+const Login = React.lazy(() => import("./components/auth"));
 
 
 const ProtectedApp = () => {
@@ -11,7 +13,6 @@ const ProtectedApp = () => {
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
   }
-
   return (
     <AppLayout>
       <AppFeature />
@@ -22,10 +23,12 @@ const ProtectedApp = () => {
 const App = () => {
   return (
     <AuthProvider>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/*" element={<ProtectedApp />} />
-      </Routes>
+      <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/*" element={<ProtectedApp />} />
+        </Routes>
+      </Suspense>
     </AuthProvider>
   );
 };

@@ -16,7 +16,7 @@ const FillExamFormAndPay: React.FC = () => {
   return (
     <PageLayout title="Fill Exam Form and Pay Exam">
 
-      {/* ================= SEARCH ================= */}
+
       <Card className="mb-4">
         <h1 className="mb-3">Fill Exam Form</h1>
 
@@ -37,7 +37,7 @@ const FillExamFormAndPay: React.FC = () => {
         </div>
       </Card>
 
-      {/* ================= STUDENT DETAILS ================= */}
+
       {step !== 'search' && (
         <Card className="mb-4">
           <h3 className="mb-3">Student Personal Details</h3>
@@ -81,7 +81,6 @@ const FillExamFormAndPay: React.FC = () => {
         </Card>
       )}
 
-      {/* ================= FEES DETAILS ================= */}
       {step === 'fees' && (
         <Card className="mb-4">
           <h3 className="mb-3">Fees Details</h3>
@@ -126,7 +125,7 @@ const FillExamFormAndPay: React.FC = () => {
         </Card>
       )}
 
-      {/* ================= RECEIPT POPUP ================= */}
+
       <Dialog
         header="Payment Receipt"
         visible={showReceipt}

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import PageLayout from "@/components/PageLayout";
 import { Card } from "primereact/card";
@@ -10,7 +11,7 @@ import { Calendar } from "primereact/calendar";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Dialog } from "primereact/dialog";
 
-/* ================= DUMMY LIST ================= */
+
 const admitList = [
   { id: 1, exam: "Mid-Term Exams", course: "B.Tech", semester: "1st" },
   { id: 2, exam: "Final Exams", course: "M.Tech", semester: "2nd" },
@@ -25,10 +26,10 @@ const GenerateAdmitCards: React.FC = () => {
 
   return (
     <PageLayout title="Generate Admit Cards">
-      {/* ================= LIST VIEW ================= */}
+  
       {!addMode && (
         <Card className="shadow-sm border rounded-lg">
-          {/* Header with Add button on same line */}
+       
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-lg font-semibold">Generate Admit Cards List</h3>
             <Button
@@ -54,7 +55,6 @@ const GenerateAdmitCards: React.FC = () => {
             <Column field="semester" header="Semester" />
           </DataTable>
 
-          {/* ===== DETAILS ON ROW CLICK ===== */}
           {selectedRow && (
             <Card className="mt-5 bg-gray-50 border rounded-lg">
               <h4 className="font-semibold mb-3">Admit Card Details</h4>
@@ -71,7 +71,7 @@ const GenerateAdmitCards: React.FC = () => {
         </Card>
       )}
 
-      {/* ================= ADD MODE ================= */}
+    
       {addMode && (
         <Card className="shadow-sm border rounded-lg">
           <div className="flex justify-between items-center mb-4">
@@ -125,7 +125,7 @@ const GenerateAdmitCards: React.FC = () => {
         </Card>
       )}
 
-      {/* ================= CONFIRM DIALOG ================= */}
+    
       <Dialog
         header="Are you sure?"
         visible={confirm}
@@ -140,7 +140,7 @@ const GenerateAdmitCards: React.FC = () => {
         </div>
       </Dialog>
 
-      {/* ================= SUCCESS DIALOG ================= */}
+
       <Dialog
         header="Success!"
         visible={success}

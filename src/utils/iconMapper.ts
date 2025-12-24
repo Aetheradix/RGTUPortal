@@ -4,7 +4,6 @@ import {
   MdPeople,
   MdBusiness,
   MdSchool,
-  MdAssignment,
   MdPersonAdd,
   MdAccountTree,
   MdDirectionsBus,
