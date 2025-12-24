@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PageLayout from '../../../components/PageLayout';
 import { Button } from 'primereact/button';
 import { Input, Dropdown, Table, type TableColumn } from '../../../ui/shared';
-import { DateInput, Textarea } from '../../../ui/shared/Input';
+import { DateInput } from '../../../ui/shared/Input';
 import { Checkbox } from 'primereact/checkbox';
 
 interface LeaveRequestRow {

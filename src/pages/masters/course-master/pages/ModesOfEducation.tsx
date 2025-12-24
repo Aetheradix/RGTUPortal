@@ -1,4 +1,3 @@
-import React from 'react';
 import MasterCrudPage, { type MasterField } from '@/pages/masters/shared/MasterCrudPage';
 import type { TableColumn } from '@/ui/shared';
 import { actionsCol, statusCol } from '../sharedColumns';
@@ -34,6 +33,7 @@ export default function ModesOfEducation() {
     />
   );
 }
+
 
 
 

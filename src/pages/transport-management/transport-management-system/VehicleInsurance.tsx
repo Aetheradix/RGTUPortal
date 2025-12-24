@@ -68,7 +68,7 @@ export default function VehicleInsurance() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Financial Year
+                  Financial Year <span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={filters.year}
@@ -81,7 +81,7 @@ export default function VehicleInsurance() {
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Office Type
+                  Office Type <span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={filters.officeType}
@@ -96,7 +96,7 @@ export default function VehicleInsurance() {
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Head Office
+                  Head Office <span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={filters.headOffice}
@@ -111,7 +111,7 @@ export default function VehicleInsurance() {
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  District
+                  District <span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={filters.district}
@@ -126,7 +126,7 @@ export default function VehicleInsurance() {
 
               <div className="md:col-span-2 lg:col-span-1">
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Insurance Type
+                  Insurance Type <span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={filters.insuranceType}
@@ -163,14 +163,13 @@ export default function VehicleInsurance() {
                 paginator
                 rows={10}
                 className="p-datatable-sm"
-                responsiveLayout="scroll"
               >
-                <Column field="id" header="Sr No" style={{ width: "70px" }} />
+                <Column field="id" header="Sr No" style={{ width: "70px" }} sortable/>
                 <Column field="vehicleNo" header="Vehicle Number" sortable />
-                <Column field="insuranceType" header="Insurance Type" />
-                <Column field="startDate" header="Start Date" />
-                <Column field="endDate" header="End Date" />
-                <Column field="amount" header="Premium Amount" />
+                <Column field="insuranceType" header="Insurance Type" sortable/>
+                <Column field="startDate" header="Start Date" sortable/>
+                <Column field="endDate" header="End Date" sortable/>
+                <Column field="amount" header="Premium Amount" sortable/>
               </DataTable>
             </div>
           )}
@@ -195,7 +194,7 @@ export default function VehicleInsurance() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Vehicle Number
+                  Vehicle Number <span className="text-red-500">*</span>
                 </label>
                 <Dropdown
                   value={form.vehicleNumber}
@@ -208,7 +207,7 @@ export default function VehicleInsurance() {
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Insurance Company
+                  Insurance Company <span className="text-red-500">*</span>
                 </label>
                 <InputText
                   placeholder="e.g. LIC, HDFC Ergo"
@@ -222,7 +221,7 @@ export default function VehicleInsurance() {
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Policy Number
+                  Policy Number <span className="text-red-500">*</span>
                 </label>
                 <InputText
                   placeholder="Enter Policy No."
@@ -236,7 +235,7 @@ export default function VehicleInsurance() {
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Start Date
+                  Start Date <span className="text-red-500">*</span>
                 </label>
                 <Calendar
                   placeholder="dd/mm/yyyy"
@@ -251,7 +250,7 @@ export default function VehicleInsurance() {
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  End Date
+                  End Date <span className="text-red-500">*</span>
                 </label>
                 <Calendar
                   placeholder="dd/mm/yyyy"
@@ -266,7 +265,7 @@ export default function VehicleInsurance() {
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Premium Amount
+                  Premium Amount <span className="text-red-500">*</span>
                 </label>
                 <InputText
                   placeholder="0.00"

@@ -49,10 +49,988 @@ export interface SidebarMenu {
 }
 
 const sidebarMenu = {
+
+  home: {
+    module: "Home",
+    icon: FaHome,
+    route: "/home",
+  },
+  sidebar: [
+    {
+      module: "Masters",
+      icon: FaCogs,
+      route: "/masters",
+      subModules: [
+        {
+          subModule: "User Management",
+          route: "/masters/user-management",
+          pages: [
+            {
+              page: "Create User Level",
+              route: "/masters/user-management/create-user-level",
+            },
+            {
+              page: "Module Mapping",
+              route: "/masters/user-management/module-mapping",
+            },
+            {
+              page: "Parent Menu Creation",
+              route: "/masters/user-management/parent-menu-creation",
+            },
+            {
+              page: "Sub Menu Creation",
+              route: "/masters/user-management/sub-menu-creation",
+            },
+            {
+              page: "Role Creation",
+              route: "/masters/user-management/role-creation",
+            },
+            {
+              page: "Role Wise Module Mapping",
+              route: "/masters/user-management/role-wise-module-mapping",
+            },
+            {
+              page: "Incharge Mapping",
+              route: "/masters/user-management/incharge-mapping",
+            },
+            {
+              page: "Form Wise Right's Assign",
+              route: "/masters/user-management/form-wise-rights-assign",
+            },
+            {
+              page: "Role Wise Right's Assign",
+              route: "/masters/user-management/role-wise-rights-assign",
+            },
+          ],
+        },
+        {
+          subModule: "Location Master",
+          route: "/masters/location-master",
+          pages: [
+            {
+              page: "State Master Data",
+              route: "/masters/location-master/state-master",
+            },
+            {
+              page: "Division Master Data",
+              route: "/masters/location-master/division-master",
+            },
+            {
+              page: "District Master Data",
+              route: "/masters/location-master/district-master",
+            },
+            {
+              page: "Tasil Master Data",
+              route: "/masters/location-master/tasil-master",
+            },
+            {
+              page: "Block Master Data",
+              route: "/masters/location-master/block-master",
+            },
+            {
+              page: "Parliamentary Master Data",
+              route: "/masters/location-master/parliamentary-master",
+            },
+            {
+              page: "Assembly Master Data",
+              route: "/masters/location-master/assembly-master",
+            },
+            {
+              page: "Nagar Nigam Master Data",
+              route: "/masters/location-master/nagar-nigam-master",
+            },
+            {
+              page: "Nagar Palika Master Data",
+              route: "/masters/location-master/nagar-palika-master",
+            },
+            {
+              page: "Jila Panchayat Master Data",
+              route: "/masters/location-master/jila-panchayat-master",
+            },
+            {
+              page: "Nagar Panchayat Master Data",
+              route: "/masters/location-master/nagar-panchayat-master",
+            },
+            {
+              page: "Janpad Panchayat Master Data",
+              route: "/masters/location-master/janpad-panchayat-master",
+            },
+            {
+              page: "Gram Panchayat Master Data",
+              route: "/masters/location-master/gram-panchayat-master",
+            },
+            {
+              page: "Post Office Master",
+              route: "/masters/location-master/post-office-master",
+            },
+            {
+              page: "Village Master",
+              route: "/masters/location-master/village-master",
+            },
+            {
+              page: "Habitation Master Data",
+              route: "/masters/location-master/habitation-master",
+            },
+            { page: "Pin code", route: "/masters/location-master/pin-code" },
+          ],
+        },
+        {
+          subModule: "Course Master",
+          route: "/masters/course-master",
+          pages: [
+            { page: "Category", route: "/masters/course-master/category" },
+            { page: "Level", route: "/masters/course-master/level" },
+            { page: "Course", route: "/masters/course-master/course" },
+            {
+              page: "Specialization",
+              route: "/masters/course-master/specialization",
+            },
+            {
+              page: "Modes of Education",
+              route: "/masters/course-master/modes-of-education",
+            },
+            {
+              page: "Course and Specialization Mapping",
+              route: "/masters/course-master/course-specialization-mapping",
+            },
+            {
+              page: "Course Status",
+              route: "/masters/course-master/course-status",
+            },
+          ],
+        },
+        {
+          subModule: "Faculty Master",
+          route: "/masters/faculty-master",
+          pages: [
+            { page: "Faculty", route: "/masters/faculty-master/faculty" },
+            {
+              page: "Faculty Status",
+              route: "/masters/faculty-master/faculty-status",
+            },
+            {
+              page: "Office Type",
+              route: "/masters/faculty-master/office-type",
+            },
+            {
+              page: "Office Name",
+              route: "/masters/faculty-master/office-name",
+            },
+            { page: "Department", route: "/masters/faculty-master/department" },
+            {
+              page: "Head Office",
+              route: "/masters/faculty-master/head-office",
+            },
+            {
+              page: "Division Office",
+              route: "/masters/faculty-master/division-office",
+            },
+            {
+              page: "District Office",
+              route: "/masters/faculty-master/district-office",
+            },
+          ],
+        },
+        {
+          subModule: "University Master",
+          route: "/masters/university-master",
+          pages: [
+            {
+              page: "University Type Master",
+              route: "/masters/university-master/university-type-master",
+            },
+            {
+              page: "University Category Master",
+              route: "/masters/university-master/university-category-master",
+            },
+            {
+              page: "University Master",
+              route: "/masters/university-master/university-master",
+            },
+          ],
+        },
+        {
+          subModule: "College Master",
+          route: "/masters/college-master",
+          pages: [
+            {
+              page: "College Type Master",
+              route: "/masters/college-master/college-type-master",
+            },
+            {
+              page: "College Category Master",
+              route: "/masters/college-master/college-category-master",
+            },
+            {
+              page: "College Master",
+              route: "/masters/college-master/college-master",
+            },
+            {
+              page: "Post Master Data",
+              route: "/masters/college-master/post-master-data",
+            },
+            {
+              page: "Class Master Data",
+              route: "/masters/college-master/class-master-data",
+            },
+          ],
+        },
+        {
+          subModule: "HR Master Data",
+          route: "/masters/hr-master-data",
+          pages: [
+            {
+              page: "Designation Type Master",
+              route: "/masters/hr-master-data/designation-type-master",
+            },
+            {
+              page: "Designation Master Data",
+              route: "/masters/hr-master-data/designation-master",
+            },
+            {
+              page: "Section Master Data",
+              route: "/masters/hr-master-data/section-master",
+            },
+            {
+              page: "Pay Commission Master Data",
+              route: "/masters/hr-master-data/pay-commission-master",
+            },
+            {
+              page: "Pay Scale Master Data",
+              route: "/masters/hr-master-data/pay-scale-master",
+            },
+            {
+              page: "Grade Pay Master Data",
+              route: "/masters/hr-master-data/grade-pay-master",
+            },
+            {
+              page: "Level Master Data",
+              route: "/masters/hr-master-data/level-master",
+            },
+            {
+              page: "Level Basic Pay Master Data",
+              route: "/masters/hr-master-data/level-basic-pay-master",
+            },
+            {
+              page: "Appointment Department Master Data",
+              route: "/masters/hr-master-data/appointment-department-master",
+            },
+            {
+              page: "Blood Master Data",
+              route: "/masters/hr-master-data/blood-master",
+            },
+            {
+              page: "Religion Master Data",
+              route: "/masters/hr-master-data/religion-master",
+            },
+            {
+              page: "Caste Master Data",
+              route: "/masters/hr-master-data/caste-master",
+            },
+            {
+              page: "Qualification Master Data",
+              route: "/masters/hr-master-data/qualification-master",
+            },
+            {
+              page: "Other Department Master",
+              route: "/masters/hr-master-data/other-department-master",
+            },
+          ],
+        },
+        {
+          subModule: "Payroll Master",
+          route: "/masters/payroll-master",
+          pages: [
+            {
+              page: "Section Master",
+              route: "/masters/payroll-master/section-master",
+            },
+            {
+              page: "Self Earning & Deduction Optional Head Value",
+              route:
+                "/masters/payroll-master/self-earning-deduction-optional-head-value",
+            },
+            {
+              page: "Self Earning & Deduction Fixed Head Value",
+              route:
+                "/masters/payroll-master/self-earning-deduction-fixed-head-value",
+            },
+            {
+              page: "Loan Master",
+              route: "/masters/payroll-master/loan-master",
+            },
+            {
+              page: "All Earning and The All Employee Wise Head Wise",
+              route:
+                "/masters/payroll-master/all-earning-all-employee-wise-head-wise",
+            },
+            {
+              page: "Arrear Type Master",
+              route: "/masters/payroll-master/arrear-type-master",
+            },
+            {
+              page: "Challan Details Master Data",
+              route: "/masters/payroll-master/challan-details-master",
+            },
+            {
+              page: "Scheme Department Master",
+              route: "/masters/payroll-master/scheme-department-master",
+            },
+          ],
+        },
+        {
+          subModule: "Scheme Master",
+          route: "/masters/scheme-master",
+          pages: [
+            {
+              page: "Scheme Master",
+              route: "/masters/scheme-master/scheme-master",
+            },
+            {
+              page: "Scheme Type Master",
+              route: "/masters/scheme-master/scheme-type-master",
+            },
+            {
+              page: "Scheme Master Duplicate",
+              route: "/masters/scheme-master/scheme-master-duplicate",
+            },
+            {
+              page: "Scheme Category Master (Central, State, UGC)",
+              route: "/masters/scheme-master/scheme-category-master",
+            },
+          ],
+        },
+        {
+          subModule: "Grant Master",
+          route: "/masters/grant-master",
+          pages: [
+            { page: "Grant Type", route: "/masters/grant-master/grant-type" },
+            {
+              page: "Grant Category",
+              route: "/masters/grant-master/grant-category",
+            },
+          ],
+        },
+        {
+          subModule: "Grant Application",
+          route: "/masters/grant-application",
+          pages: [
+            {
+              page: "Eligibility",
+              route: "/masters/grant-application/eligibility",
+            },
+            {
+              page: "Application Process",
+              route: "/masters/grant-application/application-process",
+            },
+            {
+              page: "Application Status",
+              route: "/masters/grant-application/application-status",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      module: "Employee Directory",
+      icon: FaHome,
+      route: "/employee-directory",
+      subModules: [
+        {
+          subModule: "Employee Directory Management",
+          route: "/employee-directory/management",
+          pages: [
+            {
+              page: "Employee Directory",
+              route: "/employee-directory/management/employee-directory",
+            },
+            {
+              page: "Official Details Update",
+              route: "/employee-directory/management/official-details-update",
+            },
+            {
+              page: "Employee Data Change Request",
+              route:
+                "/employee-directory/management/employee-data-change-request",
+            },
+            {
+              page: "Employee Verification",
+              route: "/employee-directory/management/employee-verification",
+            },
+            {
+              page: "Employee Verification PDF",
+              route: "/employee-directory/management/employee-verification-pdf",
+            },
+            {
+              page: "Employee Verification HO Level",
+              route:
+                "/employee-directory/management/employee-verification-ho-level",
+            },
+            {
+              page: "Exam Wise Employee Enrollment",
+              route:
+                "/employee-directory/management/exam-wise-employee-enrollment",
+            },
+          ],
+        },
+        {
+          subModule: "Employee ID Card Management",
+          route: "/employee-directory/id-card",
+          pages: [
+            {
+              page: "Print Employee Card",
+              route: "/employee-directory/id-card/print-employee-card",
+            },
+            {
+              page: "Approve Employee Id Card",
+              route: "/employee-directory/id-card/approve-employee-id-card",
+            },
+            {
+              page: "Employee ID Card Generate",
+              route: "/employee-directory/id-card/generate",
+            },
+            {
+              page: "District Wise ID Card",
+              route: "/employee-directory/id-card/district-wise-id-card",
+            },
+            {
+              page: "College Wise ID Card",
+              route: "/employee-directory/id-card/college-wise-id-card",
+            },
+            {
+              page: "Missing Employee Details",
+              route: "/employee-directory/id-card/missing-employee-details",
+            },
+            {
+              page: "Employee Details Report",
+              route: "/employee-directory/id-card/employee-details-report",
+            },
+            {
+              page: "Change Request Verification Statistic Report",
+              route:
+                "/employee-directory/id-card/change-request-verification-statistic-report",
+            },
+            {
+              page: "Employee Verification Statistic Report",
+              route:
+                "/employee-directory/id-card/employee-verification-statistic-report",
+            },
+            {
+              page: "Exam Wise Employee Enrollment Report",
+              route: "/employee-directory/id-card/exam-wise-enrollment-report",
+            },
+            {
+              page: "Employee Verification Report",
+              route: "/employee-directory/id-card/employee-verification-report",
+            },
+            {
+              page: "Handicapped Employees Report",
+              route: "/employee-directory/id-card/handicapped-employees-report",
+            },
+            {
+              page: "Employee Customized Report",
+              route: "/employee-directory/id-card/employee-customized-report",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      module: "Academics",
+      icon: FaBook,
+      route: "/academics",
+      subModules: [
+        {
+          subModule: "Lectures",
+          route: "/academics/lectures",
+          pages: [
+            {
+              page: "Offline Lectures",
+              route: "/academics/lectures/offline-lectures",
+            },
+            {
+              page: "Lecture Resources",
+              route: "/academics/lectures/resources",
+            },
+          ],
+        },
+        {
+          subModule: "Attendance Management",
+          route: "/academics/attendance",
+          pages: [
+            {
+              page: "View Attendance Records",
+              route: "/academics/attendance/view",
+            },
+            { page: "Mark Attendance", route: "/academics/attendance/mark" },
+            {
+              page: "Attendance Policies",
+              route: "/academics/attendance/policies",
+            },
+            {
+              page: "Request Leave",
+              route: "/academics/attendance/request-leave",
+            },
+            {
+              page: "Attendance Reports",
+              route: "/academics/attendance/reports",
+            },
+          ],
+        },
+        {
+          subModule: "Syllabus Study Material",
+          route: "/academics/study-material",
+          pages: [
+            {
+              page: "Add Study Materials",
+              route: "/academics/study-material/add",
+            },
+            {
+              page: "Saved Notes And Videos",
+              route: "/academics/study-material/saved",
+            },
+            {
+              page: "View Study Materials",
+              route: "/academics/study-material/view",
+            },
+          ],
+        },
+        {
+          subModule: "College Transfer",
+          route: "/academics/college-transfer",
+          pages: [
+            {
+              page: "Apply College Transfer",
+              route: "/academics/college-transfer/apply",
+            },
+            {
+              page: "Approve Transfer Request University",
+              route: "/academics/college-transfer/approve",
+            },
+            {
+              page: "Transfer In",
+              route: "/academics/college-transfer/transfer-in",
+            },
+            {
+              page: "Transfer Out",
+              route: "/academics/college-transfer/transfer-out",
+            },
+            {
+              page: "Credit Transfer to new college/university",
+              route: "/academics/college-transfer/credit-transfer",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      module: "Admission",
+      icon: FaUserGraduate,
+      route: "/admission-management-system",
+      subModules: [
+        {
+          subModule: "Registration Form",
+          route: "/admission-management-system/registration-form",
+          pages: [
+            {
+              page: "Fill Registration Form",
+              route:
+                "/admission-management-system/registration-form/fill-registration-form",
+            },
+            {
+              page: "Edit Registration Form",
+              route:
+                "/admission-management-system/registration-form/edit-registration-form",
+            },
+          ],
+        },
+        {
+          subModule: "Upload Document",
+          route: "/admission-management-system/upload-document",
+          pages: [
+            {
+              page: "Configure Document Requirement",
+              route:
+                "/admission-management-system/upload-document/configure-document-requirement",
+            },
+            {
+              page: "Upload Documents",
+              route:
+                "/admission-management-system/upload-document/upload-documents",
+            },
+            {
+              page: "Uploaded Documents",
+              route:
+                "/admission-management-system/upload-document/uploaded-documents",
+            },
+          ],
+        },
+        {
+          subModule: "College selection ",
+          route: "/admission-management-system/choices-filling",
+          pages: [
+            {
+              page: "Seat Availability Updates",
+              route:
+                "/admission-management-system/choices-filling/seat-availability-updates",
+            },
+            {
+              page: "Fill Choices by Priority and lock choices ",
+              route:
+                "/admission-management-system/choices-filling/fill-choices-by-priority-and-lock-choices",
+            },
+            {
+              page: "Student Preferences Report",
+              route:
+                "/admission-management-system/choices-filling/student-preferences-report",
+            },
+            {
+              page: "Choice Report",
+              route:
+                "/admission-management-system/choices-filling/choice-report",
+            },
+          ],
+        },
+        {
+          subModule: "Document Verification",
+          route: "/admission-management-system/document-verification",
+          pages: [
+            {
+              page: "Configure Document Requirement to Verify ",
+              route:
+                "/admission-management-system/document-verification/configure-document-requirement-toVerify",
+            },
+            {
+              page: "Documents Verification",
+              route:
+                "/admission-management-system/document-verification/documents-verification",
+            },
+            {
+              page: "Document Verification  Report",
+              route:
+                "/admission-management-system/document-verification/document-verification-report",
+            },
+            {
+              page: "College-wise Verification  Report",
+              route:
+                "/admission-management-system/document-verification/collegewise-verification-report",
+            },
+          ],
+        },
+        {
+          subModule: "Admission Fee",
+          route: "/admission/fee",
+          pages: [
+            { page: "Set Admission Fee", route: "/admission/fee/set" },
+            {
+              page: "View Fee Structure",
+              route: "/admission/fee/view-structure",
+            },
+            { page: "Make Payment", route: "/admission/fee/make-payment" },
+            {
+              page: "Payment Verification",
+              route: "/admission/fee/payment-verification",
+            },
+            {
+              page: "Payment History Receipt Download",
+              route: "/admission/fee/payment-history",
+            },
+            { page: "Payment Report", route: "/admission/fee/payment-report" },
+          ],
+        },
+      ],
+    },
+    {
+      module: "Transport",
+      icon: FaBus,
+      route: "/transport-management",
+      subModules: [
+        {
+          subModule: "Transport Management System",
+          route: "/transport-management/transport-management-system",
+          pages: [
+            {
+              page: "Vehicle Maintenance Type Master",
+              route:
+                "/transport-management/transport-management-system/vehicle-maintenance-type-master",
+            },
+            {
+              page: "Vehicle Registration",
+              route:
+                "/transport-management/transport-management-system/vehicle-registration",
+            },
+            {
+              page: "Vehicle Allotment",
+              route:
+                "/transport-management/transport-management-system/vehicle-allotment",
+            },
+            {
+              page: "Vehicle Maintenance",
+              route:
+                "/transport-management/transport-management-system/vehicle-maintenance",
+            },
+            {
+              page: "Vehicle Insurance",
+              route:
+                "/transport-management/transport-management-system/vehicle-insurance",
+            },
+            {
+              page: "Vehicle Dispose",
+              route:
+                "/transport-management/transport-management-system/vehicle-dispose",
+            },
+            {
+              page: "Vehicle Deallocation Transfer",
+              route:
+                "/transport-management/transport-management-system/vehicle-deallocation-transfer",
+            },
+            {
+              page: "Vehicle Maintenance Request",
+              route: "/transport-management/transport-management-system/vehicle-maintenance-request",
+            },
+            {
+              page: "Vehicle Maintenance Approval",
+              route: "/transport-management/transport-management-system/vehicle-maintenance-approval",
+            },
+          ],
+        },
+        {
+          subModule: "College/University Transport",
+          route: "/transport-management/university-management-system",
+          pages: [
+            {
+              page: "Route Registration",
+              route: "/transport-management/university-management-system/route-registration",
+            },
+            {
+              page: "Bus Stop Registration",
+              route: "/transport-management/university-management-system/bus-stop-registration",
+            },
+            {
+              page: "Route To Bus Stop Mapping",
+              route: "/transport-management/university-management-system/route-to-bus-stop-mapping",
+            },
+            {
+              page: "Driver Attender Registration",
+              route:
+                "/transport-management/university-management-system/driver-attender-registration",
+            },
+            {
+              page: "Driver Attender Leave Entry",
+              route:
+                "/transport-management/university-management-system/driver-attender-leave-entry",
+            },
+            {
+              page: "Route To Vehicle Mapping",
+              route: "/transport-management/university-management-system/route-to-vehicle-mapping",
+            },
+            {
+              page: "Bus Stop Enrollment",
+              route: "/transport-management/university-management-system/bus-stop-enrollment",
+            },
+            {
+              page: "Driver Attender Route Details",
+              route:
+                "/transport-management/university-management-system/driver-attender-route-details",
+            },
+          ],
+        },
+        {
+          subModule: "Bus Driver Attender Process",
+          route: "/transport/driver-attender-process",
+          pages: [
+            {
+              page: "View Route Location",
+              route: "/transport/driver-attender-process/view-route-location",
+            },
+            {
+              page: "Route Wise Pickup/Drop",
+              route:
+                "/transport/driver-attender-process/route-wise-pickup-drop",
+            },
+            {
+              page: "Route Details",
+              route: "/transport/driver-attender-process/route-details",
+            },
+          ],
+        },
+        {
+          subModule: "Parent Process",
+          route: "/transport/parent-process",
+          pages: [
+            {
+              page: "Inform to Student",
+              route: "/transport/parent-process/inform-student",
+            },
+            {
+              page: "Bus Route Details",
+              route: "/transport/parent-process/bus-route-details",
+            },
+            {
+              page: "Pickup/Drop Details",
+              route: "/transport/parent-process/pickup-drop-details",
+            },
+          ],
+        },
+        {
+          subModule: "Gatekeeper Transport System",
+          route: "/transport/gatekeeper",
+          pages: [
+            {
+              page: "E-Challan Process",
+              route: "/transport/gatekeeper/e-challan",
+            },
+            {
+              page: "Check Vehicle Details",
+              route: "/transport/gatekeeper/check-vehicle-details",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      module: "Exam Management",
+      icon: FaClipboardList,
+      route: "/exam",
+      subModules: [
+        {
+          subModule: "Exam Master",
+          route: "/exam/master",
+          pages: [
+            { page: "Exam Type", route: "/exam/master/exam-type" },
+            { page: "Add Exam", route: "/exam/master/add-exam" },
+          ],
+        },
+        {
+          subModule: "Exam Schedule",
+          route: "/exam/schedule",
+          pages: [
+            { page: "Schedule Exam", route: "/exam/schedule/schedule-exam" },
+            { page: "View Exam Schedule", route: "/exam/schedule/view" },
+          ],
+        },
+        {
+          subModule: "Question Papers",
+          route: "/exam/question-papers",
+          pages: [
+            {
+              page: "Set Question Paper Pattern",
+              route: "/exam/question-papers/set-pattern",
+            },
+            { page: "Add Question Paper", route: "/exam/question-papers/add" },
+          ],
+        },
+        {
+          subModule: "Exam Form",
+          route: "/exam/form",
+          pages: [
+            {
+              page: "Set last date with/without late fees",
+              route: "/exam/form/set-last-date",
+            },
+            {
+              page: "Fill Exam Form and Pay Exam Fee",
+              route: "/exam/form/fill-and-pay",
+            },
+            {
+              page: "Forward Forms Principal",
+              route: "/exam/form/forward-forms",
+            },
+          ],
+        },
+        {
+          subModule: "Admit Card",
+          route: "/exam/admit-card",
+          pages: [
+            {
+              page: "Generate Admit Cards University",
+              route: "/exam/admit-card/generate",
+            },
+            {
+              page: "Admit Card Download Student",
+              route: "/exam/admit-card/download",
+            },
+            {
+              page: "Admit Card Verification College",
+              route: "/exam/admit-card/verification",
+            },
+          ],
+        },
+        {
+          subModule: "Evaluator",
+          route: "/exam/evaluator",
+          pages: [
+            { page: "Apply as Evaluator", route: "/exam/evaluator/apply" },
+            { page: "Select Evaluators", route: "/exam/evaluator/select" },
+            {
+              page: "Sheet Distribution to Evaluator",
+              route: "/exam/evaluator/sheet-distribution",
+            },
+          ],
+        },
+        {
+          subModule: "Result",
+          route: "/exam/result",
+          pages: [
+            {
+              page: "Maximum Days for Revaluation/Retotaling",
+              route: "/exam/result/max-days",
+            },
+            { page: "Marks Entry", route: "/exam/result/marks-entry" },
+            { page: "Result Compilation", route: "/exam/result/compilation" },
+            { page: "Result Verification", route: "/exam/result/verification" },
+            { page: "Result Publication", route: "/exam/result/publication" },
+            {
+              page: "TR Sheet Generation",
+              route: "/exam/result/tr-sheet-generation",
+            },
+            {
+              page: "Marksheet Generation Printing",
+              route: "/exam/result/marksheet-generation",
+            },
+            {
+              page: "Apply for Revaluation",
+              route: "/exam/result/apply-revaluation",
+            },
+            {
+              page: "Apply for Retotaling",
+              route: "/exam/result/apply-retotaling",
+            },
+            {
+              page: "Result Verification after issuing",
+              route: "/exam/result/post-issue-verification",
+            },
+          ],
+        },
+        {
+          subModule: "Duplicate Marksheet",
+          route: "/exam/duplicate-marksheet",
+          pages: [
+            {
+              page: "Apply For Duplicate Marksheet",
+              route: "/exam/duplicate-marksheet/apply",
+            },
+            {
+              page: "Duplicate Marksheet Applications",
+              route: "/exam/duplicate-marksheet/applications",
+            },
+            {
+              page: "Generate Duplicate Marksheet",
+              route: "/exam/duplicate-marksheet/generate",
+            },
+            {
+              page: "Download Duplicate Marksheet",
+              route: "/exam/duplicate-marksheet/download",
+            },
+          ],
+        },
+      ],
+
     home: {
         module: "Home",
         icon: FaHome,
         route: "/home",
+
     },
     sidebar: [
         {
