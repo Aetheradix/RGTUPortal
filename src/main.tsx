@@ -1,19 +1,19 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
-import "./index.css";
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
+import './index.css'
 // import 'primeflex/primeflex.css';
-import "primereact/resources/primereact.css";
-import "primereact/resources/themes/lara-light-indigo/theme.css";
-import App from "./App.tsx";
+import 'primereact/resources/primereact.css';
+import 'primereact/resources/themes/lara-light-indigo/theme.css';
+import App from './App.tsx'
 
-import { PrimeReactProvider } from "primereact/api";
-createRoot(document.getElementById("root")!).render(
+import { PrimeReactProvider } from 'primereact/api';
+createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <PrimeReactProvider>
       <BrowserRouter>
         <App />
       </BrowserRouter>
     </PrimeReactProvider>
-  </StrictMode>
-);
+  </StrictMode>,
+)

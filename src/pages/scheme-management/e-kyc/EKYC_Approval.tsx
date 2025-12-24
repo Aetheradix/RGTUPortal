@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import PageLayout from "../../../components/PageLayout";
 import { Button } from "primereact/button";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { MultiSelect } from "primereact/multiselect";
+import { Toast } from "primereact/toast"; // Import Toast
 
 interface StudentInitialData {
   id: number;
@@ -36,7 +37,10 @@ const EkycApproval: React.FC = () => {
   const [selectedAcademicYear, setSelectedAcademicYear] = useState<string[]>(
     []
   );
+  const toast = useRef<Toast>(null); // Initialize Toast ref
+
   const academicYears = ["2024-25", "2023-24", "2022-23", "2021-22"];
+
   const [initialData] = useState<StudentInitialData[]>([
     {
       id: 1,
@@ -68,35 +72,57 @@ const EkycApproval: React.FC = () => {
     {
       id: 2,
       samagraId: "553366336688",
-      studentName: "Arti Sharma	",
-      fatherName: "	Ravi Sharma",
+      studentName: "Arti Sharma ",
+      fatherName: " Ravi Sharma",
       dob: "15/08/2004",
       gender: "Female",
       course: "MCA",
-      year: "2nd",
+      year: "2nd Year",
     },
   ]);
 
   const handleFilter = () => {
     if (selectedAcademicYear.length > 0) {
       setShowFilteredGrid(true);
+      toast.current?.show({
+        severity: "success",
+        summary: "Records Filtered",
+        detail: `Found records for selected years.`,
+        life: 3000,
+      });
     } else {
-      alert("Please select Academic Year");
+      toast.current?.show({
+        severity: "warn",
+        summary: "Selection Required",
+        detail: "Please select Academic Year",
+        life: 3000,
+      });
     }
   };
+
   const handleClear = () => {
     setSelectedAcademicYear([]);
     setShowFilteredGrid(false);
+    toast.current?.show({
+      severity: "info",
+      summary: "Cleared",
+      detail: "Filters have been reset.",
+      life: 2000,
+    });
   };
-  const expandTemplate = () => (
-    <i
-      className="pi pi-plus-circle text-indigo-500 cursor-pointer"
-      style={{ fontSize: "1.1rem" }}
-    ></i>
-  );
+  const approveActionTemplate = () => {
+    return (
+      <Button
+        label="Approve"
+        className="p-button-outlined p-button-success text-xs px-3 py-1"
+        style={{ fontWeight: "600" }}
+      />
+    );
+  };
 
   return (
     <PageLayout title="eKYC Approval">
+      <Toast ref={toast} />
       <div className="space-y-8">
         <section className="bg-white p-4 rounded-lg">
           <h3 className="text-lg font-semibold mb-4 text-gray-800">
@@ -104,11 +130,10 @@ const EkycApproval: React.FC = () => {
           </h3>
           <DataTable
             value={initialData}
-            className="p-datatable-sm text-sm no-border-table"
+            className="p-datatable-sm text-sm"
             rowHover
           >
-            <Column body={expandTemplate} style={{ width: "40px" }} />
-            <Column field="id" header="S.No." style={{ width: "60px" }} />
+            <Column field="id" header="Sr.No." style={{ width: "80px" }} />
             <Column field="aadhaarNumber" header="Aadhaar Number" />
             <Column field="name" header="Name" />
             <Column field="fatherName" header="Father's Name" />
@@ -122,11 +147,12 @@ const EkycApproval: React.FC = () => {
             <Column field="landmark" header="Landmark" />
           </DataTable>
         </section>
-        <section className=" p-6 rounded-lg border border-gray-200">
+
+        <section className="p-6 rounded-lg border border-gray-200 bg-white">
           <h3 className="text-md font-bold mb-4 uppercase text-gray-600 tracking-wider">
-            Filter Approval Details{" "}
+            Filter Approval Details
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Select Academic Years <span className="text-red-500">*</span>
@@ -151,12 +177,12 @@ const EkycApproval: React.FC = () => {
             <Button
               label="Clear"
               icon="pi pi-refresh"
-              className="bg-red-100 text-red-600 border-none px-6"
+              className="p-button-outlined"
               onClick={handleClear}
             />
           </div>
         </section>
-        {/* SECTION 3: FILTERED GRID (Appears only after filter is clicked) */}
+
         {showFilteredGrid && (
           <section className="bg-white p-4 rounded shadow-sm border border-gray-100 animate-fade-in">
             <h3 className="text-lg font-bold mb-4 text-gray-700 border-b pb-2">
@@ -169,29 +195,27 @@ const EkycApproval: React.FC = () => {
               className="p-datatable-sm text-sm"
               responsiveLayout="scroll"
             >
-              <Column field="id" header="S.No." style={{ width: "60px" }} />
-              <Column field="samagraId" header="Samagra Id" />
-              <Column field="studentName" header=" Student Name" />
-              <Column field="fatherName" header=" Father's Name" />
-              <Column field="dob" header=" DOB" />
-              <Column field="course" header="Course" />
-              <Column field="year" header=" Year" />
-              <Column field="gender" header=" Gender" />
+              <Column
+                field="id"
+                header="Sr.No."
+                style={{ width: "80px" }}
+                sortable
+              />
+              <Column field="samagraId" header="Samagra Id" sortable />
+              <Column field="studentName" header="Student Name" sortable />
+              <Column field="fatherName" header="Father's Name" sortable />
+              <Column field="dob" header="DOB" sortable />
+              <Column field="course" header="Course" sortable />
+              <Column field="year" header="Year" sortable />
+              <Column field="gender" header="Gender" sortable />
               <Column
                 header="Status"
+                sortable
                 body={() => (
                   <span className="text-orange-500 font-medium">Pending</span>
                 )}
               />
-              <Column
-                header="Action"
-                body={() => (
-                  <Button
-                    label="Details"
-                    className="bg-blue-500 border-none text-xs px-3 py-1"
-                  />
-                )}
-              />
+              <Column sortable header="Action" body={approveActionTemplate} />
             </DataTable>
           </section>
         )}

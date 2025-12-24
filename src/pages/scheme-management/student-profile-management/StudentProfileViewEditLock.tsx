@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import PageLayout from "../../../components/PageLayout";
 import { MultiSelect } from "primereact/multiselect";
 import { Button } from "primereact/button";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { InputText } from "primereact/inputtext";
+import { Toast } from "primereact/toast";
+import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
 
 interface StudentDetail {
   id: number;
@@ -29,8 +31,11 @@ const StudentProfileViewEditLock: React.FC = () => {
   const [selectedAcademicYear, setSelectedAcademicYear] = useState<string[]>(
     []
   );
+  const [aisheCode, setAisheCode] = useState<string>("");
   const [showGrid, setShowGrid] = useState<boolean>(false);
+  const toast = useRef<Toast>(null);
   const academicYears = ["2024-25", "2023-24", "2022-23", "2021-22"];
+
   const [schemedata] = useState<StudentDetail[]>([
     {
       id: 1,
@@ -68,31 +73,41 @@ const StudentProfileViewEditLock: React.FC = () => {
       scholarshipScheme: "Post-Matric",
       amount: 6000,
     },
-    {
-      id: 3,
-      samagraId: "1122334455",
-      studentName: "Amit Kumar",
-      gender: "Male",
-      category: "SC",
-      bpl: "Yes",
-      hostel: "No",
-      fatherName: "Suresh Kumar",
-      occupation: "Labor",
-      income: 30000,
-      lastYearPercentage: 75,
-      disabled: "No",
-      bankAccountNo: "112233445566",
-      ifscCode: "HDFC0005678",
-      scholarshipScheme: "National Scholarship",
-      amount: 4000,
-    },
   ]);
+
   const handleSearch = () => {
+    if (selectedAcademicYear.length === 0 || !aisheCode.trim()) {
+      toast.current?.show({
+        severity: "error",
+        summary: "Error",
+        detail: "Please select Academic Year and enter AISHE Code",
+        life: 3000,
+      });
+      return;
+    }
     setShowGrid(true);
   };
+
   const handleClear = () => {
     setSelectedAcademicYear([]);
+    setAisheCode("");
     setShowGrid(false);
+  };
+
+  const confirmEdit = () => {
+    confirmDialog({
+      message: "Are you sure you want to edit this record?",
+      header: "Confirmation",
+      icon: "pi pi-exclamation-triangle",
+      accept: () => {
+        toast.current?.show({
+          severity: "info",
+          summary: "Confirmed",
+          detail: "Edit mode enabled",
+          life: 3000,
+        });
+      },
+    });
   };
 
   const actionTemplate = () => (
@@ -100,6 +115,7 @@ const StudentProfileViewEditLock: React.FC = () => {
       <Button
         icon="pi pi-pencil"
         rounded
+        onClick={confirmEdit}
         style={{
           width: "2rem",
           height: "2rem",
@@ -134,9 +150,12 @@ const StudentProfileViewEditLock: React.FC = () => {
   );
 
   return (
-    <PageLayout title="Student profile view Edit/Lock">
+    <PageLayout title="Student Profile View Edit/Lock">
+      <Toast ref={toast} />
+      <ConfirmDialog />
+
       <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
             <label
               htmlFor="academicYears"
@@ -163,9 +182,10 @@ const StudentProfileViewEditLock: React.FC = () => {
             </label>
             <InputText
               id="aisheCode"
+              value={aisheCode}
+              onChange={(e) => setAisheCode(e.target.value)}
               className="w-full"
               placeholder=" Enter AISHE Code"
-              required
             />
           </div>
         </div>
@@ -186,6 +206,7 @@ const StudentProfileViewEditLock: React.FC = () => {
           />
         </div>
       </form>
+
       {showGrid && (
         <div className="mt-8 animate-fade-in">
           <h2 className="text-xl font-semibold text-gray-800 mb-4 border-t pt-6">
@@ -195,10 +216,14 @@ const StudentProfileViewEditLock: React.FC = () => {
             value={schemedata}
             paginator
             rows={10}
-            responsiveLayout="scroll"
-            className="text-sm"
+            className="p-datatable-sm shadow-1"
           >
-            <Column field="id" header="S.No." sortable />
+            <Column
+              field="id"
+              header="S.No."
+              style={{ width: "80px" }}
+              sortable
+            />
             <Column field="samagraId" header="Student Samagra ID" sortable />
             <Column field="studentName" header="Student Name" sortable />
             <Column field="gender" header="Gender" />

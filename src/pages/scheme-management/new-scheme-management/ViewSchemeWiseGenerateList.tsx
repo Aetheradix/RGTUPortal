@@ -1,20 +1,22 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import PageLayout from "../../../components/PageLayout";
 import { MultiSelect } from "primereact/multiselect";
 import { Button } from "primereact/button";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
+import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
+import { Toast } from "primereact/toast";
 
 interface SchemeWiseList {
   id: number;
-  academicYear: string[];
-  schemeTitle: string[];
   instituteCode: string;
   technicalEducation: string;
   instituteName: string;
   enrollmentNumber: string;
   studentName: string;
   gender: string;
+  category: string;
+  benefitAmount: string;
 }
 
 const ViewSchemeWiseGenerateList: React.FC = () => {
@@ -23,18 +25,18 @@ const ViewSchemeWiseGenerateList: React.FC = () => {
   );
   const [selectedTitle, setSelectedTitles] = useState<string[]>([]);
   const [showGrid, setShowGrid] = useState<boolean>(false);
+  const toast = useRef<Toast>(null);
+
   const academicYears = ["2024-25", "2023-24", "2022-23", "2021-22"];
   const schemeTitles = [
     "Skill Development Scheme",
     "Scholarship for Technical Education",
     "Industry Certification Support",
-    "Digital Literacy for Students",
   ];
+
   const [schemedata] = useState<SchemeWiseList[]>([
     {
       id: 1,
-      academicYear: [""],
-      schemeTitle: [""],
       instituteCode: "MP-TECH001 / Dr. Rajesh Yadav",
       technicalEducation: "Vocational Education Cluster - Bhopal",
       instituteName:
@@ -42,23 +44,23 @@ const ViewSchemeWiseGenerateList: React.FC = () => {
       enrollmentNumber: "0115CA225588",
       studentName: "Rohit Sharma",
       gender: "Male",
+      category: "General",
+      benefitAmount: "₹15,000",
     },
     {
       id: 2,
-      academicYear: [""],
-      schemeTitle: [""],
       instituteCode: "MP-TECH002 / Ms. Neha Verma",
       technicalEducation: "Skill Development Cluster - Indore",
       instituteName:
-        " Institute of Engineering and Technology (IET-DAVV), Indore",
+        "Institute of Engineering and Technology (IET-DAVV), Indore",
       enrollmentNumber: "0115CA225590",
       studentName: "Priya Patel",
       gender: "Female",
+      category: "OBC",
+      benefitAmount: "₹20,000",
     },
     {
       id: 3,
-      academicYear: [""],
-      schemeTitle: [""],
       instituteCode: "MP-TECH003 / Mr. Sunil Kumar",
       technicalEducation: "Engineering Cluster - Indore",
       instituteName:
@@ -66,10 +68,39 @@ const ViewSchemeWiseGenerateList: React.FC = () => {
       enrollmentNumber: "0115CA225587",
       studentName: "Anil Singh",
       gender: "Male",
+      category: "SC",
+      benefitAmount: "₹18,000",
     },
   ]);
+
   const handleSearch = () => {
+    if (selectedAcademicYear.length === 0 || selectedTitle.length === 0) {
+      toast.current?.show({
+        severity: "error",
+        summary: "Error",
+        detail: "Please select Academic Year and Scheme Title",
+        life: 3000,
+      });
+      return;
+    }
     setShowGrid(true);
+  };
+
+  const handleGenerateList = () => {
+    confirmDialog({
+      message: "Are you sure you want to generate the list?",
+      header: "Confirmation",
+      icon: "pi pi-exclamation-triangle",
+      acceptClassName: "p-button-primary",
+      accept: () => {
+        toast.current?.show({
+          severity: "success",
+          summary: "Success",
+          detail: "List Generated Successfully",
+          life: 3000,
+        });
+      },
+    });
   };
 
   const handleClear = () => {
@@ -77,82 +108,68 @@ const ViewSchemeWiseGenerateList: React.FC = () => {
     setSelectedTitles([]);
     setShowGrid(false);
   };
+
   return (
     <PageLayout title="View Scheme Wise Generate List">
+      <Toast ref={toast} />
+      <ConfirmDialog />
+
       <div className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label
-              htmlFor="academicYears"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
-              Select Academic Years <span className="text-red-500">*</span>
+        {/* Selection Filters */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="flex flex-col gap-2">
+            <label className="text-sm font-medium">
+              Select Academic Year <span className="text-red-500">*</span>
             </label>
             <MultiSelect
-              id="academicYears"
               value={selectedAcademicYear}
               options={academicYears}
               onChange={(e) => setSelectedAcademicYear(e.value)}
+              placeholder="Select"
               className="w-full"
-              placeholder="Select Academic Year"
               display="chip"
             />
           </div>
-          <div>
-            <label
-              htmlFor="schemeTitle"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
+          <div className="flex flex-col gap-2">
+            <label className="text-sm font-medium">
               Select Scheme Title <span className="text-red-500">*</span>
             </label>
             <MultiSelect
-              id="schemeTitle"
               value={selectedTitle}
               options={schemeTitles}
               onChange={(e) => setSelectedTitles(e.value)}
+              placeholder="Select"
               className="w-full"
-              placeholder="Select Scheme"
               display="chip"
             />
           </div>
         </div>
-        <div className="flex gap-3">
+
+        <div className="flex gap-2">
+          <Button label="Search" icon="pi pi-search" onClick={handleSearch} />
           <Button
-            type="button"
-            label="Search"
-            icon="pi pi-search"
-            className="p-button-primary px-6"
-            onClick={handleSearch}
-          />
-          <Button
-            type="button"
-            label="Clear"
+            label="Reset"
             icon="pi pi-refresh"
-            className="p-button-outlined px-6"
+            className="p-button-outlined"
             onClick={handleClear}
           />
         </div>
+
         {showGrid && (
-          <div className="mt-8 animate-fade-in">
-            <h2 className="text-xl font-semibold text-gray-800 mb-4 border-t pt-6">
+          <div className="mt-8">
+            <h3 className="text-lg font-semibold mb-6 text-gray-700 ">
               View Scheme Wise Generate List
-            </h2>
+            </h3>
             <DataTable
               value={schemedata}
               paginator
               rows={10}
-              className="p-datatable-sm"
-              responsiveLayout="scroll"
+              className="p-datatable-sm shadow-1"
             >
-              <Column
-                field="id"
-                header="S.No"
-                sortable
-                style={{ width: "80px" }}
-              />
+              <Column field="id" header="Sr No." style={{ width: "80px" }} />
               <Column
                 field="instituteCode"
-                header="Institute Code/Co-Ordinator Name"
+                header="Institute Code/Coordinator Name"
                 sortable
               />
               <Column
@@ -163,10 +180,40 @@ const ViewSchemeWiseGenerateList: React.FC = () => {
                 field="instituteName"
                 header="Institute Name/College Name"
               />
-              <Column field="enrollmentNumber" header="Enrollment Number" />
-              <Column field="studentName" header="Student Name" />
+              <Column
+                field="enrollmentNumber"
+                header="Enrollment Number"
+                sortable
+              />
+              <Column field="studentName" header="Student Name" sortable />
               <Column field="gender" header="Gender" />
+              <Column field="category" header="Category" />
+              <Column field="benefitAmount" header="Scheme Benefit Amount" />
+              <Column
+                header="ViewMore"
+                style={{ textAlign: "center" }}
+                body={() => (
+                  <Button
+                    icon="pi pi-eye"
+                    className="p-button-rounded p-button-text p-button-primary bg-indigo-50"
+                  />
+                )}
+              />
             </DataTable>
+
+            {/* Bottom Action Buttons matching the image */}
+            <div className="flex justify-center gap-4 mt-8">
+              <Button
+                label="Generate List"
+                className="p-button-primary bg-indigo-600 border-none px-8"
+                onClick={handleGenerateList}
+              />
+              <Button
+                label="Clear"
+                className="p-button-danger bg-red-100 text-red-600 border-red-200 px-8"
+                onClick={handleClear}
+              />
+            </div>
           </div>
         )}
       </div>
