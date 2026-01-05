@@ -1270,7 +1270,7 @@ const sidebarMenu = {
                         },
                         {
                             page: "Generate Score Card",
-                            route: "/guest-faculty/login/generate-score-card",
+                            route: "/guest-faculty/login/score-card",
                         },
                     ],
                 },

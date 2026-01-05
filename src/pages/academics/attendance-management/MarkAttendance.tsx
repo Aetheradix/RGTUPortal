@@ -1,8 +1,8 @@
+import { Button } from 'primereact/button';
+import { RadioButton } from 'primereact/radiobutton';
 import React, { useState } from 'react';
 import PageLayout from '../../../components/PageLayout';
-import { Button } from 'primereact/button';
 import { Dropdown, Table, type TableColumn } from '../../../ui/shared';
-import { RadioButton } from 'primereact/radiobutton';
 import { DateInput } from '../../../ui/shared/Input'; // Ensure this matches your file structure
 
 // Interface for Student Attendance Row
@@ -45,7 +45,7 @@ const dummyStudents: MarkAttendanceRow[] = [
 
 const MarkAttendance: React.FC = () => {
   const [formData, setFormData] = useState({
-    attendanceDate: null as Date | null, 
+    attendanceDate: null as Date | null,
     courseName: null as string | null,
     specialization: null as string | null,
     semester: null as string | null,
@@ -55,7 +55,7 @@ const MarkAttendance: React.FC = () => {
   const [studentList, setStudentList] = useState<MarkAttendanceRow[]>(dummyStudents);
 
   const handleStatusChange = (id: number, newStatus: 'Present' | 'Absent') => {
-    setStudentList(prev => 
+    setStudentList(prev =>
       prev.map(row => row.id === id ? { ...row, status: newStatus } : row)
     );
   };
@@ -72,38 +72,38 @@ const MarkAttendance: React.FC = () => {
       body: (row: MarkAttendanceRow) => (
         <div className="flex gap-4 items-center">
           <div className="flex items-center">
-            <RadioButton 
-              inputId={`pres-${row.id}`} 
-              name={`status-${row.id}`} 
-              value="Present" 
-              onChange={() => handleStatusChange(row.id, 'Present')} 
-              checked={row.status === 'Present'} 
+            <RadioButton
+              inputId={`pres-${row.id}`}
+              name={`status-${row.id}`}
+              value="Present"
+              onChange={() => handleStatusChange(row.id, 'Present')}
+              checked={row.status === 'Present'}
             />
             <label htmlFor={`pres-${row.id}`} className="ml-2 text-sm cursor-pointer">Present</label>
           </div>
           <div className="flex items-center">
-            <RadioButton 
-              inputId={`abs-${row.id}`} 
-              name={`status-${row.id}`} 
-              value="Absent" 
-              onChange={() => handleStatusChange(row.id, 'Absent')} 
-              checked={row.status === 'Absent'} 
+            <RadioButton
+              inputId={`abs-${row.id}`}
+              name={`status-${row.id}`}
+              value="Absent"
+              onChange={() => handleStatusChange(row.id, 'Absent')}
+              checked={row.status === 'Absent'}
             />
             <label htmlFor={`abs-${row.id}`} className="ml-2 text-sm cursor-pointer">Absent</label>
           </div>
         </div>
       )
     },
-     {
-          header: 'Action',
-          body: () => (
-            <div className="flex gap-2">
-              <Button icon="pi pi-pencil" className="p-button-rounded p-button-secondary p-button-sm" style={{ backgroundColor: '#6366F1' }} />
-              <Button icon="pi pi-trash" className="p-button-rounded p-button-danger p-button-sm" />
-            </div>
-          ),
-          field: '',
-        },
+    {
+      header: 'Action',
+      body: () => (
+        <div className="flex gap-2">
+          <Button icon="pi pi-pencil" className="p-button-rounded p-button-secondary p-button-sm" style={{ backgroundColor: '#6366F1' }} />
+          <Button icon="pi pi-trash" className="p-button-rounded p-button-danger p-button-sm" />
+        </div>
+      ),
+      field: '',
+    },
   ];
 
   const onSearch = (e: React.FormEvent) => {
@@ -168,30 +168,31 @@ const MarkAttendance: React.FC = () => {
         </div>
 
         <div className="flex gap-3 justify-center">
-                 <Button
-                   type="submit"
-                   label="Search"
-                   className="px-6"
-                   style={{ backgroundColor: "#6366F1" }}
-                 />
-                 <Button
-                   type="button"
-                   label="Clear"
-                   className="p-button-danger p-button-outlined px-6"
-                   
-                   style={{ color: "#ff4d4d", borderColor: "#ff4d4d" }}
-                 />
-               </div>
+          <Button
+            type="submit"
+            label="Search"
+            className="px-6"
+            style={{ backgroundColor: "#6366F1" }}
+          />
+          <Button
+            type="button"
+            label="Clear"
+            className="p-button-danger p-button-outlined px-6"
+
+            style={{ color: "#ff4d4d", borderColor: "#ff4d4d" }}
+
+          />
+        </div>
       </form>
 
       {/* Student List Table */}
       <div className="mt-8 bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
         <Table columns={columns} data={studentList} showPagination rowsPerPage={10} />
-        
+
         {/* Footer Action Buttons */}
         <div className="flex gap-3 justify-center mt-6 p-4 border-t border-gray-50">
-          <Button label="Save "  className="px-8" style={{ backgroundColor: '#6366F1', border: 'none' }} onClick={onSave} />
-          <Button label="Clear "  className="p-button-danger p-button-outlined px-8" />
+          <Button label="Save " className="px-8" style={{ backgroundColor: '#6366F1', border: 'none' }} onClick={onSave} />
+          <Button label="Clear " className="p-button-danger p-button-outlined px-8" />
         </div>
       </div>
     </PageLayout>
