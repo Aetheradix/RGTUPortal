@@ -1,13 +1,13 @@
+import sidebarMenu, { type SidebarMenu } from '@/config/sidebar';
+import { Logo } from '@/ui/shared';
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { MdClose } from 'react-icons/md';
 import { FaHome } from 'react-icons/fa';
-import { getIcon } from '../../utils/iconMapper'; 
-import type { Module, SidebarProps } from './types';
+import { MdClose } from 'react-icons/md';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { getIcon } from '../../utils/iconMapper';
 import SidebarItem from './components/SidebarItems';
 import SubModuleItem from './components/SubModuleItems';
-import sidebarMenu, { type SidebarMenu } from '@/config/sidebar'; 
-import { Logo } from '@/ui/shared';
+import type { Module, SidebarProps } from './types';
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, collapsed, onClose }) => {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, collapsed, onClose }) => {
   const [clickedModule, setClickedModule] = useState<string | null>(null);
 
   useEffect(() => {
-   
+
     const modules: Module[] = (sidebarMenu as SidebarMenu).sidebar || [];
     setSidebarModules(modules);
 
@@ -39,12 +39,12 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, collapsed, onClose }) => {
 
     if (modulesToExpand.size > 0) {
       setExpandedModules(modulesToExpand);
-      
+
       const firstExpanded = Array.from(modulesToExpand)[0];
       if (firstExpanded && clickedModule === null) {
         setClickedModule(firstExpanded);
       } else if (firstExpanded) {
-       
+
         setClickedModule(firstExpanded);
       }
     } else {
@@ -52,9 +52,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, collapsed, onClose }) => {
     }
   }, [location.pathname]);
 
-  
+
   const toggleModule = (moduleName: string) => {
-    
+
     setClickedModule(moduleName);
     setExpandedModules((prev) => {
       const newSet = new Set(prev);
@@ -69,9 +69,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, collapsed, onClose }) => {
 
   const handleNavigate = (route: string) => {
     navigate(route);
-   
+
     setClickedModule(null);
-  
+
     if (window.innerWidth < 1024) {
       onClose();
     }
@@ -79,22 +79,22 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, collapsed, onClose }) => {
 
 
   const isModuleActive = (module: Module): boolean => {
-    
+
     if (clickedModule !== null) {
       return clickedModule === module.module;
     }
-    
-    
+
+
     const currentPath = location.pathname;
-    
-    
+
+
     if (currentPath === module.route) return true;
 
-   
+
     if (module.subModules) {
       return module.subModules.some(subModule => {
         if (currentPath === subModule.route) return true;
-        if (currentPath.startsWith(subModule.route + '/')) return true; 
+        if (currentPath.startsWith(subModule.route + '/')) return true;
         if (subModule.pages) {
           return subModule.pages.some(page => currentPath === page.route);
         }
@@ -142,7 +142,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, collapsed, onClose }) => {
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 py-6 overflow-y-auto overflow-x-hidden scrollbar-hide px-0">
+        <nav className="flex-1 py-6 overflow-y-auto overflow-x-hidden scrollbar-hide px-0 ">
           {sidebarModules.map((module) => {
             const IconFromString = typeof module.icon === 'string' ? getIcon(module.icon) : null;
             const Icon = (typeof module.icon === 'string' ? IconFromString : module.icon) || FaHome;
@@ -160,9 +160,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, collapsed, onClose }) => {
                   isExpanded={isExpanded}
                   onToggle={() => toggleModule(module.module)}
                   onClick={() => {
-                   
+
                     setClickedModule(module.module);
-                    
+
                     if (!hasSubModules || collapsed) {
                       handleNavigate(module.route);
                     }
