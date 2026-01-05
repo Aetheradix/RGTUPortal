@@ -1,10 +1,13 @@
+import { Button } from 'primereact/button';
+import { Column } from 'primereact/column';
+import { DataTable } from 'primereact/datatable';
 import React, { useState } from 'react';
 import PageLayout from '../../../components/PageLayout';
-import { Table, type TableColumn } from '../../../ui/shared';
-import { Button } from 'primereact/button';
 
+/* 1. Interface */
 interface VacantPostRow {
-  id: number;
+  id: string;
+
   collegeName: string;
   department: string;
   designation: string;
@@ -13,13 +16,15 @@ interface VacantPostRow {
   qualification: string;
   deadline: string;
 }
-
+  
 const VacantPost: React.FC = () => {
-  const [expandedRows, setExpandedRows] = useState<number[]>([]);
+  const [expandedRows, setExpandedRows] = useState<any>(null);
 
-  const rows: VacantPostRow[] = [
+  /* 2. Data */
+  const [rows] = useState<VacantPostRow[]>([
     {
-      id: 1,
+      id: '1',
+
       collegeName: 'Maulana Azad National Institute of Technology (MANIT), Bhopal',
       department: 'Computer Science',
       designation: 'Guest Lecturer - Computer Science',
@@ -29,17 +34,19 @@ const VacantPost: React.FC = () => {
       deadline: '2024-12-31',
     },
     {
-      id: 2,
+      id: '2',
+
       collegeName: 'Institute of Engineering and Technology (IET-DAVV), Indore',
       department: 'Electrics',
       designation: 'Guest Lecturer - Electrics',
       posts: 10,
       experience: 'Minimum 2 years of teaching experience',
-      qualification: "Master's in Computer Science",
+      qualification: "Master's in Electrical Engineering",
       deadline: '2024-12-31',
     },
     {
-      id: 3,
+      id: '3',
+
       collegeName: 'Government Engineering College, Jabalpur',
       department: 'Electrics',
       designation: 'Guest Lecturer - Electrics',
@@ -49,7 +56,8 @@ const VacantPost: React.FC = () => {
       deadline: '2024-12-31',
     },
     {
-      id: 4,
+      id: '4',
+
       collegeName: 'Lakshmi Narain College of Technology (LNCT), Bhopal',
       department: 'Computer Science',
       designation: 'Guest Lecturer - Computer Science',
@@ -58,64 +66,58 @@ const VacantPost: React.FC = () => {
       qualification: "Master's in Computer Science",
       deadline: '2024-12-31',
     },
-  ];
+  ]);
 
-  const toggleRow = (id: number) => {
-    setExpandedRows(prev =>
-      prev.includes(id) ? prev.filter(r => r !== id) : [...prev, id]
+  /* 3. Expansion Template */
+  const rowExpansionTemplate = (data: VacantPostRow) => {
+    return (
+      <div className="p-4 bg-gray-50 border-y border-gray-100">
+        <div className="space-y-3">
+          <div className="flex gap-2">
+            <span className="font-semibold">Qualification:</span>
+            <span>{data.qualification}</span>
+          </div>
+          <div className="flex gap-2">
+            <span className="font-semibold">Application Deadline:</span>
+            <span>{data.deadline}</span>
+          </div>
+          <div className="pt-2 flex items-center gap-4">
+            <span className="font-semibold">Action:</span>
+            <Button
+              label="Apply"
+              className="p-button-sm px-6"
+              style={{ backgroundColor: '#6366F1', border: 'none' }}
+            />
+          </div>
+        </div>
+      </div>
     );
   };
 
-  const columns: TableColumn[] = [
-    {
-      header: 'Sr No.',
-      body: (row: VacantPostRow) => (
-        <div className="flex items-center gap-2">
-          <button
-            onClick={() => toggleRow(row.id)}
-            className="w-5 h-5 rounded-full flex items-center justify-center text-white"
-            style={{ backgroundColor: expandedRows.includes(row.id) ? '#EF4444' : '#6366F1' }}
-          >
-            {expandedRows.includes(row.id) ? '−' : '+'}
-          </button>
-          {row.id}
-        </div>
-      ),
-      field: ''
-    },
-    { header: 'College Name', field: 'collegeName' },
-    { header: 'Department / Subject', field: 'department' },
-    { header: 'Designation', field: 'designation' },
-    { header: 'No. Of Posts', field: 'posts' },
-    { header: 'Experience Certificate', field: 'experience' },
-    { header: 'Qualification', field: 'qualification' },
-    { header: 'Application Deadline', field: 'deadline' },
-  ];
-
   return (
     <PageLayout title="Vacant Post">
-
       <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
-        <Table
-          columns={columns}
-          data={rows}
-          showPagination
-          expandedRows
-          expandedRowTemplate={(row: VacantPostRow) =>
-            expandedRows.includes(row.id) && (
-              <div className="flex items-center gap-6 px-6 py-4 bg-gray-50">
-                <span className="font-semibold">Action</span>
-                <Button
-                  label="Apply"
-                  className="px-6"
-                  style={{ backgroundColor: '#6366F1', border: 'none' }}
-                />
-              </div>
-            )
-          }
-        />
-      </div>
 
+        {/* Expandable Table */}
+        <DataTable
+          value={rows}
+          expandedRows={expandedRows}
+          onRowToggle={(e) => setExpandedRows(e.data)}
+          rowExpansionTemplate={rowExpansionTemplate}
+          dataKey="id"
+          scrollable={true}
+          className="text-sm"
+        >
+          <Column expander style={{ width: '3rem' }} />
+
+          <Column field="collegeName" header="College Name"  headerStyle={{ whiteSpace: 'nowrap' }} />
+          <Column field="department" header="Department / Subject"  headerStyle={{ whiteSpace: 'nowrap' }} />
+          <Column field="designation" header="Designation"  headerStyle={{ whiteSpace: 'nowrap' }}/>
+          <Column field="posts" header="No. Of Posts"  headerStyle={{ whiteSpace: 'nowrap' }}/>
+          <Column field="experience" header="Experience Certificate"  headerStyle={{ whiteSpace: 'nowrap' }}/>
+        </DataTable>
+
+      </div>
     </PageLayout>
   );
 };

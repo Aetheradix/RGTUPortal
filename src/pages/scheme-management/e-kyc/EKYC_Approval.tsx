@@ -1,9 +1,9 @@
+import { Button } from "primereact/button";
+import { Column } from "primereact/column";
+import { DataTable } from "primereact/datatable";
+import { MultiSelect } from "primereact/multiselect";
 import React, { useState } from "react";
 import PageLayout from "../../../components/PageLayout";
-import { Button } from "primereact/button";
-import { DataTable } from "primereact/datatable";
-import { Column } from "primereact/column";
-import { MultiSelect } from "primereact/multiselect";
 
 interface StudentInitialData {
   id: number;
@@ -107,19 +107,19 @@ const EkycApproval: React.FC = () => {
             className="p-datatable-sm text-sm no-border-table"
             rowHover
           >
-            <Column body={expandTemplate} style={{ width: "40px" }} />
-            <Column field="id" header="S.No." style={{ width: "60px" }} />
-            <Column field="aadhaarNumber" header="Aadhaar Number" />
-            <Column field="name" header="Name" />
-            <Column field="fatherName" header="Father's Name" />
-            <Column field="relation" header="Relation" />
-            <Column field="dob" header="Date of Birth" />
-            <Column field="gender" header="Gender" />
-            <Column field="permanentAddress" header="Permanent Address" />
-            <Column field="pinCode" header="Pin Code" />
-            <Column field="district" header="District" />
-            <Column field="localBody" header="Local Body" />
-            <Column field="landmark" header="Landmark" />
+            <Column body={expandTemplate} headerStyle={{ whiteSpace: 'nowrap' }} />
+            <Column field="id" header="S.No." headerStyle={{ whiteSpace: 'nowrap' }} />
+            <Column field="aadhaarNumber" header="Aadhaar Number" headerStyle={{ whiteSpace: 'nowrap' }} />
+            <Column field="name" header="Name" headerStyle={{ whiteSpace: 'nowrap' }} />
+            <Column field="fatherName" header="Father's Name" headerStyle={{ whiteSpace: 'nowrap' }} />
+            <Column field="relation" header="Relation" headerStyle={{ whiteSpace: 'nowrap' }} />
+            <Column field="dob" header="Date of Birth" headerStyle={{ whiteSpace: 'nowrap' }} />
+            <Column field="gender" header="Gender" headerStyle={{ whiteSpace: 'nowrap' }} />
+            <Column field="permanentAddress" header="Permanent Address" headerStyle={{ whiteSpace: 'nowrap' }} />
+            <Column field="pinCode" header="Pin Code" headerStyle={{ whiteSpace: 'nowrap' }} />
+            <Column field="district" header="District" headerStyle={{ whiteSpace: 'nowrap' }} />
+            <Column field="localBody" header="Local Body" headerStyle={{ whiteSpace: 'nowrap' }} />
+            <Column field="landmark" header="Landmark" headerStyle={{ whiteSpace: 'nowrap' }} />
           </DataTable>
         </section>
         <section className=" p-6 rounded-lg border border-gray-200">

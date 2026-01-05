@@ -1,7 +1,7 @@
+import { Button } from 'primereact/button';
 import React, { useState } from 'react';
 import PageLayout from '../../../components/PageLayout';
-import { Button } from 'primereact/button';
-import { Table, type TableColumn } from '../../../ui/shared';
+import { type TableColumn } from '../../../ui/shared';
 
 // Data Interface based on Image 1 & 2
 interface RecruitmentRow {
@@ -72,31 +72,30 @@ const TEDVacantPost: React.FC = () => {
   const [expandedRows, setExpandedRows] = useState<number[]>([]);
 
   const toggleRow = (srNo: number) => {
-    setExpandedRows(prev => 
+    setExpandedRows(prev =>
       prev.includes(srNo) ? prev.filter(id => id !== srNo) : [...prev, srNo]
     );
   };
 
   // 2. Table Column Definitions
   const columns: TableColumn[] = [
-    { 
-      field: 'srNo', 
-      header: 'Sr No.', 
+    {
+      field: 'srNo',
+      header: 'Sr No.',
       body: (rowData: RecruitmentRow) => (
         <div className="flex items-center gap-3">
-          <button 
+          <button
             type="button"
             onClick={() => toggleRow(rowData.srNo)}
-            className={`flex items-center justify-center w-5 h-5 rounded-full text-white text-xs transition-colors ${
-              expandedRows.includes(rowData.srNo) ? 'bg-red-500' : 'bg-indigo-500'
-            }`}
+            className={`flex items-center justify-center w-5 h-5 rounded-full text-white text-xs transition-colors ${expandedRows.includes(rowData.srNo) ? 'bg-red-500' : 'bg-indigo-500'
+              }`}
           >
             <i className={`pi ${expandedRows.includes(rowData.srNo) ? 'pi-minus' : 'pi-plus'}`} style={{ fontSize: '0.6rem' }}></i>
           </button>
           <span>{rowData.srNo}</span>
         </div>
       ),
-      style: { width: '100px' } 
+      style: { width: '100px' }
     },
     { field: 'universityName', header: 'University Name' },
     { field: 'utd', header: 'University Teaching Department (UTD)' },
@@ -136,10 +135,10 @@ const TEDVacantPost: React.FC = () => {
                 </div>
                 <div className="mt-2">
                   <span className="block font-bold text-gray-800 text-sm mb-3">Action</span>
-                  <Button 
-                    label="Apply" 
-                    className="px-6 py-2 text-sm" 
-                    style={{ backgroundColor: '#6366F1', border: 'none' }} 
+                  <Button
+                    label="Apply"
+                    className="px-6 py-2 text-sm"
+                    style={{ backgroundColor: '#6366F1', border: 'none' }}
                   />
                 </div>
               </div>

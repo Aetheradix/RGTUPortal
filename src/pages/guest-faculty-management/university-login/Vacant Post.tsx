@@ -1,8 +1,8 @@
+import { Button } from 'primereact/button';
+import { Column } from 'primereact/column';
+import { DataTable } from 'primereact/datatable';
 import React, { useState } from 'react';
 import PageLayout from '../../../components/PageLayout';
-import { Button } from 'primereact/button';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
 
 // 1. Interface for Table Data
 interface JobOpening {
@@ -110,12 +110,12 @@ const UniVacantPost: React.FC = () => {
   return (
     <PageLayout title="Vacant Post">
       <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
-        
+
         {/* Table Header with Search & Entries (Mock UI) */}
         <div className="flex justify-between items-center p-4 border-b border-gray-100">
           <div className="flex items-center gap-2 text-sm">
-            Show 
-            <select className="border rounded p-1"><option>10</option></select> 
+            Show
+            <select className="border rounded p-1"><option>10</option></select>
             entries
           </div>
           <div className="flex items-center gap-2 text-sm">
@@ -124,9 +124,9 @@ const UniVacantPost: React.FC = () => {
         </div>
 
         {/* Expandable DataTable */}
-        <DataTable 
-          value={jobs} 
-          expandedRows={expandedRows} 
+        <DataTable
+          value={jobs}
+          expandedRows={expandedRows}
           onRowToggle={(e) => setExpandedRows(e.data)}
           rowExpansionTemplate={rowExpansionTemplate}
           dataKey="id"
