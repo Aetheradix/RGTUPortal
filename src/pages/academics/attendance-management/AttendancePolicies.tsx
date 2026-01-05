@@ -4,7 +4,6 @@ import { Button } from 'primereact/button';
 import { Checkbox } from 'primereact/checkbox';
 import { Input, Table, type TableColumn } from '../../../ui/shared';
 
-// Interface based on Image aeb262
 interface AttendancePolicyRow {
   id: number;
   minAttendance: string;
@@ -82,7 +81,6 @@ const AttendancePolicyMaster: React.FC = () => {
 
   return (
     <PageLayout title="Add Attendance Policies">
-      {/* Form Section - From Image aeb299 */}
       <form onSubmit={handleSubmit} className="space-y-6 bg-white p-4 rounded-lg shadow-sm">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <Input

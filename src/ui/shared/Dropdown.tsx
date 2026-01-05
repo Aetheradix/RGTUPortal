@@ -3,7 +3,7 @@ import { Dropdown as PrimeDropdown, type DropdownProps as PrimeDropdownProps } f
 
 export interface DropdownOption {
   label: string;
-  value: undefined;
+    value: any;
   disabled?: boolean;
 }
 

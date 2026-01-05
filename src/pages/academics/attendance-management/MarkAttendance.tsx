@@ -190,6 +190,7 @@ const MarkAttendance: React.FC = () => {
                    className="p-button-danger p-button-outlined px-6"
                    
                    style={{ color: "#ff4d4d", borderColor: "#ff4d4d" }}
+                   onClick={onClear}
                  />
                </div>
       </form>
@@ -201,7 +202,7 @@ const MarkAttendance: React.FC = () => {
         {/* Footer Action Buttons */}
         <div className="flex gap-3 justify-center mt-6 p-4 border-t border-gray-50">
           <Button label="Save "  className="px-8" style={{ backgroundColor: '#6366F1', border: 'none' }} onClick={onSave} />
-          <Button label="Clear "  className="p-button-danger p-button-outlined px-8" />
+          <Button label="Clear "  className="p-button-danger p-button-outlined px-8"  />
         </div>
       </div>
     </PageLayout>
