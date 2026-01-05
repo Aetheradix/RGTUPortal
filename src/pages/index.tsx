@@ -9,6 +9,7 @@ import Admissonmanagementsystem from './admission-management-system';
 import SchemeManagement from "./scheme-management";
 import StudentManagementSystem from './student-management-system';
 import TransportManagementSYS from './transport-management';
+import GuestFacultyManagement from "./guest-faculty-management";
 
 export default function AppFeature() {
   return (
@@ -27,6 +28,7 @@ export default function AppFeature() {
       {/* Fallback for any route where dedicated UI is not implemented yet */}
       <Route path="*" element={<GenericPage />} />
       <Route path="scheme-management/*" element={<SchemeManagement />} />
+      <Route path="guest-faculty/*" element={<GuestFacultyManagement />} />
     </Routes>
   );
 }

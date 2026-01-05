@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { DataTable, type DataTableProps } from 'primereact/datatable';
 import { Column, type ColumnProps } from 'primereact/column';
+import { DataTable, type DataTableProps } from 'primereact/datatable';
 import { Paginator } from 'primereact/paginator';
+import React, { useState } from 'react';
 
 export interface TableColumn extends ColumnProps {
   field: string;
@@ -43,6 +43,7 @@ const Table: React.FC<TableProps> = ({
   className,
   ...dataTableProps
 }) => {
+  const { cellSelection, ...restProps } = dataTableProps;
   const [first, setFirst] = useState(0);
   const [rows, setRows] = useState(rowsPerPage);
 
@@ -67,16 +68,17 @@ const Table: React.FC<TableProps> = ({
         loading={loading}
         emptyMessage={emptyMessage}
         className={`w-full ${className || ''}`}
-        {...(dataTableProps as any)}
+        {...(cellSelection === true ? { ...restProps, cellSelection: true } : restProps)}
       >
         {columns.map((column, index) => (
           <Column
             key={column.field || index}
             {...column}
+            headerStyle={{ whiteSpace: 'nowrap' }}
           />
         ))}
       </DataTable>
-      
+
       {showPagination && totalRecords > 0 && (
         <div className={`mt-4 ${paginationClassName || ''}`}>
           <Paginator
