@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import PageLayout from "../../../components/PageLayout";
 import { Button } from "primereact/button";
 import { DataTable } from "primereact/datatable";
@@ -7,15 +7,20 @@ import { Dropdown } from "primereact/dropdown";
 import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
 import { MultiSelect } from "primereact/multiselect";
+import { Toast } from "primereact/toast";
 
 const StudentSamagraEkycApproval: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [status, setStatus] = useState(null);
   const [remark, setRemark] = useState("");
-  const academicYears = ["2024-25", "2023-24", "2022-23", "2021-22"];
+  const [samagraId, setSamagraId] = useState("");
   const [selectedAcademicYear, setSelectedAcademicYear] = useState<string[]>(
     []
   );
+
+  const toast = useRef<Toast>(null);
+
+  const academicYears = ["2024-25", "2023-24", "2022-23", "2021-22"];
   const statusOptions = [
     { label: "Approve", value: "Approve" },
     { label: "Reject", value: "Reject" },
@@ -38,27 +43,44 @@ const StudentSamagraEkycApproval: React.FC = () => {
   ];
 
   const handleSearch = () => {
+    if (selectedAcademicYear.length === 0 || !samagraId.trim()) {
+      toast.current?.show({
+        severity: "error",
+        summary: "Error",
+        detail: "Please fill all required fields",
+        life: 3000,
+      });
+      return;
+    }
     setCurrentStep(2);
+    toast.current?.show({
+      severity: "success",
+      summary: "Success",
+      detail: "Student details fetched successfully",
+      life: 3000,
+    });
   };
 
   const handleClear = () => {
     setCurrentStep(1);
     setStatus(null);
     setRemark("");
+    setSamagraId("");
+    setSelectedAcademicYear([]);
+    toast.current?.show({
+      severity: "info",
+      summary: "Cleared",
+      detail: "Form has been reset",
+      life: 2000,
+    });
   };
-
-  const expandTemplate = () => (
-    <i
-      className="pi pi-plus-circle text-indigo-500 cursor-pointer"
-      style={{ fontSize: "1.1rem" }}
-    ></i>
-  );
 
   return (
     <PageLayout title="Student Samagra E-KYC Approval">
+      <Toast ref={toast} />
       <div className="space-y-6">
         <section className="bg-white p-6 rounded-lg border border-gray-100 shadow-sm">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
               <label
                 htmlFor="academicYears"
@@ -81,12 +103,14 @@ const StudentSamagraEkycApproval: React.FC = () => {
                 Enter Samagra ID<span className="text-red-500">*</span>
               </label>
               <InputText
+                value={samagraId}
+                onChange={(e) => setSamagraId(e.target.value)}
                 placeholder="Enter 9-digit Samagra ID"
                 className="w-full"
               />
             </div>
           </div>
-          <div className="flex gap-3 mt-6 justify-center">
+          <div className="flex gap-3 mt-6">
             <Button
               label="Get Student Details for Samagra"
               className="bg-indigo-600 border-none px-6"
@@ -94,12 +118,13 @@ const StudentSamagraEkycApproval: React.FC = () => {
             />
             <Button
               label="Clear"
-              className="bg-red-600 border-none px-10"
+              icon="pi pi-refresh"
+              className="p-button-outlined"
               onClick={handleClear}
             />
           </div>
         </section>
-        {/* STEP 2: STUDENT DETAILS & MANAGE SECTION (Capture134.PNG) */}
+
         {currentStep === 2 && (
           <div className="space-y-6 animate-fade-in">
             <section className="bg-white p-4 rounded-lg border border-gray-100 shadow-sm">
@@ -113,30 +138,41 @@ const StudentSamagraEkycApproval: React.FC = () => {
               </div>
               <DataTable
                 value={studentData}
-                className="p-datatable-sm text-sm no-border-table"
+                className="p-datatable-sm text-sm "
                 showGridlines={false}
               >
-                <Column body={expandTemplate} style={{ width: "40px" }} />
-                <Column field="id" header="S.No." style={{ width: "50px" }} />
-                <Column field="aadhaarNumber" header="Aadhaar Number" />
-                <Column field="name" header="Name" />
-                <Column field="fatherName" header="Father's Name" />
-                <Column field="relation" header="Relation" />
-                <Column field="dob" header="Date of Birth" />
-                <Column field="gender" header="Gender" />
-                <Column field="permanentAddress" header="Permanent Address" />
-                <Column field="pinCode" header="Pin Code" />
-                <Column field="district" header="District" />
-                <Column field="localBody" header="Local Body" />
-                <Column field="landmark" header="Landmark" />
+                <Column
+                  field="id"
+                  header="S.No."
+                  style={{ width: "80px" }}
+                  sortable
+                />
+                <Column
+                  field="aadhaarNumber"
+                  header="Aadhaar Number"
+                  sortable
+                />
+                <Column field="name" header="Name" sortable />
+                <Column field="fatherName" header="Father's Name" sortable />
+                <Column field="relation" header="Relation" sortable />
+                <Column field="dob" header="Date of Birth" sortable />
+                <Column field="gender" header="Gender" sortable />
+                <Column
+                  field="permanentAddress"
+                  header="Permanent Address"
+                  sortable
+                />
+                <Column field="pinCode" header="Pin Code" sortable />
+                <Column field="district" header="District" sortable />
+                <Column field="localBody" header="Local Body" sortable />
+                <Column field="landmark" header="Landmark" sortable />
               </DataTable>
             </section>
-            {/* Manage Samagra Kyc Section (Mini Sections) */}
             <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
               <h3 className="text-md font-bold mb-6 text-gray-600 uppercase border-b pb-2">
                 Manage Samagra Kyc
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Select Status
@@ -163,14 +199,23 @@ const StudentSamagraEkycApproval: React.FC = () => {
                   />
                 </div>
               </div>
-              <div className="flex gap-3 mt-8 justify-center pt-4 ">
+              <div className="flex gap-3 mt-8 pt-4">
                 <Button
                   label="Update Student Details"
                   className="bg-indigo-600 border-none px-8"
+                  onClick={() => {
+                    toast.current?.show({
+                      severity: "success",
+                      summary: "Updated",
+                      detail: "Record updated successfully",
+                      life: 3000,
+                    });
+                  }}
                 />
                 <Button
                   label="Clear"
-                  className="bg-red-600 border-none px-10"
+                  icon="pi pi-refresh"
+                  className="p-button-outlined"
                   onClick={handleClear}
                 />
               </div>

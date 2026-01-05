@@ -111,16 +111,6 @@ const MarkAttendance: React.FC = () => {
     console.log('Fetching students for:', formData);
   };
 
-  const onClear = () => {
-    setFormData({
-      attendanceDate: null,
-      courseName: null,
-      specialization: null,
-      semester: null,
-      subject: null
-    });
-  };
-
   const onSave = () => {
     console.log('Attendance Saved:', studentList);
     // Add success message/toast here

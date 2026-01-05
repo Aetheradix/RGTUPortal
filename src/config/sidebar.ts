@@ -364,10 +364,6 @@ const sidebarMenu = {
                                 "/masters/payroll-master/all-earning-all-employee-wise-head-wise",
                         },
                         {
-                            page: "Arrear Type Master",
-                            route: "/masters/payroll-master/arrear-type-master",
-                        },
-                        {
                             page: "Challan Details Master Data",
                             route: "/masters/payroll-master/challan-details-master",
                         },
@@ -739,154 +735,154 @@ const sidebarMenu = {
                 },
             ],
         },
+       {
+      module: "Transport",
+      icon: FaBus,
+      route: "/transport-management",
+      subModules: [
         {
-            module: "Transport",
-            icon: FaBus,
-            route: "/transport-management",
-            subModules: [
-                {
-                    subModule: "Transport Management System",
-                    route: "/transport-management/transport-management-system",
-                    pages: [
-                        {
-                            page: "Vehicle Maintenance Type Master",
-                            route:
-                                "/transport-management/transport-management-system/vehicle-maintenance-type-master",
-                        },
-                        {
-                            page: "Vehicle Registration",
-                            route:
-                                "/transport-management/transport-management-system/vehicle-registration",
-                        },
-                        {
-                            page: "Vehicle Allotment",
-                            route:
-                                "/transport-management/transport-management-system/vehicle-allotment",
-                        },
-                        {
-                            page: "Vehicle Maintenance",
-                            route:
-                                "/transport-management/transport-management-system/vehicle-maintenance",
-                        },
-                        {
-                            page: "Vehicle Insurance",
-                            route:
-                                "/transport-management/transport-management-system/vehicle-insurance",
-                        },
-                        {
-                            page: "Vehicle Dispose",
-                            route:
-                                "/transport-management/transport-management-system/vehicle-dispose",
-                        },
-                        {
-                            page: "Vehicle Deallocation Transfer",
-                            route:
-                                "/transport-management/transport-management-system/vehicle-deallocation-transfer",
-                        },
-                        {
-                            page: "Vehicle Maintenance Request",
-                            route: "/transport-management/transport-management-system/vehicle-maintenance-request",
-                        },
-                        {
-                            page: "Vehicle Maintenance Approval",
-                            route: "/transport-management/transport-management-system/vehicle-maintenance-approval",
-                        },
-                    ],
-                },
-                {
-                    subModule: "College/University Transport",
-                    route: "/transport-management/university-management-system",
-                    pages: [
-                        {
-                            page: "Route Registration",
-                            route: "/transport-management/university-management-system/route-registration",
-                        },
-                        {
-                            page: "Bus Stop Registration",
-                            route: "/transport-management/university-management-system/bus-stop-registration",
-                        },
-                        {
-                            page: "Route To Bus Stop Mapping",
-                            route: "/transport-management/university-management-system/route-bus-stop-mapping",
-                        },
-                        {
-                            page: "Driver Attender Registration",
-                            route:
-                                "/transport-management/university-management-system/driver-attender-registration",
-                        },
-                        {
-                            page: "Driver Attender Leave Entry",
-                            route:
-                                "/transport-management/university-management-system/driver-attender-leave-entry",
-                        },
-                        {
-                            page: "Route To Vehicle Mapping",
-                            route: "/transport-management/university-management-system/route-vehicle-mapping",
-                        },
-                        {
-                            page: "Bus Stop Enrollment",
-                            route: "/transport-management/university-management-system/bus-stop-enrollment",
-                        },
-                        {
-                            page: "Driver Attender Route Details",
-                            route:
-                                "/transport-management/university-management-system/driver-attender-route-details",
-                        },
-                    ],
-                },
-                {
-                    subModule: "Bus Driver Attender Process",
-                    route: "/transport/driver-attender-process",
-                    pages: [
-                        {
-                            page: "View Route Location",
-                            route: "/transport/driver-attender-process/view-route-location",
-                        },
-                        {
-                            page: "Route Wise Pickup/Drop",
-                            route:
-                                "/transport/driver-attender-process/route-wise-pickup-drop",
-                        },
-                        {
-                            page: "Route Details",
-                            route: "/transport/driver-attender-process/route-details",
-                        },
-                    ],
-                },
-                {
-                    subModule: "Parent Process",
-                    route: "/transport/parent-process",
-                    pages: [
-                        {
-                            page: "Inform to Student",
-                            route: "/transport/parent-process/inform-student",
-                        },
-                        {
-                            page: "Bus Route Details",
-                            route: "/transport/parent-process/bus-route-details",
-                        },
-                        {
-                            page: "Pickup/Drop Details",
-                            route: "/transport/parent-process/pickup-drop-details",
-                        },
-                    ],
-                },
-                {
-                    subModule: "Gatekeeper Transport System",
-                    route: "/transport/gatekeeper",
-                    pages: [
-                        {
-                            page: "E-Challan Process",
-                            route: "/transport/gatekeeper/e-challan",
-                        },
-                        {
-                            page: "Check Vehicle Details",
-                            route: "/transport/gatekeeper/check-vehicle-details",
-                        },
-                    ],
-                },
-            ],
+          subModule: "Transport Management System",
+          route: "/transport-management/transport-management-system",
+          pages: [
+            {
+              page: "Vehicle Maintenance Type Master",
+              route:
+                "/transport-management/transport-management-system/vehicle-maintenance-type-master",
+            },
+            {
+              page: "Vehicle Registration",
+              route:
+                "/transport-management/transport-management-system/vehicle-registration",
+            },
+            {
+              page: "Vehicle Allotment",
+              route:
+                "/transport-management/transport-management-system/vehicle-allotment",
+            },
+            {
+              page: "Vehicle Maintenance",
+              route:
+                "/transport-management/transport-management-system/vehicle-maintenance",
+            },
+            {
+              page: "Vehicle Insurance",
+              route:
+                "/transport-management/transport-management-system/vehicle-insurance",
+            },
+            {
+              page: "Vehicle Dispose",
+              route:
+                "/transport-management/transport-management-system/vehicle-dispose",
+            },
+            {
+              page: "Vehicle Deallocation Transfer",
+              route:
+                "/transport-management/transport-management-system/vehicle-deallocation-transfer",
+            },
+            {
+              page: "Vehicle Maintenance Request",
+              route: "/transport-management/transport-management-system/vehicle-maintenance-request",
+            },
+            {
+              page: "Vehicle Maintenance Approval",
+              route: "/transport-management/transport-management-system/vehicle-maintenance-approval",
+            },
+          ],
         },
+        {
+          subModule: "College/University Transport",
+          route: "/transport-management/university-management-system",
+          pages: [
+            {
+              page: "Route Registration",
+              route: "/transport-management/university-management-system/route-registration",
+            },
+            {
+              page: "Bus Stop Registration",
+              route: "/transport-management/university-management-system/bus-stop-registration",
+            },
+            {
+              page: "Route To Bus Stop Mapping",
+              route: "/transport-management/university-management-system/route-to-bus-stop-mapping",
+            },
+            {
+              page: "Driver Attender Registration",
+              route:
+                "/transport-management/university-management-system/driver-attender-registration",
+            },
+            {
+              page: "Driver Attender Leave Entry",
+              route:
+                "/transport-management/university-management-system/driver-attender-leave-entry",
+            },
+            {
+              page: "Route To Vehicle Mapping",
+              route: "/transport-management/university-management-system/route-to-vehicle-mapping",
+            },
+            {
+              page: "Bus Stop Enrollment",
+              route: "/transport-management/university-management-system/bus-stop-enrollment",
+            },
+            {
+              page: "Driver Attender Route Details",
+              route:
+                "/transport-management/university-management-system/driver-attender-route-details",
+            },
+          ],
+        },
+        {
+          subModule: "Bus Driver Attender Process",
+          route: "/transport-management/driver-attender-process",
+          pages: [
+            {
+              page: "View Route Location",
+              route: "/transport-management/driver-attender-process/view-route-location",
+            },
+            {
+              page: "Route Wise Pickup/Drop",
+              route:
+                "/transport-management/driver-attender-process/route-wise-pickup-drop",
+            },
+            {
+              page: "Route Details",
+              route: "/transport-management/driver-attender-process/route-details",
+            },
+          ],
+        },
+        {
+          subModule: "Parent Process",
+          route: "/transport-management/parent-process",
+          pages: [
+            {
+              page: "Inform to Student",
+              route: "/transport-management/parent-process/inform-to-student",
+            },
+            {
+              page: "Bus Route Details",
+              route: "/transport-management/parent-process/bus-route-details",
+            },
+            {
+              page: "Pickup/Drop Details",
+              route: "/transport-management/parent-process/pickup-drop-details",
+            },
+          ],
+        },
+        {
+          subModule: "Gatekeeper Transport System",
+          route: "/transport-management/gatekeeper-transport-system",
+          pages: [
+            {
+              page: "E-Challan Process",
+              route: "/transport-management/gatekeeper-transport-system/e-challan-process",
+            },
+            {
+              page: "Check Vehicle Details",
+              route: "/transport-management/gatekeeper-transport-system/check-vehicle-details",
+            },
+          ],
+        },
+      ],
+    },
         {
             module: "Exam Management",
             icon: FaClipboardList,
@@ -1164,156 +1160,76 @@ const sidebarMenu = {
         {
             module: "Budget & Finance",
             icon: FaMoneyBillWave,
-            route: "/finance",
+            route: "/budget-and-finance",
             subModules: [
                 {
                     subModule: "Finance Master",
-                    route: "/finance/master",
+                    route: "/budget-and-finance/finance-master",
                     pages: [
-                        {
-                            page: "Group Management",
-                            route: "/finance/master/group-management",
-                        },
-                        {
-                            page: "Ledger Creation Management",
-                            route: "/finance/master/ledger-creation",
-                        },
-                        { page: "HSN/SAC Master", route: "/finance/master/hsn-sac" },
-                        {
-                            page: "Group Wise Ledger List",
-                            route: "/finance/master/group-wise-ledger",
-                        },
-                        {
-                            page: "Office Wise Ledger List Details",
-                            route: "/finance/master/office-wise-ledger",
-                        },
-                        {
-                            page: "Ledger for Office Mapping",
-                            route: "/finance/master/ledger-office-mapping",
-                        },
-                        {
-                            page: "Ledger Altercation",
-                            route: "/finance/master/ledger-altercation",
-                        },
-                    ],
+                        { page: "Group Management", route: "/budget-and-finance/finance-master/group-management" },
+                        { page: "Ledger Creation Management", route: "/budget-and-finance/finance-master/ledger-creation-management" },
+                        { page: "HSN/SAC Master", route: "/budget-and-finance/finance-master/hsn-sac-master" },
+                        { page: "Group Wise Ledger List", route: "/budget-and-finance/finance-master/group-wise-ledger-list" },
+                        { page: "Office Wise Ledger List Details", route: "/budget-and-finance/finance-master/office-wise-ledger" },
+                        { page: "Ledger for Office Mapping", route: "/budget-and-finance/finance-master/ledger-for-office-mapping" },
+                        { page: "Ledger Altercation", route: "/budget-and-finance/finance-master/ledger-altercation" }
+                    ]
                 },
                 {
                     subModule: "Proposed Budget Process",
-                    route: "/finance/proposed-budget",
+                    route: "/budget-and-finance/proposed-budget",
                     pages: [
-                        {
-                            page: "Proposed Budget",
-                            route: "/finance/proposed-budget/proposed-budget",
-                        },
-                        {
-                            page: "Update Proposed Budget",
-                            route: "/finance/proposed-budget/update-proposed-budget",
-                        },
-                    ],
+                        { page: "Proposed Budget", route: "/budget-and-finance/proposed-budget/proposed-sub-budget" },
+                        { page: "Update Proposed Budget", route: "/budget-and-finance/proposed-budget/update-proposed-budget" }
+                    ]
                 },
                 {
                     subModule: "Online Budget Demand",
-                    route: "/finance/online-demand",
+                    route: "/budget-and-finance/online-demand-request-process",
                     pages: [
-                        {
-                            page: "Demand Request Process",
-                            route: "/finance/online-demand/demand-request",
-                        },
-                        {
-                            page: "Demand Status Details",
-                            route: "/finance/online-demand/demand-status",
-                        },
-                    ],
+                        { page: "Demand Request Process", route: "/budget-and-finance/online-demand-request-process/demand-request-process" },
+                        { page: "Demand Status Details", route: "/budget-and-finance/online-demand-request-process/demand-status-details" },
+                        { page: "Budget Approval", route: "/budget-and-finance/online-demand-request-process/budget-approval" }
+                    ]
                 },
                 {
                     subModule: "Budget Approval & Allocation",
-                    route: "/finance/budget-approval-allocation",
+                    route: "/budget-and-finance/budget-allocation-process",
                     pages: [
-                        {
-                            page: "Approval Authority",
-                            route: "/finance/budget-approval-allocation/approval-authority",
-                        },
-                        {
-                            page: "Budget Allocation Head Wise",
-                            route:
-                                "/finance/budget-approval-allocation/budget-allocation-head-wise",
-                        },
-                        {
-                            page: "Budget Allocation Report",
-                            route:
-                                "/finance/budget-approval-allocation/budget-allocation-report",
-                        },
-                        {
-                            page: "Letter Generate",
-                            route: "/finance/budget-approval-allocation/letter-generate",
-                        },
-                        {
-                            page: "Budget Assign Report",
-                            route: "/finance/budget-approval-allocation/budget-assign-report",
-                        },
-                        {
-                            page: "Budget Utilization Report",
-                            route:
-                                "/finance/budget-approval-allocation/budget-utilization-report",
-                        },
-                    ],
+                        // { page: "Approval Authority", route: "/finance/budget-approval-allocation/approval-authority" },
+                        { page: "Budget Allocation Head Wise", route: "/budget-and-finance/budget-allocation-process/budget-allocation-head-wise" },
+                        { page: "Budget Allocation Report", route: "/budget-and-finance/budget-allocation-process/budget-allocation-report" },
+                        { page: "Letter Generate", route: "/budget-and-finance/budget-allocation-process/budget-allocation-approval-process" },
+                        { page: "Budget Assign Report", route: "/budget-and-finance/budget-allocation-process/budget-assign-report" },
+                        { page: "Budget Utilization Report", route: "/budget-and-finance/budget-allocation-process/budget-utilization-report" }
+                    ]
                 },
                 {
                     subModule: "Voucher Creation",
-                    route: "/finance/voucher",
+                    route: "/budget-and-finance/voucher-creation",
                     pages: [
-                        {
-                            page: "Payment Voucher",
-                            route: "/finance/voucher/payment-voucher",
-                        },
-                        {
-                            page: "Receipt Voucher",
-                            route: "/finance/voucher/receipt-voucher",
-                        },
-                        {
-                            page: "Journal Voucher",
-                            route: "/finance/voucher/journal-voucher",
-                        },
-                        {
-                            page: "Contra Voucher",
-                            route: "/finance/voucher/contra-voucher",
-                        },
-                        {
-                            page: "Service Purchase Voucher",
-                            route: "/finance/voucher/service-purchase-voucher",
-                        },
-                    ],
+                        { page: "Payment Voucher", route: "/budget-and-finance/voucher-creation/payment-voucher" },
+                        { page: "Receipt Voucher", route: "/budget-and-finance/voucher-creation/receipt-voucher" },
+                        { page: "Journal Voucher", route: "/budget-and-finance/voucher-creation/journal-voucher" },
+                        { page: "Contra Voucher", route: "/budget-and-finance/voucher-creation/contra-voucher" },
+                        { page: "Service Purchase Voucher", route: "/budget-and-finance/voucher-creation/service-purchase-voucher" }
+                    ]
                 },
                 {
                     subModule: "Finance Reports",
-                    route: "/finance/reports",
+                    route: "/budget-and-finance/expenses-report",
                     pages: [
-                        { page: "Expenses Report", route: "/finance/reports/expenses" },
-                        {
-                            page: "Office Wise Budget Allocation Report",
-                            route: "/finance/reports/office-wise-allocation",
-                        },
-                        {
-                            page: "Day Book Single",
-                            route: "/finance/reports/day-book-single",
-                        },
-                        {
-                            page: "Custom Day Book",
-                            route: "/finance/reports/custom-day-book",
-                        },
-                        { page: "Ledger Report", route: "/finance/reports/ledger" },
-                        {
-                            page: "Cash Bank Book",
-                            route: "/finance/reports/cash-bank-book",
-                        },
-                        { page: "Statistics", route: "/finance/reports/statistics" },
-                        {
-                            page: "Alphabetical Ledger Report",
-                            route: "/finance/reports/alphabetical-ledger",
-                        },
-                    ],
-                },
-            ],
+                        { page: "Expenses Report", route: "/budget-and-finance/finance-report/expenses-report" },
+                        { page: "Office Wise Budget Allocation Report", route: "/budget-and-finance/finance-report/office-wise-budget-allocation-report" },
+                        { page: "Day Book Single", route: "/budget-and-finance/finance-report/day-book-single" },
+                        { page: "Custom Day Book", route: "/budget-and-finance/finance-report/custom-day-book" },
+                        { page: "Ledger Report", route: "/budget-and-finance/finance-report/ledger-report" },
+                        { page: "Cash Bank Book", route: "/budget-and-finance/finance-report/cash-bank-book" },
+                        { page: "Statistics", route: "/budget-and-finance/finance-report/statistics" },
+                        { page: "Alphabetical Ledger Report", route: "/budget-and-finance/finance-report/alphabetical-ledger-report" }
+                    ]
+                }
+            ]
         },
         {
             module: "Guest Faculty",

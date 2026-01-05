@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import PageLayout from "../../../components/PageLayout";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Dialog } from "primereact/dialog";
+import { Toast } from "primereact/toast";
 
 interface KYCData {
   id: number;
@@ -22,9 +23,13 @@ interface KYCData {
 }
 
 const EKycVerification: React.FC = () => {
-  const [step, setStep] = useState(1); // 1: Input Form, 2: Comparison View
+  const [step, setStep] = useState(1);
   const [showOtpDialog, setShowOtpDialog] = useState(false);
   const [otpValue, setOtpValue] = useState("");
+  const [mobileNumber, setMobileNumber] = useState("");
+  const [confirmMobile, setConfirmMobile] = useState("");
+  const toast = useRef<Toast>(null);
+
   const [adharData] = useState<KYCData[]>([
     {
       id: 1,
@@ -58,42 +63,103 @@ const EKycVerification: React.FC = () => {
       landmark: "Bhopal",
     },
   ]);
-  const handleGetOtp = () => setShowOtpDialog(true);
-  const handleSubmitOtp = () => {
-    setShowOtpDialog(false);
-    setStep(2);
+
+  const handleGetOtp = () => {
+    if (!mobileNumber || !confirmMobile) {
+      toast.current?.show({
+        severity: "error",
+        summary: "Error",
+        detail: "Please enter all required fields",
+        life: 3000,
+      });
+      return;
+    }
+    if (mobileNumber !== confirmMobile) {
+      toast.current?.show({
+        severity: "warn",
+        summary: "Mismatch",
+        detail: "Mobile numbers do not match",
+        life: 3000,
+      });
+      return;
+    }
+    setShowOtpDialog(true);
   };
+
+  const handleSubmitOtp = () => {
+    if (otpValue === "7655") {
+      setShowOtpDialog(false);
+      setStep(2);
+      toast.current?.show({
+        severity: "success",
+        summary: "Success",
+        detail: "OTP Verified Successfully",
+        life: 3000,
+      });
+    } else {
+      toast.current?.show({
+        severity: "error",
+        summary: "Invalid OTP",
+        detail: "Please enter a valid OTP",
+        life: 3000,
+      });
+    }
+  };
+
+  const handleFinalSubmit = () => {
+    toast.current?.show({
+      severity: "success",
+      summary: "Completed",
+      detail: "E-KYC Verification Submitted Successfully",
+      life: 4000,
+    });
+  };
+
   const handleReset = () => {
     setStep(1);
     setOtpValue("");
+    setMobileNumber("");
+    setConfirmMobile("");
+    toast.current?.show({
+      severity: "info",
+      summary: "Reset",
+      detail: "Form cleared",
+      life: 2000,
+    });
   };
 
   return (
     <PageLayout title="E-KYC Verification">
+      <Toast ref={toast} />
+
       <div className="space-y-6">
         {step === 1 && (
-          <>
-            <h3 className="text-lg font-semibold mb-6">EKyc-Verifivation</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium mb-2 text-gray-700">
-                    Enter Mobile Number<span className="text-red-500">*</span>
-                  </label>
-                  <InputText
-                    className="w-full"
-                    placeholder="Enter Mobile Number"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2 text-gray-700">
-                    Confirm Mobile Number<span className="text-red-500">*</span>
-                  </label>
-                  <InputText className="w-full" placeholder="Confirm" />
-                </div>
+          <div className="card p-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
+              <div className="flex flex-col gap-2">
+                <label className="text-sm font-medium">
+                  Enter Mobile Number<span className="text-red-500">*</span>
+                </label>
+                <InputText
+                  className="w-full"
+                  value={mobileNumber}
+                  onChange={(e) => setMobileNumber(e.target.value)}
+                  placeholder="Enter Mobile Number"
+                />
+              </div>
+              <div className="flex flex-col gap-2">
+                <label className="text-sm font-medium">
+                  Confirm Mobile Number<span className="text-red-500">*</span>
+                </label>
+                <InputText
+                  className="w-full"
+                  value={confirmMobile}
+                  onChange={(e) => setConfirmMobile(e.target.value)}
+                  placeholder="Confirm Mobile Number"
+                />
               </div>
             </div>
-            <div className="flex justify-center gap-3 mt-8 ">
+            <div className="flex gap-2 ">
               <Button
                 label="Click to get OTP"
                 className="bg-blue-600 border-none px-6"
@@ -101,12 +167,14 @@ const EKycVerification: React.FC = () => {
               />
               <Button
                 label="Clear"
-                className="bg-red-600 border-none px-6"
+                icon="pi pi-refresh"
+                className="p-button-outlined"
                 onClick={handleReset}
               />
             </div>
-          </>
+          </div>
         )}
+
         {step === 2 && (
           <div className="animate-fade-in space-y-8">
             <div className="text-center">
@@ -170,6 +238,7 @@ const EKycVerification: React.FC = () => {
               <Button
                 label="Final Submit"
                 className="bg-blue-600 border-none px-12"
+                onClick={handleFinalSubmit}
               />
               <Button
                 label="Clear"
@@ -179,6 +248,7 @@ const EKycVerification: React.FC = () => {
             </div>
           </div>
         )}
+
         <Dialog
           header="Verify Mobile Number"
           visible={showOtpDialog}

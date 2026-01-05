@@ -6,3 +6,6 @@ export type { DropdownProps, DropdownOption } from './Dropdown';
 
 export { default as Table } from './Table';
 export type { TableProps, TableColumn } from './Table';
+
+export { default as Logo } from './Logo';
+export type { LogoProps } from './Logo';
