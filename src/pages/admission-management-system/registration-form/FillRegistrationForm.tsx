@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import PageLayout from "../../../components/PageLayout";
-import { DataTable, type DataTableExpandedRows } from "primereact/datatable";
-import { Column } from "primereact/column";
 import { Button } from "primereact/button";
-import { InputText } from "primereact/inputtext";
-import { Tag } from "primereact/tag";
+import { Checkbox } from "primereact/checkbox";
+import { Column } from "primereact/column";
+import { DataTable, type DataTableExpandedRows } from "primereact/datatable";
 import { Dialog } from "primereact/dialog";
 import { Dropdown } from "primereact/dropdown";
-import { Checkbox } from "primereact/checkbox";
+import { InputText } from "primereact/inputtext";
+import { Tag } from "primereact/tag";
+import React, { useState } from "react";
+import PageLayout from "../../../components/PageLayout";
 
 interface RegistrationData {
   id: number;
@@ -216,9 +216,9 @@ const StudentAdmissionForm: React.FC = () => {
           className="p-datatable-sm text-sm"
           stripedRows
           header={
-            <div className="flex justify-end">
+            <div className="flex  justify-end">
               <span className="p-input-icon-left">
-                <i className="pi pi-search" />
+
                 <InputText
                   value={globalFilter}
                   onChange={(e) => setGlobalFilter(e.target.value)}
