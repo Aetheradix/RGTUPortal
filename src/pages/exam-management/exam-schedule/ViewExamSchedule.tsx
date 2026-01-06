@@ -13,10 +13,38 @@ interface ExamSchedule {
   subject: string;
 }
 
-const dropdownOptions = [
+/* ===== DROPDOWN OPTIONS ===== */
+const academicYearOptions = [
   { label: 'Select', value: '' },
-  { label: 'Option 1', value: '1' },
-  { label: 'Option 2', value: '2' },
+  { label: '2022-23', value: '2022-23' },
+  { label: '2023-24', value: '2023-24' },
+  { label: '2024-25', value: '2024-25' },
+];
+
+const courseOptions = [
+  { label: 'Select', value: '' },
+  { label: 'B.Tech', value: 'B.Tech' },
+  { label: 'MBA', value: 'MBA' },
+  { label: 'BCA', value: 'BCA' },
+  { label: 'B.Sc', value: 'B.Sc' },
+];
+
+const specializationOptions = [
+  { label: 'Select', value: '' },
+  { label: 'Computer Science', value: 'Computer Science' },
+  { label: 'Electrical Engineering', value: 'Electrical Engineering' },
+  { label: 'Mechanical Engineering', value: 'Mechanical Engineering' },
+  { label: 'Civil Engineering', value: 'Civil Engineering' },
+];
+
+const semesterOptions = [
+  { label: 'Select', value: '' },
+  { label: '1st Semester', value: '1st Semester' },
+  { label: '2nd Semester', value: '2nd Semester' },
+  { label: '3rd Semester', value: '3rd Semester' },
+  { label: '4th Semester', value: '4th Semester' },
+  { label: '5th Semester', value: '5th Semester' },
+  { label: '6th Semester', value: '6th Semester' },
 ];
 
 const ViewExamSchedule: React.FC = () => {
@@ -57,7 +85,6 @@ const ViewExamSchedule: React.FC = () => {
   ];
 
   const handleSearch = () => {
-    console.log('Search Filters:', filters);
     setShowList(true);
   };
 
@@ -75,45 +102,70 @@ const ViewExamSchedule: React.FC = () => {
     <PageLayout title="Exam Schedule">
       {/* ================= FILTER SECTION ================= */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-        <Dropdown
-          value={filters.academicYear}
-          options={dropdownOptions}
-          placeholder="Academic Year *"
-          className="w-full"
-          onChange={(e) =>
-            setFilters({ ...filters, academicYear: e.value })
-          }
-        />
 
-        <Dropdown
-          value={filters.courseName}
-          options={dropdownOptions}
-          placeholder="Select Course Name *"
-          className="w-full"
-          onChange={(e) =>
-            setFilters({ ...filters, courseName: e.value })
-          }
-        />
+        {/* Academic Year */}
+        <div>
+          <label className="block text-sm font-medium mb-2">
+            Academic Year <span className="text-red-500">*</span>
+          </label>
+          <Dropdown
+            value={filters.academicYear}
+            options={academicYearOptions}
+            placeholder="Select Academic Year"
+            className="w-full"
+            onChange={(e) =>
+              setFilters({ ...filters, academicYear: e.value })
+            }
+          />
+        </div>
 
-        <Dropdown
-          value={filters.specialization}
-          options={dropdownOptions}
-          placeholder="Select Specialization *"
-          className="w-full"
-          onChange={(e) =>
-            setFilters({ ...filters, specialization: e.value })
-          }
-        />
+        {/* Course Name */}
+        <div>
+          <label className="block text-sm font-medium mb-2">
+            Course Name <span className="text-red-500">*</span>
+          </label>
+          <Dropdown
+            value={filters.courseName}
+            options={courseOptions}
+            placeholder="Select Course Name"
+            className="w-full"
+            onChange={(e) =>
+              setFilters({ ...filters, courseName: e.value })
+            }
+          />
+        </div>
 
-        <Dropdown
-          value={filters.semester}
-          options={dropdownOptions}
-          placeholder="Select Semester *"
-          className="w-full"
-          onChange={(e) =>
-            setFilters({ ...filters, semester: e.value })
-          }
-        />
+        {/* Specialization */}
+        <div>
+          <label className="block text-sm font-medium mb-2">
+            Specialization <span className="text-red-500">*</span>
+          </label>
+          <Dropdown
+            value={filters.specialization}
+            options={specializationOptions}
+            placeholder="Select Specialization"
+            className="w-full"
+            onChange={(e) =>
+              setFilters({ ...filters, specialization: e.value })
+            }
+          />
+        </div>
+
+        {/* Semester */}
+        <div>
+          <label className="block text-sm font-medium mb-2">
+            Semester <span className="text-red-500">*</span>
+          </label>
+          <Dropdown
+            value={filters.semester}
+            options={semesterOptions}
+            placeholder="Select Semester"
+            className="w-full"
+            onChange={(e) =>
+              setFilters({ ...filters, semester: e.value })
+            }
+          />
+        </div>
       </div>
 
       <div className="flex gap-3 mb-8">

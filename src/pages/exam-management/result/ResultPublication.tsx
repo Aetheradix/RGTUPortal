@@ -61,16 +61,62 @@ const publicationList: ResultPublication[] = [
   },
 ];
 
-const selectOptions = [{ label: 'Select', value: '' }];
+// Dropdown options
+const universityOptions = [
+  { label: 'RGPV, Bhopal', value: 'RGPV, Bhopal' },
+  { label: 'Dr. Harisingh Gour University, Sagar', value: 'Dr. Harisingh Gour University, Sagar' },
+  { label: 'APS University, Rewa', value: 'APS University, Rewa' },
+];
+
+const collegeOptions = [
+  { label: 'Government Engineering College, Jabalpur', value: 'Government Engineering College, Jabalpur' },
+  { label: 'Institute of Engineering & Technology', value: 'Institute of Engineering & Technology' },
+  { label: 'APS Engineering College', value: 'APS Engineering College' },
+];
+
+const courseLevelOptions = [
+  { label: 'Under Graduate', value: 'Under Graduate' },
+  { label: 'Post Graduate', value: 'Post Graduate' },
+];
+
+const courseOptions = [
+  { label: 'B.Tech', value: 'B.Tech' },
+  { label: 'M.Tech', value: 'M.Tech' },
+  { label: 'BCA', value: 'BCA' },
+];
+
+const examTypeOptions = [
+  { label: 'Mid-Term Exams', value: 'Mid-Term Exams' },
+  { label: 'End-Term Exams', value: 'End-Term Exams' },
+  { label: 'Semester Exams', value: 'Semester Exams' },
+];
+
+const academicYearOptions = [
+  { label: '2024-2025', value: '2024-2025' },
+  { label: '2023-2024', value: '2023-2024' },
+];
+
+const notificationOptions = [
+  { label: 'Sent', value: 'Sent' },
+  { label: 'No', value: 'No' },
+];
 
 const ResultPublication: React.FC = () => {
   const [view, setView] = useState<'list' | 'add'>('list');
   const [expandedRows, setExpandedRows] = useState<any>(null);
 
+  // Dropdown state
+  const [selectedUniversity, setSelectedUniversity] = useState<string | null>(null);
+  const [selectedCollege, setSelectedCollege] = useState<string | null>(null);
+  const [selectedCourseLevel, setSelectedCourseLevel] = useState<string | null>(null);
+  const [selectedCourse, setSelectedCourse] = useState<string | null>(null);
+  const [selectedExamType, setSelectedExamType] = useState<string | null>(null);
+  const [selectedAcademicYear, setSelectedAcademicYear] = useState<string | null>(null);
+  const [selectedNotification, setSelectedNotification] = useState<string | null>(null);
+  const [publishedDate, setPublishedDate] = useState<Date | null>(null);
+
   return (
     <PageLayout title="Result Publication">
-
- 
       {view === 'list' && (
         <Card>
           <div className="flex justify-between items-center mb-3">
@@ -84,6 +130,8 @@ const ResultPublication: React.FC = () => {
 
           <DataTable
             value={publicationList}
+            paginator
+            rows={10}
             showGridlines
             expandedRows={expandedRows}
             onRowToggle={(e) => setExpandedRows(e.data)}
@@ -95,99 +143,126 @@ const ResultPublication: React.FC = () => {
                 <div><strong>Exam Type:</strong> {row.examType}</div>
                 <div><strong>Academic Year:</strong> {row.academicYear}</div>
                 <div><strong>Published Date:</strong> {row.publishedDate}</div>
-                <div>
-                  <strong>Publish Status:</strong>{' '}
-                  <Tag value={row.status} severity="success" />
-                </div>
-                <div>
-                  <strong>Notification Sent:</strong>{' '}
-                  <Tag value={row.notification} severity="info" />
-                </div>
+                <div><strong>Publish Status:</strong> <Tag value={row.status} severity="success" /></div>
+                <div><strong>Notification Sent:</strong> <Tag value={row.notification} severity="info" /></div>
               </div>
             )}
           >
             <Column expander style={{ width: '3rem' }} />
-            <Column header="Sr No." body={(_, opt) => opt.rowIndex + 1} />
-            <Column field="university" header="University Name" />
+            <Column header="Sr No." body={(_, opt) => opt.rowIndex + 1} sortable />
+            <Column field="university" header="University Name" sortable />
           </DataTable>
         </Card>
       )}
 
-    
-{view === 'add' && (
-  <Card>
-    <div className="flex justify-between items-center mb-4">
-      <h3 className="font-semibold">Add Result Publication</h3>
-      <Button
-        label="Go Back"
-        icon="pi pi-arrow-left"
-        className="p-button-text"
-        onClick={() => setView('list')}
-      />
-    </div>
+      {view === 'add' && (
+        <Card>
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="font-semibold">Add Result Publication</h3>
+            <Button
+              label="Go Back"
+              icon="pi pi-arrow-left"
+              className="p-button-text"
+              onClick={() => setView('list')}
+            />
+          </div>
 
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-      <div>
-        <label className="block text-sm mb-1">Select University Name *</label>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div>
+              <label className="block text-sm mb-1">Select University Name *</label>
+              <Dropdown
+                options={universityOptions}
+                value={selectedUniversity}
+                onChange={(e) => setSelectedUniversity(e.value)}
+                placeholder="Select"
+                className="w-full"
+              />
+            </div>
 
-        <Dropdown options={selectOptions} placeholder="Select" className="w-full" />
-      </div>
+            <div>
+              <label className="block text-sm mb-1">Select College Name *</label>
+              <Dropdown
+                options={collegeOptions}
+                value={selectedCollege}
+                onChange={(e) => setSelectedCollege(e.value)}
+                placeholder="Select"
+                className="w-full"
+              />
+            </div>
 
-      <div>
-        <label className="block text-sm mb-1">Select College Name *</label>
+            <div>
+              <label className="block text-sm mb-1">Select Course Level</label>
+              <Dropdown
+                options={courseLevelOptions}
+                value={selectedCourseLevel}
+                onChange={(e) => setSelectedCourseLevel(e.value)}
+                placeholder="Select"
+                className="w-full"
+              />
+            </div>
 
-        <Dropdown options={selectOptions} placeholder="Select" className="w-full" />
-      </div>
+            <div>
+              <label className="block text-sm mb-1">Select Course *</label>
+              <Dropdown
+                options={courseOptions}
+                value={selectedCourse}
+                onChange={(e) => setSelectedCourse(e.value)}
+                placeholder="Select"
+                className="w-full"
+              />
+            </div>
 
-      <div>
-        <label className="block text-sm mb-1">Select Course Level</label>
-    
-        <Dropdown options={selectOptions} placeholder="Select" className="w-full" />
-      </div>
+            <div>
+              <label className="block text-sm mb-1">Select Exam Type *</label>
+              <Dropdown
+                options={examTypeOptions}
+                value={selectedExamType}
+                onChange={(e) => setSelectedExamType(e.value)}
+                placeholder="Select"
+                className="w-full"
+              />
+            </div>
 
-      <div>
-        <label className="block text-sm mb-1">Select Course *</label>
-    
-        <Dropdown options={selectOptions} placeholder="Select" className="w-full" />
-      </div>
+            <div>
+              <label className="block text-sm mb-1">Select Academic Year *</label>
+              <Dropdown
+                options={academicYearOptions}
+                value={selectedAcademicYear}
+                onChange={(e) => setSelectedAcademicYear(e.value)}
+                placeholder="Select"
+                className="w-full"
+              />
+            </div>
 
-      <div>
-        <label className="block text-sm mb-1">Select Exam Type *</label>
+            <div>
+              <label className="block text-sm mb-1">Enter Published Date *</label>
+              <Calendar
+                value={publishedDate}
+                onChange={(e) => setPublishedDate(e.value ?? null)}
+                placeholder="dd/mm/yyyy"
+                dateFormat="dd/mm/yy"
+                className="w-full"
+              />
+            </div>
 
-        <Dropdown options={selectOptions} placeholder="Select" className="w-full" />
-      </div>
+            <div>
+              <label className="block text-sm mb-1">Notification Sent *</label>
+              <Dropdown
+                options={notificationOptions}
+                value={selectedNotification}
+                onChange={(e) => setSelectedNotification(e.value)}
+                placeholder="Select"
+                className="w-full"
+              />
+            </div>
+          </div>
 
-      <div>
-        <label className="block text-sm mb-1">Select Academic Year *</label>
-   
-        <Dropdown options={selectOptions} placeholder="Select" className="w-full" />
-      </div>
-
-      <div>
-        <label className="block text-sm mb-1">Enter Published Date *</label>
-        <Calendar dateFormat="dd/mm/yy" className="w-full" placeholder="dd/mm/yyyy" />
-      </div>
-
-      <div>
-        <label className="block text-sm mb-1">Notification Sent *</label>
-    
-        <Dropdown
-          options={[
-            { label: 'Sent', value: 'Sent' },
-            { label: 'No', value: 'No' },
-          ]}
-          placeholder="Select"
-          className="w-full"
-        />
-      </div>
-    </div>
-
-    <div className="flex gap-3">
-      <Button label="Publish" icon="pi pi-check" />
-      <Button label="Clear" icon="pi pi-refresh" className="p-button-secondary" />
-    </div>
-  </Card>
-)}
+          <div className="flex gap-3">
+            <Button label="Publish" icon="pi pi-check" />
+            <Button label="Clear" icon="pi pi-refresh" className="p-button-secondary" />
+          </div>
+        </Card>
+      )}
     </PageLayout>
   );
 };

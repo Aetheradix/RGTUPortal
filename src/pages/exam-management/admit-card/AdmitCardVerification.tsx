@@ -76,18 +76,22 @@ const studentsData: Student[] = [
 
 const AdmitCardVerification: React.FC = () => {
   const [rollNo, setRollNo] = useState("");
+  const [mobileNo, setMobileNo] = useState("");
+  const [studentName, setStudentName] = useState("");
   const [isSearched, setIsSearched] = useState(false);
   const [verificationStatus, setVerificationStatus] = useState("");
   const [remark, setRemark] = useState("");
 
-  const student = studentsData[0]; 
+  // const student = studentsData[0];
 
   const handleSearch = () => {
-    setIsSearched(true); 
+    setIsSearched(true);
   };
 
   const handleClear = () => {
     setRollNo("");
+    setStudentName("");
+    setMobileNo("");
     setVerificationStatus("");
     setRemark("");
     setIsSearched(false);
@@ -95,7 +99,6 @@ const AdmitCardVerification: React.FC = () => {
 
   return (
     <PageLayout title="Admit Card Verification">
-  
       <div className="border rounded p-4 mb-6">
         <h3 className="font-semibold mb-2">Enter Roll Number *</h3>
 
@@ -116,41 +119,53 @@ const AdmitCardVerification: React.FC = () => {
         </div>
       </div>
 
-
       {isSearched && (
         <>
-        
-          <div className="border rounded p-4 mb-6 bg-gray-50">
-            <h3 className="font-semibold mb-3">Student Details</h3>
+        <div className="border rounded-lg p-4 mb-6 bg-gray-50 shadow-sm">
+  <h3 className="font-semibold mb-4 text-gray-700">Student Details</h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div>
-                <label>Student Name</label>
-                <div className="p-2 bg-gray-200 rounded">
-                  {student.studentName}
-                </div>
-              </div>
+  {/* Grid container: 1 column on mobile, 3 columns on desktop */}
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
+    
+    {/* Student Name */}
+    <div className="flex flex-col">
+      <label className="text-xs font-medium text-gray-500 mb-1">Student Name</label>
+      <InputText
+        placeholder="Student Name"
+        value={studentName}
+        onChange={(e) => setStudentName(e.target.value)}
+        className="p-inputtext-sm w-full"
+      />
+    </div>
 
-              <div>
-                <label>Mobile No.</label>
-                <div className="p-2 bg-gray-200 rounded">{student.mobile}</div>
-              </div>
-              <div>
-                <label className="block text-xs text-gray-500 mb-1">
-                  View Admit Card
-                </label>
-                <div className="flex items-center">
-                  <Button
-                    icon="pi pi-eye"
-                    className="p-button-rounded p-button-sm"
-                    style={{ backgroundColor: "#6366F1", border: "none" }}
-                    tooltip="View Admit Card"
-                  />
-                </div>
-              </div>
-            
-            </div>
-          </div>
+    {/* Mobile Number */}
+    <div className="flex flex-col">
+      <label className="text-xs font-medium text-gray-500 mb-1">Mobile No.</label>
+      <InputText
+        placeholder="Mobile No."
+        value={mobileNo}
+        onChange={(e) => setMobileNo(e.target.value)}
+        className="p-inputtext-sm w-full"
+      />
+    </div>
+
+    {/* View Admit Card Button */}
+    <div className="flex flex-col">
+      <label className="text-xs font-medium text-gray-500 mb-1">View Admit Card</label>
+      <div className="flex items-center h-[38px]"> {/* Fixed height to match InputText height */}
+        <Button
+          icon="pi pi-eye"
+          label="View PDF" // Added label for better UI
+          className="p-button-sm w-full md:w-auto"
+          style={{ backgroundColor: "#6366F1", border: "none" }}
+          tooltip="View Admit Card"
+          tooltipOptions={{ position: 'top' }}
+        />
+      </div>
+    </div>
+
+  </div>
+</div>
 
           <div className="border rounded p-4 mb-8">
             <h3 className="font-semibold mb-3">Verification Status</h3>
@@ -192,25 +207,34 @@ const AdmitCardVerification: React.FC = () => {
               />
             </div>
 
-            <DataTable value={studentsData} paginator rows={10} showGridlines>
-              <Column
-                header="Sr No."
-                body={(_, options) => options.rowIndex + 1}
-              />
-              <Column field="studentName" header="Student Name" />
-              <Column field="rollNumber" header="Roll Number" />
-              <Column field="courseName" header="Course Name" />
-              <Column field="admitCardNumber" header="Admit Card Number" />
-              <Column field="admitCardStatus" header="Admit Card Status" />
-              <Column field="verificationStatus" header="Verification Status" />
-              <Column field="verificationDate" header="Verification Date" />
-              <Column field="verifiedBy" header="Verified By" />
-              <Column field="remarks" header="Remarks" />
-              <Column
-                header="Status"
-                body={(row) => <Tag value={row.status} severity="success" />}
-              />
-            </DataTable>
+            <DataTable
+  value={studentsData}
+  paginator
+  rows={10}
+  showGridlines
+  className="p-datatable-sm mt-4"
+>
+  <Column
+    header="Sr No."
+    body={(_, options) => options.rowIndex + 1}
+    style={{ width: '80px' }}
+  />
+  <Column field="studentName" header="Student Name" sortable />
+  <Column field="rollNumber" header="Roll Number" sortable />
+  <Column field="courseName" header="Course Name" sortable />
+  <Column field="admitCardNumber" header="Admit Card Number" sortable />
+  <Column field="admitCardStatus" header="Admit Card Status" sortable />
+  <Column field="verificationStatus" header="Verification Status" sortable />
+  <Column field="verificationDate" header="Verification Date" sortable />
+  <Column field="verifiedBy" header="Verified By" sortable />
+  <Column field="remarks" header="Remarks" />
+  <Column
+    header="Status"
+    body={(row) => <Tag value={row.status} severity="success" />}
+    style={{ width: '120px' }}
+  />
+</DataTable>
+
           </div>
         </>
       )}
