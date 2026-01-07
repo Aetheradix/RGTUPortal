@@ -1,7 +1,7 @@
+import { Button } from 'primereact/button';
 import React, { useState } from 'react';
 import PageLayout from '../../../components/PageLayout';
 import { Table, type TableColumn } from '../../../ui/shared';
-import { Button } from 'primereact/button';
 
 interface ApplicantRow {
   srNo: number;
@@ -93,7 +93,6 @@ const ApplicantList: React.FC = () => {
           data={rows}
           showPagination
           rowsPerPage={10}
-          searchable
         />
       </div>
 

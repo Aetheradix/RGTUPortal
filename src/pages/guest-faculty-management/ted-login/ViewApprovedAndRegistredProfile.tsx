@@ -1,9 +1,8 @@
+import { Button } from 'primereact/button';
 import React, { useState } from 'react';
 import PageLayout from '../../../components/PageLayout';
-import { Button } from 'primereact/button';
-import { Dropdown, Table, type TableColumn } from '../../../ui/shared';
+import { Dropdown, type TableColumn } from '../../../ui/shared';
 
-// Data Interface based on Image b3306b
 interface ApprovedProfileRow {
   srNo: number;
   college: string;
@@ -20,7 +19,7 @@ const ViewApprovedProfile: React.FC = () => {
     university: null,
   });
 
-  // 2. Mock Data from Image
+
   const [data] = useState<ApprovedProfileRow[]>([
     {
       srNo: 1,
