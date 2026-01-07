@@ -38,8 +38,8 @@ const Table: React.FC<TableProps> = ({
   emptyMessage = 'No records found',
   loading = false,
   onPageChange,
-  onSort,
-  onFilter,
+  // onSort,
+  // onFilter,
   className,
   // ...dataTableProps
 }) => {
