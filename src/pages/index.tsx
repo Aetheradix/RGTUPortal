@@ -10,6 +10,12 @@ import SchemeManagement from "./scheme-management";
 import StudentManagementSystem from './student-management-system';
 import TransportManagementSYS from './transport-management';
 import GuestFacultyManagement from "./guest-faculty-management";
+import APRMS from "./employee-aprms";
+import DepartmentEnquiryManagement from "./department-enquiry-management";
+import TourManagementSystem from "./tour-mangement";
+import UserManagement from "./user-management";
+import OIS from "./ois";
+import HostelManagementSystem from "./hostel-management";
 
 export default function AppFeature() {
   return (
@@ -25,10 +31,15 @@ export default function AppFeature() {
       {/* <Route path="exam-management/*" element={<ExamManagement />} />
         <Route path="home/*" element={<Home />} /> */}
       <Route path="exam-management/*" element={<ExamManagement/>} />
-      {/* Fallback for any route where dedicated UI is not implemented yet */}
       <Route path="*" element={<GenericPage />} />
       <Route path="scheme-management/*" element={<SchemeManagement />} />
       <Route path="guest-faculty/*" element={<GuestFacultyManagement />} />
+      <Route path="aprms/*" element={<APRMS />} />
+      <Route path="department-enquiry-management/*" element={<DepartmentEnquiryManagement />} />
+      <Route path="tour-management-system/*" element={<TourManagementSystem />} />
+      <Route path="user-management/*" element={<UserManagement />} />
+      <Route path="ois/*" element={<OIS />} />
+      <Route path="hostel-management-system/*" element={<HostelManagementSystem />} />
     </Routes>
   );
 }
