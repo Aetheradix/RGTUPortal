@@ -1,11 +1,11 @@
+import { Button } from 'primereact/button';
+import { Column } from 'primereact/column';
+import { DataTable } from 'primereact/datatable';
 import React, { useState } from 'react';
 import PageLayout from '../../../components/PageLayout';
-import { Button } from 'primereact/button';
-import { Dropdown, Table, type TableColumn } from '../../../ui/shared';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
+import { Dropdown } from '../../../ui/shared';
 
-// 1. Interface for Applicant Data
+
 interface ApplicantProfile {
   id: string;
   srNo: number;
@@ -15,20 +15,20 @@ interface ApplicantProfile {
   gender: string;
   emailAddress: string;
   highestQualification: string;
-  // Expandable Fields (Image reference)
+
   universityName?: string;
   subject?: string;
   applicationDeadline?: string;
 }
 
 const ViewAppliedProfiles: React.FC = () => {
-  const [expandedRows, setExpandedRows] = useState<any>(null);
+  const [setExpandedRows] = useState<any>(null);
   const [filterData, setFilterData] = useState({
     academicYear: null,
     college: null
   });
 
-  // 2. Mock Data based on Image_a8c2c7
+
   const [applicants] = useState<ApplicantProfile[]>([
     {
       id: '1',
@@ -97,7 +97,7 @@ const ViewAppliedProfiles: React.FC = () => {
     }
   ]);
 
-  // 3. Row Expansion Template (Extra details like Image_a86168)
+
   const rowExpansionTemplate = (data: ApplicantProfile) => {
     return (
       <div className="p-4 bg-gray-50 border-y border-gray-100">
@@ -109,8 +109,8 @@ const ViewAppliedProfiles: React.FC = () => {
           <div className="space-y-2">
             <p><span className="font-bold text-gray-700">Deadline:</span> {data.applicationDeadline}</p>
             <div className="flex items-center gap-2 mt-2">
-               <span className="font-bold text-gray-700">Action:</span>
-               <Button label="Apply" className="p-button-sm px-4 py-1" style={{ backgroundColor: '#6366F1', border: 'none' }} />
+              <span className="font-bold text-gray-700">Action:</span>
+              <Button label="Apply" className="p-button-sm px-4 py-1" style={{ backgroundColor: '#6366F1', border: 'none' }} />
             </div>
           </div>
         </div>
@@ -120,23 +120,21 @@ const ViewAppliedProfiles: React.FC = () => {
 
   return (
     <PageLayout title="View Applied Profile All Colleges">
-      
-      {/* FILTER SECTION (Image_a8c2c5) */}
       <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 mb-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          <Dropdown 
+          <Dropdown
             label="Select Academic Year" required
             placeholder="Select"
             value={filterData.academicYear}
-            options={[{label: '2024-25', value: '2024-25'}]}
-            onChange={(e) => setFilterData({...filterData, academicYear: e.value})}
+            options={[{ label: '2024-25', value: '2024-25' }]}
+            onChange={(e) => setFilterData({ ...filterData, academicYear: e.value })}
           />
-          <Dropdown 
+          <Dropdown
             label="Select College" required
             placeholder="Select"
             value={filterData.college}
-            options={[{label: 'College A', value: 'A'}]}
-            onChange={(e) => setFilterData({...filterData, college: e.value})}
+            options={[{ label: 'College A', value: 'A' }]}
+            onChange={(e) => setFilterData({ ...filterData, college: e.value })}
           />
         </div>
         <div className="flex gap-3 justify-center">
@@ -145,7 +143,7 @@ const ViewAppliedProfiles: React.FC = () => {
         </div>
       </div>
 
-      {/* DATA TABLE SECTION (Image_a8c2c7) */}
+
       <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
         <div className="flex justify-between items-center p-4 border-b border-gray-100">
           <div className="flex items-center gap-2 text-sm">
@@ -156,15 +154,15 @@ const ViewAppliedProfiles: React.FC = () => {
           </div>
         </div>
 
-        <DataTable 
-          value={applicants} 
+        <DataTable
+          value={applicants}
           onRowToggle={(e) => setExpandedRows(e.data)}
           rowExpansionTemplate={rowExpansionTemplate}
           dataKey="id"
           className="text-sm"
           responsiveLayout="scroll"
         >
-        
+
           <Column field="srNo" header="Sr No." />
           <Column field="applicationId" header="Application ID" />
           <Column field="postId" header="Post ID" />
@@ -172,9 +170,9 @@ const ViewAppliedProfiles: React.FC = () => {
           <Column field="gender" header="Gender" />
           <Column field="emailAddress" header="Email Address" />
           <Column field="highestQualification" header="Highest Qualification" />
-          <Column 
-            header="Resume/CV" 
-            body={() => <Button label="View" className="p-button-sm px-4" style={{ backgroundColor: '#6366F1', border: 'none' }} />} 
+          <Column
+            header="Resume/CV"
+            body={() => <Button label="View" className="p-button-sm px-4" style={{ backgroundColor: '#6366F1', border: 'none' }} />}
           />
         </DataTable>
 

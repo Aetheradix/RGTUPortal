@@ -1,9 +1,9 @@
-import React from 'react';
+import { Calendar as CalendarIcon, Clock } from 'lucide-react';
+import { Calendar, type CalendarProps } from 'primereact/calendar';
+import { InputNumber, type InputNumberProps } from 'primereact/inputnumber';
 import { InputText, type InputTextProps } from 'primereact/inputtext';
-import { InputTextarea,type InputTextareaProps } from 'primereact/inputtextarea';
-import { InputNumber,type InputNumberProps } from 'primereact/inputnumber';
-import { Calendar, type CalendarProps } from 'primereact/calendar'; 
-import { Clock, Calendar as CalendarIcon } from 'lucide-react';
+import { InputTextarea, type InputTextareaProps } from 'primereact/inputtextarea';
+import React from 'react';
 
 export interface BaseInputProps {
   label?: string;
@@ -12,15 +12,17 @@ export interface BaseInputProps {
   helperText?: string;
   className?: string;
   labelClassName?: string;
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
 }
 
 export interface TextInputProps extends InputTextProps, BaseInputProps {
   type?: 'text' | 'password' | 'email' | 'tel' | 'url';
 }
-export interface DatePickerProps extends CalendarProps, BaseInputProps {} 
-export interface TextareaInputProps extends InputTextareaProps, BaseInputProps {}
+export interface DatePickerProps extends CalendarProps, BaseInputProps { }
+export interface TextareaInputProps extends InputTextareaProps, BaseInputProps { }
 
-export interface NumberInputProps extends InputNumberProps, BaseInputProps {}
+export interface NumberInputProps extends InputNumberProps, BaseInputProps { }
 const InputWrapper: React.FC<BaseInputProps & { id: string; children: React.ReactNode }> = ({
   label, required, error, helperText, className, labelClassName, id, children
 }) => (
@@ -44,6 +46,8 @@ const Input: React.FC<TextInputProps> = ({
   className,
   labelClassName,
   id,
+  leftIcon,
+  rightIcon,
   ...inputProps
 }) => {
   const inputId = id || `input-${label?.toLowerCase().replace(/\s+/g, '-') || Math.random()}`;
@@ -59,11 +63,23 @@ const Input: React.FC<TextInputProps> = ({
           {required && <span className="text-red-500 ml-1">*</span>}
         </label>
       )}
-      <InputText
-        id={inputId}
-        className={`w-full ${error ? 'p-invalid' : ''}`}
-        {...inputProps}
-      />
+      <div className="relative">
+        {leftIcon && (
+          <div className="absolute left-3 top-1/2 -translate-y-1/2 z-10">
+            {leftIcon}
+          </div>
+        )}
+        <InputText
+          id={inputId}
+          className={`w-full ${error ? 'p-invalid' : ''} ${leftIcon ? 'pl-10' : ''} ${rightIcon ? 'pr-10' : ''}`}
+          {...inputProps}
+        />
+        {rightIcon && (
+          <div className="absolute right-3 top-1/2 -translate-y-1/2 z-10">
+            {rightIcon}
+          </div>
+        )}
+      </div>
       {error && (
         <small className="p-error mt-1 block">{error}</small>
       )}
@@ -76,16 +92,16 @@ const Input: React.FC<TextInputProps> = ({
 
 export const DateInput: React.FC<DatePickerProps> = ({ label, required, error, helperText, className, labelClassName, id, ...props }) => {
   const inputId = id || `date-${label?.toLowerCase().replace(/\s+/g, '-') || Math.random()}`;
-  
+
 
   return (
     <InputWrapper label={label} required={required} error={error} helperText={helperText} className={className} labelClassName={labelClassName} id={inputId}>
-      <Calendar 
-        id={inputId} 
-        className={`w-full ${error ? 'p-invalid' : ''}`} 
+      <Calendar
+        id={inputId}
+        className={`w-full ${error ? 'p-invalid' : ''}`}
         showIcon
         icon={() => props.timeOnly ? <Clock size={18} /> : <CalendarIcon size={18} />}
-        {...props} 
+        {...props}
       />
     </InputWrapper>
   );

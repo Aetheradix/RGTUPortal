@@ -194,7 +194,10 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, collapsed, onClose }) => {
 
         {/* Footer - hidden when collapsed */}
         {!collapsed && (
-          <div className="p-6 border-t border-slate-700/50">
+          <div
+            className="p-6 border-t border-slate-700/50 cursor-pointer hover:bg-slate-800/50 transition-colors"
+            onClick={() => handleNavigate('/profile')}
+          >
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center shrink-0">
                 <span className="text-white font-semibold text-sm">A</span>
