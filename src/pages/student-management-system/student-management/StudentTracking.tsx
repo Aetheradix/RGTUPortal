@@ -19,7 +19,6 @@ const StudentTracking: React.FC = () => {
   const [enrollmentNo, setEnrollmentNo] = useState('');
   const [showResults, setShowResults] = useState(false);
 
-  // --- Mock Data ---
   const academicHistory: AcademicRecord[] = [
     { srNo: 1, academicYear: '2023-24', district: 'Bhopal', block: 'Gandhi Nagar', collegeName: 'SG123-Rajiv Gandhi Proudyogiki Vishwavidyalaya (RGPV), Bhopal', semester: '1st Semester', percentage: '85.45' },
     { srNo: 2, academicYear: '2023-24', district: 'Bhopal', block: 'Gandhi Nagar', collegeName: 'SG123-Rajiv Gandhi Proudyogiki Vishwavidyalaya (RGPV), Bhopal', semester: '2nd Semester', percentage: '75.00' },
@@ -40,7 +39,6 @@ const StudentTracking: React.FC = () => {
   return (
     <PageLayout title="Student Tracking">
       
-      {/* 1. SEARCH FILTER SECTION */}
       <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 mb-6">
         <h2 className="text-lg font-bold text-gray-700 mb-6 border-b pb-2">Track Student Progress</h2>
         <div className="flex flex-col md:flex-row items-end gap-4">
@@ -97,25 +95,21 @@ const StudentTracking: React.FC = () => {
                 </h4>
                 
                 <div className="grid grid-cols-1 md:grid-cols-4 border-t border-l border-gray-200 text-sm">
-                  {/* Row 1 */}
                   <div className="bg-gray-50 p-3 font-semibold text-gray-700 border-r border-b border-gray-200">Date of Birth</div>
                   <div className="p-3 text-gray-600 border-r border-b border-gray-200 font-medium">03/03/2007</div>
                   <div className="bg-gray-50 p-3 font-semibold text-gray-700 border-r border-b border-gray-200">Gender</div>
                   <div className="p-3 text-gray-600 border-r border-b border-gray-200 font-medium">Male</div>
                   
-                  {/* Row 2 */}
                   <div className="bg-gray-50 p-3 font-semibold text-gray-700 border-r border-b border-gray-200">Father's Name</div>
                   <div className="p-3 text-gray-600 border-r border-b border-gray-200 font-medium">Bhagvan Sharma</div>
                   <div className="bg-gray-50 p-3 font-semibold text-gray-700 border-r border-b border-gray-200">Mother's Name</div>
                   <div className="p-3 text-gray-600 border-r border-b border-gray-200 font-medium">Rukhmani Sharma</div>
 
-                  {/* Row 3 */}
                   <div className="bg-gray-50 p-3 font-semibold text-gray-700 border-r border-b border-gray-200">Mobile No.</div>
                   <div className="p-3 text-gray-600 border-r border-b border-gray-200 font-medium">7412584657</div>
                   <div className="bg-gray-50 p-3 font-semibold text-gray-700 border-r border-b border-gray-200">Email ID</div>
                   <div className="p-3 text-gray-600 border-r border-b border-gray-200 font-medium break-all">rahulsharma01@gmail.com</div>
 
-                  {/* Row 4 - Full Width Address */}
                   <div className="bg-gray-50 p-3 font-semibold text-gray-700 border-r border-b border-gray-200">Address</div>
                   <div className="p-3 text-gray-600 border-r border-b border-gray-200 md:col-span-3 font-medium">
                     124 Rajat Nagar, Bhopal, Madhya Pradesh, 462001
@@ -125,7 +119,6 @@ const StudentTracking: React.FC = () => {
             </div>
           </div>
 
-          {/* 3. ACADEMIC HISTORY TABLE */}
           <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
             <h4 className="text-md font-bold mb-4 text-indigo-900 border-l-4 border-indigo-500 pl-3">
               Academic History

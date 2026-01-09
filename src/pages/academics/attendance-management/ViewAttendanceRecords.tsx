@@ -118,7 +118,6 @@ const ViewAttendanceRecords: React.FC = () => {
 
   return (
     <PageLayout title="View Attendance Records">
-      {/* Search Filters Section - From Image 2 */}
       <form
         onSubmit={handleSearch}
         className="space-y-6 bg-white p-4 rounded-lg shadow-sm"
@@ -221,8 +220,6 @@ const ViewAttendanceRecords: React.FC = () => {
           />
         </div>
       </form>
-
-      {/* Results Table Section - From Image 3 */}
       <div className="mt-8">
         <Table columns={columns} data={rows} showPagination rowsPerPage={10} />
       </div>

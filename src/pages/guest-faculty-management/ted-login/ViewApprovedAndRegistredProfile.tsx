@@ -1,9 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react';
 import PageLayout from '../../../components/PageLayout';
 import { Button } from 'primereact/button';
-import { Dropdown, Table, type TableColumn } from '../../../ui/shared';
+import { Dropdown,  type TableColumn } from '../../../ui/shared';
 
-// Data Interface based on Image b3306b
 interface ApprovedProfileRow {
   srNo: number;
   college: string;
@@ -14,13 +14,11 @@ interface ApprovedProfileRow {
 }
 
 const ViewApprovedProfile: React.FC = () => {
-  // 1. Filter State
   const [filters, setFilters] = useState({
     academicYear: null,
     university: null,
   });
 
-  // 2. Mock Data from Image
   const [data] = useState<ApprovedProfileRow[]>([
     {
       srNo: 1,
@@ -72,7 +70,6 @@ const ViewApprovedProfile: React.FC = () => {
     }
   ]);
 
-  // 3. Table Column Definitions
   const columns: TableColumn[] = [
     { field: 'srNo', header: 'Sr. no', style: { width: '80px' } },
     { field: 'college', header: 'College' },
@@ -130,8 +127,6 @@ const ViewApprovedProfile: React.FC = () => {
           <Button label="Clear" className="px-10" style={{ backgroundColor: '#FEE2E2', color: '#EF4444', border: 'none' }} />
         </div>
       </div>
-
-      {/* DATA TABLE CARD */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
         <div className="p-4 border-b border-gray-50 bg-white">
             <h3 className="text-gray-700 font-medium">College Guest-Faculty Applicants</h3>
@@ -175,8 +170,6 @@ const ViewApprovedProfile: React.FC = () => {
             </tbody>
           </table>
         </div>
-
-        {/* PAGINATION FOOTER */}
         <div className="p-4 flex justify-between items-center bg-white border-t border-gray-100 text-sm text-gray-500">
           <div>Showing 1 to {data.length} of {data.length} entries</div>
           <div className="flex gap-1">

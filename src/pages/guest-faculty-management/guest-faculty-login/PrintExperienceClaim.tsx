@@ -16,7 +16,6 @@ const PrintExperienceClaim: React.FC = () => {
 
   const [showPrintModal, setShowPrintModal] = useState(false);
 
-  // Table Data (As per Image)
   const [rows] = useState<ExperienceClaimRow[]>([
     {
       srNo: 1,
@@ -29,7 +28,6 @@ const PrintExperienceClaim: React.FC = () => {
     },
   ]);
 
-  // Table Columns
   const columns: TableColumn[] = [
     { field: 'srNo', header: 'Sr.No.', style: { width: '70px' } },
     { field: 'claimFormId', header: 'Claim Form Id' },
@@ -52,7 +50,6 @@ const PrintExperienceClaim: React.FC = () => {
   return (
     <PageLayout title="Print Experience Claim">
 
-      {/* TOP BUTTON */}
       <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 mb-6 flex justify-center">
         <Button
           label="View All Registered Claims"
@@ -65,12 +62,10 @@ const PrintExperienceClaim: React.FC = () => {
         />
       </div>
 
-      {/* TABLE */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
         <Table columns={columns} data={rows} showPagination rowsPerPage={10} />
       </div>
 
-      {/* PRINT EXPERIENCE CLAIM MODAL */}
       <Dialog
         header="Print Experience Claim Form"
         visible={showPrintModal}
@@ -79,7 +74,6 @@ const PrintExperienceClaim: React.FC = () => {
       >
         <div className="border rounded-lg p-6 text-sm text-gray-700">
 
-          {/* HEADER */}
           <div className="text-center mb-6">
             <h2 className="text-xl font-bold">Experience Claim Form</h2>
             <p className="text-sm mt-1">
@@ -87,8 +81,6 @@ const PrintExperienceClaim: React.FC = () => {
             </p>
             <p className="mt-2 font-semibold">Session: 2023-24</p>
           </div>
-
-          {/* COLLEGE DETAILS */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             <p><b>AISHE Code:</b> C-42482</p>
             <p>
@@ -97,7 +89,6 @@ const PrintExperienceClaim: React.FC = () => {
             </p>
           </div>
 
-          {/* NOTE */}
           <div className="mb-6">
             <b>Note:</b>
             <ul className="list-disc pl-6 mt-2 space-y-1">
@@ -107,15 +98,12 @@ const PrintExperienceClaim: React.FC = () => {
               <li>Validation will be done by College Head & Department Head.</li>
             </ul>
           </div>
-
-          {/* GUEST FACULTY DETAILS */}
           <div className="mb-6 space-y-2">
             <p><b>Guest Faculty ID / Mobile No:</b> 9638527410</p>
             <p><b>Guest Faculty Name:</b> Ramesh Lal</p>
             <p><b>Name (As per Aadhaar):</b> Ramesh Lal</p>
           </div>
 
-          {/* HONORARIUM TABLE */}
           <div className="overflow-x-auto mb-6">
             <table className="w-full border text-sm">
               <thead className="bg-gray-100">
@@ -157,8 +145,6 @@ const PrintExperienceClaim: React.FC = () => {
               been verified from the college records (attendance register).
             </p>
           </div>
-
-          {/* ACTION BUTTONS */}
           <div className="flex justify-center gap-4 mt-8">
             <Button label="Print" icon="pi pi-print" />
             <Button

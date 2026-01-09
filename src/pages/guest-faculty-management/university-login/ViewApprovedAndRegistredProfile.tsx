@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react';
 import PageLayout from '../../../components/PageLayout';
 import { Button } from 'primereact/button';
@@ -5,14 +6,12 @@ import { Dropdown } from '../../../ui/shared';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 
-// Interfaces for Data
 interface CollegeGuestApplicant {
   id: string;
   srNo: number;
   guestFacultyName: string;
   verificationRequestId: string;
   status: 'Approved' | 'Rejected';
-  // Expandable Fields
   universityName: string;
   subject: string;
 }
@@ -25,7 +24,6 @@ interface AssessmentMark {
 }
 
 const ApprovedProfilesAllColleges: React.FC = () => {
-  // View Toggle State: 'list' dikhayega main table, 'marks' dikhayega assessment detail
   const [currentView, setCurrentView] = useState<'list' | 'marks'>('list');
   const [expandedRows, setExpandedRows] = useState<any>(null);
   
@@ -34,7 +32,6 @@ const ApprovedProfilesAllColleges: React.FC = () => {
     college: null
   });
 
-  // 1. Main Table Data (Image: image_a8d9c4.png)
   const [applicants] = useState<CollegeGuestApplicant[]>([
     { id: '1', srNo: 1, guestFacultyName: 'Ram singh', verificationRequestId: '7859685484', status: 'Approved', universityName: 'DAVV Indore', subject: 'Economics' },
     { id: '2', srNo: 2, guestFacultyName: 'Arvind Sharma', verificationRequestId: '8839664805', status: 'Approved', universityName: 'RGPV Bhopal', subject: 'IT' },
@@ -44,7 +41,6 @@ const ApprovedProfilesAllColleges: React.FC = () => {
     { id: '6', srNo: 6, guestFacultyName: 'Arjun Kushwaha', verificationRequestId: '788455115', status: 'Approved', universityName: 'RGPV Bhopal', subject: 'Chemistry' },
   ]);
 
-  // 2. Marks Detail Data (Image: image_a8da27.png)
   const assessmentMarks: AssessmentMark[] = [
     { srNo: 1, assessmentBreakdown: 'Written Exam Marks', totalMarks: '100', obtainedMarks: 79 },
     { srNo: 2, assessmentBreakdown: 'Interview Marks', totalMarks: '50', obtainedMarks: 40 },
@@ -55,7 +51,6 @@ const ApprovedProfilesAllColleges: React.FC = () => {
     { srNo: 7, assessmentBreakdown: 'Total Aggregate Marks', totalMarks: '280', obtainedMarks: 221.9 },
   ];
 
-  // Row Expansion Template
   const rowExpansionTemplate = (data: CollegeGuestApplicant) => {
     return (
       <div className="p-4 bg-gray-50 border-y border-gray-100 space-y-2">
@@ -68,7 +63,6 @@ const ApprovedProfilesAllColleges: React.FC = () => {
   return (
     <PageLayout title="View Approved / Registered Profile (All Colleges)">
       
-      {/* FILTER SECTION (Dikhta rahega dono view mein) */}
       <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 mb-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <Dropdown 
@@ -92,7 +86,6 @@ const ApprovedProfilesAllColleges: React.FC = () => {
         </div>
       </div>
 
-      {/* VIEW 1: MAIN APPLICANTS TABLE */}
       {currentView === 'list' && (
         <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
           <div className="p-4 border-b border-gray-100 font-bold text-gray-700">College Guest Applicants</div>
@@ -110,7 +103,6 @@ const ApprovedProfilesAllColleges: React.FC = () => {
             <Column field="guestFacultyName" header="Guest Faculty Name" />
             <Column field="verificationRequestId" header="Verification Request ID" />
             
-            {/* Assessment Column with Eye Icon */}
             <Column 
               header="Assessment" 
               body={() => (
@@ -118,12 +110,10 @@ const ApprovedProfilesAllColleges: React.FC = () => {
                   icon="pi pi-eye" 
                   className="p-button-sm" 
                   style={{ backgroundColor: '#6366F1', border: 'none' }}
-                  onClick={() => setCurrentView('marks')} // EYE CLICK PAR VIEW CHANGE
+                  onClick={() => setCurrentView('marks')} 
                 />
               )} 
             />
-            
-            {/* Status Column with Colored Buttons */}
             <Column 
               header="Status" 
               body={(rowData: CollegeGuestApplicant) => (
@@ -138,7 +128,6 @@ const ApprovedProfilesAllColleges: React.FC = () => {
         </div>
       )}
 
-      {/* VIEW 2: MARKS DETAIL TABLE (EYE ICON CLICK PAR) */}
       {currentView === 'marks' && (
         <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
           <div className="p-4 border-b border-gray-100 font-bold text-gray-700">Applicant Marks Detail</div>
@@ -154,8 +143,8 @@ const ApprovedProfilesAllColleges: React.FC = () => {
             <Button 
               label="Back" 
               className="px-10" 
-              style={{ backgroundColor: '#84CC16', border: 'none' }} // Green color as per image_a8da27
-              onClick={() => setCurrentView('list')} // BACK CLICK PAR WAPAS LIST PAR
+              style={{ backgroundColor: '#84CC16', border: 'none' }} 
+              onClick={() => setCurrentView('list')}
             />
           </div>
         </div>

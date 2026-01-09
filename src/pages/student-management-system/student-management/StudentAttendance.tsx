@@ -6,7 +6,6 @@ import { Column } from "primereact/column";
 import { Dropdown } from "../../../ui/shared";
 import { DateInput } from "../../../ui/shared/Input";
 
-// --- Interface ---
 interface AttendanceRow {
   srNo: number;
   enrollmentNo: string;
@@ -18,7 +17,6 @@ interface AttendanceRow {
 }
 
 const StudentAttendance: React.FC = () => {
-  // --- Dropdown Options ---
   const academicYears = [
     { label: "2023-24", value: "2023-24" },
     { label: "2024-25", value: "2024-25" },
@@ -61,7 +59,6 @@ const StudentAttendance: React.FC = () => {
     { label: "Mathematics", value: "Math" },
   ];
 
-  // --- States ---
   const [attendanceList, setAttendanceList] = useState<AttendanceRow[]>([
     {
       srNo: 1,
@@ -101,7 +98,6 @@ const StudentAttendance: React.FC = () => {
     date: null as Date | null,
   });
 
-  // Handle Radio Selection
   const onAttendanceChange = (srNo: number, value: "present" | "absent") => {
     setAttendanceList((prev) =>
       prev.map((item) =>
@@ -110,7 +106,6 @@ const StudentAttendance: React.FC = () => {
     );
   };
 
-  // --- Templates ---
   const attendanceTemplate = (rowData: AttendanceRow) => (
     <div className="flex gap-6">
       <label className="flex items-center gap-2 cursor-pointer group">
@@ -142,7 +137,6 @@ const StudentAttendance: React.FC = () => {
 
   return (
     <PageLayout title="Student Attendance">
-      {/* FILTER SECTION */}
       <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 mb-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-x-6 gap-y-4 mb-6">
           <Dropdown
@@ -210,7 +204,6 @@ const StudentAttendance: React.FC = () => {
         </div>
       </div>
 
-      {/* ATTENDANCE LIST TABLE */}
       <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
         <div className="flex justify-between items-center mb-4 px-2">
           <h3 className="text-lg font-bold text-gray-700">
@@ -244,7 +237,6 @@ const StudentAttendance: React.FC = () => {
           />
         </DataTable>
 
-        {/* BOTTOM SAVE BUTTONS */}
         <div className="flex justify-center gap-4 mt-8 pt-6 border-t">
           <Button
             label="Save"

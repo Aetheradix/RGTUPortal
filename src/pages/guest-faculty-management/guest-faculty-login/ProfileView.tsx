@@ -4,7 +4,6 @@ import { Input, Dropdown } from '../../../ui/shared';
 import { DateInput } from '../../../ui/shared/Input';
 
 const ProfileView: React.FC = () => {
-  // 1. Profile Data State (Image se liya gaya content)
   const [profileData] = useState({
     nameEnglish: 'Raman Varma',
     nameHindi: 'रमण वर्मा',
@@ -19,7 +18,6 @@ const ProfileView: React.FC = () => {
     email: 'Ramanvarma@gmail.com'
   });
 
-  // Disabled fields ka standard style
   const disabledStyle = {
     backgroundColor: '#E5E7EB',
     color: '#4B5563',
@@ -33,8 +31,6 @@ const ProfileView: React.FC = () => {
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
         
        
-
-        {/* Form Content (Image ke grid layout ke hisaab se) */}
         <div className="p-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             

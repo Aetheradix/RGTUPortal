@@ -117,7 +117,6 @@ const OfflineLectureScheduling: React.FC = () => {
 
   return (
     <PageLayout title="Offline Lecture Scheduling">
-      {/* Form Section - From Image 1 */}
       <form
         onSubmit={handleSubmit}
         className="space-y-6 bg-white p-4 rounded-lg shadow-sm"

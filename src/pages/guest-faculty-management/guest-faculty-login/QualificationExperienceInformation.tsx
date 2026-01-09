@@ -5,11 +5,9 @@ import { Input, Dropdown, Table } from '../../../ui/shared';
 import { Dialog } from 'primereact/dialog';
 
 const QualificationAndExperience: React.FC = () => {
-  // Page state: 'qualification' | 'experience'
   const [currentPage, setCurrentPage] = useState<'qualification' | 'experience'>('qualification');
   const [showViewModal, setShowViewModal] = useState(false);
 
-  // Table Data
   const qualificationData = [
     {
       srNo: 1,
@@ -25,12 +23,10 @@ const QualificationAndExperience: React.FC = () => {
 
   const disabledInputStyle = { backgroundColor: '#F3F4F6', color: '#6B7280' };
 
-  // --- 1. QUALIFICATION VIEW ---
   const renderQualification = () => (
     <div className="space-y-6">
       <h3 className="text-lg font-bold text-gray-700 border-b pb-2">Academic Qualification Information</h3>
       
-      {/* Form Fields */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 bg-blue-50/50 p-4 rounded-lg border border-blue-100">
         <Dropdown label="Select Academic Year" required placeholder="Select" options={[]} />
         <Dropdown label="Select Degree" required placeholder="Select" options={[]} />
@@ -40,7 +36,6 @@ const QualificationAndExperience: React.FC = () => {
         </div>
       </div>
 
-      {/* Table */}
       <div className="mt-4">
         <Table 
           data={qualificationData}
@@ -76,8 +71,6 @@ const QualificationAndExperience: React.FC = () => {
       </div>
     </div>
   );
-
-  // --- 2. EXPERIENCE VIEW ---
   const renderExperience = () => (
     <div className="space-y-6">
       <h3 className="text-lg font-bold text-gray-700 border-b pb-2">Experience Details</h3>
@@ -98,7 +91,6 @@ const QualificationAndExperience: React.FC = () => {
         
         {currentPage === 'qualification' ? renderQualification() : renderExperience()}
 
-        {/* --- MODAL FOR VIEW (Image 49ef0a) --- */}
         <Dialog 
           header="Academic Qualification Details" 
           visible={showViewModal} 

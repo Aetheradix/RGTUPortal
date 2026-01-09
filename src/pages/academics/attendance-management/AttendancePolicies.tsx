@@ -163,7 +163,6 @@ const AttendancePolicyMaster: React.FC = () => {
         </div>
       </form>
 
-      {/* List Section - From Image aeb262 */}
       <div className="mt-8">
         <Table 
           title="Attendance Policies List" 

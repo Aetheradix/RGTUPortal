@@ -4,7 +4,6 @@ import { Button } from 'primereact/button';
 import { Input, Dropdown, Table, type TableColumn } from '../../../ui/shared';
 import { Textarea } from '../../../ui/shared/Input';
 
-// --- Interface for Table ---
 interface CreditTransferRow {
   sNo: number;
   studentId: string;

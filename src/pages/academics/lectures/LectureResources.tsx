@@ -36,7 +36,6 @@ const dummyResources: LectureResourceRow[] = [
 ];
 
 const LectureResources: React.FC = () => {
-  // Mode toggle karne ke liye state
   const [isAddMode, setIsAddMode] = useState(false);
 
   const [filters, setFilters] = useState({
@@ -46,7 +45,6 @@ const LectureResources: React.FC = () => {
 
   const [rows] = useState<LectureResourceRow[]>(dummyResources);
 
-  // Table buttons ko mode ke hisaab se render karne ke liye helper
   const renderTableButton = (url: string) => (
     <Button 
       label={isAddMode ? "Add Resources" : "View"} 
@@ -97,10 +95,8 @@ const LectureResources: React.FC = () => {
 
   return (
     <PageLayout 
-      // Heading mode ke hisaab se dynamic hai
       title={isAddMode ? "Add Lecture Resources" : "Lecture Resources List"} 
     >
-      {/* Top Action Button */}
       <div className="flex justify-end mb-4">
         <Button 
           label={isAddMode ? "Back" : "Add Lecture Resources"} 
@@ -111,7 +107,6 @@ const LectureResources: React.FC = () => {
         />
       </div>
 
-      {/* Filters Section */}
       <div className="bg-white p-4 rounded-lg shadow-sm mb-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 ">
           <Dropdown
@@ -140,8 +135,6 @@ const LectureResources: React.FC = () => {
           />
         </div>
       </div>
-
-      {/* Table Section */}
       <div className="mt-4">
         <Table 
           columns={columns} 

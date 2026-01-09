@@ -1,9 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from 'primereact/button';
 import React, { useState } from 'react';
 import PageLayout from '../../../components/PageLayout';
 import { type TableColumn } from '../../../ui/shared';
 
-// Data Interface based on Image 1 & 2
 interface RecruitmentRow {
   srNo: number;
   universityName: string;
@@ -12,12 +12,11 @@ interface RecruitmentRow {
   designation: string;
   noOfPosts: number;
   experienceCertificate: string;
-  qualification?: string; // Optional for expanded view
-  deadline?: string;      // Optional for expanded view
+  qualification?: string;
+  deadline?: string;     
 }
 
 const TEDVacantPost: React.FC = () => {
-  // 1. Mock Data from Images
   const [data] = useState<RecruitmentRow[]>([
     {
       srNo: 1,
@@ -68,7 +67,6 @@ const TEDVacantPost: React.FC = () => {
     }
   ]);
 
-  // State to track which row is expanded (for the "+" and "-" icons)
   const [expandedRows, setExpandedRows] = useState<number[]>([]);
 
   const toggleRow = (srNo: number) => {
@@ -77,7 +75,6 @@ const TEDVacantPost: React.FC = () => {
     );
   };
 
-  // 2. Table Column Definitions
   const columns: TableColumn[] = [
     {
       field: 'srNo',
@@ -105,13 +102,11 @@ const TEDVacantPost: React.FC = () => {
     { field: 'experienceCertificate', header: 'Experience Certificate' },
   ];
 
-  // Custom Row Renderer to handle the expanded info (Qualification, Deadline, Apply button)
   const rowRenderer = (rowData: RecruitmentRow) => {
     const isExpanded = expandedRows.includes(rowData.srNo);
 
     return (
       <React.Fragment key={rowData.srNo}>
-        {/* Main Row */}
         <tr className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
           {columns.map((col, index) => (
             <td key={index} className="p-4 text-sm text-gray-700" style={col.style}>
@@ -120,7 +115,6 @@ const TEDVacantPost: React.FC = () => {
           ))}
         </tr>
 
-        {/* Expanded Row Content (Image 2 logic) */}
         {isExpanded && rowData.qualification && (
           <tr className="bg-gray-50">
             <td colSpan={columns.length} className="p-6 border-b border-gray-200">
@@ -151,7 +145,6 @@ const TEDVacantPost: React.FC = () => {
 
   return (
     <PageLayout title="Vacant Post">
-      {/* Table Section */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden mt-4">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
@@ -173,7 +166,6 @@ const TEDVacantPost: React.FC = () => {
           </table>
         </div>
 
-        {/* Pagination Footer (As seen in image) */}
         <div className="p-4 flex justify-between items-center bg-white border-t border-gray-100 text-sm text-gray-600">
           <div>Showing 1 to {data.length} of {data.length} entries</div>
           <div className="flex gap-1">

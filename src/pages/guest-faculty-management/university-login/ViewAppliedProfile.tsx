@@ -1,11 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react';
 import PageLayout from '../../../components/PageLayout';
 import { Button } from 'primereact/button';
-import { Dropdown, Table, type TableColumn } from '../../../ui/shared';
+import { Dropdown  } from '../../../ui/shared';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 
-// 1. Interface for Applicant Data
 interface ApplicantProfile {
   id: string;
   srNo: number;
@@ -15,20 +15,18 @@ interface ApplicantProfile {
   gender: string;
   emailAddress: string;
   highestQualification: string;
-  // Expandable Fields (Image reference)
   universityName?: string;
   subject?: string;
   applicationDeadline?: string;
 }
 
 const ViewAppliedProfiles: React.FC = () => {
-  const [expandedRows, setExpandedRows] = useState<any>(null);
+  const [ setExpandedRows] = useState<any>(null);
   const [filterData, setFilterData] = useState({
     academicYear: null,
     college: null
   });
 
-  // 2. Mock Data based on Image_a8c2c7
   const [applicants] = useState<ApplicantProfile[]>([
     {
       id: '1',
@@ -97,7 +95,6 @@ const ViewAppliedProfiles: React.FC = () => {
     }
   ]);
 
-  // 3. Row Expansion Template (Extra details like Image_a86168)
   const rowExpansionTemplate = (data: ApplicantProfile) => {
     return (
       <div className="p-4 bg-gray-50 border-y border-gray-100">
@@ -121,7 +118,6 @@ const ViewAppliedProfiles: React.FC = () => {
   return (
     <PageLayout title="View Applied Profile All Colleges">
       
-      {/* FILTER SECTION (Image_a8c2c5) */}
       <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 mb-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <Dropdown 
@@ -145,7 +141,6 @@ const ViewAppliedProfiles: React.FC = () => {
         </div>
       </div>
 
-      {/* DATA TABLE SECTION (Image_a8c2c7) */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
         <div className="flex justify-between items-center p-4 border-b border-gray-100">
           <div className="flex items-center gap-2 text-sm">

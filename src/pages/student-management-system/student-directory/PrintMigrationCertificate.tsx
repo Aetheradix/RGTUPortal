@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react';
 import PageLayout from '../../../components/PageLayout';
 import { Button } from 'primereact/button';
@@ -19,7 +20,7 @@ interface PrintMigrationRow {
 const PrintMigrationCertificate: React.FC = () => {
   const [expandedRows, setExpandedRows] = useState<any>(null);
 
-  // --- Dropdown Options ---
+
   const migrationYears = [
     { label: "2023", value: "2023" },
     { label: "2024", value: "2024" },
@@ -38,7 +39,7 @@ const PrintMigrationCertificate: React.FC = () => {
     semester: null,
   });
 
-  // --- Mock Data from Image ---
+
   const [migrationData] = useState<PrintMigrationRow[]>([
     { 
       srNo: 1, 
@@ -66,7 +67,7 @@ const PrintMigrationCertificate: React.FC = () => {
     },
   ]);
 
-  // --- Expandable Row Template (University Name + Print Action) ---
+
   const rowExpansionTemplate = (data: PrintMigrationRow) => {
     return (
       <div className="py-4 px-12 bg-gray-50 border-b">
@@ -101,7 +102,7 @@ const PrintMigrationCertificate: React.FC = () => {
 
   return (
     <PageLayout title="Print Migration Certificate">
-      {/* FILTER SECTION */}
+
       <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 mb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl">
           <Dropdown 
@@ -131,7 +132,7 @@ const PrintMigrationCertificate: React.FC = () => {
         </div>
       </div>
 
-      {/* TABLE SECTION */}
+
       <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
         <div className="p-2 mb-4">
            <h2 className="text-lg font-medium text-gray-700">Print Migration Certificate List</h2>

@@ -8,7 +8,6 @@ const GuestFacultyScoreCard: React.FC = () => {
 
       <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
 
-        {/* HEADER */}
         <div className="flex items-center justify-between mb-6">
           <img src="/gov-logo.png" alt="Gov Logo" className="h-14" />
 
@@ -27,7 +26,6 @@ const GuestFacultyScoreCard: React.FC = () => {
 
         <hr className="mb-6" />
 
-        {/* BASIC DETAILS */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm mb-10">
           <div className="space-y-2">
             <p><b>Name:</b> Yash Varma</p>
@@ -47,7 +45,6 @@ const GuestFacultyScoreCard: React.FC = () => {
           </div>
         </div>
 
-        {/* EDUCATION TABLE */}
         <h3 className="text-sm font-bold mb-3 text-center">
           Education & Professional Qualification as Registered by the Applicant
         </h3>
@@ -100,8 +97,6 @@ const GuestFacultyScoreCard: React.FC = () => {
             </tbody>
           </table>
         </div>
-
-        {/* SCORE CARD TABLE */}
         <h3 className="text-sm font-bold mb-3 text-center">
           Score Card for Various Panels generated using the Qualification and other details
         </h3>
@@ -148,7 +143,6 @@ const GuestFacultyScoreCard: React.FC = () => {
           </table>
         </div>
 
-        {/* FOOTER */}
         <p className="text-center text-sm mb-6">
           The above details have been verified by: <b>Devi Ahilya Vishwavidyalaya (DAVV), Indore</b>
         </p>

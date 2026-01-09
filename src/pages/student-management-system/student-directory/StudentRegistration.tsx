@@ -3,8 +3,6 @@ import PageLayout from '../../../components/PageLayout';
 import { Button } from 'primereact/button';
 import { Input } from '../../../ui/shared';
 import { DateInput } from '../../../ui/shared/Input';
-// Note: Agar aapke paas Dropdown component ui/shared mein hai toh wo use karein, 
-// warna standard HTML select use kiya hai niche alignment ke liye.
 
 const StudentRegistration: React.FC = () => {
   const [samagraId, setSamagraId] = useState('');
@@ -20,8 +18,7 @@ const StudentRegistration: React.FC = () => {
   return (
     <PageLayout title="Student Registration">
       <div className="space-y-6">
-        
-        {/* 1. STUDENT SAMAGRA ID SEARCH SECTION */}
+      
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
           <h2 className="text-lg font-bold text-gray-700 mb-6 border-b pb-2">Student Registration</h2>
           <div className="flex flex-col md:flex-row items-end gap-4">
@@ -40,8 +37,6 @@ const StudentRegistration: React.FC = () => {
             </div>
           </div>
         </div>
-
-        {/* 2. STUDENT PERSONAL DETAILS */}
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
           <h2 className="text-lg font-bold text-gray-700 mb-6 border-b pb-2">Student Personal Details</h2>
           
@@ -58,7 +53,6 @@ const StudentRegistration: React.FC = () => {
                 </select>
             </div>
 
-            {/* Profile Image Upload Box */}
             <div className="row-span-2 flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-4 bg-gray-50">
                 <div className="w-20 h-20 bg-white border rounded shadow-sm mb-2 flex items-center justify-center overflow-hidden">
                     <img src="/boy.png" alt="Profile" className="w-full h-full object-cover opacity-50" />
@@ -137,7 +131,6 @@ const StudentRegistration: React.FC = () => {
           </div>
         </div>
 
-        {/* 3. ADDRESS INFORMATION */}
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
           <h2 className="text-lg font-bold text-gray-700 mb-6 border-b pb-2">Address Information</h2>
           
@@ -190,7 +183,6 @@ const StudentRegistration: React.FC = () => {
             </div>
           </div>
 
-          {/* FINAL ACTIONS */}
           <div className="flex gap-3 justify-center mt-10 border-t pt-8">
             <Button 
                 label="Save/Next" 

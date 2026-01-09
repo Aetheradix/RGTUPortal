@@ -4,7 +4,6 @@ import { Button } from "primereact/button";
 import { Input, Dropdown } from "../../../ui/shared";
 
 const ApplyAgainstVacancy: React.FC = () => {
-  // 1. State for Form Data
   const [formData, setFormData] = useState({
     collegeCode: "",
     collegeName: "",
@@ -12,7 +11,6 @@ const ApplyAgainstVacancy: React.FC = () => {
     affiliationDocument: null as File | null,
   });
 
-  // Mock Options for Vacant Position
   const positionOptions = [
     { label: "Assistant Professor", value: "Assistant Professor" },
     { label: "Associate Professor", value: "Associate Professor" },
@@ -26,7 +24,6 @@ const ApplyAgainstVacancy: React.FC = () => {
     <PageLayout title="Apply Against Vacancy">
       <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 mb-8">
         <form className="space-y-8">
-          {/* Form Grid */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 items-end">
             <Input
               label="Enter College Code"
@@ -59,7 +56,6 @@ const ApplyAgainstVacancy: React.FC = () => {
               }
             />
 
-            {/* Custom Styled File Upload to match Image */}
             <div className="flex flex-col gap-1">
               <label className="text-sm font-bold text-gray-700">
                 Upload Affiliation Document
@@ -76,8 +72,6 @@ const ApplyAgainstVacancy: React.FC = () => {
               </div>
             </div>
           </div>
-
-          {/* Action Buttons - Centered to match your reference code */}
           <div className="flex gap-3 justify-center pt-4 border-t border-gray-50">
             <Button
               label="Apply For Post"
