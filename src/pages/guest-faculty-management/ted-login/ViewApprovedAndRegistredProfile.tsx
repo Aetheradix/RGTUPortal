@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Button } from 'primereact/button';
 import React, { useState } from 'react';
 import PageLayout from '../../../components/PageLayout';
-import { Button } from 'primereact/button';
-import { Dropdown,  type TableColumn } from '../../../ui/shared';
+import { Dropdown, type TableColumn } from '../../../ui/shared';
 
 interface ApprovedProfileRow {
   srNo: number;
@@ -18,6 +17,7 @@ const ViewApprovedProfile: React.FC = () => {
     academicYear: null,
     university: null,
   });
+
 
   const [data] = useState<ApprovedProfileRow[]>([
     {

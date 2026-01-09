@@ -1,8 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Button } from 'primereact/button';
 import React, { useState } from 'react';
 import PageLayout from '../../../components/PageLayout';
-import { Button } from 'primereact/button';
 import { Dropdown, type TableColumn } from '../../../ui/shared';
+
 
 interface AppliedProfileRow {
   srNo: number;
@@ -20,6 +20,7 @@ const ViewAppliedProfile: React.FC = () => {
     academicYear: null,
     university: null,
   });
+
 
   const [data] = useState<AppliedProfileRow[]>([
     {
@@ -73,30 +74,29 @@ const ViewAppliedProfile: React.FC = () => {
   const [expandedRows, setExpandedRows] = useState<number[]>([]);
 
   const toggleRow = (srNo: number) => {
-    setExpandedRows(prev => 
+    setExpandedRows(prev =>
       prev.includes(srNo) ? prev.filter(id => id !== srNo) : [...prev, srNo]
     );
   };
 
   const columns: TableColumn[] = [
-    { 
-      field: 'srNo', 
-      header: 'Sr No.', 
+    {
+      field: 'srNo',
+      header: 'Sr No.',
       body: (rowData: AppliedProfileRow) => (
         <div className="flex items-center gap-3">
-          <button 
+          <button
             type="button"
             onClick={() => toggleRow(rowData.srNo)}
-            className={`flex items-center justify-center w-5 h-5 rounded-full text-white text-xs ${
-              expandedRows.includes(rowData.srNo) ? 'bg-red-500' : 'bg-indigo-500'
-            }`}
+            className={`flex items-center justify-center w-5 h-5 rounded-full text-white text-xs ${expandedRows.includes(rowData.srNo) ? 'bg-red-500' : 'bg-indigo-500'
+              }`}
           >
             <i className={`pi ${expandedRows.includes(rowData.srNo) ? 'pi-minus' : 'pi-plus'}`} style={{ fontSize: '0.6rem' }}></i>
           </button>
           <span>{rowData.srNo}</span>
         </div>
       ),
-      style: { width: '100px' } 
+      style: { width: '100px' }
     },
     { field: 'collegeName', header: 'College Name' },
     { field: 'applicationId', header: 'Application ID' },
@@ -110,22 +110,22 @@ const ViewAppliedProfile: React.FC = () => {
     <PageLayout title="View Applied Profile All University And Colleges">
       <div className="bg-white p-6 rounded-t-lg border border-gray-100 shadow-sm mb-1">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
-          <Dropdown 
+          <Dropdown
             label="Select Academic Year" required
             placeholder="Select"
             value={filters.academicYear}
-            options={[{label: '2023-24', value: '2023-24'}]}
-            onChange={(e) => setFilters({...filters, academicYear: e.value})}
+            options={[{ label: '2023-24', value: '2023-24' }]}
+            onChange={(e) => setFilters({ ...filters, academicYear: e.value })}
           />
-          <Dropdown 
+          <Dropdown
             label="Select University" required
             placeholder="Select"
             value={filters.university}
-            options={[{label: 'DAVV', value: 'DAVV'}]}
-            onChange={(e) => setFilters({...filters, university: e.value})}
+            options={[{ label: 'DAVV', value: 'DAVV' }]}
+            onChange={(e) => setFilters({ ...filters, university: e.value })}
           />
         </div>
-        
+
         <div className="flex justify-center gap-3 pt-6">
           <Button label="Search" className="px-8" style={{ backgroundColor: '#6366F1', border: 'none' }} />
           <Button label="Clear" className="px-8 p-button-danger p-button-outlined" style={{ backgroundColor: '#FEE2E2', color: '#EF4444', border: 'none' }} />
@@ -133,12 +133,12 @@ const ViewAppliedProfile: React.FC = () => {
       </div>
       <div className="bg-white rounded-b-lg shadow-sm border border-gray-100 overflow-hidden">
         <div className="p-4 flex justify-between items-center text-sm border-b border-gray-50">
-           <div className="flex items-center gap-2">
-             Show <select className="border rounded p-1"><option>10</option></select> entries
-           </div>
-           <div className="flex items-center gap-2">
-             Search: <input type="text" className="border rounded p-1" />
-           </div>
+          <div className="flex items-center gap-2">
+            Show <select className="border rounded p-1"><option>10</option></select> entries
+          </div>
+          <div className="flex items-center gap-2">
+            Search: <input type="text" className="border rounded p-1" />
+          </div>
         </div>
 
         <div className="overflow-x-auto">
@@ -162,12 +162,13 @@ const ViewAppliedProfile: React.FC = () => {
                       </td>
                     ))}
                   </tr>
+
                   {expandedRows.includes(row.srNo) && row.highestQualification && (
                     <tr className="bg-gray-50">
                       <td colSpan={columns.length} className="p-6">
                         <div className="flex flex-col gap-4">
                           <div className="text-sm">
-                            <span className="font-bold">Highest Qualification </span> 
+                            <span className="font-bold">Highest Qualification </span>
                             <span className="text-gray-600">{row.highestQualification}</span>
                           </div>
                           <div className="flex items-center gap-4">

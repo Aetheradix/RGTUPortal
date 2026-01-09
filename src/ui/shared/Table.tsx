@@ -12,7 +12,7 @@ export interface TableColumn extends ColumnProps {
   body?: (rowData: any) => React.ReactNode;
 }
 
-export interface TableProps extends Omit<DataTableProps<any>, 'paginator' | 'rows'> {
+export interface TableProps extends Omit<DataTableProps<any>, 'paginator' | 'rows' | 'cellSelection'> {
   columns: TableColumn[];
   data: any[];
   title?: string;
@@ -38,12 +38,12 @@ const Table: React.FC<TableProps> = ({
   emptyMessage = 'No records found',
   loading = false,
   onPageChange,
-  onSort,
-  onFilter,
+  // onSort,
+  // onFilter,
   className,
-  ...dataTableProps
+  // ...dataTableProps
 }) => {
-  const { cellSelection, ...restProps } = dataTableProps;
+  // const { cellSelection, ...restProps } = dataTableProps;
   const [first, setFirst] = useState(0);
   const [rows, setRows] = useState(rowsPerPage);
 
@@ -68,7 +68,7 @@ const Table: React.FC<TableProps> = ({
         loading={loading}
         emptyMessage={emptyMessage}
         className={`w-full ${className || ''}`}
-        {...(cellSelection === true ? { ...restProps, cellSelection: true } : restProps)}
+      // {...(cellSelection === true ? { ...restProps, cellSelection: true } : restProps)}
       >
         {columns.map((column, index) => (
           <Column
