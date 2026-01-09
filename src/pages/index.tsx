@@ -4,11 +4,12 @@ import GenericPage from "./GenericPage";
 import Master from "./masters";
 import ExamManagement from "./exam-management";
 import BudgetAndFinance from "./budget-and-finance";
-import Academics from './academics';
-import Admissonmanagementsystem from './admission-management-system';
+import Academics from "./academics";
+import Admissonmanagementsystem from "./admission-management-system";
 import SchemeManagement from "./scheme-management";
-import StudentManagementSystem from './student-management-system';
-import TransportManagementSYS from './transport-management';
+import StudentManagementSystem from "./student-management-system";
+import TransportManagementSYS from "./transport-management";
+import Hrms from "./hrms/Index";
 
 export default function AppFeature() {
   return (
@@ -17,16 +18,26 @@ export default function AppFeature() {
       <Route path="masters/*" element={<Master />} />
       <Route path="exam-management/*" element={<ExamManagement />} />
       <Route path="budget-and-finance/*" element={<BudgetAndFinance />} />
-      <Route path ="transport-management/*" element={<TransportManagementSYS/>}/>
-      <Route path="admission-management-system/*" element={<Admissonmanagementsystem />} />
+      <Route
+        path="transport-management/*"
+        element={<TransportManagementSYS />}
+      />
+      <Route
+        path="admission-management-system/*"
+        element={<Admissonmanagementsystem />}
+      />
       <Route path="academics/*" element={<Academics />} />
-      <Route path="student-management-system/*" element={<StudentManagementSystem />} />
+      <Route
+        path="student-management-system/*"
+        element={<StudentManagementSystem />}
+      />
       {/* <Route path="exam-management/*" element={<ExamManagement />} />
         <Route path="home/*" element={<Home />} /> */}
-      <Route path="exam-management/*" element={<ExamManagement/>} />
+      <Route path="exam-management/*" element={<ExamManagement />} />
       {/* Fallback for any route where dedicated UI is not implemented yet */}
       <Route path="*" element={<GenericPage />} />
       <Route path="scheme-management/*" element={<SchemeManagement />} />
+      <Route path="hrms/*" element={<Hrms />} />
     </Routes>
   );
 }
