@@ -427,104 +427,141 @@ const sidebarMenu = {
       ],
     },
     {
-      module: "Employee Directory",
+      module: "Employee Directory Management",
       icon: FaHome,
-      route: "/employee-directory",
+      route: "/employee-directory-management",
       subModules: [
         {
           subModule: "Employee Directory Management",
-          route: "/employee-directory/management",
+          route: "/employee-directory-management/employee-diirectory",
           pages: [
             {
               page: "Employee Directory",
-              route: "/employee-directory/management/employee-directory",
+              route:
+                "/employee-directory-management/employee-directory/employee-directory",
             },
             {
               page: "Official Details Update",
-              route: "/employee-directory/management/official-details-update",
+              route:
+                "/employee-directory-management/employee-directory/official-details-update",
+            },
+            {
+              page: "Official Details Update-Sub",
+              route:
+                "/employee-directory-management/employee-directory/official-details-update-sub",
             },
             {
               page: "Employee Data Change Request",
               route:
-                "/employee-directory/management/employee-data-change-request",
+                "/employee-directory-management/employee-directory/employee-data-chnage",
             },
             {
               page: "Employee Verification",
-              route: "/employee-directory/management/employee-verification",
+              route:
+                "/employee-directory-management/employee-directory/employee-verification",
             },
             {
               page: "Employee Verification PDF",
-              route: "/employee-directory/management/employee-verification-pdf",
+              route:
+                "/employee-directory-management/employee-directory/employee-verification-pdf",
+            },
+            {
+              page: "Employee Verification-Sub",
+              route:
+                "/employee-directory-management/employee-directory/employee-verification-sub",
             },
             {
               page: "Employee Verification HO Level",
               route:
-                "/employee-directory/management/employee-verification-ho-level",
+                "/employee-directory-management/employee-directory/employee-verification-ho",
             },
             {
               page: "Exam Wise Employee Enrollment",
               route:
-                "/employee-directory/management/exam-wise-employee-enrollment",
+                "/employee-directory-management/employee-directory/exam-wise-employee-enrollment",
             },
           ],
         },
         {
           subModule: "Employee ID Card Management",
-          route: "/employee-directory/id-card",
+          route: "/employee-directory-management/employee-id-card-management",
           pages: [
             {
               page: "Print Employee Card",
-              route: "/employee-directory/id-card/print-employee-card",
+              route:
+                "/employee-directory-management/employee-id-card-management/print-employee-card",
             },
             {
               page: "Approve Employee Id Card",
-              route: "/employee-directory/id-card/approve-employee-id-card",
+              route:
+                "/employee-directory-management/employee-id-card-management/approve-employee-id-card",
             },
             {
               page: "Employee ID Card Generate",
-              route: "/employee-directory/id-card/generate",
+              route:
+                "/employee-directory-management/employee-id-card-management/employee-id-card-generate",
             },
+          ],
+        },
+        {
+          subModule: "Employee ID Card Reports",
+          route: "/employee-directory-management/employee-id-card-reports",
+          pages: [
             {
               page: "District Wise ID Card",
-              route: "/employee-directory/id-card/district-wise-id-card",
+              route:
+                "/employee-directory-management/employee-id-card-reports/district-wise-id-card",
             },
             {
               page: "College Wise ID Card",
-              route: "/employee-directory/id-card/college-wise-id-card",
+              route:
+                "/employee-directory-management/employee-id-card-reports/college-wise-id-card",
             },
             {
               page: "Missing Employee Details",
-              route: "/employee-directory/id-card/missing-employee-details",
+              route:
+                "/employee-directory-management/employee-id-card-reports/employee-missing-details",
             },
-            {
-              page: "Employee Details Report",
-              route: "/employee-directory/id-card/employee-details-report",
-            },
+          ],
+        },
+        {
+          subModule: "Employee Reports",
+          route: "/employee-directory-management/employee-reports",
+          pages: [
             {
               page: "Change Request Verification Statistic Report",
               route:
-                "/employee-directory/id-card/change-request-verification-statistic-report",
+                "/employee-directory-management/employee-reports/change-request-verification-report",
             },
             {
               page: "Employee Verification Statistic Report",
               route:
-                "/employee-directory/id-card/employee-verification-statistic-report",
+                "/employee-directory-management/employee-reports/employee-verification-statistic-report",
+            },
+            {
+              page: "Employee Details Report",
+              route:
+                "/employee-directory-management/employee-reports/employee-details-report",
             },
             {
               page: "Exam Wise Employee Enrollment Report",
-              route: "/employee-directory/id-card/exam-wise-enrollment-report",
+              route:
+                "/employee-directory-management/employee-reports/exam-wise-enrollment-report",
             },
             {
               page: "Employee Verification Report",
-              route: "/employee-directory/id-card/employee-verification-report",
+              route:
+                "/employee-directory-management/employee-reports/employee-verification-report",
             },
             {
               page: "Handicapped Employees Report",
-              route: "/employee-directory/id-card/handicapped-employees-report",
+              route:
+                "/employee-directory-management/employee-reports/handicapped-employees-report",
             },
             {
               page: "Employee Customized Report",
-              route: "/employee-directory/id-card/employee-customized-report",
+              route:
+                "/employee-directory-management/employee-reports/employee-customized-report",
             },
           ],
         },
