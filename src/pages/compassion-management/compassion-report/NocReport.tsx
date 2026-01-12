@@ -15,7 +15,6 @@ const districtOptions = [
 export default function NocReport() {
   const [district, setDistrict] = useState<any>(null);
   const [showTable, setShowTable] = useState(false);
-
   const data = [
     {
       id: 1,

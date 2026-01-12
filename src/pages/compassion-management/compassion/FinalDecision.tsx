@@ -9,7 +9,6 @@ import { Dialog } from "primereact/dialog";
 export default function FinalDecision() {
   const [showForm, setShowForm] = useState(false);
   const [globalFilter] = useState("");
-
   const reportData = [
     {
       srNo: 1,

@@ -16,7 +16,6 @@ export default function DisposedApplicationReport() {
   const [district, setDistrict] = useState<string | null>(null);
   const [showTable, setShowTable] = useState(false);
   const [pdfDialog, setPdfDialog] = useState(false);
-
   const tableData = [
     {
       id: 1,

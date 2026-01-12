@@ -11,7 +11,6 @@ export default function CompassionVerification() {
   const [empCode, setEmpCode] = useState("");
   const [tableData, setTableData] = useState<any[]>([]);
   const [showForm, setShowForm] = useState(false);
-
   const dummyDB = [
     {
       district: "Bhopal",

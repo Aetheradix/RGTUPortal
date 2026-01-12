@@ -12,7 +12,6 @@ export default function GenerateForwardNocRequest() {
   const [tableData, setTableData] = useState<any[]>([]);
   const [showDialog, setShowDialog] = useState(false);
   const [selectedRow, setSelectedRow] = useState<any>(null);
-
   const districtList = [
     { label: "All", value: "All" },
     { label: "Bhopal", value: "Bhopal" },

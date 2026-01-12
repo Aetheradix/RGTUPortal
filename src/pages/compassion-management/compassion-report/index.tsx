@@ -3,6 +3,7 @@ import DistrictWiseStatisticReport from "./DistrictWiseStatisticalCountReport";
 import NocReport from "./NocReport";
 import NocStatisticalCountReport from "./NocStatisticalCountReport";
 import DisposedApplicationReport from "./DispossedApplicationReport";
+
 export default function CompassionReport() {
   return (
     <Routes>

@@ -12,7 +12,6 @@ export default function DEONocCertificateRelease() {
   const [tableData, setTableData] = useState<any[]>([]);
   const [showDialog, setShowDialog] = useState(false);
   const [selectedRow, setSelectedRow] = useState<any>(null);
-
   const dummyDB = [
     {
       district: "Bhopal",

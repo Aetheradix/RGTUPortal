@@ -14,7 +14,6 @@ export default function UpdateNocJobStatus() {
   const [showDialog, setShowDialog] = useState(false);
   const [selectedRow, setSelectedRow] = useState<any>(null);
   const [jobStatus, setJobStatus] = useState("");
-
   const statusList = [
     { label: "NOC Issued", value: "NOC Issued" },
     { label: "Objection Raised", value: "Objection Raised" },

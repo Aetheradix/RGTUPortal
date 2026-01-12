@@ -77,7 +77,6 @@ export default function NocStatisticalCountReport() {
         <Button label="Search" icon="pi pi-search" onClick={handleSearch} />
         <Button label="Clear" icon="pi pi-times" severity="secondary" onClick={handleClear} />
       </div>
-
       {showTable && (
         <DataTable value={data} paginator rows={10}> 
           <Column field="division" header="Division Name" sortable/>

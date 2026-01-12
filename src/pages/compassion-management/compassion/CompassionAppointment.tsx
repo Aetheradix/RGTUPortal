@@ -21,7 +21,6 @@ export default function CompassionateAppointment() {
         { sr: 4, name: "NOC/Consent certificate of all family members", status: "Not Uploaded" },
         { sr: 5, name: "Aadhar Card of Applicant", status: "Not Uploaded" },
     ];
-
     return (
         <div className="p-4" style={{ backgroundColor: '#f4f4f4', minHeight: '100vh' }}>
             <Card>

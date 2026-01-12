@@ -18,7 +18,6 @@ export default function DEOCompassionApply() {
   };
 
   const [formData, setFormData] = useState<any>(initialFormState);
-
   const districtList = [
     { label: "Bhopal", value: "Bhopal" },
     { label: "Indore", value: "Indore" },

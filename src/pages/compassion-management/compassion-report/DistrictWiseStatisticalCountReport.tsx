@@ -14,7 +14,6 @@ const districtOptions = [
 export default function DistrictWiseStatisticReport() {
   const [district, setDistrict] = useState<string | null>(null);
   const [showReport, setShowReport] = useState(false);
-
   const reportData = [
     {
       sr: 1,
