@@ -884,143 +884,171 @@ const sidebarMenu = {
         },
         {
           subModule: "HOD Anukampa Application Approval",
-          route: "/hrms/hod-anukampa-approval",
+          route: "/hrms/hod-anukampa-application-approval",
           pages: [
             {
               page: "HOD Anukampa Application Approval Home",
-              route: "/hrms/hod-anukampa-approval/home",
+              route:
+                "/hrms/hod-anukampa-application-approval/hod-anukampa-application-approval-home",
             },
             {
               page: "Register/Correct Application for Anukampa Appointment",
-              route: "/hrms/hod-anukampa-approval/register-correct",
+              route:
+                "/hrms/hod-anukampa-application-approval/register-correct-application-for-anukampa-appointment",
             },
             {
               page: "Print Application",
-              route: "/hrms/hod-anukampa-approval/print",
+              route:
+                "/hrms/hod-anukampa-application-approval/print-application",
             },
             {
               page: "Action on Anukampa Appointment",
-              route: "/hrms/hod-anukampa-approval/action",
+              route:
+                "/hrms/hod-anukampa-application-approval/action-on-anukampa-appointment",
             },
             {
               page: "Decision On Application",
-              route: "/hrms/hod-anukampa-approval/decision",
+              route:
+                "/hrms/hod-anukampa-application-approval/decision-on-application",
             },
             {
               page: "NOC Report Sent to District Collector",
-              route: "/hrms/hod-anukampa-approval/noc-report",
+              route:
+                "/hrms/hod-anukampa-application-approval/noc-report-sent-to-district-collector",
             },
             {
               page: "Dispose Cases",
-              route: "/hrms/hod-anukampa-approval/dispose",
+              route: "/hrms/hod-anukampa-application-approval/dispose-cases",
             },
             {
               page: "Block-Wise Statistics",
-              route: "/hrms/hod-anukampa-approval/block-statistics",
+              route:
+                "/hrms/hod-anukampa-application-approval/block-wise-statistics",
             },
             {
               page: "District-Wise Statistics",
-              route: "/hrms/hod-anukampa-approval/district-statistics",
+              route:
+                "/hrms/hod-anukampa-application-approval/district-wise-statistics",
             },
             {
               page: "NOC Report",
-              route: "/hrms/hod-anukampa-approval/noc-summary",
+              route: "/hrms/hod-anukampa-application-approval/noc-report",
             },
           ],
         },
         {
           subModule: "Director Anukampa Application Approval",
-          route: "/hrms/director-anukampa-approval",
+          route: "/hrms/director-anukampa-application-approval",
           pages: [
             {
               page: "JD Anukampa Application Approval Home",
-              route: "/hrms/director-anukampa-approval/home",
+              route:
+                "/hrms/director-anukampa-application-approval/jd-anukampa-application-approval-home",
             },
             {
               page: "Register/Correct Application for Anukampa Appointment",
-              route: "/hrms/director-anukampa-approval/register-correct",
+              route:
+                "/hrms/director-anukampa-application-approval/register-correct-application-for-anukampa-appointment",
             },
             {
               page: "Print Application",
-              route: "/hrms/director-anukampa-approval/print",
+              route:
+                "/hrms/director-anukampa-application-approval/print-application",
             },
             {
               page: "Action on Anukampa Appointment",
-              route: "/hrms/director-anukampa-approval/action",
+              route:
+                "/hrms/director-anukampa-application-approval/action-on-anukampa-appointment",
             },
             {
               page: "Decision On Application",
-              route: "/hrms/director-anukampa-approval/decision",
+              route:
+                "/hrms/director-anukampa-application-approval/decision-on-application",
             },
             {
               page: "NOC Report Sent to District Collector",
-              route: "/hrms/director-anukampa-approval/noc-report",
+              route:
+                "/hrms/director-anukampa-application-approval/noc-report-sent-to-district-collector",
             },
             {
               page: "Dispose Cases",
-              route: "/hrms/director-anukampa-approval/dispose",
+              route:
+                "/hrms/director-anukampa-application-approval/dispose-cases",
             },
             {
               page: "Block-Wise Statistics",
-              route: "/hrms/director-anukampa-approval/block-statistics",
+              route:
+                "/hrms/director-anukampa-application-approval/block-wise-statistics",
             },
             {
               page: "District-Wise Statistics",
-              route: "/hrms/director-anukampa-approval/district-statistics",
+              route:
+                "/hrms/director-anukampa-application-approval/district-wise-statistics",
             },
             {
               page: "NOC Report",
-              route: "/hrms/director-anukampa-approval/noc-summary",
+              route: "/hrms/director-anukampa-application-approval/noc-report",
             },
           ],
         },
         {
           subModule: "Head Office Anukampa Application Approval",
-          route: "/hrms/head-office-anukampa-approval",
+          route: "/hrms/head-office-anukampa-application-approval",
           pages: [
             {
               page: "Head Office Anukampa Application Approval Home",
-              route: "/hrms/head-office-anukampa-approval/home",
+              route:
+                "/hrms/head-office-anukampa-application-approval/head-anukampa-application-approval-home",
             },
             {
               page: "Register/Correct Application for Anukampa Appointment",
-              route: "/hrms/head-office-anukampa-approval/register-correct",
+              route:
+                "/hrms/head-office-anukampa-application-approval/register-correct-application-for-anukampa-appointment",
             },
             {
               page: "Print Application",
-              route: "/hrms/head-office-anukampa-approval/print",
+              route:
+                "/hrms/head-office-anukampa-application-approval/print-application",
             },
             {
               page: "Action on Anukampa Appointment",
-              route: "/hrms/head-office-anukampa-approval/action",
+              route:
+                "/hrms/head-office-anukampa-application-approval/action-on-anukampa-appointment",
             },
             {
               page: "Decision On Application",
-              route: "/hrms/head-office-anukampa-approval/decision",
+              route:
+                "/hrms/head-office-anukampa-application-approval/decision-on-application",
             },
             {
               page: "NOC Report Sent to District Collector",
-              route: "/hrms/head-office-anukampa-approval/noc-report",
+              route:
+                "/hrms/head-office-anukampa-application-approval/noc-report-sent-to-district-collector",
             },
             {
               page: "Dispose Cases",
-              route: "/hrms/head-office-anukampa-approval/dispose",
+              route:
+                "/hrms/head-office-anukampa-application-approval/dispose-cases",
             },
             {
               page: "Block-Wise Statistics",
-              route: "/hrms/head-office-anukampa-approval/block-statistics",
+              route:
+                "/hrms/head-office-anukampa-application-approval/block-wise-statistics",
             },
             {
               page: "District-Wise Statistics",
-              route: "/hrms/head-office-anukampa-approval/district-statistics",
+              route:
+                "/hrms/head-office-anukampa-application-approval/district-wise-statistics",
             },
             {
               page: "NOC Report",
-              route: "/hrms/head-office-anukampa-approval/noc-summary",
+              route:
+                "/hrms/head-office-anukampa-application-approval/noc-report",
             },
             {
               page: "Anukampa Appointment Report",
-              route: "/hrms/head-office-anukampa-approval/final-report",
+              route:
+                "/hrms/head-office-anukampa-application-approval/anukampa-appointment-report",
             },
           ],
         },

@@ -21,6 +21,9 @@ import EmployeeAnukampaApplication from "./employee-anukampa-application";
 import EmployeeJoiningInOffice from "./employee-joining-In-office";
 import Promotion from "./promotion";
 import Tour from "./tour";
+import DirectorAnukampaapplicationapproval from "./director-anukampa-application-approval";
+import HODAnukampaapplicationapproval from "./hod-anukampa-application-approval";
+import HeadAnukampaapplicationapproval from "./head-office-anukampa-application-approval";
 
 export default function Hrms() {
   return (
@@ -76,6 +79,21 @@ export default function Hrms() {
       <Route
         path="annual-confidential-report/*"
         element={<AnnualConfidentialReport />}
+      />
+
+      {/*newwwww 2*/}
+
+      <Route
+        path="director-anukampa-application-approval/*"
+        element={<DirectorAnukampaapplicationapproval />}
+      />
+      <Route
+        path="hod-anukampa-application-approval/*"
+        element={<HODAnukampaapplicationapproval />}
+      />
+      <Route
+        path="head-office-anukampa-application-approval/*"
+        element={<HeadAnukampaapplicationapproval />}
       />
     </Routes>
   );
