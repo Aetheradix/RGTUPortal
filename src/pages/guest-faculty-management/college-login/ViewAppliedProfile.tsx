@@ -93,7 +93,6 @@ const ApplicantList: React.FC = () => {
           data={rows}
           showPagination
           rowsPerPage={10}
-          searchable
         />
       </div>
 

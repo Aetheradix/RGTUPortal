@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from "react";
+import { useState } from "react";
 import { Card } from "primereact/card";
 import { Dropdown } from "primereact/dropdown";
 import { Button } from "primereact/button";

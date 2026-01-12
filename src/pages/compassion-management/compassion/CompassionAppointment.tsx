@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import { Card } from "primereact/card";
@@ -11,11 +10,9 @@ import { Column } from "primereact/column";
 import { FileUpload } from "primereact/fileupload";
 
 const genderOptions = [{ label: "Male", value: "Male" }, { label: "Female", value: "Female" }];
-const casteOptions = [{ label: "SC", value: "SC" }, { label: "ST", value: "ST" }, { label: "OBC", value: "OBC" }, { label: "General", value: "General" }];
-const districtOptions = [{ label: "Betul", value: "Betul" }, { label: "Bhopal", value: "Bhopal" }];
 
 export default function CompassionateAppointment() {
-    const [family, setFamily] = useState<any[]>([]);
+    const [family] = useState<any[]>([]);
     const [activeTab, setActiveTab] = useState<"PERSONAL" | "UPLOAD">("PERSONAL");
     const documentsList = [
         { sr: 1, name: "Death Certificate", status: "Not Uploaded" },
