@@ -19,7 +19,6 @@ interface LeaveRequestRow {
 }
 
 const RequestLeaveMaster: React.FC = () => {
-  // 1. State for Form Data
   const [formData, setFormData] = useState({
     studentName: 'Aryan Sharma',
     courseName: 'B.Tech',
@@ -34,7 +33,6 @@ const RequestLeaveMaster: React.FC = () => {
     isActive: true
   });
 
-  // 2. Mock Data for the Table (From Image 2)
   const [rows] = useState<LeaveRequestRow[]>([
     {
       srNo: 1,
@@ -86,7 +84,6 @@ const RequestLeaveMaster: React.FC = () => {
     }
   ]);
 
-  // Style for disabled/readonly fields
   const disabledInputStyle = {
     backgroundColor: '#F3F4F6',
     color: '#6B7280',
@@ -94,7 +91,6 @@ const RequestLeaveMaster: React.FC = () => {
     border: '1px solid #E5E7EB'
   };
 
-  // 3. Table Column Definitions
   const columns: TableColumn[] = [
     { field: 'srNo', header: 'Sr No.', style: { width: '60px' } },
     { field: 'studentName', header: 'Student Name' },
@@ -200,7 +196,6 @@ const RequestLeaveMaster: React.FC = () => {
               disabled style={disabledInputStyle}
             />
 
-            {/* File Upload Simulation */}
             <div className="flex flex-col gap-1">
               <label className="text-sm font-bold text-gray-700">Supporting Documents (optional) *</label>
              <input 
@@ -229,7 +224,6 @@ const RequestLeaveMaster: React.FC = () => {
         </form>
       </div>
 
-      {/* TABLE SECTION (From Image 2) */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
         <Table 
           columns={columns} 

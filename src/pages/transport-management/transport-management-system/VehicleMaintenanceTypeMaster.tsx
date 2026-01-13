@@ -36,25 +36,29 @@ export default function VehicaleMaintenanceType() {
       categoryCriteria: "Replace tires after 40000 km",
       isActive: true,
     },
-    {
-      id: 3,
-      maintananceTypeName: "Routine Maintenance",
-      maintananceTypeCategory: "Oil Change",
-      categoryCriteria: "Change engine oil after every 3000 km",
-      isActive: false,
-    },
-    {
-      id: 4,
-      maintananceTypeName: "Emergency Maintenance",
-      maintananceTypeCategory: "Battery Replacement",
-      categoryCriteria: "Replace if voltage drops below 12V",
-      isActive: true,
-    },
   ]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+  };
+
+  const actionBodyTemplate = () => {
+    return (
+      <div className="flex justify-center gap-3">
+        <button
+          type="button"
+          className="w-8 h-8 rounded bg-blue-600 text-white flex items-center justify-center"
+        >
+          ✎
+        </button>
+        <button
+          type="button"
+          className="w-8 h-8 rounded bg-red-600 text-white flex items-center justify-center"
+        >
+          🗑
+        </button>
+      </div>
+    );
   };
 
   return (
@@ -64,7 +68,7 @@ export default function VehicaleMaintenanceType() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Maintenance Type Name
+                Maintenance Type Name <span className="text-red-500">*</span>
               </label>
               <InputText
                 value={formData.maintananceTypeName}
@@ -78,10 +82,9 @@ export default function VehicaleMaintenanceType() {
                 placeholder="Enter Maintenance Type Name"
               />
             </div>
-
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Maintenance Type Category
+                Maintenance Type Category <span className="text-red-500">*</span>
               </label>
               <InputText
                 value={formData.maintananceTypeCategory}
@@ -95,10 +98,9 @@ export default function VehicaleMaintenanceType() {
                 placeholder="Enter Category"
               />
             </div>
-
-            <div className="md:col-span-2 lg:col-span-1">
+            <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Category Criteria
+                Category Criteria <span className="text-red-500">*</span>
               </label>
               <InputText
                 value={formData.categoryCriteria}
@@ -110,30 +112,13 @@ export default function VehicaleMaintenanceType() {
               />
             </div>
           </div>
-
           <div className="flex justify-end gap-3 border-t pt-4">
             <Button
-              type="button"
               label="Reset"
               icon="pi pi-refresh"
-              className="p-button-outlined p-button-secondary px-4"
-              onClick={() =>
-                setFormData({
-                  maintananceTypeName: "",
-                  maintananceTypeCategory: "",
-                  categoryCriteria: "",
-                  isActive: false,
-                })
-              }
+              className="p-button-outlined p-button-secondary"
             />
             <Button
-              type="button"
-              label="Cancel"
-              icon="pi pi-times"
-              className="p-button-secondary"
-            />
-            <Button
-              type="submit"
               label="Save"
               icon="pi pi-save"
               className="p-button-primary px-6"
@@ -148,45 +133,25 @@ export default function VehicaleMaintenanceType() {
           paginator
           rows={10}
           className="p-datatable-sm"
-          tableStyle={{ minWidth: "50rem" }}
         >
-          <Column field="id" header="ID" sortable style={{ width: "70px" }} />
+          <Column
+            field="id"
+            header="Sr No."
+            style={{ width: "90px" }}
+            sortable
+          />
           <Column
             field="maintananceTypeName"
-            header="Maintenance Type Name"
+            header="Maintenance Name"
             sortable
           />
           <Column field="maintananceTypeCategory" header="Category" sortable />
-          <Column field="categoryCriteria" header="Criteria" />
-          <Column
-            field="isActive"
-            header="Status"
-            body={(row) => (
-              <span
-                className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                  row.isActive
-                    ? "bg-green-100 text-green-700 border border-green-200"
-                    : "bg-red-100 text-red-700 border border-red-200"
-                }`}
-              >
-                {row.isActive ? "Active" : "Inactive"}
-              </span>
-            )}
-          />
+          <Column field="categoryCriteria" header="Criteria" sortable />
           <Column
             header="Actions"
-            body={() => (
-              <div className="flex gap-1">
-                <Button
-                  icon="pi pi-pencil"
-                  className="p-button-rounded p-button-text p-button-sm text-blue-600"
-                />
-                <Button
-                  icon="pi pi-trash"
-                  className="p-button-rounded p-button-text p-button-danger p-button-sm"
-                />
-              </div>
-            )}
+            body={actionBodyTemplate}
+            align="center"
+            style={{ width: "120px" }}
           />
         </DataTable>
       </div>

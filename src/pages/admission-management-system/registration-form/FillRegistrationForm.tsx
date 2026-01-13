@@ -7,7 +7,17 @@ import { InputText } from "primereact/inputtext";
 import { Dropdown } from "primereact/dropdown";
 import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
 import { Toast } from "primereact/toast";
-
+=======
+import { Button } from "primereact/button";
+import { Checkbox } from "primereact/checkbox";
+import { Column } from "primereact/column";
+import { DataTable, type DataTableExpandedRows } from "primereact/datatable";
+import { Dialog } from "primereact/dialog";
+import { Dropdown } from "primereact/dropdown";
+import { InputText } from "primereact/inputtext";
+import { Tag } from "primereact/tag";
+import React, { useState } from "react";
+import PageLayout from "../../../components/PageLayout";
 interface Student {
   id: number;
   applNumber: string;
@@ -266,7 +276,6 @@ const StudentAdmissionForm: React.FC = () => {
               }}
             />
           </div>
-
           <DataTable
             value={students}
             expandedRows={expandedRows}
@@ -303,6 +312,43 @@ const StudentAdmissionForm: React.FC = () => {
               onClick={() => setShowForm(false)}
             />
           </div>
+        <DataTable
+          value={students}
+          expandedRows={expandedRows}
+          onRowToggle={(e) => setExpandedRows(e.data)}
+          rowExpansionTemplate={rowExpansionTemplate}
+          dataKey="id"
+          paginator
+          rows={10}
+          globalFilter={globalFilter}
+          className="p-datatable-sm text-sm"
+          stripedRows
+          header={
+            <div className="flex  justify-end">
+              <span className="p-input-icon-left">
+
+                <InputText
+                  value={globalFilter}
+                  onChange={(e) => setGlobalFilter(e.target.value)}
+                  placeholder="Search Records..."
+                  className="p-inputtext-sm w-64"
+                />
+              </span>
+            </div>
+          }
+        >
+          <Column expander={true} style={{ width: "3.5rem" }} header="Action" />
+          <Column field="applNumber" header="App No." sortable />
+          <Column field="firstName" header="First Name" sortable />
+          <Column field="lastName" header="Last Name" sortable />
+          <Column
+            field="allocationStatus"
+            header="Status"
+            body={(rd) => (
+              <Tag value={rd.allocationStatus} severity="warning" />
+            )}
+          />
+          <Column field="mobile" header="Mobile" />
 
           {activeStep === 1 && (
             <div className="p-fluid">

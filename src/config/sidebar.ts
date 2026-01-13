@@ -364,10 +364,6 @@ const sidebarMenu = {
                 "/masters/payroll-master/all-earning-all-employee-wise-head-wise",
             },
             {
-              page: "Arrear Type Master",
-              route: "/masters/payroll-master/arrear-type-master",
-            },
-            {
               page: "Challan Details Master Data",
               route: "/masters/payroll-master/challan-details-master",
             },
@@ -724,66 +720,24 @@ const sidebarMenu = {
           ],
         },
         {
-          subModule: "Allotment Letter",
-          route: "/admission-management-system/allotment-letter",
-          pages: [
-            {
-              page: "Get Allotment Letter",
-              route:
-                "/admission-management-system/allotment-letter/get-allotment-letter",
-            },
-            {
-              page: "Generate Allotment Letters",
-              route:
-                "/admission-management-system/allotment-letter/generate-allotment-letters",
-            },
-            {
-              page: "Manage Allotment Status",
-              route:
-                "/admission-management-system/allotment-letter/manage-allotment-status",
-            },
-            {
-              page: "College Wise Allotment Status",
-              route:
-                "/admission-management-system/allotment-letter/college-wise-allotment-status",
-            },
-          ],
-        },
-        {
           subModule: "Admission Fee",
-          route: "/admission-management-system/admission-fee",
+          route: "/admission/fee",
           pages: [
-            { page: "Set Admission Fee", route: "/admission-management-system/admission-fee/set-admission-fee" },
+            { page: "Set Admission Fee", route: "/admission/fee/set" },
             {
               page: "View Fee Structure",
-              route: "/admission-management-system/admission-fee/view-fee-structure",
+              route: "/admission/fee/view-structure",
             },
-            { page: "Make Payment", route: "/admission-management-system/admission-fee/make-payment" },
+            { page: "Make Payment", route: "/admission/fee/make-payment" },
             {
               page: "Payment Verification",
-              route: "/admission-management-system/admission-fee/payment-verification",
+              route: "/admission/fee/payment-verification",
             },
             {
               page: "Payment History Receipt Download",
-              route: "/admission-management-system/admission-fee/payment-history-and-receipt-download",
+              route: "/admission/fee/payment-history",
             },
-            { page: "Payment Report", route: "/admission-management-system/admission-fee/payment-report" },
-          ],
-        },
-        {
-          subModule: "Merit List",
-          route: "/admission-management-system/merit-list",
-          pages: [
-            { page: "Candidates Rrank", route: "/admission-management-system/merit-list/candidates-rank" },
-            {
-              page: "Genrate Marit List",
-              route: "/admission-management-system/merit-list/genrate-marit-list",
-            },
-            { page: "Marit List", route: "/admission-management-system/merit-list/marit-list" },
-            {
-              page: "Set Tie Braking Criteria of Rank",
-              route: "/admission-management-system/merit-list/set-tie-braking-criteria-of-rank",
-            },
+            { page: "Payment Report", route: "/admission/fee/payment-report" },
           ],
         },
       ],
@@ -861,7 +815,7 @@ const sidebarMenu = {
             {
               page: "Route To Bus Stop Mapping",
               route:
-                "/transport-management/university-management-system/route-bus-stop-mapping",
+                "/transport-management/university-management-system/route-to-bus-stop-mapping",
             },
             {
               page: "Driver Attender Registration",
@@ -876,7 +830,7 @@ const sidebarMenu = {
             {
               page: "Route To Vehicle Mapping",
               route:
-                "/transport-management/university-management-system/route-vehicle-mapping",
+                "/transport-management/university-management-system/route-to-vehicle-mapping",
             },
             {
               page: "Bus Stop Enrollment",
@@ -892,52 +846,56 @@ const sidebarMenu = {
         },
         {
           subModule: "Bus Driver Attender Process",
-          route: "/transport/driver-attender-process",
+          route: "/transport-management/driver-attender-process",
           pages: [
             {
               page: "View Route Location",
-              route: "/transport/driver-attender-process/view-route-location",
+              route:
+                "/transport-management/driver-attender-process/view-route-location",
             },
             {
               page: "Route Wise Pickup/Drop",
               route:
-                "/transport/driver-attender-process/route-wise-pickup-drop",
+                "/transport-management/driver-attender-process/route-wise-pickup-drop",
             },
             {
               page: "Route Details",
-              route: "/transport/driver-attender-process/route-details",
+              route:
+                "/transport-management/driver-attender-process/route-details",
             },
           ],
         },
         {
           subModule: "Parent Process",
-          route: "/transport/parent-process",
+          route: "/transport-management/parent-process",
           pages: [
             {
               page: "Inform to Student",
-              route: "/transport/parent-process/inform-student",
+              route: "/transport-management/parent-process/inform-to-student",
             },
             {
               page: "Bus Route Details",
-              route: "/transport/parent-process/bus-route-details",
+              route: "/transport-management/parent-process/bus-route-details",
             },
             {
               page: "Pickup/Drop Details",
-              route: "/transport/parent-process/pickup-drop-details",
+              route: "/transport-management/parent-process/pickup-drop-details",
             },
           ],
         },
         {
           subModule: "Gatekeeper Transport System",
-          route: "/transport/gatekeeper",
+          route: "/transport-management/gatekeeper-transport-system",
           pages: [
             {
               page: "E-Challan Process",
-              route: "/transport/gatekeeper/e-challan",
+              route:
+                "/transport-management/gatekeeper-transport-system/e-challan-process",
             },
             {
               page: "Check Vehicle Details",
-              route: "/transport/gatekeeper/check-vehicle-details",
+              route:
+                "/transport-management/gatekeeper-transport-system/check-vehicle-details",
             },
           ],
         },
@@ -1124,66 +1082,89 @@ const sidebarMenu = {
     {
       module: "Student Management",
       icon: FaUserFriends,
-      route: "/students",
+      route: "/student-management-system",
       subModules: [
         {
           subModule: "Student Management",
-          route: "/students/management",
+          route: "/student-management-system/student-management",
           pages: [
             {
+              page: "Student Attendance",
+              route:
+                "/student-management-system/student-management/student-attendance",
+            },
+            {
               page: "Student Attendance Report",
-              route: "/students/management/attendance-report",
+              route:
+                "/student-management-system/student-management/attendance-report",
             },
             {
               page: "Student Achievement Tracking",
-              route: "/students/management/achievement-tracking",
+              route:
+                "/student-management-system/student-management/achievement-tracking",
             },
             {
               page: "Student Achievement Tracking Report",
-              route: "/students/management/achievement-report",
+              route:
+                "/student-management-system/student-management/achievement-tracking-report",
             },
             {
               page: "Student Tracking",
-              route: "/students/management/student-tracking",
+              route: "/student-management-system/student-management/tracking",
             },
           ],
         },
         {
           subModule: "Student Directory",
-          route: "/students/directory",
+          route: "/student-management-system/student-directory",
           pages: [
             {
               page: "Student Registration",
-              route: "/students/directory/registration",
+              route:
+                "/student-management-system/student-directory/student-registration",
             },
-            { page: "Student Detail", route: "/students/directory/detail" },
+            {
+              page: "Student Detail",
+              route: "/student-management-system/student-directory/detail",
+            },
             {
               page: "Student Promotion TC",
-              route: "/students/directory/promotion-tc",
+              route:
+                "/student-management-system/student-directory/promotion-tc",
             },
-            { page: "Generate TC", route: "/students/directory/generate-tc" },
-            { page: "Print TC", route: "/students/directory/print-tc" },
+            {
+              page: "Generate TC",
+              route: "/student-management-system/student-directory/generate-tc",
+            },
+            {
+              page: "Print TC",
+              route: "/student-management-system/student-directory/print-tc",
+            },
             {
               page: "Generate Migration Certificate",
-              route: "/students/directory/generate-migration",
+              route:
+                "/student-management-system/student-directory/generate-migration-certificate",
             },
             {
               page: "Print Migration Certificate",
-              route: "/students/directory/print-migration",
+              route:
+                "/student-management-system/student-directory/print-migration",
             },
           ],
         },
         {
           subModule: "Student Reports",
-          route: "/students/reports",
+          route: "/student-management-system/student-report",
           pages: [
             {
               page: "Student Summary Report",
-              route: "/students/reports/summary",
+              route:
+                "/student-management-system/student-report/student-summary-report",
             },
             {
               page: "Student Wise Counting Report",
-              route: "/students/reports/counting",
+              route:
+                "/student-management-system/student-report/student-wise-counting-report",
             },
           ],
         },
@@ -1273,152 +1254,177 @@ const sidebarMenu = {
     {
       module: "Budget & Finance",
       icon: FaMoneyBillWave,
-      route: "/finance",
+      route: "/budget-and-finance",
       subModules: [
         {
           subModule: "Finance Master",
-          route: "/finance/master",
+          route: "/budget-and-finance/finance-master",
           pages: [
             {
               page: "Group Management",
-              route: "/finance/master/group-management",
+              route: "/budget-and-finance/finance-master/group-management",
             },
             {
               page: "Ledger Creation Management",
-              route: "/finance/master/ledger-creation",
+              route:
+                "/budget-and-finance/finance-master/ledger-creation-management",
             },
-            { page: "HSN/SAC Master", route: "/finance/master/hsn-sac" },
+            {
+              page: "HSN/SAC Master",
+              route: "/budget-and-finance/finance-master/hsn-sac-master",
+            },
             {
               page: "Group Wise Ledger List",
-              route: "/finance/master/group-wise-ledger",
+              route:
+                "/budget-and-finance/finance-master/group-wise-ledger-list",
             },
             {
               page: "Office Wise Ledger List Details",
-              route: "/finance/master/office-wise-ledger",
+              route: "/budget-and-finance/finance-master/office-wise-ledger",
             },
             {
               page: "Ledger for Office Mapping",
-              route: "/finance/master/ledger-office-mapping",
+              route:
+                "/budget-and-finance/finance-master/ledger-for-office-mapping",
             },
             {
               page: "Ledger Altercation",
-              route: "/finance/master/ledger-altercation",
+              route: "/budget-and-finance/finance-master/ledger-altercation",
             },
           ],
         },
         {
           subModule: "Proposed Budget Process",
-          route: "/finance/proposed-budget",
+          route: "/budget-and-finance/proposed-budget",
           pages: [
             {
               page: "Proposed Budget",
-              route: "/finance/proposed-budget/proposed-budget",
+              route: "/budget-and-finance/proposed-budget/proposed-sub-budget",
             },
             {
               page: "Update Proposed Budget",
-              route: "/finance/proposed-budget/update-proposed-budget",
+              route:
+                "/budget-and-finance/proposed-budget/update-proposed-budget",
             },
           ],
         },
         {
           subModule: "Online Budget Demand",
-          route: "/finance/online-demand",
+          route: "/budget-and-finance/online-demand-request-process",
           pages: [
             {
               page: "Demand Request Process",
-              route: "/finance/online-demand/demand-request",
+              route:
+                "/budget-and-finance/online-demand-request-process/demand-request-process",
             },
             {
               page: "Demand Status Details",
-              route: "/finance/online-demand/demand-status",
+              route:
+                "/budget-and-finance/online-demand-request-process/demand-status-details",
+            },
+            {
+              page: "Budget Approval",
+              route:
+                "/budget-and-finance/online-demand-request-process/budget-approval",
             },
           ],
         },
         {
           subModule: "Budget Approval & Allocation",
-          route: "/finance/budget-approval-allocation",
+          route: "/budget-and-finance/budget-allocation-process",
           pages: [
-            {
-              page: "Approval Authority",
-              route: "/finance/budget-approval-allocation/approval-authority",
-            },
+            // { page: "Approval Authority", route: "/finance/budget-approval-allocation/approval-authority" },
             {
               page: "Budget Allocation Head Wise",
               route:
-                "/finance/budget-approval-allocation/budget-allocation-head-wise",
+                "/budget-and-finance/budget-allocation-process/budget-allocation-head-wise",
             },
             {
               page: "Budget Allocation Report",
               route:
-                "/finance/budget-approval-allocation/budget-allocation-report",
+                "/budget-and-finance/budget-allocation-process/budget-allocation-report",
             },
             {
               page: "Letter Generate",
-              route: "/finance/budget-approval-allocation/letter-generate",
+              route:
+                "/budget-and-finance/budget-allocation-process/budget-allocation-approval-process",
             },
             {
               page: "Budget Assign Report",
-              route: "/finance/budget-approval-allocation/budget-assign-report",
+              route:
+                "/budget-and-finance/budget-allocation-process/budget-assign-report",
             },
             {
               page: "Budget Utilization Report",
               route:
-                "/finance/budget-approval-allocation/budget-utilization-report",
+                "/budget-and-finance/budget-allocation-process/budget-utilization-report",
             },
           ],
         },
         {
           subModule: "Voucher Creation",
-          route: "/finance/voucher",
+          route: "/budget-and-finance/voucher-creation",
           pages: [
             {
               page: "Payment Voucher",
-              route: "/finance/voucher/payment-voucher",
+              route: "/budget-and-finance/voucher-creation/payment-voucher",
             },
             {
               page: "Receipt Voucher",
-              route: "/finance/voucher/receipt-voucher",
+              route: "/budget-and-finance/voucher-creation/receipt-voucher",
             },
             {
               page: "Journal Voucher",
-              route: "/finance/voucher/journal-voucher",
+              route: "/budget-and-finance/voucher-creation/journal-voucher",
             },
             {
               page: "Contra Voucher",
-              route: "/finance/voucher/contra-voucher",
+              route: "/budget-and-finance/voucher-creation/contra-voucher",
             },
             {
               page: "Service Purchase Voucher",
-              route: "/finance/voucher/service-purchase-voucher",
+              route:
+                "/budget-and-finance/voucher-creation/service-purchase-voucher",
             },
           ],
         },
         {
           subModule: "Finance Reports",
-          route: "/finance/reports",
+          route: "/budget-and-finance/expenses-report",
           pages: [
-            { page: "Expenses Report", route: "/finance/reports/expenses" },
+            {
+              page: "Expenses Report",
+              route: "/budget-and-finance/finance-report/expenses-report",
+            },
             {
               page: "Office Wise Budget Allocation Report",
-              route: "/finance/reports/office-wise-allocation",
+              route:
+                "/budget-and-finance/finance-report/office-wise-budget-allocation-report",
             },
             {
               page: "Day Book Single",
-              route: "/finance/reports/day-book-single",
+              route: "/budget-and-finance/finance-report/day-book-single",
             },
             {
               page: "Custom Day Book",
-              route: "/finance/reports/custom-day-book",
+              route: "/budget-and-finance/finance-report/custom-day-book",
             },
-            { page: "Ledger Report", route: "/finance/reports/ledger" },
+            {
+              page: "Ledger Report",
+              route: "/budget-and-finance/finance-report/ledger-report",
+            },
             {
               page: "Cash Bank Book",
-              route: "/finance/reports/cash-bank-book",
+              route: "/budget-and-finance/finance-report/cash-bank-book",
             },
-            { page: "Statistics", route: "/finance/reports/statistics" },
+            {
+              page: "Statistics",
+              route: "/budget-and-finance/finance-report/statistics",
+            },
             {
               page: "Alphabetical Ledger Report",
-              route: "/finance/reports/alphabetical-ledger",
+              route:
+                "/budget-and-finance/finance-report/alphabetical-ledger-report",
             },
           ],
         },
@@ -1463,7 +1469,7 @@ const sidebarMenu = {
             },
             {
               page: "Generate Score Card",
-              route: "/guest-faculty/login/generate-score-card",
+              route: "/guest-faculty/login/score-card",
             },
           ],
         },
@@ -1688,6 +1694,220 @@ const sidebarMenu = {
             {
               page: "Video Gallery",
               route: "/cms-college/general/video-gallery",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      module: "Employee Annual Property Returns Management System",
+      icon: FaUniversity,
+      route: "/aprms",
+      subModules: [
+        {
+          subModule: "APRMS",
+          route: "/aprms/employee-aprms",
+          pages: [
+            {
+              page: "Employee APR Form",
+              route: "/aprms/employee-aprms/employee-apr-form",
+            },
+            {
+              page: "Employee APR Form Print",
+              route: "/aprms/employee-aprms/employee-apr-form-print",
+            },
+            {
+              page: "Upload APR Form Document",
+              route: "/aprms/employee-aprms/upload-apr-form-document",
+            },
+            {
+              page: "Employee APR Report",
+              route: "/aprms/employee-aprms/employee-apr-report",
+            },
+            {
+              page: "APRMS District Wise Report",
+              route: "/aprms/employee-aprms/aprms-district-wise-report",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      module: "Department Enquiry Management",
+      icon: FaUniversity,
+      route: "/department-enquiry-management",
+      subModules: [
+        {
+          subModule: "Department Enquiry Management",
+          route: "/department-enquiry-management/department-enquiry",
+          pages: [
+            {
+              page: "Fill Department Enquiry Details",
+              route:
+                "/department-enquiry-management/department-enquiry/fill-department-enquiry-details",
+            },
+            {
+              page: "Update Department Enquiry",
+              route:
+                "/department-enquiry-management/department-enquiry/update-department-enquiry",
+            },
+          ],
+        },
+        {
+          subModule: "Department Enquiry Report",
+          route: "/department-enquiry-management/department-enquiry-report",
+          pages: [
+            {
+              page: "Department Enquiry Report",
+              route:
+                "/department-enquiry-management/department-enquiry-report/report",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      module: "Tour Management",
+      icon: FaUniversity,
+      route: "/tour-management",
+      subModules: [
+        {
+          subModule: "Tour Management",
+          route: "/tour-management-system/tour-management",
+          pages: [
+            {
+              page: "Apply Tour",
+              route: "/tour-management-system/tour-management/apply-tour",
+            },
+            {
+              page: "Approve Tour",
+              route: "/tour-management-system/tour-management/approve-tour",
+            },
+          ],
+        },
+        {
+          subModule: "Tour Report",
+          route: "/tour-management-system/tour-report",
+          pages: [
+            {
+              page: "Tour Report",
+              route: "/tour-management-system/tour-report/report",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      module: "OIS Setup",
+      icon: FaUniversity,
+      route: "/ois",
+      subModules: [
+        {
+          subModule: "OIS Registration",
+          route: "/ois/ois-registration",
+          pages: [
+            {
+              page: "Office Registration",
+              route: "/ois/ois-registration/office-registration-form",
+            },
+            {
+              page: "Institute Registration",
+              route: "/ois/ois-registration/institute-registration-form",
+            },
+            {
+              page: "School Registration",
+              route: "/ois/ois-registration/school-registration-form",
+            },
+            { page: "Edit School", route: "/ois/ois-registration/edit-school" },
+            {
+              page: "Edit School Details",
+              route: "/ois/ois-registration/edit-school-details",
+            },
+          ],
+        },
+        {
+          subModule: "OIS Setup",
+          route: "/ois/ois-setup",
+          pages: [
+            { page: "Office Setup", route: "/ois/ois-setup/office-setup" },
+            {
+              page: "Institute Setup",
+              route: "/ois/ois-setup/institute-setup",
+            },
+            { page: "School Setup", route: "/ois/ois-setup/school-setup" },
+            { page: "HSS Setup", route: "/ois/ois-setup/hss-setup" },
+            {
+              page: "MPBSE Enrollment Class 9 To 12",
+              route: "/ois/ois-setup/mpbse-enrollment-class-9-to-12",
+            },
+            {
+              page: "MPBSE Enrollment Report",
+              route: "/ois/ois-setup/mpbse-enrollment-report",
+            },
+          ],
+        },
+        {
+          subModule: "OIS Master",
+          route: "/ois/ois-master",
+          pages: [
+            { page: "Varg Master", route: "/ois/ois-master/varg-master" },
+            {
+              page: "Varg to Sub Category Mapping",
+              route: "/ois/ois-master/varg-to-subcategory-mapping",
+            },
+            { page: "Panel Master", route: "/ois/ois-master/panel-master" },
+            {
+              page: "Panel To Designation Mapping",
+              route: "/ois/ois-master/panel-to-designation-mapping",
+            },
+          ],
+        },
+        {
+          subModule: "OIS Report",
+          route: "/ois/ois-report",
+          pages: [
+            {
+              page: "School Setup Report",
+              route: "/ois/ois-report/school-setup-report",
+            },
+            {
+              page: "Office Setup Details Report",
+              route: "/ois/ois-report/office-setup-details-report",
+            },
+            {
+              page: "Institute Setup Details Report",
+              route: "/ois/ois-report/institute-setup-details-report",
+            },
+            {
+              page: "District Wise Publish",
+              route: "/ois/ois-report/district-wise-publish",
+            },
+            {
+              page: "Post Code Report",
+              route: "/ois/ois-report/post-code-report",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      module: "Hostel Management",
+      icon: FaUniversity,
+      route: "/hostel-management",
+      subModules: [
+        {
+          subModule: "Hostel Management",
+          route: "/hostel-management-system/hostel-management",
+          pages: [
+            {
+              page: "Hostel Registration",
+              route:
+                "/hostel-management-system/hostel-management/hostel-registration",
+            },
+            {
+              page: "Student Application Report",
+              route:
+                "/hostel-management-system/hostel-management/student-application-report",
             },
           ],
         },
