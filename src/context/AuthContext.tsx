@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 interface AuthContextType {
   isAuthenticated: boolean;
@@ -22,25 +22,20 @@ const DUMMY_CREDENTIALS = {
 };
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
+    return localStorage.getItem('isAuthenticated') === 'true';
+  });
   const [user, setUser] = useState<{
     email: string;
     name: string;
     role: string;
     joinDate: string;
     avatar?: string;
-  } | null>(null);
-
-
-  useEffect(() => {
-    const storedAuth = localStorage.getItem('isAuthenticated');
+  } | null>(() => {
     const storedUser = localStorage.getItem('user');
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
 
-    if (storedAuth === 'true' && storedUser) {
-      setIsAuthenticated(true);
-      setUser(JSON.parse(storedUser));
-    }
-  }, []);
 
   const login = async (email: string, password: string): Promise<boolean> => {
 

@@ -26,7 +26,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
       onClick={handleClick}
       title={collapsed ? name : undefined}
       className={`
-        relative group mb-2 transition-all duration-300
+        relative group mb-2 transition-all duration-300 cursor-pointer
         ${collapsed
           ? 'w-12 h-12 mx-auto rounded-full flex items-center justify-center'
           : 'w-[90%] mx-auto py-4 px-6 rounded-full flex items-center'
