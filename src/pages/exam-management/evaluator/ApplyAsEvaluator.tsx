@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import PageLayout from "@/components/PageLayout";
 import { DataTable } from "primereact/datatable";
@@ -20,19 +21,19 @@ interface Evaluator {
 }
 
 const roleOptions = [
-  { label: "Select", value: "" },
+  { label: "Select Role", value: "" },
   { label: "Junior Evaluator", value: "Junior Evaluator" },
   { label: "Senior Evaluator", value: "Senior Evaluator" },
 ];
 
 const qualificationOptions = [
-  { label: "Select", value: "" },
+  { label: "Select Qualification", value: "" },
   { label: "Bachelor's Degree", value: "Bachelor's Degree" },
   { label: "Master's Degree", value: "Master's Degree" },
 ];
 
 const experienceOptions = [
-  { label: "Select", value: "" },
+  { label: "Select Experience", value: "" },
   { label: "0-1 years", value: "0-1 years" },
   { label: "2-3 years", value: "2-3 years" },
   { label: "4+ years", value: "4+ years" },
@@ -72,14 +73,22 @@ const evaluatorList: Evaluator[] = [
 ];
 
 const EvaluatAsApply: React.FC = () => {
-  const [view, setView] = useState<"list" | "details" | "add">("list");
-  const [selectedEvaluator, setSelectedEvaluator] = useState<Evaluator | null>(
-    null
-  );
+  const [view, setView] = useState<"list" | "add">("list");
+  const [expandedRows, setExpandedRows] = useState<any>(null);
+
+  /* ✅ Add form state */
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    mobile: "",
+    role: null as string | null,
+    qualification: null as string | null,
+    experience: null as string | null,
+  });
 
   return (
     <PageLayout title="Evaluat As Apply">
- 
+      {/* ================= LIST ================= */}
       {view === "list" && (
         <Card className="mb-4">
           <div className="flex justify-between items-center mb-4">
@@ -91,65 +100,54 @@ const EvaluatAsApply: React.FC = () => {
             />
           </div>
 
-          <DataTable value={evaluatorList} paginator rows={10} showGridlines>
-            <Column header="Sr No." body={(_, opt) => opt.rowIndex + 1} />
-            <Column
-              header="Evaluator Name"
-              body={(row: Evaluator) => (
-                <span
-                  className="text-blue-600 cursor-pointer"
-                  onClick={() => {
-                    setSelectedEvaluator(row);
-                    setView("details");
-                  }}
-                >
-                  {row.name}
-                </span>
-              )}
-            />
-            <Column field="email" header="Email ID" />
-            <Column field="mobile" header="Mobile Number" />
-          </DataTable>
+ <DataTable
+  value={evaluatorList}
+  paginator
+  rows={10}
+  showGridlines
+  dataKey="id"
+  className="p-datatable-sm"
+  expandedRows={expandedRows}
+  onRowToggle={(e) => setExpandedRows(e.data)}
+  rowExpansionTemplate={(row: Evaluator) => (
+    <Card className="p-4 bg-gray-50 text-sm mb-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label className="block mb-1 font-medium">Role</label>
+          <div>{row.role}</div>
+        </div>
+        <div>
+          <label className="block mb-1 font-medium">Qualification</label>
+          <div>{row.qualification}</div>
+        </div>
+        <div>
+          <label className="block mb-1 font-medium">Experience</label>
+          <div>{row.experience}</div>
+        </div>
+        <div>
+          <label className="block mb-1 font-medium">Status</label>
+          <Tag value={row.status} severity="success" />
+        </div>
+      </div>
+    </Card>
+  )}
+>
+  <Column expander style={{ width: "3rem" }} />
+  <Column
+    header="Sr No."
+    body={(_, opt) => opt.rowIndex + 1}
+    style={{ width: "80px" }}
+    sortable
+  />
+  <Column field="name" header="Evaluator Name" sortable />
+  <Column field="email" header="Email ID" sortable />
+  <Column field="mobile" header="Mobile Number" sortable />
+</DataTable>
+
         </Card>
       )}
 
-   
-      {view === "details" && selectedEvaluator && (
-        <Card className="mb-4">
-          <div className="flex justify-between items-center mb-4">
-            <h3 className="text-lg font-semibold">Evaluator Details</h3>
-            <Button
-              label="Go Back"
-              icon="pi pi-arrow-left"
-              className="p-button-text"
-              onClick={() => setView("list")}
-            />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-            <div>
-              <label className="block mb-1">Role</label>
-              <div>{selectedEvaluator.role}</div>
-            </div>
-
-            <div>
-              <label className="block mb-1">Qualifications</label>
-              <div>{selectedEvaluator.qualification}</div>
-            </div>
-
-            <div>
-              <label className="block mb-1">Experience</label>
-              <div>{selectedEvaluator.experience}</div>
-            </div>
-
-            <div>
-              <label className="block mb-1">Status</label>
-              <Tag value={selectedEvaluator.status} severity="success" />
-            </div>
-          </div>
-        </Card>
-      )}
-
+      {/* ================= ADD ================= */}
       {view === "add" && (
         <Card>
           <div className="flex justify-between items-center mb-4">
@@ -166,45 +164,63 @@ const EvaluatAsApply: React.FC = () => {
             <div>
               <label className="block mb-1">Evaluator Name *</label>
               <InputText
-                placeholder="Enter Evaluator Name"
                 className="w-full"
+                placeholder="Enter Evaluator Name"
+                value={form.name}
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
               />
             </div>
 
             <div>
               <label className="block mb-1">Email ID *</label>
-              <InputText placeholder="Enter Email ID" className="w-full" />
+              <InputText
+                className="w-full"
+                placeholder="Enter Email ID"
+                value={form.email}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
+              />
             </div>
 
             <div>
               <label className="block mb-1">Mobile Number *</label>
-              <InputText placeholder="Enter Mobile Number" className="w-full" />
+              <InputText
+                className="w-full"
+                placeholder="Enter Mobile Number"
+                value={form.mobile}
+                onChange={(e) => setForm({ ...form, mobile: e.target.value })}
+              />
             </div>
 
             <div>
               <label className="block mb-1">Role *</label>
               <Dropdown
+                className="w-full"
                 options={roleOptions}
-                placeholder="Select"
-                className="w-full" 
+                placeholder="Select Role"
+                value={form.role}
+                onChange={(e) => setForm({ ...form, role: e.value })}
               />
             </div>
 
             <div>
               <label className="block mb-1">Qualifications *</label>
               <Dropdown
+                className="w-full"
                 options={qualificationOptions}
-                placeholder="Select"
-                className="w-full" 
+                placeholder="Select Qualification"
+                value={form.qualification}
+                onChange={(e) => setForm({ ...form, qualification: e.value })}
               />
             </div>
 
             <div>
               <label className="block mb-1">Experience</label>
               <Dropdown
+                className="w-full"
                 options={experienceOptions}
-                placeholder="Select"
-                className="w-full" 
+                placeholder="Select Experience"
+                value={form.experience}
+                onChange={(e) => setForm({ ...form, experience: e.value })}
               />
             </div>
           </div>
@@ -215,6 +231,16 @@ const EvaluatAsApply: React.FC = () => {
               label="Clear"
               icon="pi pi-refresh"
               className="p-button-secondary"
+              onClick={() =>
+                setForm({
+                  name: "",
+                  email: "",
+                  mobile: "",
+                  role: null,
+                  qualification: null,
+                  experience: null,
+                })
+              }
             />
           </div>
         </Card>

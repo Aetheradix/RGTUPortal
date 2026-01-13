@@ -13,22 +13,46 @@ const FillExamFormAndPay: React.FC = () => {
   const [step, setStep] = useState<'search' | 'student' | 'fees'>('search');
   const [showReceipt, setShowReceipt] = useState(false);
 
+  // Dropdown selected values
+  const [selectedSession, setSelectedSession] = useState<string | null>(null);
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<string | null>(null);
+
+  // Sample dropdown data
+  const examSessions = [
+    { label: 'Winter 2024', value: 'Winter 2024' },
+    { label: 'Summer 2024', value: 'Summer 2024' },
+    { label: 'Winter 2025', value: 'Winter 2025' },
+  ];
+
+  const paymentMethods = [
+    { label: 'Credit Card', value: 'Credit Card' },
+    { label: 'Debit Card', value: 'Debit Card' },
+    { label: 'Net Banking', value: 'Net Banking' },
+    { label: 'UPI', value: 'UPI' },
+  ];
+
   return (
     <PageLayout title="Fill Exam Form and Pay Exam">
 
-
+      {/* Search Section */}
       <Card className="mb-4">
-        <h1 className="mb-3">Fill Exam Form</h1>
+        <h1 className="mb-3 text-lg font-semibold">Fill Exam Form</h1>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
-            <label className="block text-sm mb-1">Enrollment No.*</label>
-            <InputText placeholder="Enter Enrollment No" />
+            <label className="block text-sm font-medium mb-1">Enrollment No.*</label>
+            <InputText placeholder="Enter Enrollment No" className="w-full" />
           </div>
 
           <div>
-            <label className="block text-sm mb-1">Examination Session*</label>
-            <Dropdown placeholder="Select Examination Session" options={[]} />
+            <label className="block text-sm font-medium mb-1">Examination Session*</label>
+            <Dropdown
+              placeholder="Select Examination Session"
+              options={examSessions}
+              value={selectedSession}
+              onChange={(e) => setSelectedSession(e.value)}
+              className="w-full"
+            />
           </div>
 
           <div className="flex items-end">
@@ -37,10 +61,10 @@ const FillExamFormAndPay: React.FC = () => {
         </div>
       </Card>
 
-
+      {/* Student Details Section */}
       {step !== 'search' && (
         <Card className="mb-4">
-          <h3 className="mb-3">Student Personal Details</h3>
+          <h3 className="mb-3 text-lg font-semibold">Student Personal Details</h3>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
             {[
@@ -54,15 +78,15 @@ const FillExamFormAndPay: React.FC = () => {
               'Email ID*'
             ].map(label => (
               <div key={label}>
-                <label className="block text-sm mb-1">{label}</label>
-                <InputText placeholder={`Enter ${label.replace('*', '')}`} />
+                <label className="block text-sm font-medium mb-1">{label}</label>
+                <InputText placeholder={`Enter ${label.replace('*', '')}`} className="w-full" />
               </div>
             ))}
           </div>
 
-          <h4 className="mb-2">Student Current Status</h4>
+          <h4 className="mb-2 font-semibold">Student Current Status</h4>
 
-          <DataTable value={[{}]} showGridlines>
+          <DataTable value={[{}]} showGridlines className="mb-4">
             <Column header="Semester" body={() => '1st'} />
             <Column header="Status" body={() => 'Regular'} />
             <Column header="Exam Form Status" body={() => 'Forwarded'} />
@@ -71,7 +95,7 @@ const FillExamFormAndPay: React.FC = () => {
             <Column header="No. of Paper" body={() => '5'} />
           </DataTable>
 
-          <div className="mt-4">
+          <div className="flex justify-end">
             <Button
               label="Forward Exam Form"
               icon="pi pi-arrow-right"
@@ -81,9 +105,10 @@ const FillExamFormAndPay: React.FC = () => {
         </Card>
       )}
 
+      {/* Fees Section */}
       {step === 'fees' && (
         <Card className="mb-4">
-          <h3 className="mb-3">Fees Details</h3>
+          <h3 className="mb-3 text-lg font-semibold">Fees Details</h3>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
             {[
@@ -97,35 +122,45 @@ const FillExamFormAndPay: React.FC = () => {
               'Culture Fee*'
             ].map(label => (
               <div key={label}>
-                <label className="block text-sm mb-1">{label}</label>
-                <InputText placeholder={`Enter ${label.replace('*', '')}`} />
+                <label className="block text-sm font-medium mb-1">{label}</label>
+                <InputText placeholder={`Enter ${label.replace('*', '')}`} className="w-full" />
               </div>
             ))}
           </div>
 
-          <h4 className="mb-3">Pay Fee</h4>
+          <h4 className="mb-3 font-semibold">Pay Fee</h4>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
-              <label className="block text-sm mb-1">Total Fee*</label>
-              <InputText placeholder="Enter Total Fee" />
+              <label className="block text-sm font-medium mb-1">Total Fee*</label>
+              <InputText placeholder="Enter Total Fee" className="w-full" />
             </div>
 
             <div>
-              <label className="block text-sm mb-1">Payment Method*</label>
-              <Dropdown placeholder="Select Payment Method" options={[]} />
+              <label className="block text-sm font-medium mb-1">Payment Method*</label>
+              <Dropdown
+                placeholder="Select Payment Method"
+                options={paymentMethods}
+                value={selectedPaymentMethod}
+                onChange={(e) => setSelectedPaymentMethod(e.value)}
+                className="w-full"
+              />
             </div>
           </div>
 
-          <Button
-            label="Pay"
-            icon="pi pi-credit-card"
-            onClick={() => setShowReceipt(true)}
-          />
+          {/* Centered Pay Button */}
+          <div className="flex justify-center">
+            <Button
+              label="Pay"
+              icon="pi pi-credit-card"
+              className="p-button-success"
+              onClick={() => setShowReceipt(true)}
+            />
+          </div>
         </Card>
       )}
 
-
+      {/* Payment Receipt Dialog */}
       <Dialog
         header="Payment Receipt"
         visible={showReceipt}
