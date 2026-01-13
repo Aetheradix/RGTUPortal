@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from "react";
 import PageLayout from "@/components/PageLayout";
-import { Card } from "primereact/card";
-import { DataTable } from "primereact/datatable";
-import { Column } from "primereact/column";
-import { Button } from "primereact/button";
-import { InputText } from "primereact/inputtext";
 import Dropdown from "@/ui/shared/Dropdown";
+import { Button } from "primereact/button";
+import { Card } from "primereact/card";
+import { Column } from "primereact/column";
+import { DataTable } from "primereact/datatable";
+import { InputText } from "primereact/inputtext";
+import { useState } from "react";
 interface Award {
   id: number;
   name: string;
@@ -47,7 +47,7 @@ export default function HighlightsOfAchievements() {
     <div className="flex justify-between items-center">
       <div>
         <h2 className="text-xl font-bold">{title}</h2>
-        
+
       </div>
       <Button label={btnLabel} icon="pi pi-plus" size="small" onClick={() => setShowForm(true)} />
     </div>
@@ -94,20 +94,20 @@ export default function HighlightsOfAchievements() {
     <PageLayout title="Highlights of Achievements">
       <Card header={header("Award Details", "Add Award Details")} className="mb-4">
         <DataTable value={awardData} paginator rows={5}>
-          <Column field="name" header="Awardee Name" sortable/>
-          <Column field="award" header="Award Name"sortable />
-          <Column field="body" header="Awarding Body"sortable />
-          <Column field="year" header="Year" sortable/>
+          <Column field="name" header="Awardee Name" sortable />
+          <Column field="award" header="Award Name" sortable />
+          <Column field="body" header="Awarding Body" sortable />
+          <Column field="year" header="Year" sortable />
           <Column header="Action" body={actionTemplate} />
         </DataTable>
       </Card>
 
       <Card header={header("Programmes Details", "Add Programme Details")}>
         <DataTable value={programmeData} paginator rows={5}>
-          <Column field="activity" header="Activity" sortable/>
-          <Column field="agency" header="Organising Agency" sortable/>
-          <Column field="scheme" header="Scheme"sortable />
-          <Column field="year" header="Year"sortable />
+          <Column field="activity" header="Activity" sortable />
+          <Column field="agency" header="Organising Agency" sortable />
+          <Column field="scheme" header="Scheme" sortable />
+          <Column field="year" header="Year" sortable />
           <Column header="Action" body={actionTemplate} />
         </DataTable>
       </Card>
