@@ -3,6 +3,7 @@ import Academics from "./academics";
 import Admissonmanagementsystem from "./admission-management-system";
 import BudgetAndFinance from "./budget-and-finance";
 import CmsPortal from "./cms-portal";
+import CompassionManagement from "./compassion-management";
 import Dashboard from "./Dashboard";
 import DepartmentEnquiryManagement from "./department-enquiry-management";
 import APRMS from "./employee-aprms";
@@ -67,6 +68,7 @@ export default function AppFeature() {
       <Route path="scheme-management/*" element={<SchemeManagement />} />
       <Route path="cms-portal/*" element={<CmsPortal />} />
       <Route path="guest-faculty/*" element={<GuestFacultyManagement />} />
+      <Route path="compassion-management/*" element={<CompassionManagement />} />
       <Route
         path="employee-directory-management/*"
         element={<EmployeeDirectoryManagement />}

@@ -5,6 +5,7 @@ import {
   FaClipboardList,
   FaCogs,
   FaGlobe,
+  FaHandsHelping,
   FaHome,
   FaMoneyBillWave,
   FaUniversity,
@@ -1964,6 +1965,79 @@ const sidebarMenu = {
               page: "Student Application Report",
               route:
                 "/hostel-management-system/hostel-management/student-application-report",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      module: "Compassion Management",
+      icon: FaHandsHelping,
+      route: "/compassion-management",
+      subModules: [
+        {
+          subModule: "Compassion",
+          route: "/compassion-management/compassion",
+          pages: [
+            {
+              page: "Compassionate Appointment",
+              route: "/compassion-management/compassion/compassion-appointment",
+            },
+            {
+              page: "Compassion Verification",
+              route:
+                "/compassion-management/compassion/compassion-verification",
+            },
+            {
+              page: "Compassion Apply",
+              route: "/compassion-management/compassion/compassion-apply",
+            },
+            {
+              page: "DEO Compassion Apply",
+              route: "/compassion-management/compassion/deo-compassion-apply",
+            },
+            {
+              page: "DEO NOC Certificate Release",
+              route:
+                "/compassion-management/compassion/deo-noc-certification-release",
+            },
+            {
+              page: "Generate & Forward NOC Request",
+              route:
+                "/compassion-management/compassion/generate-and-forward-noc-request",
+            },
+            {
+              page: "Update NOC Job Status",
+              route: "/compassion-management/compassion/update-noc-job-status",
+            },
+            {
+              page: "Final Decision",
+              route: "/compassion-management/compassion/final-decision",
+            },
+          ],
+        },
+        {
+          subModule: "Compassion Reports",
+          route: "/compassion-management/compassion-report",
+          pages: [
+            {
+              page: "Disposed Application Report",
+              route:
+                "/compassion-management/compassion-report/dispossed-application-report",
+            },
+            {
+              page: "District Wise Statistical Count Report",
+              route:
+                "/compassion-management/compassion-report/district-wise-statistical-count-report",
+            },
+            {
+              page: "NOC Report",
+              route: "/compassion-management/compassion-report/noc-report",
+            },
+            {
+              page: "NOC Statistical Count Report",
+              route:
+                "/compassion-management/compassion-report/noc-statistical-count-report",
             },
           ],
         },
