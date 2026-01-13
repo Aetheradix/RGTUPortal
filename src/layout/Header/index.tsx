@@ -15,7 +15,7 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
 
   const [showDropdown, setShowDropdown] = useState(false);
 
- 
+
   const handleLogout = useCallback(() => {
     logout();
     navigate('/login');
@@ -43,8 +43,8 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
             <Settings className="w-6 h-6 text-gray-600" />
           </button>
 
-          <div className="relative">
-            <button onClick={() => setShowDropdown(!showDropdown)} className="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100">
+          <div className="relative cursor-pointer">
+            <button onClick={() => setShowDropdown(!showDropdown)} className="flex cursor-pointer items-center gap-2 p-2 rounded-lg hover:bg-gray-100">
               <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold">
                 {user?.email?.charAt(0).toUpperCase() || 'A'}
               </div>
