@@ -14,6 +14,7 @@ import GuestFacultyManagement from "./guest-faculty-management";
 import HostelManagementSystem from "./hostel-management";
 import Master from "./masters";
 import OIS from "./ois";
+import Payroll from "./payroll";
 import ProfilePage from "./profile";
 import SchemeManagement from "./scheme-management";
 import StudentManagementSystem from "./student-management-system";
@@ -68,6 +69,7 @@ export default function AppFeature() {
       <Route path="scheme-management/*" element={<SchemeManagement />} />
       <Route path="cms-portal/*" element={<CmsPortal />} />
       <Route path="guest-faculty/*" element={<GuestFacultyManagement />} />
+      <Route path="payroll/*" element={<Payroll />} />
       <Route path="compassion-management/*" element={<CompassionManagement />} />
       <Route
         path="employee-directory-management/*"
