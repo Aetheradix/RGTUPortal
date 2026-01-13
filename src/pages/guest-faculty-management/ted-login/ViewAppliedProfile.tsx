@@ -12,11 +12,10 @@ interface AppliedProfileRow {
   applicantName: string;
   gender: string;
   email: string;
-  highestQualification?: string; // For expanded view
+  highestQualification?: string; 
 }
 
 const ViewAppliedProfile: React.FC = () => {
-  // 1. Form State for Filters
   const [filters, setFilters] = useState({
     academicYear: null,
     university: null,
@@ -72,7 +71,6 @@ const ViewAppliedProfile: React.FC = () => {
     }
   ]);
 
-  // State for row expansion
   const [expandedRows, setExpandedRows] = useState<number[]>([]);
 
   const toggleRow = (srNo: number) => {
@@ -81,7 +79,6 @@ const ViewAppliedProfile: React.FC = () => {
     );
   };
 
-  // 3. Table Column Definitions
   const columns: TableColumn[] = [
     {
       field: 'srNo',
@@ -111,7 +108,6 @@ const ViewAppliedProfile: React.FC = () => {
 
   return (
     <PageLayout title="View Applied Profile All University And Colleges">
-      {/* FILTER SECTION */}
       <div className="bg-white p-6 rounded-t-lg border border-gray-100 shadow-sm mb-1">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
           <Dropdown
@@ -135,8 +131,6 @@ const ViewAppliedProfile: React.FC = () => {
           <Button label="Clear" className="px-8 p-button-danger p-button-outlined" style={{ backgroundColor: '#FEE2E2', color: '#EF4444', border: 'none' }} />
         </div>
       </div>
-
-      {/* TABLE SECTION */}
       <div className="bg-white rounded-b-lg shadow-sm border border-gray-100 overflow-hidden">
         <div className="p-4 flex justify-between items-center text-sm border-b border-gray-50">
           <div className="flex items-center gap-2">
@@ -191,7 +185,6 @@ const ViewAppliedProfile: React.FC = () => {
           </table>
         </div>
 
-        {/* Footer Pagination */}
         <div className="p-4 flex justify-between items-center bg-white text-xs text-gray-500">
           <div>Showing 1 to 5 of 5 entries</div>
           <div className="flex gap-1">

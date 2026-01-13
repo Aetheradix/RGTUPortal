@@ -3,9 +3,7 @@ import { RadioButton } from 'primereact/radiobutton';
 import React, { useState } from 'react';
 import PageLayout from '../../../components/PageLayout';
 import { Dropdown, Table, type TableColumn } from '../../../ui/shared';
-import { DateInput } from '../../../ui/shared/Input'; // Ensure this matches your file structure
-
-// Interface for Student Attendance Row
+import { DateInput } from '../../../ui/shared/Input';
 interface MarkAttendanceRow {
   id: number;
   enrollmentNo: string;
@@ -113,7 +111,6 @@ const MarkAttendance: React.FC = () => {
 
   const onSave = () => {
     console.log('Attendance Saved:', studentList);
-    // Add success message/toast here
   };
 
   return (
@@ -185,11 +182,9 @@ const MarkAttendance: React.FC = () => {
         </div>
       </form>
 
-      {/* Student List Table */}
       <div className="mt-8 bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
         <Table columns={columns} data={studentList} showPagination rowsPerPage={10} />
 
-        {/* Footer Action Buttons */}
         <div className="flex gap-3 justify-center mt-6 p-4 border-t border-gray-50">
           <Button label="Save " className="px-8" style={{ backgroundColor: '#6366F1', border: 'none' }} onClick={onSave} />
           <Button label="Clear " className="p-button-danger p-button-outlined px-8" />

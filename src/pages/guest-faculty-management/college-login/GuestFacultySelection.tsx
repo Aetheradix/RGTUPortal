@@ -4,7 +4,6 @@ import { Button } from 'primereact/button';
 import { Input, Dropdown, Table, type TableColumn } from '../../../ui/shared';
 import { DateInput } from '../../../ui/shared/Input';
 
-// Interfaces based on images
 interface ApplicantDetail {
   srNo: number;
   guestFacultyName: string;
@@ -20,17 +19,14 @@ interface AssessmentMarks {
 }
 
 const GuestFacultySelection: React.FC = () => {
-  // 1. Search Form State (Image 1 & 2)
   const [searchData, setSearchData] = useState({
     academicYear: null as string | null,
     facultyId: '',
     dob: null as Date | null,
   });
 
-  // 2. Selection Status State (Image 4)
   const [selectionStatus, setSelectionStatus] = useState<string | null>(null);
 
-  // 3. Mock Data for Applicant Details (Image 1 & 3)
   const [applicantDetails] = useState<ApplicantDetail[]>([
     {
       srNo: 1,
@@ -40,7 +36,6 @@ const GuestFacultySelection: React.FC = () => {
     }
   ]);
 
-  // 4. Mock Data for Assessment Marks (Image 3 & 4)
   const [assessmentMarks] = useState<AssessmentMarks[]>([
     { srNo: 1, assessmentBreakdown: 'Written Exam Marks', totalMarks: 100, obtainedMarks: 79 },
     { srNo: 2, assessmentBreakdown: 'Interview Marks', totalMarks: 50, obtainedMarks: 40 },
@@ -51,7 +46,6 @@ const GuestFacultySelection: React.FC = () => {
     { srNo: 7, assessmentBreakdown: 'Total Aggregate Marks', totalMarks: 280, obtainedMarks: 221.9 },
   ]);
 
-  // Table Column Definitions
   const applicantColumns: TableColumn[] = [
     { field: 'srNo', header: 'Sr. no', style: { width: '80px' } },
     { field: 'guestFacultyName', header: 'Guest Faculty Name' },
@@ -73,7 +67,6 @@ const GuestFacultySelection: React.FC = () => {
 
   return (
     <PageLayout title="Selection And Register Profile For Guest Faculty">
-      {/* SEARCH SECTION */}
       <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 mb-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
           <Dropdown
@@ -108,7 +101,6 @@ const GuestFacultySelection: React.FC = () => {
         </div>
       </div>
 
-      {/* APPLICANT DETAILS SECTION */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-100 mb-6 overflow-hidden">
         <div className="p-4 border-b border-gray-100 font-bold text-gray-700">Applicant Details</div>
         <Table
@@ -119,7 +111,6 @@ const GuestFacultySelection: React.FC = () => {
         />
       </div>
 
-      {/* APPLICANT MARKS DETAIL SECTION */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-100 mb-6 overflow-hidden">
         <div className="p-4 border-b border-gray-100 font-bold text-gray-700">Applicant Marks Detail</div>
         <Table
@@ -130,7 +121,6 @@ const GuestFacultySelection: React.FC = () => {
         />
       </div>
 
-      {/* SELECTION STATUS SECTION */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-100 mb-6 overflow-hidden">
         <div className="p-4 border-b border-gray-100 font-bold text-gray-700">Selection Status</div>
         <div className="p-6">

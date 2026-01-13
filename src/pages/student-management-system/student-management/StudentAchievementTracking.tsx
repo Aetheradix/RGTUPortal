@@ -1,9 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
 import PageLayout from '../../../components/PageLayout';
 import { Button } from 'primereact/button';
 import { Input, Dropdown, Table, type TableColumn } from '../../../ui/shared';
 
-// --- Interface for Table Data ---
 interface AchievementRow {
   srNo: number;
   enrollmentNo: string;
@@ -15,7 +15,6 @@ interface AchievementRow {
 }
 
 const StudentAchievementTracking: React.FC = () => {
-  // --- Form State ---
   const [formData, setFormData] = useState({
     enrollmentNo: '',
     studentName: '',
@@ -25,7 +24,6 @@ const StudentAchievementTracking: React.FC = () => {
     title: '',
   });
 
-  // --- Mock Data from image_cb872a.png ---
   const [rows] = useState<AchievementRow[]>([
     { srNo: 1, enrollmentNo: '0501CS221C01', studentName: 'Aruhi Sharma', semester: '3rd Semester', academicYear: '2023-24', achievement: 'Volunteer Work', achievementTitle: 'Active Participation in NSS Camp' },
     { srNo: 2, enrollmentNo: '0501CS221C02', studentName: 'Arnav Gupta', semester: '5th Semester', academicYear: '2022-23', achievement: 'Sports Achievement', achievementTitle: 'Gold Medal in Athletics' },
@@ -34,7 +32,6 @@ const StudentAchievementTracking: React.FC = () => {
     { srNo: 5, enrollmentNo: '0501CS221C05', studentName: 'Priya Yadav', semester: '7th Semester', academicYear: '2023-24', achievement: 'Cultural Participation', achievementTitle: 'Winner of State-Level Dance Competition' },
   ]);
 
-  // --- Dropdown Options ---
   const semesterOptions = [
     { label: '1st Semester', value: '1st' },
     { label: '2nd Semester', value: '2nd' },
@@ -52,7 +49,6 @@ const StudentAchievementTracking: React.FC = () => {
     { label: '2024-25', value: '2024-25' },
   ];
 
-  // --- Action Column Template ---
   const actionTemplate = (_rowData: AchievementRow) => (
     <div className="flex gap-2">
       <Button 
@@ -67,7 +63,6 @@ const StudentAchievementTracking: React.FC = () => {
     </div>
   );
 
-  // --- Table Columns ---
   const columns: TableColumn[] = [
     { field: 'srNo', header: 'Sr No.', style: { width: '60px' } },
     { field: 'enrollmentNo', header: 'Enrollment No.', sortable: true },
@@ -81,8 +76,6 @@ const StudentAchievementTracking: React.FC = () => {
 
   return (
     <PageLayout title="Student Achievement Tracking">
-      
-      {/* 1. FORM SECTION (Add Student Achievement Tracking) */}
       <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 mb-8">
       
         <form className="space-y-6">
@@ -127,7 +120,6 @@ const StudentAchievementTracking: React.FC = () => {
               onChange={(e) => setFormData({...formData, title: e.target.value})}
             />
             
-            {/* Custom File Upload Styling as per screenshot */}
             <div className="flex flex-col gap-1">
               <label className="text-sm font-bold text-gray-700">Upload Document *</label>
                <input 
@@ -146,8 +138,6 @@ const StudentAchievementTracking: React.FC = () => {
           </div>
         </form>
       </div>
-
-      {/* 2. TABLE SECTION (Student Achievement Tracking List) */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
         <div className="flex justify-between items-center p-4 border-b">
           <h2 className="text-lg font-bold text-gray-700">Student Achievement Tracking List</h2>

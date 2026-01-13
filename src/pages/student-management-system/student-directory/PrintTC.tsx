@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react';
 import PageLayout from '../../../components/PageLayout';
 import { Button } from 'primereact/button';
@@ -10,11 +11,10 @@ interface PrintTCRow {
   dob: string;
   percentage: string;
   resultStatus: string;
-  college: any; // Used for the action button column
+  college: any; 
 }
 
 const PrintTC: React.FC = () => {
-  // --- Dropdown Options ---
   const academicYears = [
     { label: "2023-24", value: "2023-24" },
     { label: "2024-25", value: "2024-25" },
@@ -28,20 +28,17 @@ const PrintTC: React.FC = () => {
     { label: "Semester IV", value: "4" },
   ];
 
-  // --- States for Filters ---
   const [filters, setFilters] = useState({
     academicYear: null,
     semester: null,
   });
 
-  // --- Mock Data from Image ---
   const [printTCData] = useState<PrintTCRow[]>([
     { srNo: 1, studentName: 'Aman Yadav', fatherName: 'Raghav Yadav', dob: '12-03-2000', percentage: '78%', resultStatus: 'Passed', college: null },
     { srNo: 2, studentName: 'Neha Sharma', fatherName: 'Vishal Sharma', dob: '22-07-1999', percentage: '85%', resultStatus: 'Passed', college: null },
     { srNo: 3, studentName: 'Rohit Patel', fatherName: 'Mahesh Patel', dob: '05-11-1998', percentage: '65%', resultStatus: 'Passed', college: null },
   ]);
 
-  // --- Template for Print Action Button ---
   const actionBodyTemplate = () => {
     return (
       <Button 
@@ -72,7 +69,6 @@ const PrintTC: React.FC = () => {
 
   return (
     <PageLayout title="Print TC">
-      {/* SEARCH FILTERS */}
       <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 mb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl">
           <Dropdown 
@@ -107,7 +103,6 @@ const PrintTC: React.FC = () => {
         </div>
       </div>
 
-      {/* DATA TABLE */}
       <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
         <div className="p-2 mb-4">
            <h2 className="text-lg font-medium text-gray-700">Print TC List</h2>

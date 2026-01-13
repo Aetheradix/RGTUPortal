@@ -14,7 +14,6 @@ interface AttendanceReportRow {
 }
 
 const StudentAttendanceReport: React.FC = () => {
-  // --- Dropdown Options ---
   const academicYears = [
     { label: "2023-24", value: "2023-24" },
     { label: "2024-25", value: "2024-25" },
@@ -61,8 +60,6 @@ const StudentAttendanceReport: React.FC = () => {
     { label: "Operating Systems", value: "OS" },
     { label: "Database Management", value: "DBMS" },
   ];
-
-  // --- States for Filters ---
   const [filters, setFilters] = useState({
     academicYear: null,
     month: null,
@@ -71,8 +68,6 @@ const StudentAttendanceReport: React.FC = () => {
     semester: null,
     subjectName: null,
   });
-
-  // --- Mock Data for Table ---
   const [reportData] = useState<AttendanceReportRow[]>([
     { srNo: 1, enrollmentNo: '0501CS221C01', studentName: 'Arnav Gupta', totalMonthDays: 30, totalPresentDays: 28, totalAbsentDays: 2, attendancePercentage: '93%' },
     { srNo: 2, enrollmentNo: '0501CS221C02', studentName: 'Ananya Sharma', totalMonthDays: 30, totalPresentDays: 25, totalAbsentDays: 5, attendancePercentage: '83%' },
@@ -98,7 +93,6 @@ const StudentAttendanceReport: React.FC = () => {
 
   return (
     <PageLayout title="Student Attendance Report">
-      {/* FILTER SECTION*/}
       <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 mb-8">
       
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -165,7 +159,6 @@ const StudentAttendanceReport: React.FC = () => {
         </div>
       </div>
 
-      {/* REPORT TABLE SECTION*/}
       <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
         <div className="p-2 mb-4">
            <h2 className="text-lg font-bold text-gray-700">Student Attendance Report</h2>

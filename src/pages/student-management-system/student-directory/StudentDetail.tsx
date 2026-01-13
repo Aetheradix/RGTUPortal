@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/static-components */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react';
 import PageLayout from '../../../components/PageLayout';
 import { DataTable } from 'primereact/datatable';
@@ -15,7 +17,6 @@ const StudentDetail: React.FC = () => {
         { srNo: 2, enrollment: '0501CS123D02', name: 'Rahul Sharma', uniqueId: 'STU12345', gender: 'Male', dob: '03/03/2007', category: 'General' },
     ];
 
-    // Helper for table-style grid cells
     const dataCell = (label: string, value: string, colSpan = 1) => (
         <>
             <div className="bg-gray-50 p-2 font-bold text-gray-700 border-r border-b border-gray-200 text-[10px] uppercase tracking-tighter flex items-center">{label}</div>
@@ -58,14 +59,12 @@ const StudentDetail: React.FC = () => {
                 </div>
             ) : (
                 <div className="bg-white p-6 rounded-lg shadow-lg border border-gray-100 max-w-7xl mx-auto mb-10">
-                    {/* Header bar */}
                     <div className="flex justify-between items-center border-b-2 border-indigo-100 pb-4 mb-4">
                         <Button label="Back" icon="pi pi-arrow-left" className="p-button-text font-bold" onClick={() => setViewMode('list')} />
                         <h2 className="text-xl font-black text-gray-800 uppercase tracking-widest">Student Registration Details</h2>
                         <Button icon="pi pi-print" className="p-button-outlined" />
                     </div>
 
-                    {/* 1. Student Personal Details (Image image_553b8b style) */}
                     <SectionHeader title="Student Personal Details" />
                     <div className="grid grid-cols-1 md:grid-cols-8 border-t border-l border-gray-200">
                         {dataCell("Student Name (Eng)", selectedStudent?.name)}
@@ -85,7 +84,6 @@ const StudentDetail: React.FC = () => {
                         {dataCell("Email ID", "riya@gmail.com", 2)}
                     </div>
 
-                    {/* 2. Address Information (Image image_553b8b style) */}
                     <SectionHeader title="Address Information" />
                     <div className="grid grid-cols-1 md:grid-cols-8 border-t border-l border-gray-200">
                         {dataCell("State Name", "Madhya Pradesh")}
@@ -97,7 +95,6 @@ const StudentDetail: React.FC = () => {
                         {dataCell("Full Address", "Robertson, 123 NW Bobcat Lane, MP 462001", 2)}
                     </div>
 
-                    {/* 3. Family Other Information (Image image_553b8d style) */}
                     <SectionHeader title="Family Other Information" />
                     <div className="grid grid-cols-1 md:grid-cols-8 border-t border-l border-gray-200">
                         {dataCell("Is Single Child", "Yes")}
@@ -110,7 +107,6 @@ const StudentDetail: React.FC = () => {
                         {dataCell("Yearly Income", "40000")}
                     </div>
 
-                    {/* 4. Previous Academic Information (Image image_553b90 style) */}
                     <SectionHeader title="Previous Academic Year Information" />
                     <div className="grid grid-cols-1 md:grid-cols-8 border-t border-l border-gray-200">
                         {dataCell("College AISHE", "RKCS-501CS08")}
@@ -121,7 +117,6 @@ const StudentDetail: React.FC = () => {
                         {dataCell("Subject/Branch", "Computer Science", 2)}
                     </div>
 
-                    {/* 5. Current Academic Year (Image image_553b90 style) */}
                     <SectionHeader title="Current Academic Year Information" />
                     <div className="grid grid-cols-1 md:grid-cols-8 border-t border-l border-gray-200">
                         {dataCell("College AISHE", "GFCD-23320400117")}
@@ -133,7 +128,6 @@ const StudentDetail: React.FC = () => {
                         {dataCell("Year of Study", "3rd Year")}
                     </div>
 
-                    {/* 6. Bank Details (Image image_553ba8 style) */}
                     <SectionHeader title="Student Bank Account Information" />
                     <div className="grid grid-cols-1 md:grid-cols-8 border-t border-l border-gray-200">
                         {dataCell("IFSC Code", "SBI7897653")}
@@ -143,7 +137,6 @@ const StudentDetail: React.FC = () => {
                         {dataCell("Holder Name", selectedStudent?.name, 4)}
                     </div>
 
-                    {/* 7. Document Upload (Image image_553ba8 style) */}
                     <SectionHeader title="Document Upload" />
                     <table className="w-full border-collapse border border-gray-200 text-[11px]">
                         <thead className="bg-gray-50">

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from 'primereact/button';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
@@ -20,7 +21,6 @@ interface VacantPostRow {
 const VacantPost: React.FC = () => {
   const [expandedRows, setExpandedRows] = useState<any>(null);
 
-  /* 2. Data */
   const [rows] = useState<VacantPostRow[]>([
     {
       id: '1',
@@ -68,7 +68,6 @@ const VacantPost: React.FC = () => {
     },
   ]);
 
-  /* 3. Expansion Template */
   const rowExpansionTemplate = (data: VacantPostRow) => {
     return (
       <div className="p-4 bg-gray-50 border-y border-gray-100">
@@ -98,7 +97,6 @@ const VacantPost: React.FC = () => {
     <PageLayout title="Vacant Post">
       <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
 
-        {/* Expandable Table */}
         <DataTable
           value={rows}
           expandedRows={expandedRows}

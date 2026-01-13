@@ -13,24 +13,24 @@ interface MigrationRow {
   resultStatus: string;
   courseName: string;
   collegeName: string;
-  universityName?: string; // Expandable content ke liye
+  universityName?: string; 
 }
 
 const GenerateMigrationCertificate: React.FC = () => {
-  // --- Dropdown Options ---
+
   const migrationYears = [
     { label: "2023", value: "2023" },
     { label: "2024", value: "2024" },
     { label: "2025", value: "2025" },
   ];
 
-  // --- States for Filters ---
+ 
   const [filters, setFilters] = useState({
     migrationYear: null,
     enrollmentNo: '',
   });
 
-  // --- Mock Data from Image ---
+  
   const [migrationData] = useState<MigrationRow[]>([
     { 
       srNo: 1, 
@@ -58,7 +58,7 @@ const GenerateMigrationCertificate: React.FC = () => {
     { field: 'collegeName', header: 'College Name' },
   ];
 
-  // --- Row Expansion Template (University Name ke liye) ---
+  
   const rowExpansionTemplate = (data: MigrationRow) => {
     return (
       <div className="p-3 bg-gray-50">
@@ -73,7 +73,7 @@ const GenerateMigrationCertificate: React.FC = () => {
 
   return (
     <PageLayout title="Generate Migration Certificate">
-      {/* FILTER SECTION */}
+     
       <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 mb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl">
           <Dropdown 
@@ -102,7 +102,7 @@ const GenerateMigrationCertificate: React.FC = () => {
         </div>
       </div>
 
-      {/* LIST SECTION */}
+  
       <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
         <div className="p-2 mb-4">
            <h2 className="text-lg font-medium text-gray-700">Generate Migration Certificate List</h2>
@@ -113,11 +113,10 @@ const GenerateMigrationCertificate: React.FC = () => {
           data={migrationData} 
           showPagination 
           rowsPerPage={10}
-          // Agar aapko image ki tarah university name niche dikhana hai:
+      
           rowExpansionTemplate={rowExpansionTemplate}
         />
 
-        {/* BOTTOM ACTIONS */}
         <div className="flex gap-3 justify-center pt-8 border-t mt-6">
           <Button 
             label="Generate" 

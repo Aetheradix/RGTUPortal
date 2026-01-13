@@ -16,7 +16,6 @@ interface ExperienceClaimRow {
 }
 
 const RegisterExperienceClaim: React.FC = () => {
-  // 1. States
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
     academicYear: null as string | null,
@@ -24,7 +23,6 @@ const RegisterExperienceClaim: React.FC = () => {
     dob: null as Date | null,
   });
 
-  // 2. Mock Table Data
   const rows: ExperienceClaimRow[] = [
     {
       srNo: 1,
@@ -46,7 +44,6 @@ const RegisterExperienceClaim: React.FC = () => {
     }
   ];
 
-  // 3. Table Columns
   const columns: TableColumn[] = [
     { field: 'srNo', header: 'Sr.No.', style: { width: '70px' } },
     { field: 'collegeAisheCode', header: 'College AISHE Code' },
@@ -74,7 +71,6 @@ const RegisterExperienceClaim: React.FC = () => {
 
   return (
     <PageLayout title="Register Experience Claim">
-      {/* FILTER SECTION */}
       <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 mb-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
           <Dropdown
@@ -104,14 +100,12 @@ const RegisterExperienceClaim: React.FC = () => {
         </div>
       </div>
 
-      {/* TABLE SECTION */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
         <div className="p-4 border-b border-gray-100 bg-gray-50">
           <h3 className="font-bold text-gray-700">Details</h3>
         </div>
         <Table columns={columns} data={rows} showPagination rowsPerPage={10} />
         
-        {/* BOTTOM REQUEST BUTTON */}
         <div className="flex justify-center p-6 border-t border-gray-100">
            <Button 
             label="Request For Claim" 
@@ -121,7 +115,6 @@ const RegisterExperienceClaim: React.FC = () => {
         </div>
       </div>
 
-      {/* VERIFICATION MODAL (Image 3 Reference) */}
       <Dialog 
         visible={showModal} 
         onHide={() => setShowModal(false)} 
@@ -130,9 +123,8 @@ const RegisterExperienceClaim: React.FC = () => {
         className="experience-modal"
       >
         <div className="p-4 border border-gray-800 rounded">
-          {/* Header Box */}
           <div className="border-2 border-gray-800 p-4 mb-4 flex items-center gap-4">
-            <div className="w-20 h-20 bg-gray-200">Logo</div> {/* Replace with actual image tag */}
+            <div className="w-20 h-20 bg-gray-200">Logo</div>
             <div className="text-center flex-1">
               <h2 className="text-xl font-bold uppercase">Guest Faculty Verification Certificate</h2>
               <p className="font-semibold">(Fill in the experience certificate and store documents in the file)</p>

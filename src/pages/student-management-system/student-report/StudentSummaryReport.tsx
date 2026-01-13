@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react';
 import PageLayout from '../../../components/PageLayout';
 import { Button } from 'primereact/button';
@@ -6,7 +7,6 @@ import { Dropdown, Table, Input } from '../../../ui/shared';
 const StudentSummaryReport: React.FC = () => {
   const [expandedRows, setExpandedRows] = useState<any>(null);
 
-  // --- Dropdown Values (Jo aapne maangi thi) ---
   const academicYears = [
     { label: "2023-2024", value: "2023-2024" },
     { label: "2024-2025", value: "2024-2025" }
@@ -29,7 +29,6 @@ const StudentSummaryReport: React.FC = () => {
     { label: "NayaGaon", value: "NayaGaon" }
   ];
 
-  // --- Filter State ---
   const [filters, setFilters] = useState({
     academicYear: null,
     districtName: null,
@@ -38,7 +37,6 @@ const StudentSummaryReport: React.FC = () => {
     enrollmentNo: '',
   });
 
-  // --- 2 Rows with Expansion Data ---
   const [reportData] = useState([
     { 
       srNo: 1, 
@@ -55,7 +53,6 @@ const StudentSummaryReport: React.FC = () => {
       motherName: 'Sunita Sharma',
       mobileNo: '9876543210',
       bpl: 'Yes',
-      // Expandable Data
       physicalDisability: 'No',
       currentInstituteCode: 'MPTech123',
       currentId: 'ID001',
@@ -77,7 +74,6 @@ const StudentSummaryReport: React.FC = () => {
       motherName: 'Anjali Verma',
       mobileNo: '9123456789',
       bpl: 'No',
-      // Expandable Data
       physicalDisability: 'No',
       currentInstituteCode: 'MPTech456',
       currentId: 'ID002',
@@ -86,7 +82,6 @@ const StudentSummaryReport: React.FC = () => {
     }
   ]);
 
-  // --- Exact Row Expansion Layout (From Image) ---
   const rowExpansionTemplate = (data: any) => {
     return (
       <div className="py-4 px-12 bg-gray-50 border-b space-y-2 text-sm">
@@ -99,7 +94,6 @@ const StudentSummaryReport: React.FC = () => {
     );
   };
 
-  // --- Columns Fix (Error hatane ke liye any[] use kiya h) ---
   const columns: any[] = [
     { expander: true, style: { width: '3rem' } },
     { field: 'srNo', header: 'Sr.No.', style: { width: '60px' } },
@@ -120,7 +114,6 @@ const StudentSummaryReport: React.FC = () => {
 
   return (
     <PageLayout title="Student Summary Report">
-      {/* FILTER SECTION - Exact Theme */}
       <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 mb-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <Dropdown label="Select Academic Year" required options={academicYears} value={filters.academicYear} />
@@ -131,9 +124,7 @@ const StudentSummaryReport: React.FC = () => {
         </div>
 
         <div className="flex gap-3 justify-center pt-8 border-t mt-6">
-          {/* Blue Search Button */}
           <Button label="Search" className="px-12" style={{ backgroundColor: '#4361EE', border: 'none' }} />
-          {/* Pinkish-Red Clear Button */}
           <Button 
             type="button" label="Clear" 
             className="px-12"
@@ -143,7 +134,6 @@ const StudentSummaryReport: React.FC = () => {
         </div>
       </div>
 
-      {/* TABLE SECTION */}
       <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
         <div className="p-2 mb-4">
            <h2 className="text-lg font-bold text-gray-700">Student Summary Report List</h2>

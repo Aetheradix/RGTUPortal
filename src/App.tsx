@@ -4,7 +4,7 @@ import AppFeature from "./pages";
 import AppLayout from "./layout/AppLayout";
 import React, { Suspense } from "react";
 import 'primeicons/primeicons.css';
-        
+
 const Login = React.lazy(() => import("./components/auth"));
 
 const ProtectedApp = () => {

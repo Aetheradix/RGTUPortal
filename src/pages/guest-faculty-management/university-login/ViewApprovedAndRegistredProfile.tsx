@@ -12,7 +12,6 @@ interface CollegeGuestApplicant {
   guestFacultyName: string;
   verificationRequestId: string;
   status: 'Approved' | 'Rejected';
-  // Expandable Fields
   universityName: string;
   subject: string;
 }

@@ -2,18 +2,16 @@ import React, { useState } from 'react';
 import PageLayout from '../../../components/PageLayout';
 import { Button } from 'primereact/button';
 import { Input } from '../../../ui/shared';
-import { Dialog } from 'primereact/dialog'; // OTP Modal ke liye
+import { Dialog } from 'primereact/dialog';
 import { RadioButton } from 'primereact/radiobutton';
 
 const GuestFacultyRegistration: React.FC = () => {
-  // 1. State for Form Data
-  const [selectedIdType, setSelectedIdType] = useState<string>(''); // 'samagra' or 'aadhar'
+  const [selectedIdType, setSelectedIdType] = useState<string>(''); 
   const [samagraId, setSamagraId] = useState('');
   const [aadharNumber, setAadharNumber] = useState('');
   const [showOtpModal, setShowOtpModal] = useState(false);
   const [otp, setOtp] = useState('');
 
-  // Style for disabled/readonly fields
   const disabledInputStyle = {
     backgroundColor: '#E5E7EB',
     color: '#9CA3AF',
@@ -22,7 +20,6 @@ const GuestFacultyRegistration: React.FC = () => {
   };
 
   const handleGenerateOtp = () => {
-    // Logic to trigger OTP
     setShowOtpModal(true);
   };
 
@@ -33,10 +30,8 @@ const GuestFacultyRegistration: React.FC = () => {
     
 
         <div className="space-y-8">
-          {/* Radio Selection & Input Grid */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             
-            {/* Samagra ID Section */}
             <div className="space-y-4">
               <div className="flex items-center gap-2">
                 <RadioButton 
@@ -56,8 +51,6 @@ const GuestFacultyRegistration: React.FC = () => {
                 onChange={(e) => setSamagraId(e.target.value)}
               />
             </div>
-
-            {/* Aadhar Number Section */}
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <RadioButton 
@@ -80,20 +73,18 @@ const GuestFacultyRegistration: React.FC = () => {
 
           </div>
 
-          {/* Generate OTP Button */}
           <div className="flex justify-center pt-4">
             <Button 
                 label="Generate OTP" 
                 className="px-8 py-3" 
                 style={{ backgroundColor: '#6366F1', border: 'none' }} 
                 onClick={handleGenerateOtp}
-                disabled={!selectedIdType} // Jab tak select na ho tab tak disabled
+                disabled={!selectedIdType} 
             />
           </div>
         </div>
       </div>
 
-      {/* OTP Verification Modal (Image 4 reference) */}
       <Dialog 
         header="OTP Verification" 
         visible={showOtpModal} 

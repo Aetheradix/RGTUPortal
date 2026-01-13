@@ -14,20 +14,19 @@ interface TCRow {
 }
 
 const GenerateTC: React.FC = () => {
-  // --- Dropdown Options ---
+
   const academicYears = [
     { label: "2023-24", value: "2023-24" },
     { label: "2024-25", value: "2024-25" },
     { label: "2025-26", value: "2025-26" },
   ];
 
-  // --- States for Filters ---
+
   const [filters, setFilters] = useState({
     academicYear: null,
     enrollmentNo: '',
   });
 
-  // --- Mock Data based on Image ---
   const [tcListData] = useState<TCRow[]>([
     { 
       srNo: 1, 
@@ -59,7 +58,7 @@ const GenerateTC: React.FC = () => {
 
   return (
     <PageLayout title="Generate TC">
-      {/* FILTER SECTION */}
+
       <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 mb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl">
           <Dropdown 
@@ -93,7 +92,6 @@ const GenerateTC: React.FC = () => {
         </div>
       </div>
 
-      {/* LIST SECTION */}
       <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
         <div className="p-2 mb-4">
            <h2 className="text-lg font-medium text-gray-700">Generate TC List</h2>
@@ -106,7 +104,7 @@ const GenerateTC: React.FC = () => {
           rowsPerPage={10}
         />
 
-        {/* FOOTER ACTIONS */}
+
         <div className="flex gap-3 justify-center pt-8 border-t mt-6">
           <Button 
             label="Generate Tc" 

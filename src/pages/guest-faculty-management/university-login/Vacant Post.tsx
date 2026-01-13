@@ -1,10 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from 'primereact/button';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import React, { useState } from 'react';
 import PageLayout from '../../../components/PageLayout';
 
-// 1. Interface for Table Data
 interface JobOpening {
   id: string;
   srNo: number;
@@ -21,7 +21,6 @@ interface JobOpening {
 const UniVacantPost: React.FC = () => {
   const [expandedRows, setExpandedRows] = useState<any>(null);
 
-  // 2. Mock Data based on Image
   const [jobs] = useState<JobOpening[]>([
     {
       id: '1001',
@@ -85,7 +84,6 @@ const UniVacantPost: React.FC = () => {
     }
   ]);
 
-  // 3. Row Expansion Template (Jo details expand hone par dikhengi)
   const rowExpansionTemplate = (data: JobOpening) => {
     return (
       <div className="p-4 bg-gray-50 border-y border-gray-100">
@@ -111,7 +109,6 @@ const UniVacantPost: React.FC = () => {
     <PageLayout title="Vacant Post">
       <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
 
-        {/* Table Header with Search & Entries (Mock UI) */}
         <div className="flex justify-between items-center p-4 border-b border-gray-100">
           <div className="flex items-center gap-2 text-sm">
             Show
@@ -123,7 +120,6 @@ const UniVacantPost: React.FC = () => {
           </div>
         </div>
 
-        {/* Expandable DataTable */}
         <DataTable
           value={jobs}
           expandedRows={expandedRows}
@@ -143,7 +139,6 @@ const UniVacantPost: React.FC = () => {
           <Column field="experienceCertificate" header="Experience Certificate" sortable />
         </DataTable>
 
-        {/* Pagination Footer (Mock UI) */}
         <div className="flex justify-between items-center p-4 border-t border-gray-100 text-sm">
           <div>Showing 1 to 5 of 5 entries</div>
           <div className="flex gap-1">
