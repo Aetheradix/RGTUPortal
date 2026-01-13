@@ -319,5 +319,4 @@ const DocumentVerification: React.FC = () => {
     </PageLayout>
   );
 };
-
 export default DocumentVerification;

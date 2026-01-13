@@ -6,8 +6,8 @@ import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { Dropdown } from "primereact/dropdown";
 import { Checkbox } from "primereact/checkbox";
-import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog"; // For Yes/No
-import { Dialog } from "primereact/dialog"; // For Success Message
+import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog"; 
+import { Dialog } from "primereact/dialog"; 
 
 interface AllotmentLetter {
   id: string;
@@ -22,18 +22,18 @@ interface AllotmentLetter {
 }
 
 const GenerateAllotmentLetters: React.FC = () => {
-  // Control Views
+ 
   const [view, setView] = useState<"LIST" | "FORM">("LIST");
   const [isEdit, setIsEdit] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
-  // Form States
+  
   const [formData, setFormData] = useState<Partial<AllotmentLetter>>({
     status: "Active",
   });
   const [globalFilter, setGlobalFilter] = useState("");
 
-  // Options
+
   const colleges = [
     "MANIT",
     "IET-DAVV",
@@ -62,7 +62,6 @@ const GenerateAllotmentLetters: React.FC = () => {
     },
   ]);
 
-  // Handle Edit Click (Yes/No Popup)
   const confirmEdit = (rowData: AllotmentLetter) => {
     confirmDialog({
       message: "Are you sure you want to edit this allotment letter?",
@@ -76,13 +75,12 @@ const GenerateAllotmentLetters: React.FC = () => {
     });
   };
 
-  // Handle Generate Button (Double Popup Logic)
   const handleGenerate = () => {
     confirmDialog({
       message: "Do you want to generate the allotment letter?",
       header: "Confirmation",
       icon: "pi pi-question-circle",
-      accept: () => setShowSuccess(true), // Open the "OK" success dialog
+      accept: () => setShowSuccess(true), 
     });
   };
 
@@ -99,8 +97,7 @@ const GenerateAllotmentLetters: React.FC = () => {
 
   return (
     <PageLayout title="Generate Allotment Letters">
-      <ConfirmDialog /> {/* Hidden logic provider for Yes/No */}
-      {/* --- Success Popup (OK Message) --- */}
+      <ConfirmDialog /> 
       <Dialog
         header="Message"
         visible={showSuccess}
@@ -119,7 +116,7 @@ const GenerateAllotmentLetters: React.FC = () => {
         <p className="m-0">Allotment Letter Generated Successfully!</p>
       </Dialog>
       <div className="bg-white p-4 rounded shadow-sm border border-gray-200">
-        {/* --- LIST VIEW --- */}
+        
         {view === "LIST" && (
           <>
             <div className="flex justify-between items-center mb-4">
@@ -173,7 +170,7 @@ const GenerateAllotmentLetters: React.FC = () => {
           </>
         )}
 
-        {/* --- FORM VIEW (Add/Update) --- */}
+       
         {view === "FORM" && (
           <div className="animate-fade-in">
             <div className="flex justify-between items-center mb-4 border-b pb-2">

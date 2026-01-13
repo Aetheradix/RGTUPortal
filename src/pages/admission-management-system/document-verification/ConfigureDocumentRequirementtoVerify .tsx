@@ -307,5 +307,4 @@ const ConfigureDocuments: React.FC = () => {
     </PageLayout>
   );
 };
-
 export default ConfigureDocuments;

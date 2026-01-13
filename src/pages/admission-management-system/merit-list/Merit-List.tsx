@@ -4,7 +4,6 @@ import { DataTable, type DataTableExpandedRows } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { InputText } from "primereact/inputtext";
 
-// --- Proper Interface ---
 interface MeritCandidate {
   id: string;
   srNo: number;
@@ -23,11 +22,9 @@ interface MeritCandidate {
 }
 
 const ViewMeritList: React.FC = () => {
-  // Dynamic Search ke liye state
   const [globalFilter, setGlobalFilter] = useState<string>("");
   const [expandedRows, setExpandedRows] = useState<DataTableExpandedRows>();
 
-  // Mock Data (Aapki list ke anusar)
   const [meritData] = useState<MeritCandidate[]>([
     {
       id: "1",
@@ -77,10 +74,8 @@ const ViewMeritList: React.FC = () => {
       qualifyingStatus: "Qualified",
       courseName: "B.Tech",
     },
-    // ... baaki data bhi isi tarah add kar sakte hain
   ]);
 
-  // Row Expansion Template (4 columns with gap)
   const rowExpansionTemplate = (data: MeritCandidate) => {
     return (
       <div className="py-3 px-6 bg-gray-50 border-bottom-1 border-gray-200">
@@ -111,8 +106,6 @@ const ViewMeritList: React.FC = () => {
       </div>
     );
   };
-
-  // Table Header with Dynamic Search Input
   const renderHeader = () => {
     return (
       <div className="flex justify-content-between align-items-center gap-2">
@@ -144,13 +137,12 @@ const ViewMeritList: React.FC = () => {
           onRowToggle={(e) => setExpandedRows(e.data as DataTableExpandedRows)}
           rowExpansionTemplate={rowExpansionTemplate}
           dataKey="id"
-          globalFilter={globalFilter} // Yeh property dynamic search chalati hai
+          globalFilter={globalFilter}
           header={renderHeader()}
           emptyMessage="No candidates found."
           className="p-datatable-sm text-sm"
           stripedRows
           showGridlines
-          responsiveLayout="scroll"
         >
           <Column expander style={{ width: "3rem" }} />
           <Column field="srNo" header="Sr.No." style={{ width: "4rem" }} />
@@ -167,5 +159,4 @@ const ViewMeritList: React.FC = () => {
     </PageLayout>
   );
 };
-
 export default ViewMeritList;

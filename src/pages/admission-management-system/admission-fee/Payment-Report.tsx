@@ -187,5 +187,4 @@ const PaymentReport: React.FC = () => {
     </PageLayout>
   );
 };
-
 export default PaymentReport;

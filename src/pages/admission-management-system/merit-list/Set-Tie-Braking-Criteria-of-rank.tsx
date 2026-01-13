@@ -304,5 +304,4 @@ const TieBreakingCriteria: React.FC = () => {
     </PageLayout>
   );
 };
-
 export default TieBreakingCriteria;

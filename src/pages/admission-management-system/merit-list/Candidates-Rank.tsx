@@ -23,7 +23,6 @@ const CandidatesRankList: React.FC = () => {
   const [filteredData, setFilteredData] = useState<CandidateRank[]>([]);
   const [hasSearched, setHasSearched] = useState<boolean>(false);
 
-  // Mock Data (Actual scenario mein ye API se aayega)
   const allCandidates: CandidateRank[] = [
     {
       srNo: 1,
@@ -60,10 +59,9 @@ const CandidatesRankList: React.FC = () => {
       );
       setFilteredData(result);
     }
-    setHasSearched(true); // Flag set karega ki search ho chuka hai
+    setHasSearched(true);
   };
 
-  // Clear Handle: Sab reset kar dega aur list chhupa dega
   const handleClear = () => {
     setSearchRegNo("");
     setFilteredData([]);
@@ -73,7 +71,7 @@ const CandidatesRankList: React.FC = () => {
   return (
     <PageLayout title="Candidates Rank">
       <div className="bg-white p-4 rounded shadow-sm border border-gray-200">
-        {/* Header Section */}
+      
         <div className="mb-4">
           <h2 className="text-xl font-bold text-gray-800 tracking-tight">
             Merit List
@@ -84,8 +82,6 @@ const CandidatesRankList: React.FC = () => {
             <span className="text-blue-500">Candidates Rank</span>
           </div>
         </div>
-
-        {/* Search Panel */}
         <div className="bg-gray-50 p-6 rounded-lg border border-gray-100 mb-6">
           <div className="flex flex-column md:flex-row align-items-end gap-3">
             <div className="flex flex-column gap-2 flex-grow-1">
@@ -116,7 +112,6 @@ const CandidatesRankList: React.FC = () => {
           </div>
         </div>
 
-        {/* Table Section: Sirf search hone par hi dikhega */}
         {hasSearched && (
           <div className="animate-fade-in">
             <div className="flex justify-between items-center mb-3 border-b pb-2">

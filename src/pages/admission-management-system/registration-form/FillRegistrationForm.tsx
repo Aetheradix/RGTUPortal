@@ -236,11 +236,7 @@ const StudentAdmissionForm: React.FC = () => {
         </p>
       </div>
       <div className="bg-white p-3 rounded shadow-sm flex flex-col justify-center gap-2">
-        <Button
-          label="Edit"
-          icon="pi pi-pencil"
-          className="p-button-sm p-button-info p-button-outlined"
-        />
+        
         <Button
           label="Delete"
           icon="pi pi-trash"

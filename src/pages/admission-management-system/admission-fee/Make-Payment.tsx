@@ -117,7 +117,6 @@ const ApplyForScheme: React.FC = () => {
 
   return (
     <PageLayout title="Apply For Scheme">
-      {/* 1. Search Section */}
       <div className="bg-white p-6 rounded shadow-sm border mb-6">
         <h2 className="text-lg font-bold mb-4 border-b pb-2">
           Add Apply For Scheme
@@ -144,7 +143,7 @@ const ApplyForScheme: React.FC = () => {
         </div>
       </div>
 
-      {/* 2. Student Info & Payment Section (Show on Search) */}
+     
       {showDetails && (
         <div className="bg-white p-6 rounded shadow-sm border mb-6 p-fluid">
           <h3 className="font-bold text-gray-700 mb-4 border-l-4 border-blue-500 pl-2">
@@ -238,7 +237,7 @@ const ApplyForScheme: React.FC = () => {
         </div>
       )}
 
-      {/* 3. List Section */}
+      
       <div className="bg-white p-4 rounded shadow-sm border">
         <h2 className="text-lg font-bold mb-4">Apply For Scheme List</h2>
         <DataTable
@@ -270,7 +269,7 @@ const ApplyForScheme: React.FC = () => {
         </DataTable>
       </div>
 
-      {/* Confirmation Dialog */}
+      
       <Dialog
         header="Confirmation"
         visible={showConfirm}
@@ -296,7 +295,7 @@ const ApplyForScheme: React.FC = () => {
         <p>Are you sure you want to proceed with the payment?</p>
       </Dialog>
 
-      {/* Success Dialog */}
+    
       <Dialog
         header="Success!"
         visible={showSuccess}

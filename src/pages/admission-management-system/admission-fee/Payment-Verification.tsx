@@ -40,7 +40,7 @@ const PaymentVerification: React.FC = () => {
     paymentStatus: "Pending",
   });
 
-  // Options
+  
   const categories = ["General", "OBC", "SC", "ST", "EWS", "PWD"];
   const academicYears = ["2024-2025", "2025-2026"];
   const payStatuses = ["Success", "Fail", "Pending"];
@@ -86,7 +86,7 @@ const PaymentVerification: React.FC = () => {
     },
   ]);
 
-  // --- POPUP LOGIC ---
+  
   const handleSubmit = () => {
     confirmDialog({
       message: "Are you sure you want to submit this student information?",
@@ -115,7 +115,7 @@ const PaymentVerification: React.FC = () => {
     });
   };
 
-  // --- EXPANDED ROW TEMPLATE ---
+  
   const rowExpansionTemplate = (data: PaymentVerificationData) => (
     <div className="p-4 bg-gray-50 border-round border-1 border-gray-200">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
@@ -183,7 +183,7 @@ const PaymentVerification: React.FC = () => {
       <ConfirmDialog />
 
       <div className="bg-white p-4 rounded shadow-sm border border-gray-200">
-        {/* --- HEADER --- */}
+        
         <div className="flex justify-between items-center border-b pb-2 mb-4">
           <h2 className="text-xl font-bold text-gray-800">
             {view === "EDIT"
@@ -200,7 +200,7 @@ const PaymentVerification: React.FC = () => {
           )}
         </div>
 
-        {/* --- SEARCH TRANSACTION --- */}
+   
         <div className="bg-gray-50 p-3 rounded mb-4">
           <label className="text-xs font-bold block mb-1">
             Enter Transaction Id*
@@ -222,9 +222,9 @@ const PaymentVerification: React.FC = () => {
           </div>
         </div>
 
-        {/* --- INFORMATION FORM (Student & Payment) --- */}
+        
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
-          {/* Student Info */}
+       
           <div className="border p-4 rounded bg-white shadow-xs">
             <h3 className="text-blue-700 font-bold mb-4 border-b pb-1">
               Student Information
@@ -272,7 +272,7 @@ const PaymentVerification: React.FC = () => {
             </div>
           </div>
 
-          {/* Payment Details */}
+         
           <div className="border p-4 rounded bg-white shadow-xs">
             <h3 className="text-green-700 font-bold mb-4 border-b pb-1">
               Payment Details
@@ -361,7 +361,7 @@ const PaymentVerification: React.FC = () => {
           </div>
         </div>
 
-        {/* --- FORM ACTIONS --- */}
+        
         <div className="mt-6 flex gap-2 border-t pt-4">
           <Button
             label={view === "EDIT" ? "Update" : "Submit"}
@@ -377,7 +377,7 @@ const PaymentVerification: React.FC = () => {
           />
         </div>
 
-        {/* --- LIST TABLE --- */}
+        
         {showTable && view === "ENTRY" && (
           <div className="mt-8 animate-fade-in">
             <div className="flex justify-between items-center mb-3">

@@ -65,7 +65,7 @@ const AddDocumentRequirement: React.FC = () => {
         "Certificate issued by the previous institution for transfer.",
       allowedFormats: ["PDF", "JPG", "PNG"],
       maxSize: "5 MB",
-      mandatory: true,
+      mandatory: false,
       effectiveDate: new Date("2024-01-01"),
       applicableCategories: ["General"],
       status: true,

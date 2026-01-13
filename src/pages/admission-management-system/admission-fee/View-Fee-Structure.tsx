@@ -6,7 +6,6 @@ import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { Dropdown } from "primereact/dropdown";
 
-// --- Interface for Fee Structure ---
 interface FeeBreakdown {
   srNo: number;
   course: string;
@@ -16,14 +15,14 @@ interface FeeBreakdown {
 }
 
 const ViewFeeStructure: React.FC = () => {
-  // Filter States
+
   const [selectedCourse, setSelectedCourse] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedYear, setSelectedYear] = useState<string | null>(null);
   const [globalFilter, setGlobalFilter] = useState<string>("");
   const [showTable, setShowTable] = useState<boolean>(false);
 
-  // Dropdown Options
+
   const courses = [
     "B.Tech",
     "M.Tech",
@@ -36,7 +35,7 @@ const ViewFeeStructure: React.FC = () => {
   const categories = ["General", "OBC", "SC", "ST", "EWS", "PWD"];
   const years = ["2024-2025", "2025-2026"];
 
-  // Mock Data
+ 
   const feeData: FeeBreakdown[] = [
     {
       srNo: 1,
@@ -98,7 +97,7 @@ const ViewFeeStructure: React.FC = () => {
           View Fee Structure
         </h2>
 
-        {/* --- Filters Section --- */}
+      
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
           <div className="field">
             <label className="text-xs font-bold block mb-1 uppercase">
@@ -153,7 +152,7 @@ const ViewFeeStructure: React.FC = () => {
           />
         </div>
 
-        {/* --- Fee Breakdown Table --- */}
+       
         {showTable && (
           <div className="animate-fade-in">
             <div className="flex justify-between items-center mb-3">

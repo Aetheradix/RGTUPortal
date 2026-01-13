@@ -1,10 +1,9 @@
-
 import React, { useState } from "react";
 import PageLayout from "../../../components/PageLayout";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { Calendar } from "primereact/calendar";
-import { DataTable, type DataTableExpandedRows } from "primereact/datatable";
+import { DataTable, type DataTableExpandedRows, type DataTableValueArray } from "primereact/datatable";
 import { Column } from "primereact/column";
 
 interface ChoiceData {
@@ -30,9 +29,7 @@ const ChoiceReport: React.FC = () => {
     dob: null as Date | null,
   });
 
-  const [expandedRows, setExpandedRows] = useState<
-    DataTableExpandedRows | any[] | undefined
-  >(undefined);
+  const [expandedRows, setExpandedRows] = useState<DataTableExpandedRows | DataTableValueArray | undefined>(undefined);
 
   const [reports] = useState<ChoiceData[]>([
     {
@@ -67,62 +64,32 @@ const ChoiceReport: React.FC = () => {
       feeStatus: "Pending",
       admissionConfirmStatus: "Not Confirmed",
     },
-    {
-      id: "3",
-      srNo: 1,
-      regNo: "221041234568",
-      name: "Priya Singh",
-      dob: "22-Oct-1999",
-      gender: "Female",
-      course: "MBA",
-      specialization: "Business Management",
-      admissionStatus: "Admitted",
-      firstChoice: "MBA Business Management",
-      seatStatus: "Allocated",
-      submissionDate: "01-Mar-2024",
-      feeStatus: "Paid",
-      admissionConfirmStatus: "Confirmed",
-    },
-    {
-      id: "4",
-      srNo: 4,
-      regNo: "221041234598",
-      name: "Ananya Gupta",
-      dob: "15-Jun-2000",
-      gender: "Female",
-      course: "M.Tech",
-      specialization: "Civil Engineering",
-      admissionStatus: "Waitlisted",
-      firstChoice: "M.Tech Civil Engineering",
-      seatStatus: "Waitlisted",
-      submissionDate: "18-Feb-2024",
-      feeStatus: "Pending",
-      admissionConfirmStatus: "Not Confirmed",
-    },
   ]);
 
   const rowExpansionTemplate = (data: ChoiceData) => {
     return (
-      <div className="p-4 bg-gray-50 border-round shadow-inner">
+      <div className="p-4 bg-gray-50 border-round shadow-inner mx-3 my-2 border-left-3 border-indigo-500">
         <div className="mb-3">
-          <span className="font-bold text-sm text-gray-700">
-            Admission Confirmation Status:{" "}
+          <span className="font-bold text-xs uppercase text-gray-500">
+            Admission Confirmation Status:
           </span>
-          <span className="text-sm ml-2">{data.admissionConfirmStatus}</span>
+          <span className={`ml-2 text-sm font-bold ${data.admissionConfirmStatus === 'Confirmed' ? 'text-green-600' : 'text-red-500'}`}>
+            {data.admissionConfirmStatus}
+          </span>
         </div>
 
         <div>
-          <h4 className="font-bold text-sm mb-2 text-gray-800">Actions</h4>
+          <h4 className="font-bold text-xs uppercase text-gray-500 mb-2">Available Actions</h4>
           <div className="flex gap-2">
             <Button
-              label="Edit"
+              label="Edit Details"
               icon="pi pi-pencil"
-              className="p-button-sm p-button-info px-3 py-1"
+              className="p-button-sm p-button-info"
             />
             <Button
-              label="Delete"
+              label="Delete Record"
               icon="pi pi-trash"
-              className="p-button-sm p-button-danger px-3 py-1"
+              className="p-button-sm p-button-danger p-button-outlined"
             />
           </div>
         </div>
@@ -134,47 +101,46 @@ const ChoiceReport: React.FC = () => {
     <PageLayout title="Choice Report">
       <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 mb-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
-          <div>
-            <label className="block text-sm font-medium mb-2 text-gray-700">
-              Enter Registration No.<span className="text-red-500">*</span>
+          <div className="flex flex-col gap-2">
+            <label className="text-xs font-bold text-gray-600 uppercase">
+              Registration No.<span className="text-red-500 ml-1">*</span>
             </label>
             <InputText
               value={searchData.regNo}
               onChange={(e) =>
                 setSearchData({ ...searchData, regNo: e.target.value })
               }
-              className="w-full"
-              placeholder="Enter Registration No."
+              className="p-inputtext-sm"
+              placeholder="e.g. 221041XXXX"
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium mb-2 text-gray-700">
-              Enter Date Of Birth<span className="text-red-500">*</span>
+          <div className="flex flex-col gap-2">
+            <label className="text-xs font-bold text-gray-600 uppercase">
+              Date Of Birth<span className="text-red-500 ml-1">*</span>
             </label>
             <Calendar
               value={searchData.dob}
               onChange={(e) =>
                 setSearchData({ ...searchData, dob: e.value ?? null })
               }
-              className="w-full"
-              placeholder="Enter Date Of Birth"
+              className="w-full p-inputtext-sm"
+              placeholder="Select Date"
               showIcon
               dateFormat="dd/mm/yy"
             />
           </div>
           <div>
             <Button
-              label="Search"
+              label="Search Report"
               icon="pi pi-search"
-              className="bg-indigo-600 border-none px-8 py-2 text-white"
+              className="bg-indigo-600 border-none px-6 p-button-sm"
             />
           </div>
         </div>
       </div>
-
       <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
-        <h2 className="text-lg font-bold text-gray-800 mb-4">
-          Choice Report List
+        <h2 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <i className="pi pi-list text-indigo-500" /> Choice Report List
         </h2>
 
         <DataTable
@@ -185,7 +151,11 @@ const ChoiceReport: React.FC = () => {
           dataKey="id"
           paginator
           rows={10}
-          className="p-datatable-sm text-sm">
+          className="p-datatable-sm text-sm"
+          stripedRows
+          showGridlines
+          removableSort
+        >
           <Column expander={true} style={{ width: "3rem" }} />
 
           <Column
@@ -194,25 +164,25 @@ const ChoiceReport: React.FC = () => {
             sortable
             style={{ width: "70px" }}
           />
-          <Column field="regNo" header="Registration No." sortable />
+          <Column field="regNo" header="Registration No." sortable className="font-bold text-indigo-600" />
           <Column field="name" header="Name" sortable />
-          <Column field="dob" header="Date of Birth" sortable />
-          <Column field="gender" header="Gender" sortable />
-          <Column field="course" header="Course Applied For" sortable />
+          <Column field="dob" header="DOB" sortable />
+          <Column field="gender" header="Gender" />
+          <Column field="course" header="Course" sortable />
           <Column
             field="specialization"
-            header="Preferred Specialization"
+            header="Specialization"
             sortable
           />
-          <Column field="admissionStatus" header="Admission Status" sortable />
-          <Column field="firstChoice" header="First Choice Course" />
-          <Column field="seatStatus" header="Seat Allotment Status" />
-          <Column
-            field="submissionDate"
-            header="Application Submission Date"
-            sortable
+          <Column field="admissionStatus" header="Status" sortable />
+          <Column field="feeStatus" header="Fee" sortable 
+            body={(rowData) => (
+                <span className={`px-2 py-1 rounded-full text-[10px] font-bold ${rowData.feeStatus === 'Paid' ? 'bg-green-100 text-green-700' : 'bg-orange-100 text-orange-700'}`}>
+                    {rowData.feeStatus}
+                </span>
+            )}
           />
-          <Column field="feeStatus" header="Fee Status" sortable />
+          <Column field="submissionDate" header="Submitted On" sortable />
         </DataTable>
       </div>
     </PageLayout>

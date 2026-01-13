@@ -3,7 +3,6 @@ import PageLayout from "../../../components/PageLayout";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { Checkbox, type CheckboxChangeEvent } from "primereact/checkbox";
-
 interface StudentPersonal {
   studentName: string;
   fatherName: string;
@@ -13,11 +12,9 @@ interface StudentPersonal {
   category: string;
   mobile: string;
 }
-
 const UploadDocuments: React.FC = () => {
   const [regNo, setRegNo] = useState("");
   const [student, setStudent] = useState<StudentPersonal | null>(null);
-
   const [passportPhoto, setPassportPhoto] = useState<File | null>(null);
   const [signature, setSignature] = useState<File | null>(null);
   const [mark10, setMark10] = useState<File | null>(null);
@@ -69,11 +66,8 @@ const UploadDocuments: React.FC = () => {
 
   return (
     <PageLayout title="Upload Documents">
-      {/* === SEARCH SECTION === */}
       <div className="bg-white p-4 rounded shadow mb-6">
         <div className="flex flex-wrap items-end gap-4">
-
-          {/* Registration Number Input */}
           <div className="flex flex-col w-full md:w-auto">
             <label className="font-medium">Registration No.*</label>
             <InputText
@@ -83,8 +77,6 @@ const UploadDocuments: React.FC = () => {
               className="w-full md:max-w-sm"
             />
           </div>
-
-          {/* Search Button */}
           <div>
             <Button
               label="Search"
@@ -93,8 +85,6 @@ const UploadDocuments: React.FC = () => {
               onClick={handleSearch}
             />
           </div>
-
-          {/* Clear Button */}
           <div>
             <Button
               label="Clear"
@@ -106,11 +96,8 @@ const UploadDocuments: React.FC = () => {
 
         </div>
       </div>
-
-      {/* === STUDENT DETAILS & DOCUMENT UPLOAD === */}
       {student && (
         <>
-          {/* Student Personal Details */}
           <div className="bg-white p-4 rounded shadow mb-6">
             <h3 className="text-lg font-semibold mb-3">
               Student Personal Details
@@ -174,8 +161,6 @@ const UploadDocuments: React.FC = () => {
               </div>
             </div>
           </div>
-
-          {/* Upload Documents Section */}
           <div className="bg-white p-6 rounded shadow">
             <h3 className="text-lg font-semibold mb-4">Upload Documents</h3>
 
@@ -270,8 +255,6 @@ const UploadDocuments: React.FC = () => {
                 </label>
               </div>
             </div>
-
-            {/* Save + Clear Buttons */}
             <div className="flex justify-center gap-4 pt-6">
               <Button
                 label="Save"

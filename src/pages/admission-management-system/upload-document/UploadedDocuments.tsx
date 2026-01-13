@@ -337,5 +337,4 @@ const UploadedDocumentsList: React.FC = () => {
     </PageLayout>
   );
 };
-
 export default UploadedDocumentsList;

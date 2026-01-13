@@ -14,12 +14,12 @@ interface PaymentHistory {
 }
 
 const PaymentHistoryReceipt: React.FC = () => {
-  // States
+
   const [regNo, setRegNo] = useState<string>("");
   const [showTable, setShowTable] = useState<boolean>(false);
   const [globalFilter, setGlobalFilter] = useState<string>("");
 
-  // Mock Data
+
   const paymentData: PaymentHistory[] = [
     {
       srNo: 1,
@@ -56,7 +56,7 @@ const PaymentHistoryReceipt: React.FC = () => {
     setGlobalFilter("");
   };
 
-  // Download Button Template
+  
   const downloadBodyTemplate = () => {
     return (
       <Button
@@ -67,7 +67,7 @@ const PaymentHistoryReceipt: React.FC = () => {
     );
   };
 
-  // Status Template
+
   const statusBodyTemplate = (rowData: PaymentHistory) => {
     return (
       <span
@@ -85,7 +85,7 @@ const PaymentHistoryReceipt: React.FC = () => {
   return (
     <PageLayout title="Payment History Receipt Download">
       <div className="bg-white p-4 rounded shadow-sm border border-gray-200">
-        {/* --- Breadcrumb Style Title --- */}
+        
         <div className="mb-4">
           <h2 className="text-xl font-bold text-gray-800">
             Payment History Receipt Download
@@ -94,7 +94,7 @@ const PaymentHistoryReceipt: React.FC = () => {
 
         <hr className="mb-4 border-gray-100" />
 
-        {/* --- Search Section --- */}
+     
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
           <div className="field">
             <label className="text-xs font-bold block mb-1">
@@ -124,7 +124,7 @@ const PaymentHistoryReceipt: React.FC = () => {
           />
         </div>
 
-        {/* --- List Section --- */}
+      
         {showTable && (
           <div className="animate-fade-in mt-6">
             <div className="flex justify-between items-center mb-3">

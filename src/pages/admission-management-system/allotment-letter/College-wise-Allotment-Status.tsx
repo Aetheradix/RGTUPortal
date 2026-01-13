@@ -6,7 +6,6 @@ import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { Dropdown } from "primereact/dropdown";
 
-// --- Interface ---
 interface AllotmentData {
   srNo: number;
   collegeName: string;
@@ -17,7 +16,7 @@ interface AllotmentData {
 }
 
 const CollegeAllotmentStatus: React.FC = () => {
-  // Filter States
+  
   const [selectedCollege, setSelectedCollege] = useState<string | null>(null);
   const [selectedCourse, setSelectedCourse] = useState<string | null>(null);
   const [selectedYear, setSelectedYear] = useState<string | null>(null);
@@ -25,7 +24,6 @@ const CollegeAllotmentStatus: React.FC = () => {
   const [globalFilter, setGlobalFilter] = useState<string>("");
   const [showTable, setShowTable] = useState<boolean>(false);
 
-  // Dropdown Options
   const colleges = [
     "Maulana Azad National Institute of Technology (MANIT)",
     "Institute of Engineering and Technology (IET-DAVV)",
@@ -46,7 +44,6 @@ const CollegeAllotmentStatus: React.FC = () => {
   const years = ["2024-2025", "2025-2026"];
   const statusOptions = ["Allotted", "Awaiting Allotment", "Under Review"];
 
-  // Mock Data
   const allotmentList: AllotmentData[] = [
     {
       srNo: 1,
@@ -88,7 +85,6 @@ const CollegeAllotmentStatus: React.FC = () => {
     setGlobalFilter("");
   };
 
-  // Allotment Status Badge Template
   const statusBodyTemplate = (rowData: AllotmentData) => {
     const getSeverity = (status: string) => {
       switch (status) {
@@ -120,7 +116,6 @@ const CollegeAllotmentStatus: React.FC = () => {
           College Wise Allotment Status
         </h2>
 
-        {/* --- Filters Section --- */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
           <div className="field">
             <label className="text-xs font-bold block mb-1 uppercase">
@@ -188,7 +183,6 @@ const CollegeAllotmentStatus: React.FC = () => {
           />
         </div>
 
-        {/* --- Dynamic Data Table --- */}
         {showTable && (
           <div className="animate-fade-in">
             <div className="flex justify-between items-center mb-4">
@@ -215,7 +209,6 @@ const CollegeAllotmentStatus: React.FC = () => {
               className="p-datatable-sm text-sm"
               stripedRows
               showGridlines
-              responsiveLayout="scroll"
             >
               <Column field="srNo" header="Sr No." style={{ width: "4rem" }} />
               <Column field="collegeName" header="College Name" sortable />

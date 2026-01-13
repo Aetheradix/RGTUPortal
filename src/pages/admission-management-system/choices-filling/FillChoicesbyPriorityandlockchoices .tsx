@@ -272,7 +272,6 @@ const FillChoicesAndLock: React.FC = () => {
           <DataTable
             value={choicesGrid}
             className="p-datatable-sm border mb-4"
-            responsiveLayout="scroll"
           >
             <Column field="srNo" header="Sr.No." />
             <Column field="cityName" header="City Name" />

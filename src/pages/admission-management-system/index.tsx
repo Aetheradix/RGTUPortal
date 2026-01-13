@@ -6,6 +6,7 @@ import Documentvarificationmaster from "./document-verification";
 import AllotmentLetter from "./allotment-letter";
 import AdmissionFee from "./admission-fee";
 import MeritList from "./merit-list";
+import SeatAllocationSubModule from "./seat-allocation";
 
 export default function Admissonmanagementsystem() {
   return (
@@ -20,6 +21,8 @@ export default function Admissonmanagementsystem() {
       <Route path="allotment-letter/*" element={<AllotmentLetter />} />
       <Route path="admission-fee/*" element={<AdmissionFee />} />
       <Route path="merit-list/*" element={<MeritList />} />
-    </Routes>
+      <Route path="seat-allocation/*" element={<SeatAllocationSubModule />} />
+
+    </Routes> 
   );
 }

@@ -15,10 +15,6 @@ AllotmentLetter() {
       <Route path="college-wise-allotment-status" element={<CollegeAllotmentStatus />} />
       <Route path="generate-allotment-letters" element={<GenerateAllotmentLetters />} />
       <Route path="manage-allotment-status" element={<ManageAllotmentStatus />} />
-      
-    
-    
-     
       <Route path="*" element={<Navigate to="get-allotment-letter" replace />} />
     </Routes>
   );

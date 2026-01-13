@@ -232,7 +232,6 @@ const SeatAvailability: React.FC = () => {
             paginator
             rows={10}
             className="p-datatable-sm text-xs"
-            responsiveLayout="scroll"
           >
             <Column field="id" header="S.No" />
             <Column field="collegeName" header="College Name" sortable />
