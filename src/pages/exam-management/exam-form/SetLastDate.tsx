@@ -60,31 +60,50 @@ const SetExamFeeLastDate: React.FC = () => {
           </div>
 
           <DataTable
-            value={examFeeList}
-            paginator
-            rows={10}
-            showGridlines
-            className="p-datatable-sm"
-          >
-            <Column header="Sr.No." body={(_, opt) => opt.rowIndex + 1} />
-            <Column field="academicYear" header="Academic Year" />
-            <Column field="examType" header="Exam Type" />
-            <Column
-              field="examName"
-              header="Exam Name"
-              body={(row) => (
-                <span
-                  className="text-blue-600 cursor-pointer"
-                  onClick={() => {
-                    setSelectedRow(row);
-                    setView('details');
-                  }}
-                >
-                  {row.examName}
-                </span>
-              )}
-            />
-          </DataTable>
+  value={examFeeList}
+  paginator
+  rows={10}
+  showGridlines
+  dataKey="id"
+  className="p-datatable-sm"
+>
+  <Column
+    header="Sr No."
+    body={(_, opt) => opt.rowIndex + 1}
+    style={{ width: "80px" }}
+    sortable
+  />
+
+  <Column
+    field="academicYear"
+    header="Academic Year"
+    sortable
+  />
+
+  <Column
+    field="examType"
+    header="Exam Type"
+    sortable
+  />
+
+  <Column
+    field="examName"
+    header="Exam Name"
+    sortable
+    body={(row) => (
+      <span
+        className="text-blue-600 cursor-pointer font-medium hover:underline"
+        onClick={() => {
+          setSelectedRow(row);
+          setView("details");
+        }}
+      >
+        {row.examName}
+      </span>
+    )}
+  />
+</DataTable>
+
         </>
       )}
 

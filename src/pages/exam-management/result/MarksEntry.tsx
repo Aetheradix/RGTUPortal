@@ -64,6 +64,28 @@ const marksList: MarksEntry[] = [
     remarks: "Outstanding",
   },
 ];
+const courseOptions = [
+  { label: "B.Tech", value: "B.Tech" },
+  { label: "M.Tech", value: "M.Tech" },
+  { label: "MBA", value: "MBA" },
+];
+
+const branchOptions = [
+  { label: "Computer Science (CSE)", value: "CSE" },
+  { label: "Mechanical Engineering (ME)", value: "ME" },
+  { label: "Civil Engineering (CE)", value: "CE" },
+];
+
+const subjectOptions = [
+  { label: "Data Structures", value: "Data Structures" },
+  { label: "Operating Systems", value: "Operating Systems" },
+  { label: "Artificial Intelligence", value: "Artificial Intelligence" },
+];
+
+const statusOptions = [
+  { label: "Passed", value: "Passed" },
+  { label: "Failed", value: "Failed" },
+];
 
 const subjectMarksList: SubjectMarks[] = [
   {
@@ -104,6 +126,10 @@ const MarksEntryPage: React.FC = () => {
   const [expandedSubjectRows, setExpandedSubjectRows] = useState<any>(null);
   const [showSearchResult, setShowSearchResult] = useState(false);
   const [showSubjectList, setShowSubjectList] = useState(false);
+  const [course, setCourse] = useState<string | null>(null);
+  const [branch, setBranch] = useState<string | null>(null);
+  const [subject, setSubject] = useState<string | null>(null);
+  const [status, setStatus] = useState<string | null>("Passed");
 
   const rowExpansionTemplate = (row: MarksEntry) => (
     <div className="p-3 grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
@@ -141,7 +167,6 @@ const MarksEntryPage: React.FC = () => {
 
   return (
     <PageLayout title="Marks Entry">
-  
       {view === "list" && (
         <Card>
           <div className="flex justify-between items-center mb-4">
@@ -164,9 +189,13 @@ const MarksEntryPage: React.FC = () => {
             dataKey="id"
           >
             <Column expander style={{ width: "3rem" }} />
-            <Column header="Sr No." body={(_, opt) => opt.rowIndex + 1} />
-            <Column field="rollNo" header="Roll Number" />
-            <Column field="name" header="Student Name" />
+            <Column
+              header="Sr No."
+              body={(_, opt) => opt.rowIndex + 1}
+              sortable
+            />
+            <Column field="rollNo" header="Roll Number" sortable />
+            <Column field="name" header="Student Name" sortable />
             <Column
               header="Total Marks Obtained"
               body={(row) => (
@@ -179,10 +208,8 @@ const MarksEntryPage: React.FC = () => {
         </Card>
       )}
 
-
       {view === "add" && (
         <>
-
           <div className="flex justify-between items-center mb-3">
             <h3 className="text-lg font-semibold">Add Marks Entry</h3>
             <Button
@@ -193,7 +220,6 @@ const MarksEntryPage: React.FC = () => {
             />
           </div>
 
-        
           <Card className="mb-4">
             <label className="block mb-2 font-medium">
               Enter Roll Number *
@@ -215,7 +241,6 @@ const MarksEntryPage: React.FC = () => {
             </div>
           </Card>
 
-      
           {showSearchResult && (
             <Card className="mb-4">
               <h4 className="font-semibold mb-4 border-b pb-2">
@@ -233,7 +258,9 @@ const MarksEntryPage: React.FC = () => {
                     Select Course *
                   </label>
                   <Dropdown
-                    value="M.Tech"
+                    value={course}
+                    options={courseOptions}
+                    onChange={(e) => setCourse(e.value)}
                     placeholder="Select Course"
                     className="w-full"
                   />
@@ -241,7 +268,9 @@ const MarksEntryPage: React.FC = () => {
                 <div>
                   <label className="block mb-1 font-medium">Branch *</label>
                   <Dropdown
-                    value="Mechanical Engineering (ME)"
+                    value={branch}
+                    options={branchOptions}
+                    onChange={(e) => setBranch(e.value)}
                     placeholder="Select Branch"
                     className="w-full"
                   />
@@ -251,37 +280,104 @@ const MarksEntryPage: React.FC = () => {
           )}
 
           {showSearchResult && (
-            <Card className="mb-4">
-              <h4 className="font-semibold mb-3">Fill Marks Entry</h4>
+     <Card className="mb-4">
+  <h4 className="font-semibold mb-4 text-lg">Fill Marks Entry</h4>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                <Dropdown placeholder="Select Subject" />
-                <InputText placeholder="Enter Marks Obtained *" />
-                <InputText placeholder="Enter Maximum Marks *" />
-                <InputText value="A" disabled />
-                <Calendar placeholder="dd/mm/yyyy" dateFormat="dd/mm/yy" />
-                <Dropdown value="Passed" />
-                <InputText placeholder="Enter Remarks" />
-              </div>
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    {/* Subject Dropdown */}
+    <div>
+      <label className="block mb-1 font-medium text-gray-700">Select Subject *</label>
+      <Dropdown
+        value={subject}
+        options={subjectOptions}
+        onChange={(e) => setSubject(e.value)}
+        placeholder="Select Subject"
+        className="w-full" 
+      />
+    </div>
 
-              <div className="mt-4 flex gap-3">
-                <Button
-                  label="Add"
-                  icon="pi pi-plus"
-                  onClick={() => setShowSubjectList(true)}
-                />
-                <Button
-                  label="Clear"
-                  icon="pi pi-refresh"
-                  className="p-button-secondary ml-2"
-                />
-              </div>
-            </Card>
+    {/* Marks Obtained */}
+    <div>
+      <label className="block mb-1 font-medium text-gray-700">Marks Obtained *</label>
+      <InputText 
+        placeholder="Enter Marks Obtained" 
+        className="w-full" 
+      />
+    </div>
+
+    {/* Maximum Marks */}
+    <div>
+      <label className="block mb-1 font-medium text-gray-700">Maximum Marks *</label>
+      <InputText 
+        placeholder="Enter Maximum Marks" 
+        className="w-full" 
+      />
+    </div>
+
+    {/* Grade */}
+    <div>
+      <label className="block mb-1 font-medium text-gray-700">Grade</label>
+      <InputText 
+        placeholder="Enter Grade" 
+        className="w-full" 
+      />
+    </div>
+
+    {/* Examination Date */}
+    <div>
+      <label className="block mb-1 font-medium text-gray-700">Examination Date</label>
+      <Calendar 
+        placeholder="dd/mm/yyyy" 
+        dateFormat="dd/mm/yy" 
+        className="w-full" 
+        showIcon
+      />
+    </div>
+
+    {/* Status Dropdown */}
+    <div>
+      <label className="block mb-1 font-medium text-gray-700">Status *</label>
+      <Dropdown
+        value={status}
+        options={statusOptions}
+        onChange={(e) => setStatus(e.value)}
+        placeholder="Select Status"
+        className="w-full"
+      />
+    </div>
+
+    {/* Remarks - Spanning full width or 1 column */}
+    <div className="md:col-span-3">
+      <label className="block mb-1 font-medium text-gray-700">Remarks</label>
+      <InputText 
+        placeholder="Enter Remarks" 
+        className="w-full" 
+      />
+    </div>
+  </div>
+
+  {/* Action Buttons */}
+  <div className="mt-6 flex gap-2">
+    <Button
+      label="Add Subject"
+      icon="pi pi-plus"
+      onClick={() => setShowSubjectList(true)}
+      className="p-button-primary"
+    />
+    <Button
+      label="Clear"
+      icon="pi pi-refresh"
+      className="p-button-outlined p-button-secondary"
+      onClick={() => {/* add clear logic */}}
+    />
+  </div>
+</Card>
           )}
 
           {showSubjectList && (
             <Card>
-                  <h4 className="font-semibold mb-3"> Marks Entry List :</h4>
+              <h4 className="font-semibold mb-3 text-lg">Marks Entry List</h4>
+
               <DataTable
                 value={subjectMarksList}
                 paginator
@@ -292,10 +388,14 @@ const MarksEntryPage: React.FC = () => {
                 dataKey="id"
               >
                 <Column expander />
-                <Column header="Sr No." body={(_, i) => i.rowIndex + 1} />
-                <Column field="subject" header="Subject" />
-                <Column field="marks" header="Marks Obtained" />
-                <Column field="maxMarks" header="Maximum Marks" />
+                <Column
+                  header="Sr No."
+                  body={(_, i) => i.rowIndex + 1}
+                  sortable
+                />
+                <Column field="subject" header="Subject" sortable />
+                <Column field="marks" header="Marks Obtained" sortable />
+                <Column field="maxMarks" header="Maximum Marks" sortable />
               </DataTable>
 
               <div className="flex gap-3 mt-4">

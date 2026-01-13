@@ -64,10 +64,14 @@ const marksheetList: Marksheet[] = [
 const MarksheetGenerationPrinting: React.FC = () => {
   const [showForm, setShowForm] = useState(false);
   const [expandedRows, setExpandedRows] = useState<any>(null);
+  const [academicYear, setAcademicYear] = useState<string | null>(null);
+  const [generateStatus, setGenerateStatus] = useState<string | null>(
+    "Pending"
+  );
+  const [printStatus, setPrintStatus] = useState<string | null>("Pending");
 
   return (
     <PageLayout title="Marksheet Generation Printing">
-   
       {!showForm && (
         <Card className="mb-4">
           <div className="flex justify-between items-center mb-3">
@@ -116,12 +120,17 @@ const MarksheetGenerationPrinting: React.FC = () => {
             )}
           >
             <Column expander style={{ width: "3rem" }} />
-            <Column header="Sr No." body={(_, opt) => opt.rowIndex + 1} />
-            <Column field="rollNo" header="Roll Number" />
-            <Column field="academicYear" header="Academic Year" />
+            <Column
+              header="Sr No."
+              body={(_, opt) => opt.rowIndex + 1}
+              sortable
+            />
+            <Column field="rollNo" header="Roll Number" sortable />
+            <Column field="academicYear" header="Academic Year" sortable />
             <Column
               field="generateStatus"
               header="Marksheet Generate Status"
+              sortable
               body={(row) => (
                 <Tag
                   value={row.generateStatus}
@@ -135,7 +144,6 @@ const MarksheetGenerationPrinting: React.FC = () => {
         </Card>
       )}
 
-  
       {showForm && (
         <Card>
           <div className="flex justify-between items-center mb-4">
@@ -151,7 +159,7 @@ const MarksheetGenerationPrinting: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
             <div>
               <label className="block text-sm mb-1">Enter Roll Number *</label>
-          
+
               <InputText placeholder="Enter Roll No." className="w-full" />
             </div>
 
@@ -159,9 +167,11 @@ const MarksheetGenerationPrinting: React.FC = () => {
               <label className="block text-sm mb-1">
                 Select Academic Year *
               </label>
-          
+
               <Dropdown
                 options={academicYearOptions}
+                value={academicYear}
+                onChange={(e) => setAcademicYear(e.value)}
                 placeholder="Select"
                 className="w-full"
               />
@@ -171,10 +181,11 @@ const MarksheetGenerationPrinting: React.FC = () => {
               <label className="block text-sm mb-1">
                 Select Marksheet Generate Status *
               </label>
-           
+
               <Dropdown
                 options={statusOptions}
-                value="Pending"
+                value={generateStatus}
+                onChange={(e) => setGenerateStatus(e.value)}
                 className="w-full"
               />
             </div>
@@ -194,10 +205,11 @@ const MarksheetGenerationPrinting: React.FC = () => {
               <label className="block text-sm mb-1">
                 Select Marksheet Print Status *
               </label>
-      
+
               <Dropdown
                 options={statusOptions}
-                value="Pending"
+                value={printStatus}
+                onChange={(e) => setPrintStatus(e.value)}
                 className="w-full"
               />
             </div>
@@ -214,8 +226,8 @@ const MarksheetGenerationPrinting: React.FC = () => {
             </div>
 
             <div className="md:col-span-3">
-                <label className="block text-sm mb-1">
-               Preview Generated Marksheet
+              <label className="block text-sm mb-1">
+                Preview Generated Marksheet
               </label>
               <Button
                 label="Preview Generated Marksheet"

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PageLayout from '../../../components/PageLayout';
-
 import { Dropdown } from 'primereact/dropdown';
 import { Button } from 'primereact/button';
 import { DataTable } from 'primereact/datatable';
@@ -14,23 +13,59 @@ interface PatternRow {
   marksPerQuestion: number;
 }
 
-const selectOptions = [
+interface DropdownOption {
+  label: string;
+  value: string;
+}
+
+/* ================= DROPDOWN OPTIONS ================= */
+const academicYearOptions: DropdownOption[] = [
   { label: 'Select', value: '' },
-  { label: 'Option 1', value: '1' },
-  { label: 'Option 2', value: '2' },
+  { label: '2022-23', value: '2022-23' },
+  { label: '2023-24', value: '2023-24' },
+  { label: '2024-25', value: '2024-25' },
 ];
 
-const questionTypeOptions = [
+const examTypeOptions: DropdownOption[] = [
+  { label: 'Select', value: '' },
+  { label: 'Internal', value: 'Internal' },
+  { label: 'External', value: 'External' },
+];
+
+const examNameOptions: DropdownOption[] = [
+  { label: 'Select', value: '' },
+  { label: 'Mid-Term', value: 'Mid-Term' },
+  { label: 'End-Term', value: 'End-Term' },
+];
+
+const courseOptions: DropdownOption[] = [
+  { label: 'Select', value: '' },
+  { label: 'B.Tech', value: 'B.Tech' },
+  { label: 'MBA', value: 'MBA' },
+  { label: 'BCA', value: 'BCA' },
+];
+
+const semesterOptions: DropdownOption[] = [
+  { label: 'Select', value: '' },
+  { label: '1st Semester', value: '1st Semester' },
+  { label: '2nd Semester', value: '2nd Semester' },
+  { label: '3rd Semester', value: '3rd Semester' },
+];
+
+const questionTypeOptions: DropdownOption[] = [
   { label: 'MCQ', value: 'MCQ' },
   { label: 'Short Question', value: 'Short Question' },
   { label: 'Long Question', value: 'Long Question' },
 ];
 
+type FilterKeys = 'academicYear' | 'examType' | 'examName' | 'courseName' | 'semester';
+type FormKeys = FilterKeys | 'totalMarks' | 'totalQuestions' | 'mandatoryQuestions' | 'questionType' | 'noOfQuestions' | 'marksPerQuestion';
+
 const SetQuestionPaperPattern: React.FC = () => {
   const [showList, setShowList] = useState(false);
   const [showForm, setShowForm] = useState(false);
 
-  const [filters, setFilters] = useState({
+  const [filters, setFilters] = useState<Record<FilterKeys, string>>({
     academicYear: '',
     examType: '',
     examName: '',
@@ -43,7 +78,7 @@ const SetQuestionPaperPattern: React.FC = () => {
     { id: 2, questionType: 'Short Question', noOfQuestions: 3, marksPerQuestion: 5 },
   ]);
 
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<Record<FormKeys, string>>({
     academicYear: '',
     examType: '',
     examName: '',
@@ -57,22 +92,16 @@ const SetQuestionPaperPattern: React.FC = () => {
     marksPerQuestion: '',
   });
 
-  const handleSearch = () => {
-    setShowList(true);
-  };
+  const handleSearch = () => setShowList(true);
 
   const handleClearSearch = () => {
-    setFilters({
-      academicYear: '',
-      examType: '',
-      examName: '',
-      courseName: '',
-      semester: '',
-    });
+    setFilters({ academicYear: '', examType: '', examName: '', courseName: '', semester: '' });
     setShowList(false);
   };
 
   const handleAddRow = () => {
+    if (!formData.questionType || !formData.noOfQuestions || !formData.marksPerQuestion) return;
+
     const newRow: PatternRow = {
       id: patternList.length + 1,
       questionType: formData.questionType,
@@ -80,40 +109,35 @@ const SetQuestionPaperPattern: React.FC = () => {
       marksPerQuestion: Number(formData.marksPerQuestion),
     };
     setPatternList([...patternList, newRow]);
-    setFormData({
-      ...formData,
-      questionType: '',
-      noOfQuestions: '',
-      marksPerQuestion: '',
-    });
+    setFormData({ ...formData, questionType: '', noOfQuestions: '', marksPerQuestion: '' });
   };
 
   return (
     <PageLayout title="Set Question Paper Pattern">
-      {/* ================= SEARCH FILTER ================= */}
       {!showForm && (
         <>
           <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-6">
-            <Dropdown placeholder="Academic Year *" className="w-full" options={selectOptions}
-              value={filters.academicYear}
-              onChange={(e) => setFilters({ ...filters, academicYear: e.value })}
-            />
-            <Dropdown placeholder="Select Exam Type *" className="w-full" options={selectOptions}
-              value={filters.examType}
-              onChange={(e) => setFilters({ ...filters, examType: e.value })}
-            />
-            <Dropdown placeholder="Select Exam Name *" className="w-full" options={selectOptions}
-              value={filters.examName}
-              onChange={(e) => setFilters({ ...filters, examName: e.value })}
-            />
-            <Dropdown placeholder="Select Course Name *" className="w-full" options={selectOptions}
-              value={filters.courseName}
-              onChange={(e) => setFilters({ ...filters, courseName: e.value })}
-            />
-            <Dropdown placeholder="Select Semester *" className="w-full" options={selectOptions}
-              value={filters.semester}
-              onChange={(e) => setFilters({ ...filters, semester: e.value })}
-            />
+            {Object.entries(filters).map(([key, value]) => {
+              let options: DropdownOption[] = [];
+              switch (key as FilterKeys) {
+                case 'academicYear': options = academicYearOptions; break;
+                case 'examType': options = examTypeOptions; break;
+                case 'examName': options = examNameOptions; break;
+                case 'courseName': options = courseOptions; break;
+                case 'semester': options = semesterOptions; break;
+              }
+              return (
+                <div key={key}>
+                  <label className="block text-sm font-medium mb-2">{key.replace(/([A-Z])/g, ' $1')}</label>
+                  <Dropdown
+                    value={value}
+                    options={options}
+                    className="w-full"
+                    onChange={(e) => setFilters({ ...filters, [key]: e.value })}
+                  />
+                </div>
+              );
+            })}
           </div>
 
           <div className="flex gap-3 mb-8">
@@ -123,73 +147,86 @@ const SetQuestionPaperPattern: React.FC = () => {
         </>
       )}
 
-      {/* ================= LIST ================= */}
       {showList && !showForm && (
         <>
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-semibold">Set Question Paper Pattern List</h2>
-            <Button
-              label="Add Set Question Paper Pattern"
-              icon="pi pi-plus"
-              onClick={() => setShowForm(true)}
-            />
+            <h2 className="text-xl font-semibold">Question Paper Pattern List</h2>
+            <Button label="Add Pattern" icon="pi pi-plus" onClick={() => setShowForm(true)} />
           </div>
 
           <DataTable value={patternList} paginator rows={10} showGridlines className="p-datatable-sm">
             <Column header="S.No." body={(_, opt) => opt.rowIndex + 1} />
-            <Column field="questionType" header="Question Type" />
-            <Column field="noOfQuestions" header="Number of Questions" />
-            <Column field="marksPerQuestion" header="Marks per Question" />
+            <Column field="questionType" header="Question Type" sortable />
+            <Column field="noOfQuestions" header="Number of Questions" sortable />
+            <Column field="marksPerQuestion" header="Marks per Question" sortable />
           </DataTable>
 
           <div className="mt-3 font-semibold">
-            Total&nbsp;&nbsp;&nbsp;&nbsp; {patternList.reduce((a, b) => a + b.noOfQuestions, 0)}
+            Total Questions: {patternList.reduce((a, b) => a + b.noOfQuestions, 0)}
           </div>
         </>
       )}
 
-      {/* ================= ADD FORM ================= */}
       {showForm && (
         <>
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-semibold">Set Question Paper Pattern</h2>
+            <h2 className="text-xl font-semibold">Add Question Paper Pattern</h2>
             <Button label="Go Back" icon="pi pi-arrow-left" className="p-button-text" onClick={() => setShowForm(false)} />
           </div>
 
+          {/* Dropdown filters */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-            <Dropdown placeholder="Academic Year *" options={selectOptions} className="w-full" />
-            <Dropdown placeholder="Select Exam Type *" options={selectOptions} className="w-full" />
-            <Dropdown placeholder="Select Exam Name *" options={selectOptions} className="w-full" />
-            <Dropdown placeholder="Select Course Name *" options={selectOptions} className="w-full" />
-            <Dropdown placeholder="Select Semester *" options={selectOptions} className="w-full" />
+            {(['academicYear','examType','examName','courseName','semester'] as FilterKeys[]).map((key, idx) => {
+              let options: DropdownOption[] = [];
+              switch(key) {
+                case 'academicYear': options = academicYearOptions; break;
+                case 'examType': options = examTypeOptions; break;
+                case 'examName': options = examNameOptions; break;
+                case 'courseName': options = courseOptions; break;
+                case 'semester': options = semesterOptions; break;
+              }
+              return (
+                <div key={idx}>
+                  <label className="block text-sm font-medium mb-2">{key.replace(/([A-Z])/g, ' $1')}</label>
+                  <Dropdown
+                    value={formData[key]}
+                    options={options}
+                    className="w-full"
+                    onChange={(e) => setFormData({ ...formData, [key]: e.value })}
+                  />
+                </div>
+              );
+            })}
           </div>
 
+          {/* Input fields */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-            <InputText placeholder="Total Marks *" />
-            <InputText placeholder="Total Questions *" />
-            <InputText placeholder="Mandatory Questions *" />
+            {(['totalMarks','totalQuestions','mandatoryQuestions'] as const).map((key, idx) => (
+              <div key={idx}>
+                <label className="block text-sm font-medium mb-2">{key.replace(/([A-Z])/g, ' $1')}</label>
+                <InputText value={formData[key]} onChange={(e) => setFormData({ ...formData, [key]: e.target.value })} className="w-full" />
+              </div>
+            ))}
           </div>
 
+          {/* Add question pattern */}
           <h3 className="text-lg font-semibold mb-4">Set Questions</h3>
-
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-4">
-            <Dropdown
-              placeholder="Question Type *"
-              options={questionTypeOptions}
-              value={formData.questionType}
-              onChange={(e) => setFormData({ ...formData, questionType: e.value })}
-            />
-            <InputText
-              placeholder="Number of Questions *"
-              value={formData.noOfQuestions}
-              onChange={(e) => setFormData({ ...formData, noOfQuestions: e.target.value })}
-            />
-            <InputText
-              placeholder="Marks per Question *"
-              value={formData.marksPerQuestion}
-              onChange={(e) => setFormData({ ...formData, marksPerQuestion: e.target.value })}
-            />
-            <Button icon="pi pi-plus" onClick={handleAddRow} />
+            <div>
+              <label className="block text-sm font-medium mb-2">Question Type *</label>
+              <Dropdown options={questionTypeOptions} value={formData.questionType} onChange={(e) => setFormData({ ...formData, questionType: e.value })} className="w-full" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-2">Number of Questions *</label>
+              <InputText value={formData.noOfQuestions} onChange={(e) => setFormData({ ...formData, noOfQuestions: e.target.value })} className="w-full" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-2">Marks per Question *</label>
+              <InputText value={formData.marksPerQuestion} onChange={(e) => setFormData({ ...formData, marksPerQuestion: e.target.value })} className="w-full" />
+            </div>
+            <div className="flex items-end">
+              <Button icon="pi pi-plus" label="Add" onClick={handleAddRow} />
+            </div>
           </div>
 
           <div className="flex gap-3 mt-6">

@@ -56,10 +56,14 @@ const trSheetList: TRSheet[] = [
 const AddTRSheetGeneration: React.FC = () => {
   const [showList, setShowList] = useState(false);
   const [expandedRows, setExpandedRows] = useState<any>(null);
+  const [selectedExamType, setSelectedExamType] = useState<string | null>(null);
+  const [selectedAcademicYear, setSelectedAcademicYear] = useState<
+    string | null
+  >(null);
+  const [generationDate, setGenerationDate] = useState<Date | null>(null);
 
   return (
     <PageLayout title="Add TR Sheet Generation">
-    
       <Card className="mb-4">
         <div className="flex justify-between items-center mb-4">
           <h3 className="font-semibold">Add TR Sheet Generation</h3>
@@ -73,9 +77,10 @@ const AddTRSheetGeneration: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
           <div>
             <label className="block text-sm mb-1">Select Exam Type *</label>
-          
             <Dropdown
               options={examTypeOptions}
+              value={selectedExamType} // bind state
+              onChange={(e) => setSelectedExamType(e.value)} // update state on select
               placeholder="Select"
               className="w-full"
             />
@@ -83,9 +88,11 @@ const AddTRSheetGeneration: React.FC = () => {
 
           <div>
             <label className="block text-sm mb-1">Select Academic Year *</label>
-       
+
             <Dropdown
               options={academicYearOptions}
+              value={selectedAcademicYear} // bind state
+              onChange={(e) => setSelectedAcademicYear(e.value)} // update state on select
               placeholder="Select"
               className="w-full"
             />
@@ -96,6 +103,8 @@ const AddTRSheetGeneration: React.FC = () => {
               Enter TR Sheet Generation Date *
             </label>
             <Calendar
+              value={generationDate} // bind state
+              onChange={(e) => setGenerationDate(e.value ?? null)} // update state on select
               dateFormat="dd/mm/yy"
               className="w-full"
               placeholder="dd/mm/yyyy"
@@ -113,11 +122,15 @@ const AddTRSheetGeneration: React.FC = () => {
             label="Clear"
             icon="pi pi-refresh"
             className="p-button-secondary"
-            onClick={() => setShowList(false)}
+            onClick={() => {
+              setShowList(false);
+              setSelectedExamType(null);
+              setSelectedAcademicYear(null);
+              setGenerationDate(null);
+            }}
           />
         </div>
       </Card>
-
 
       {showList && (
         <Card>
@@ -125,6 +138,8 @@ const AddTRSheetGeneration: React.FC = () => {
 
           <DataTable
             value={trSheetList}
+            paginator
+            rows={10}
             showGridlines
             expandedRows={expandedRows}
             onRowToggle={(e) => setExpandedRows(e.data)}
@@ -147,10 +162,14 @@ const AddTRSheetGeneration: React.FC = () => {
             )}
           >
             <Column expander style={{ width: "3rem" }} />
-            <Column header="Sr No." body={(_, opt) => opt.rowIndex + 1} />
-            <Column field="examType" header="Exam Type" />
-            <Column field="academicYear" header="Academic Year" />
-            <Column field="publishedDate" header="Published Date" />
+            <Column
+              header="Sr No."
+              body={(_, opt) => opt.rowIndex + 1}
+              sortable
+            />
+            <Column field="examType" header="Exam Type" sortable />
+            <Column field="academicYear" header="Academic Year" sortable />
+            <Column field="publishedDate" header="Published Date" sortable />
           </DataTable>
         </Card>
       )}
