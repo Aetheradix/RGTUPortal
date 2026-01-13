@@ -15,9 +15,6 @@ Choicefilling() {
       <Route path="fill-choices-by-priority-and-lock-choices" element={<FillChoicesAndLock />} />
       <Route path="student-preferences-report" element={< StudentPreferencesReport/>} />
       <Route path="choice-report" element={< ChoiceReport/>} />
-    
-    
-     
       <Route path="*" element={<Navigate to="seat-availability-updates" replace />} />
     </Routes>
   );

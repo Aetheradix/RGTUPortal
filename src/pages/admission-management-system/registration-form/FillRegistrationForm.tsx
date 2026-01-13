@@ -1,24 +1,19 @@
-import { Button } from "primereact/button";
-import { Checkbox } from "primereact/checkbox";
-import { Column } from "primereact/column";
-import { DataTable, type DataTableExpandedRows } from "primereact/datatable";
-import { Dialog } from "primereact/dialog";
-import { Dropdown } from "primereact/dropdown";
-import { InputText } from "primereact/inputtext";
-import { Tag } from "primereact/tag";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import PageLayout from "../../../components/PageLayout";
+import { DataTable, type DataTableExpandedRows } from "primereact/datatable";
+import { Column } from "primereact/column";
+import { Button } from "primereact/button";
+import { InputText } from "primereact/inputtext";
+import { Dropdown } from "primereact/dropdown";
+import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
+import { Toast } from "primereact/toast";
 
-interface RegistrationData {
+interface Student {
   id: number;
   applNumber: string;
-  allocationStatus: string;
-  regNumber: string;
   firstName: string;
   lastName: string;
-  dob: string;
-  gender: string;
-  fatherName: string;
+  allocationStatus: string;
   motherName: string;
   maritalStatus: string;
   bloodGroup: string;
@@ -43,31 +38,97 @@ interface RegistrationData {
   courseName: string;
   specialization: string;
   admissionType: string;
-  reservationCategory: string;
+  resCategory: string;
   isHandicapped: string;
-  handicappedType?: string;
-  handicappedPercentage?: string;
+  handicapType: string;
+  handicapPercent: string;
 }
 
 const StudentAdmissionForm: React.FC = () => {
-  const [globalFilter, setGlobalFilter] = useState<string>("");
-  const [expandedRows, setExpandedRows] = useState<
-    DataTableExpandedRows | any[] | undefined
-  >(undefined);
-  const [showForm, setShowForm] = useState<boolean>(false);
-  const [isSameAddress, setIsSameAddress] = useState<boolean>(false);
+  const toast = useRef<Toast>(null);
 
-  const [students, setStudents] = useState<RegistrationData[]>([
+  const [showForm, setShowForm] = useState<boolean>(false);
+  const [activeStep, setActiveStep] = useState<number>(1);
+  const [expandedRows, setExpandedRows] = useState<
+    DataTableExpandedRows | undefined
+  >(undefined);
+  const [isHandicapped, setIsHandicapped] = useState<string>("No");
+
+  const allocationOptions = ["Round 1", "Round 2", "Round 3", "CLC Round"];
+  const genderOptions = ["Male", "Female", "Transgender"];
+  const maritalOptions = ["Single", "Married", "Divorced"];
+  const bloodGroups = ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"];
+  const religions = [
+    "Hindu",
+    "Muslim",
+    "Christian",
+    "Sikh",
+    "Buddhist",
+    "Jain",
+  ];
+  const categories = ["General", "OBC", "SC", "ST", "EWS"];
+  const states = [
+    "Madhya Pradesh",
+    "Uttar Pradesh",
+    "Maharashtra",
+    "Rajasthan",
+    "Delhi",
+  ];
+  const divisions = [
+    "Bhopal",
+    "Indore",
+    "Gwalior",
+    "Ujjain",
+    "Jabalpur",
+    "Sagar",
+    "Rewa",
+  ];
+  const districts = ["Bhopal", "Raisen", "Rajgarh", "Sehore", "Vidisha"];
+  const blocks = ["Huzur", "Fanda", "Govindapura", "Berasia"];
+  const qualifications = [
+    "10th",
+    "12th",
+    "Diploma",
+    "Graduation",
+    "Post Graduation",
+  ];
+  const courseLevels = [
+    "Under Graduate",
+    "Post Graduate",
+    "Diploma",
+    "Certificate",
+  ];
+  const courseNames = ["B.Tech", "M.Tech", "BCA", "MCA", "B.Sc (IT)", "MBA"];
+  const specializations = [
+    "Computer Science",
+    "Information Technology",
+    "AI",
+    "Data Science",
+  ];
+  const admissionTypes = ["Regular", "Lateral Entry", "Direct Admission"];
+  const handicapTypes = [
+    "Blindness",
+    "Low Vision",
+    "Hearing Impairment",
+    "Mental Illness",
+    "Physical Disability",
+  ];
+  const handicapPercentages = [
+    "40-50%",
+    "50-60%",
+    "60-70%",
+    "70-80%",
+    "80-90%",
+    "90-100%",
+  ];
+
+  const [students, setStudents] = useState<Student[]>([
     {
       id: 1,
-      applNumber: "APPL12345",
-      allocationStatus: "Round 1",
-      regNumber: "15412572345",
+      applNumber: "APPL9921",
       firstName: "Rahul",
       lastName: "Sharma",
-      dob: "2000-04-10",
-      gender: "Male",
-      fatherName: "Abhay Sharma",
+      allocationStatus: "Round 1",
       motherName: "Sunita Sharma",
       maritalStatus: "Single",
       bloodGroup: "O+",
@@ -81,536 +142,395 @@ const StudentAdmissionForm: React.FC = () => {
       district: "Bhopal",
       block: "Block 1",
       pincode: "462001",
-      address: "123, ABC Street",
+      address: "123, ABC Street, Bhopal",
       qualification: "12th",
       board: "MP Board",
       passingYear: "2018",
       rollNo: "123456",
       percentage: "75%",
       subjects: "Science",
-      courseLevel: "UG",
-      courseName: "CS",
-      specialization: "SE",
-      admissionType: "Direct",
-      reservationCategory: "SC",
+      courseLevel: "Undergraduate",
+      courseName: "Computer Science",
+      specialization: "Software Engineering",
+      admissionType: "Direct Admission",
+      resCategory: "SC",
       isHandicapped: "Yes",
+      handicapType: "Physical Disability",
+      handicapPercent: "40%",
     },
   ]);
 
-  const allocationOptions = [
-    "Round 1",
-    "Round 2",
-    "Round 3",
-    "CLC Round (College Level Counseling)",
-  ];
-  const genderOptions = ["Male", "Female", "Transgender"];
-  const maritalOptions = ["Yes", "No"];
-  const bloodGroupOptions = ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"];
-  const religionOptions = [
-    "Hindu",
-    "Muslim",
-    "Christian",
-    "Sikh",
-    "Buddhist",
-    "Jain",
-    "Parsi",
-    "Other",
-  ];
-  const categoryOptions = ["General", "OBC", "SC", "ST", "EWS"];
-  const stateOptions = [
-    "Madhya Pradesh",
-    "Uttar Pradesh",
-    "Rajasthan",
-    "Maharashtra",
-    "Gujarat",
-  ];
-  const divisionOptions = [
-    "Bhopal",
-    "Indore",
-    "Gwalior",
-    "Ujjain",
-    "Jabalpur",
-    "Sagar",
-    "Rewa",
-    "Chambal",
-    "Narmada",
-    "Shahdol",
-  ];
-  const districtOptions = [
-    "Bhopal",
-    "Raisen",
-    "Rajgarh",
-    "Sehore",
-    "Vidisha",
-    "Indore",
-    "Gwalior",
-  ];
-  const blockOptions = ["Huzur", "Fanda", "Govindapura", "Berasia", "Sehore"];
-
-  const deleteRecord = (id: number) => {
-    setStudents(students.filter((s) => s.id !== id));
+  const handleStepSave = (nextStep: number) => {
+    confirmDialog({
+      message: "Do you want to save and proceed to the next step?",
+      header: "Confirmation",
+      icon: "pi pi-exclamation-triangle",
+      accept: () => {
+        setActiveStep(nextStep);
+      },
+    });
   };
 
-  const rowExpansionTemplate = (data: RegistrationData) => {
-    return (
-      <div className="p-4 bg-gray-50 border-x border-b border-gray-200 rounded-b-lg shadow-inner">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
-          <div className="bg-white p-3 rounded shadow-sm border-t-2 border-blue-500 text-[11px]">
-            <h4 className="font-bold text-gray-700 border-b mb-2 pb-1 uppercase">
-              Family Details
-            </h4>
-            <p>
-              <strong>Father:</strong> {data.fatherName}
-            </p>
-            <p>
-              <strong>Mother:</strong> {data.motherName}
-            </p>
-            <p>
-              <strong>Contact:</strong> {data.mobile}
-            </p>
-          </div>
-        </div>
-        <div className="flex justify-end">
-          <Button
-            label="Delete"
-            icon="pi pi-trash"
-            className="p-button-danger p-button-text font-bold"
-            onClick={() => deleteRecord(data.id)}
-          />
-        </div>
+  const finalizeRegistration = () => {
+    confirmDialog({
+      message: "Are you sure you want to complete the registration?",
+      header: "Final Submission",
+      icon: "pi pi-check-circle",
+      accept: () => {
+        setShowForm(false);
+        setActiveStep(1);
+        toast.current?.show({
+          severity: "success",
+          summary: "Success",
+          detail: "Registration Completed",
+          life: 3000,
+        });
+      },
+    });
+  };
+
+  const rowExpansionTemplate = (data: Student) => (
+    <div className="p-4 bg-gray-50 border rounded-lg m-2 grid grid-cols-1 md:grid-cols-4 gap-4 text-xs">
+      <div className="bg-white p-3 rounded shadow-sm">
+        <h4 className="font-bold text-gray-700 mb-2 border-b pb-1">
+          Personal Details
+        </h4>
+        <p>
+          <strong>Mother:</strong> {data.motherName}
+        </p>
+        <p>
+          <strong>Marital Status:</strong> {data.maritalStatus}
+        </p>
+        <p>
+          <strong>Blood Group:</strong> {data.bloodGroup}
+        </p>
+        <p>
+          <strong>Mobile:</strong> {data.mobile}
+        </p>
       </div>
-    );
-  };
+      <div className="bg-white p-3 rounded shadow-sm">
+        <h4 className="font-bold text-gray-700 mb-2 border-b pb-1">Address</h4>
+        <p>
+          <strong>District:</strong> {data.district}
+        </p>
+        <p>
+          <strong>Block:</strong> {data.block}
+        </p>
+        <p>
+          <strong>State:</strong> {data.state}
+        </p>
+        <p>
+          <strong>Pincode:</strong> {data.pincode}
+        </p>
+      </div>
+      <div className="bg-white p-3 rounded shadow-sm">
+        <h4 className="font-bold text-gray-700 mb-2 border-b pb-1">Academic</h4>
+        <p>
+          <strong>Course:</strong> {data.courseName}
+        </p>
+        <p>
+          <strong>Specialization:</strong> {data.specialization}
+        </p>
+        <p>
+          <strong>Roll No:</strong> {data.rollNo}
+        </p>
+      </div>
+      <div className="bg-white p-3 rounded shadow-sm flex flex-col justify-center gap-2">
+        
+        <Button
+          label="Delete"
+          icon="pi pi-trash"
+          className="p-button-sm p-button-danger p-button-outlined"
+          onClick={() => setStudents(students.filter((s) => s.id !== data.id))}
+        />
+      </div>
+    </div>
+  );
 
   return (
-    <PageLayout title="Registration Management">
-      <div className="bg-white p-4 rounded shadow-sm border border-gray-100">
-        <div className="flex justify-between items-center mb-4">
-          <div>
-            <h2 className="text-xl font-bold text-gray-800 tracking-tight">
-              Registration Form List
-            </h2>
-            <div className="flex items-center gap-2 text-xs text-gray-400 mt-1 uppercase font-semibold">
-              <span>Admission Management System</span>
-              <i className="pi pi-angle-right text-[10px]" />
-              <span>Registration Form</span>
-            </div>
+    <PageLayout title="Admission System">
+      <Toast ref={toast} />
+      <ConfirmDialog />
+
+      {!showForm ? (
+        <div className="bg-white p-4 rounded shadow-sm border">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-xl font-bold">Registration Form List</h2>
+            <Button
+              label="Add Registration"
+              icon="pi pi-plus"
+              className="p-button-sm"
+              onClick={() => {
+                setShowForm(true);
+                setActiveStep(1);
+              }}
+            />
           </div>
-          <Button
-            label="New Registration"
-            icon="pi pi-user-plus"
-            className="p-button-sm p-button-primary"
-            onClick={() => setShowForm(true)}
-          />
+
+          <DataTable
+            value={students}
+            expandedRows={expandedRows}
+            onRowToggle={(e) =>
+              setExpandedRows(e.data as DataTableExpandedRows)
+            }
+            rowExpansionTemplate={rowExpansionTemplate}
+            dataKey="id"
+            paginator
+            rows={10}
+            className="p-datatable-sm"
+          >
+            <Column expander style={{ width: "3rem" }} />
+            <Column field="applNumber" header="Appl No." />
+            <Column
+              field="firstName"
+              header="Name"
+              body={(rd: Student) => `${rd.firstName} ${rd.lastName}`}
+            />
+            <Column field="mobile" header="Mobile" />
+            <Column field="courseName" header="Course" />
+          </DataTable>
         </div>
-
-        <DataTable
-          value={students}
-          expandedRows={expandedRows}
-          onRowToggle={(e) => setExpandedRows(e.data)}
-          rowExpansionTemplate={rowExpansionTemplate}
-          dataKey="id"
-          paginator
-          rows={10}
-          globalFilter={globalFilter}
-          className="p-datatable-sm text-sm"
-          stripedRows
-          header={
-            <div className="flex  justify-end">
-              <span className="p-input-icon-left">
-
-                <InputText
-                  value={globalFilter}
-                  onChange={(e) => setGlobalFilter(e.target.value)}
-                  placeholder="Search Records..."
-                  className="p-inputtext-sm w-64"
-                />
-              </span>
-            </div>
-          }
-        >
-          <Column expander={true} style={{ width: "3.5rem" }} header="Action" />
-          <Column field="applNumber" header="App No." sortable />
-          <Column field="firstName" header="First Name" sortable />
-          <Column field="lastName" header="Last Name" sortable />
-          <Column
-            field="allocationStatus"
-            header="Status"
-            body={(rd) => (
-              <Tag value={rd.allocationStatus} severity="warning" />
-            )}
-          />
-          <Column field="mobile" header="Mobile" />
-        </DataTable>
-
-        <Dialog
-          header="Student Registration Form"
-          visible={showForm}
-          style={{ width: "95vw" }}
-          maximizable
-          modal
-          onHide={() => setShowForm(false)}
-          footer={
-            <div className="flex justify-center gap-3">
-              <Button
-                label="Save/Next"
-                icon="pi pi-check"
-                className="p-button-primary px-6"
-                onClick={() => setShowForm(false)}
-              />
-              <Button
-                label="Clear"
-                icon="pi pi-refresh"
-                className="p-button-danger p-button-outlined px-6"
-              />
-            </div>
-          }
-        >
-          <div className="p-fluid">
-            <div className="bg-gray-50 p-3 mb-4 rounded border-l-4 border-blue-600 font-bold text-gray-700">
-              Student Personal Details
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-              <div className="field">
-                <label className="text-xs font-semibold block mb-1">
-                  Application Number
-                </label>
-                <InputText
-                  placeholder="Enter Application Number"
-                  className="p-inputtext-sm"
-                />
-              </div>
-              <div className="field">
-                <label className="text-xs font-semibold block mb-1">
-                  Select Allocation Status
-                </label>
-                <Dropdown
-                  options={allocationOptions}
-                  placeholder="Select"
-                  className="p-inputtext-sm"
-                />
-              </div>
-              <div className="field">
-                <label className="text-xs font-semibold block mb-1">
-                  Student First Name*
-                </label>
-                <InputText
-                  placeholder="Student First Name"
-                  className="p-inputtext-sm"
-                />
-              </div>
-              <div className="field">
-                <label className="text-xs font-semibold block mb-1">
-                  Student Last Name*
-                </label>
-                <InputText
-                  placeholder="Student Last Name"
-                  className="p-inputtext-sm"
-                />
-              </div>
-              <div className="field">
-                <label className="text-xs font-semibold block mb-1">
-                  Date of Birth*
-                </label>
-                <InputText
-                  type="date"
-                  placeholder="dd/mm/yyyy"
-                  className="p-inputtext-sm"
-                />
-              </div>
-              <div className="field">
-                <label className="text-xs font-semibold block mb-1">
-                  Select Gender*
-                </label>
-                <Dropdown
-                  options={genderOptions}
-                  placeholder="Select"
-                  className="p-inputtext-sm"
-                />
-              </div>
-              <div className="field">
-                <label className="text-xs font-semibold block mb-1">
-                  Father's Name*
-                </label>
-                <InputText
-                  placeholder="Enter Father's Name"
-                  className="p-inputtext-sm"
-                />
-              </div>
-              <div className="field">
-                <label className="text-xs font-semibold block mb-1">
-                  Father Occupation
-                </label>
-                <InputText
-                  placeholder="Enter Father Occupation"
-                  className="p-inputtext-sm"
-                />
-              </div>
-              <div className="field">
-                <label className="text-xs font-semibold block mb-1">
-                  Mother's Name*
-                </label>
-                <InputText
-                  placeholder="Enter Mother's Name"
-                  className="p-inputtext-sm"
-                />
-              </div>
-              <div className="field">
-                <label className="text-xs font-semibold block mb-1">
-                  Mother Occupation
-                </label>
-                <InputText
-                  placeholder="Enter Mother Occupation"
-                  className="p-inputtext-sm"
-                />
-              </div>
-              <div className="field">
-                <label className="text-xs font-semibold block mb-1">
-                  Select Marital Status*
-                </label>
-                <Dropdown
-                  options={maritalOptions}
-                  placeholder="Select"
-                  className="p-inputtext-sm"
-                />
-              </div>
-              <div className="field">
-                <label className="text-xs font-semibold block mb-1">
-                  Select Blood Group*
-                </label>
-                <Dropdown
-                  options={bloodGroupOptions}
-                  placeholder="Select"
-                  className="p-inputtext-sm"
-                />
-              </div>
-              <div className="field">
-                <label className="text-xs font-semibold block mb-1">
-                  Religion*
-                </label>
-                <Dropdown
-                  options={religionOptions}
-                  placeholder="Select"
-                  className="p-inputtext-sm"
-                />
-              </div>
-              <div className="field">
-                <label className="text-xs font-semibold block mb-1">
-                  Select Category*
-                </label>
-                <Dropdown
-                  options={categoryOptions}
-                  placeholder="Select Category"
-                  className="p-inputtext-sm"
-                />
-              </div>
-              <div className="field">
-                <label className="text-xs font-semibold block mb-1">
-                  Nationality*
-                </label>
-                <InputText
-                  placeholder="Enter Nationality"
-                  className="p-inputtext-sm"
-                />
-              </div>
-              <div className="field">
-                <label className="text-xs font-semibold block mb-1">
-                  Mobile Number*
-                </label>
-                <InputText
-                  placeholder="Enter Mobile Number"
-                  className="p-inputtext-sm"
-                />
-              </div>
-              <div className="field">
-                <label className="text-xs font-semibold block mb-1">
-                  Alternate Mobile Number
-                </label>
-                <InputText
-                  placeholder="Enter Alternate Mobile Number"
-                  className="p-inputtext-sm"
-                />
-              </div>
-              <div className="field">
-                <label className="text-xs font-semibold block mb-1">
-                  Email Address*
-                </label>
-                <InputText
-                  placeholder="Enter Email Address"
-                  className="p-inputtext-sm"
-                />
-              </div>
-            </div>
-
-            <div className="bg-gray-50 p-3 mb-4 rounded border-l-4 border-green-600 font-bold text-gray-700 uppercase text-sm">
-              Address Information
-            </div>
-            <h4 className="font-bold text-blue-600 mb-2 px-1 underline underline-offset-4">
-              Present Address
-            </h4>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
-              <div className="field">
-                <label className="text-xs font-semibold block mb-1">
-                  Select State*
-                </label>
-                <Dropdown
-                  options={stateOptions}
-                  placeholder="Select"
-                  className="p-inputtext-sm"
-                />
-              </div>
-              <div className="field">
-                <label className="text-xs font-semibold block mb-1">
-                  Select Division*
-                </label>
-                <Dropdown
-                  options={divisionOptions}
-                  placeholder="Select"
-                  className="p-inputtext-sm"
-                />
-              </div>
-              <div className="field">
-                <label className="text-xs font-semibold block mb-1">
-                  Select District*
-                </label>
-                <Dropdown
-                  options={districtOptions}
-                  placeholder="Select"
-                  className="p-inputtext-sm"
-                />
-              </div>
-              <div className="field">
-                <label className="text-xs font-semibold block mb-1">
-                  Select Block*
-                </label>
-                <Dropdown
-                  options={blockOptions}
-                  placeholder="Select"
-                  className="p-inputtext-sm"
-                />
-              </div>
-              <div className="field">
-                <label className="text-xs font-semibold block mb-1">
-                  Pincode*
-                </label>
-                <InputText
-                  placeholder="Enter Pincode"
-                  className="p-inputtext-sm"
-                />
-              </div>
-              <div className="field">
-                <label className="text-xs font-semibold block mb-1">
-                  Address line 1*
-                </label>
-                <InputText
-                  placeholder="Enter Address line 1"
-                  className="p-inputtext-sm"
-                />
-              </div>
-              <div className="field">
-                <label className="text-xs font-semibold block mb-1">
-                  Address line 2*
-                </label>
-                <InputText
-                  placeholder="Enter Address line 2"
-                  className="p-inputtext-sm"
-                />
-              </div>
-            </div>
-
-            <div className="flex items-center gap-2 mb-4 bg-blue-50 p-2 rounded">
-              <Checkbox
-                checked={isSameAddress}
-                onChange={(e) => setIsSameAddress(e.checked || false)}
-                inputId="sameAddress"
-              />
-              <label
-                htmlFor="sameAddress"
-                className="text-xs font-bold text-blue-800 cursor-pointer"
-              >
-                Permanent Address same as Present Address
-              </label>
-            </div>
-
-            <h4 className="font-bold text-blue-600 mb-2 px-1 underline underline-offset-4">
-              Permanent Address
-            </h4>
-            {!isSameAddress && (
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-                <div className="field">
-                  <label className="text-xs font-semibold block mb-1">
-                    Select State Name
-                  </label>
-                  <Dropdown
-                    options={stateOptions}
-                    placeholder="Select"
-                    className="p-inputtext-sm"
-                  />
-                </div>
-                <div className="field">
-                  <label className="text-xs font-semibold block mb-1">
-                    Select Division
-                  </label>
-                  <Dropdown
-                    options={divisionOptions}
-                    placeholder="Select"
-                    className="p-inputtext-sm"
-                  />
-                </div>
-                <div className="field">
-                  <label className="text-xs font-semibold block mb-1">
-                    Select District
-                  </label>
-                  <Dropdown
-                    options={districtOptions}
-                    placeholder="Select"
-                    className="p-inputtext-sm"
-                  />
-                </div>
-                <div className="field">
-                  <label className="text-xs font-semibold block mb-1">
-                    Select Block Name
-                  </label>
-                  <Dropdown
-                    options={blockOptions}
-                    placeholder="Select"
-                    className="p-inputtext-sm"
-                  />
-                </div>
-                <div className="field">
-                  <label className="text-xs font-semibold block mb-1">
-                    Pincode No.
-                  </label>
-                  <InputText
-                    placeholder="Enter Pincode No."
-                    className="p-inputtext-sm"
-                  />
-                </div>
-                <div className="field">
-                  <label className="text-xs font-semibold block mb-1">
-                    Address line 1
-                  </label>
-                  <InputText
-                    placeholder="Enter Address line 1"
-                    className="p-inputtext-sm"
-                  />
-                </div>
-                <div className="field">
-                  <label className="text-xs font-semibold block mb-1">
-                    Address line 2
-                  </label>
-                  <InputText
-                    placeholder="Enter Address line 2"
-                    className="p-inputtext-sm"
-                  />
-                </div>
-              </div>
-            )}
+      ) : (
+        <div className="bg-white p-6 rounded shadow-sm border">
+          <div className="flex justify-between items-center mb-6 border-b pb-4">
+            <h2 className="text-xl font-bold uppercase">
+              New Student Registration
+            </h2>
+            <Button
+              label="Go Back to List"
+              icon="pi pi-arrow-left"
+              className="p-button-text p-button-sm"
+              onClick={() => setShowForm(false)}
+            />
           </div>
-        </Dialog>
-      </div>
+
+          {activeStep === 1 && (
+            <div className="p-fluid">
+              <h3 className="font-bold text-gray-700 mb-4 border-l-4 border-blue-500 pl-2">
+                1. Personal Details
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div className="field">
+                  <label className="text-xs font-bold">Application No</label>
+                  <InputText className="p-inputtext-sm" />
+                </div>
+                <div className="field">
+                  <label className="text-xs font-bold">Allocation Status</label>
+                  <Dropdown options={allocationOptions} placeholder="Select" />
+                </div>
+                <div className="field">
+                  <label className="text-xs font-bold">First Name*</label>
+                  <InputText className="p-inputtext-sm" />
+                </div>
+                <div className="field">
+                  <label className="text-xs font-bold">Last Name*</label>
+                  <InputText className="p-inputtext-sm" />
+                </div>
+                <div className="field">
+                  <label className="text-xs font-bold">Gender*</label>
+                  <Dropdown options={genderOptions} placeholder="Select" />
+                </div>
+                <div className="field">
+                  <label className="text-xs font-bold">Marital Status</label>
+                  <Dropdown options={maritalOptions} placeholder="Select" />
+                </div>
+                <div className="field">
+                  <label className="text-xs font-bold">Blood Group</label>
+                  <Dropdown options={bloodGroups} placeholder="Select" />
+                </div>
+                <div className="field">
+                  <label className="text-xs font-bold">Religion*</label>
+                  <Dropdown options={religions} placeholder="Select" />
+                </div>
+                <div className="field">
+                  <label className="text-xs font-bold">Category*</label>
+                  <Dropdown options={categories} placeholder="Select" />
+                </div>
+                <div className="field">
+                  <label className="text-xs font-bold">State*</label>
+                  <Dropdown options={states} placeholder="Select" />
+                </div>
+                <div className="field">
+                  <label className="text-xs font-bold">Division*</label>
+                  <Dropdown options={divisions} placeholder="Select" />
+                </div>
+                <div className="field">
+                  <label className="text-xs font-bold">District*</label>
+                  <Dropdown options={districts} placeholder="Select" />
+                </div>
+                <div className="field">
+                  <label className="text-xs font-bold">Block*</label>
+                  <Dropdown options={blocks} placeholder="Select" />
+                </div>
+                <div className="field">
+                  <label className="text-xs font-bold">Pincode*</label>
+                  <InputText className="p-inputtext-sm" />
+                </div>
+                <div className="field md:col-span-2">
+                  <label className="text-xs font-bold">Full Address*</label>
+                  <InputText className="p-inputtext-sm" />
+                </div>
+              </div>
+              <div className="flex justify-end gap-2 mt-8 pt-4 border-t">
+                <Button
+                  label="Clear"
+                  icon="pi pi-refresh"
+                  className="p-button-text p-button-secondary"
+                />
+                <Button
+                  label="Save & Next"
+                  icon="pi pi-arrow-right"
+                  onClick={() => handleStepSave(2)}
+                />
+              </div>
+
+            </div>
+          )}
+
+          {activeStep === 2 && (
+            <div className="p-fluid">
+              <h3 className="font-bold text-gray-700 mb-4 border-l-4 border-orange-500 pl-2">
+                2. Academic Details
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="field">
+                  <label className="text-xs font-bold">Qualification*</label>
+                  <Dropdown options={qualifications} placeholder="Select" />
+                </div>
+                <div className="field">
+                  <label className="text-xs font-bold">Board/University*</label>
+                  <InputText className="p-inputtext-sm" />
+                </div>
+                <div className="field">
+                  <label className="text-xs font-bold">Year of Passing*</label>
+                  <InputText className="p-inputtext-sm" />
+                </div>
+                <div className="field">
+                  <label className="text-xs font-bold">Roll Number*</label>
+                  <InputText className="p-inputtext-sm" />
+                </div>
+                <div className="field">
+                  <label className="text-xs font-bold">Percentage*</label>
+                  <InputText className="p-inputtext-sm" />
+                </div>
+                <div className="field">
+                  <label className="text-xs font-bold">Subjects/Branch</label>
+                  <InputText className="p-inputtext-sm" />
+                </div>
+              </div>
+              <div className="flex justify-end gap-2 mt-8 pt-4 border-t">
+                <Button
+                  label="Go Back"
+                  icon="pi pi-arrow-left"
+                  className="p-button-text"
+                  onClick={() => setActiveStep(1)}
+                />
+                <Button
+                  label="Save & Next"
+                  icon="pi pi-arrow-right"
+                  className="p-button-warning"
+                  onClick={() => handleStepSave(3)}
+                />
+              </div>
+            </div>
+          )}
+
+          {activeStep === 3 && (
+            <div className="p-fluid">
+              <h3 className="font-bold text-gray-700 mb-4 border-l-4 border-green-500 pl-2">
+                3. Course Details
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="field">
+                  <label className="text-xs font-bold">Course Level</label>
+                  <Dropdown options={courseLevels} placeholder="Select" />
+                </div>
+                <div className="field">
+                  <label className="text-xs font-bold">Course Name</label>
+                  <Dropdown options={courseNames} placeholder="Select" />
+                </div>
+                <div className="field">
+                  <label className="text-xs font-bold">Specialization</label>
+                  <Dropdown options={specializations} placeholder="Select" />
+                </div>
+                <div className="field">
+                  <label className="text-xs font-bold">Admission Type</label>
+                  <Dropdown options={admissionTypes} placeholder="Select" />
+                </div>
+              </div>
+              <div className="flex justify-end gap-2 mt-8 pt-4 border-t">
+                <Button
+                  label="Go Back"
+                  icon="pi pi-arrow-left"
+                  className="p-button-text"
+                  onClick={() => setActiveStep(2)}
+                />
+                <Button
+                  label="Save & Next"
+                  icon="pi pi-arrow-right"
+                  className="p-button-success"
+                  onClick={() => handleStepSave(4)}
+                />
+              </div>
+            </div>
+          )}
+
+          {activeStep === 4 && (
+            <div className="p-fluid">
+              <h3 className="font-bold text-gray-700 mb-4 border-l-4 border-purple-500 pl-2">
+                4. Reservation
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="field">
+                  <label className="text-xs font-bold">
+                    Reservation Category
+                  </label>
+                  <Dropdown options={categories} placeholder="Select" />
+                </div>
+                <div className="field">
+                  <label className="text-xs font-bold">
+                    Handicapped (PWD)?
+                  </label>
+                  <Dropdown
+                    value={isHandicapped}
+                    options={["Yes", "No"]}
+                    onChange={(e) => setIsHandicapped(e.value)}
+                  />
+                </div>
+                {isHandicapped === "Yes" && (
+                  <>
+                    <div className="field">
+                      <label className="text-xs font-bold">Handicap Type</label>
+                      <Dropdown options={handicapTypes} placeholder="Select" />
+                    </div>
+                    <div className="field">
+                      <label className="text-xs font-bold">Percentage</label>
+                      <Dropdown
+                        options={handicapPercentages}
+                        placeholder="Select"
+                      />
+                    </div>
+                  </>
+                )}
+              </div>
+              <div className="flex justify-end gap-2 mt-8 pt-4 border-t">
+                <Button
+                  label="Go Back"
+                  icon="pi pi-arrow-left"
+                  className="p-button-text"
+                  onClick={() => setActiveStep(3)}
+                />
+                <Button
+                  label="Final Submit"
+                  icon="pi pi-check"
+                  onClick={finalizeRegistration}
+                />
+              </div>
+            </div>
+          )}
+        </div>
+      )}
     </PageLayout>
   );
 };
-
 export default StudentAdmissionForm;

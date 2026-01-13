@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import PageLayout from "../../../components/PageLayout";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
-import { Checkbox } from "primereact/checkbox";
-
+import { Checkbox, type CheckboxChangeEvent } from "primereact/checkbox";
 interface StudentPersonal {
   studentName: string;
   fatherName: string;
@@ -13,11 +12,9 @@ interface StudentPersonal {
   category: string;
   mobile: string;
 }
-
 const UploadDocuments: React.FC = () => {
   const [regNo, setRegNo] = useState("");
   const [student, setStudent] = useState<StudentPersonal | null>(null);
-
   const [passportPhoto, setPassportPhoto] = useState<File | null>(null);
   const [signature, setSignature] = useState<File | null>(null);
   const [mark10, setMark10] = useState<File | null>(null);
@@ -25,7 +22,7 @@ const UploadDocuments: React.FC = () => {
   const [transferCert, setTransferCert] = useState<File | null>(null);
   const [casteCert, setCasteCert] = useState<File | null>(null);
   const [incomeCert, setIncomeCert] = useState<File | null>(null);
-  const [status, setStatus] = useState(false);
+  const [status, setStatus] = useState<boolean>(false);
 
   const handleSearch = () => {
     setStudent({
@@ -70,29 +67,35 @@ const UploadDocuments: React.FC = () => {
   return (
     <PageLayout title="Upload Documents">
       <div className="bg-white p-4 rounded shadow mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
-          <div className="md:col-span-2">
+        <div className="flex flex-wrap items-end gap-4">
+          <div className="flex flex-col w-full md:w-auto">
             <label className="font-medium">Registration No.*</label>
             <InputText
-              className="w-full"
-              placeholder="Enter Registration No."
               value={regNo}
               onChange={(e) => setRegNo(e.target.value)}
+              placeholder="Enter Registration No."
+              className="w-full md:max-w-sm"
             />
           </div>
-          <Button
-            label="Search"
-            className="bg-indigo-600 border-none text-white"
-            onClick={handleSearch}
-          />
-          <Button
-            label="Clear"
-            className="bg-red-300 border-none text-black"
-            onClick={handleClearForm}
-          />
+          <div>
+            <Button
+              label="Search"
+              icon="pi pi-search"
+              className="p-button-sm bg-indigo-600 text-white"
+              onClick={handleSearch}
+            />
+          </div>
+          <div>
+            <Button
+              label="Clear"
+              icon="pi pi-times"
+              className="p-button-sm bg-red-300 text-black"
+              onClick={handleClearForm}
+            />
+          </div>
+
         </div>
       </div>
-
       {student && (
         <>
           <div className="bg-white p-4 rounded shadow mb-6">
@@ -158,9 +161,9 @@ const UploadDocuments: React.FC = () => {
               </div>
             </div>
           </div>
-
           <div className="bg-white p-6 rounded shadow">
             <h3 className="text-lg font-semibold mb-4">Upload Documents</h3>
+
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
               <div>
                 <label>Passport Size Photograph</label>
@@ -243,14 +246,15 @@ const UploadDocuments: React.FC = () => {
                 <Checkbox
                   inputId="statusCheck"
                   checked={status}
-                  onChange={(e) => setStatus(e.checked ?? false)}
+                  onChange={(e: CheckboxChangeEvent) =>
+                    setStatus(e.checked ?? false)
+                  }
                 />
                 <label htmlFor="statusCheck" className="ml-2 font-semibold">
                   Active
                 </label>
               </div>
             </div>
-
             <div className="flex justify-center gap-4 pt-6">
               <Button
                 label="Save"
