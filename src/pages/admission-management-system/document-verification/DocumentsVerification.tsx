@@ -110,19 +110,21 @@ const DocumentVerification: React.FC = () => {
 
   const actionBodyTemplate = (rowData: DocConfig) => {
     return (
-      <div className="flex gap-2">
+  
+       <div className="flex gap-2">
         <Button
-          icon="pi pi-pencil"
-          className="p-button-rounded p-button-info p-button-text"
           onClick={() => editRow(rowData)}
-          label="Edit"
-        />
+        >
+          ✏️
+        </Button>
         <Button
-          icon="pi pi-trash"
-          className="p-button-rounded p-button-danger p-button-text"
+          className="p-button-sm p-button-danger"
+          tooltip="Delete"
+          tooltipOptions={{ position: "top" }}
           onClick={() => deleteRow(rowData.id)}
-          label="Delete"
-        />
+        >
+          🗑️
+        </Button>
       </div>
     );
   };
@@ -317,5 +319,4 @@ const DocumentVerification: React.FC = () => {
     </PageLayout>
   );
 };
-
 export default DocumentVerification;
