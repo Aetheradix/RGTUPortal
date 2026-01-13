@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Academics from "./academics";
 import Admissonmanagementsystem from "./admission-management-system";
 import BudgetAndFinance from "./budget-and-finance";
+import CmsPortal from "./cms-portal";
 import Dashboard from "./Dashboard";
 import DepartmentEnquiryManagement from "./department-enquiry-management";
 import APRMS from "./employee-aprms";
@@ -64,6 +65,7 @@ export default function AppFeature() {
       {/* Fallback for any route where dedicated UI is not implemented yet */}
       <Route path="*" element={<GenericPage />} />
       <Route path="scheme-management/*" element={<SchemeManagement />} />
+      <Route path="cms-portal/*" element={<CmsPortal />} />
       <Route path="guest-faculty/*" element={<GuestFacultyManagement />} />
       <Route
         path="employee-directory-management/*"
