@@ -1,5 +1,6 @@
 import {
   FaBook,
+  FaBookReader,
   FaBus,
   FaChalkboardTeacher,
   FaClipboardList,
@@ -664,7 +665,7 @@ const sidebarMenu = {
         },
       ],
     },
-{
+    {
       module: "Admission",
       icon: FaUserGraduate,
       route: "/admission-management-system",
@@ -849,7 +850,8 @@ const sidebarMenu = {
           pages: [
             {
               page: "View Allocation Status",
-              route: "/admission-management-system/seat-allocation/view-allocation-status",
+              route:
+                "/admission-management-system/seat-allocation/view-allocation-status",
             },
             {
               page: "Accept/Reject Allocation",
@@ -858,7 +860,8 @@ const sidebarMenu = {
             },
             {
               page: "Reserved Categories/Quota (Hed)",
-              route: "/admission-management-system/seat-allocation/reserved-categories-quota",
+              route:
+                "/admission-management-system/seat-allocation/reserved-categories-quota",
             },
             {
               page: "Set Categories/Quota Percentages (Hed)",
@@ -867,7 +870,8 @@ const sidebarMenu = {
             },
             {
               page: "Seat Allocation per Course  (Hed/University)",
-              route: "/admission-management-system/seat-allocation/seat-allocation-per-course",
+              route:
+                "/admission-management-system/seat-allocation/seat-allocation-per-course",
             },
             {
               page: "Seat  Acceptance Window (College,University)",
@@ -876,7 +880,8 @@ const sidebarMenu = {
             },
             {
               page: "View Available Seats",
-              route: "/admission-management-system/seat-allocation/view-available-seats",
+              route:
+                "/admission-management-system/seat-allocation/view-available-seats",
             },
             {
               page: "Allocation Report ",
@@ -2256,6 +2261,121 @@ const sidebarMenu = {
           route: "/payroll/set-head-value",
           pages: [
             { page: "Head Value", route: "/payroll/set-head-value/set-head" },
+          ],
+        },
+      ],
+    },
+    {
+      module: "Vocational Management",
+      icon: FaBookReader,
+      route: "/vocational-management",
+      subModules: [
+        {
+          subModule: "Vocational Master",
+          route: "/vocational-management/vocational-master",
+          pages: [
+            {
+              page: "Vocational Trade Master",
+              route:
+                "/vocational-management/vocational-master/vocational-trade-master",
+            },
+            {
+              page: "Job Role Master",
+              route: "/vocational-management/vocational-master/job-role-master",
+            },
+            {
+              page: "Vocational Scheme Master",
+              route:
+                "/vocational-management/vocational-master/vocational-scheme-master",
+            },
+          ],
+        },
+        {
+          subModule: "Registration",
+          route: "/vocational-management/registraion",
+          pages: [
+            {
+              page: "Vocational Teacher Registration",
+              route:
+                "/vocational-management/registration/vocational-teacher-registration",
+            },
+            {
+              page: "Add VTP Registration",
+              route: "/vocational-management/registration/add-vtp-registration",
+            },
+          ],
+        },
+        {
+          subModule: "Vocational Activity and Mapping",
+          route: "/vocational-management/activity-mapping",
+          pages: [
+            {
+              page: "Vocational Teacher Class Mapping",
+              route:
+                "/vocational-management/vocational-activity-and-mapping/vocational-teacher-class-mapping",
+            },
+            {
+              page: "Vocational Student Activity",
+              route:
+                "/vocational-management/vocational-activity-and-mapping/vocational-student-activity",
+            },
+          ],
+        },
+        {
+          subModule: "Certificate Distribution",
+          route: "/vocational-management/certificate-distribution",
+          pages: [
+            {
+              page: "Vocational Certificate Download",
+              route:
+                "/vocational-management/certificate-distribution/vocational-certificate-download",
+            },
+            {
+              page: "Vocational Certificate Distribution Google link",
+              route:
+                "/vocational-management/certificate-distribution/vocational-certificate-distribution-google-link",
+            },
+          ],
+        },
+        {
+          subModule: "Vocational Payment",
+          route: "/vocational-management/vocational-payment",
+          pages: [
+            {
+              page: "VTP Payment",
+              route: "/vocational-management/vocational-payment/vtp-payment",
+            },
+            {
+              page: "VTP Payment Generate",
+              route:
+                "/vocational-management/vocational-payment/vtp-payment-generate",
+            },
+            {
+              page: "VTP Payment Status",
+              route:
+                "/vocational-management/vocational-payment/vtp-payment-status",
+            },
+          ],
+        },
+        {
+          subModule: "Vocational Management Reports",
+          route: "/vocational-management/vocational-management-reports",
+          pages: [
+            {
+              page: "Vocational Teacher Class Mapping Report",
+              route:
+                "/vocational-management/vocational-management-reports/vocational-teacher-class-mapping-report",
+            },
+            {
+              page: "District Wise Vocational Certificate Distribution",
+              route:
+                "/vocational-management/vocational-management-reports/district-wise-vocational-certificate-distribution",
+            },
+            {
+              page: "Vocational Certificate Distribution Report",
+              route:
+                "/vocational-management/vocational-management-reports/vocational-certificate-distribution-report",
+            },
           ],
         },
       ],

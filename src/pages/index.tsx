@@ -21,6 +21,7 @@ import StudentManagementSystem from "./student-management-system";
 import TourManagementSystem from "./tour-mangement";
 import TransportManagementSYS from "./transport-management";
 import UserManagement from "./user-management";
+import VocationalManagement from "./vocational-management";
 
 export default function AppFeature() {
   return (
@@ -70,6 +71,7 @@ export default function AppFeature() {
       <Route path="cms-portal/*" element={<CmsPortal />} />
       <Route path="guest-faculty/*" element={<GuestFacultyManagement />} />
       <Route path="payroll/*" element={<Payroll />} />
+      <Route path="vocational-management/*" element={<VocationalManagement />} />
       <Route path="compassion-management/*" element={<CompassionManagement />} />
       <Route
         path="employee-directory-management/*"
