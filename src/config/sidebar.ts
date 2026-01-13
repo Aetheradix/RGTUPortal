@@ -1534,191 +1534,171 @@ const sidebarMenu = {
     {
       module: "CMS Portal College",
       icon: FaUniversity,
-      route: "/cms-portal",
+      route: "/cms-college",
       subModules: [
         {
           subModule: "About Us",
-          route: "/cms-portal/about-us",
+          route: "/cms-college/about",
           pages: [
-            { page: "At a Glance", route: "/cms-portal/about-us/at-a-glance" },
+            { page: "At a Glance", route: "/cms-college/about/at-a-glance" },
             {
               page: "Principal Message",
-              route: "/cms-portal/about-us/principal-message",
+              route: "/cms-college/about/principal-message",
             },
-            { page: "Societies", route: "/cms-portal/about-us/societies" },
+            { page: "Societies", route: "/cms-college/about/societies" },
             {
               page: "Vision-Mission",
-              route: "/cms-portal/about-us/vision-mission",
+              route: "/cms-college/about/vision-mission",
             },
-            { page: "Objectives", route: "/cms-portal/about-us/objectives" },
-            {
-              page: "How to Reach",
-              route: "/cms-portal/about-us/how-to-reach",
-            },
-            { page: "Who is Who", route: "/cms-portal/about-us/who-is-who" },
+            { page: "Objectives", route: "/cms-college/about/objectives" },
+            { page: "How to Reach", route: "/cms-college/about/how-to-reach" },
+            { page: "Who is Who", route: "/cms-college/about/who-is-who" },
           ],
         },
         {
           subModule: "Infrastructure",
-          route: "/cms-portal/infrastructure",
+          route: "/cms-college/infrastructure",
           pages: [
-            { page: "Building", route: "/cms-portal/infrastructure/building" },
-            { page: "Library", route: "/cms-portal/infrastructure/library" },
-            { page: "Canteen", route: "/cms-portal/infrastructure/canteen" },
-            { page: "Hostel", route: "/cms-portal/infrastructure/hostel" },
-            { page: "Sports", route: "/cms-portal/infrastructure/sports" },
-          ],
-        },
-        {
-          subModule: "National Assessment And Accreditation Council",
-          route: "/cms-portal/national-assessment-and-accredition-council",
-          pages: [
-            {
-              page: "Award",
-              route:
-                "/cms-portal/national-assessment-and-accredition-council/award",
-            },
-            {
-              page: "Audits",
-              route:
-                "/cms-portal/national-assessment-and-accredition-council/audits",
-            },
-            {
-              page: "Idea House Idea Hub",
-              route:
-                "/cms-portal/national-assessment-and-accredition-council/idea-house-idea-hub",
-            },
-            {
-              page: "Best Practices Green Initiative",
-              route:
-                "/cms-portal/national-assessment-and-accredition-council/best-practices-green-initiative",
-            },
-            {
-              page: "Extension Activities",
-              route:
-                "/cms-portal/national-assessment-and-accredition-council/extension-activities",
-            },
-            {
-              page: "Highlights of Achievements",
-              route:
-                "/cms-portal/national-assessment-and-accredition-council/highlights-of-achievements",
-            },
-            {
-              page: "Self Study Report",
-              route:
-                "/cms-portal/national-assessment-and-accredition-council/self-study-report",
-            },
-            {
-              page: "IQAC",
-              route:
-                "/cms-portal/national-assessment-and-accredition-council/iqac",
-            },
-            {
-              page: "Institutional Distinctiveness",
-              route:
-                "/cms-portal/national-assessment-and-accredition-council/institutional-distinctiveness",
-            },
-            {
-              page: "New Course Started",
-              route:
-                "/cms-portal/national-assessment-and-accredition-council/new-course-started",
-            },
-            {
-              page: "Policies",
-              route:
-                "/cms-portal/national-assessment-and-accredition-council/policies",
-            },
-            {
-              page: "Recommendation of Previous Cycle",
-              route:
-                "/cms-portal/national-assessment-and-accredition-council/recommendation-of-previous-cycle",
-            },
-            {
-              page: "Research Activities",
-              route:
-                "/cms-portal/national-assessment-and-accredition-council/research-activities",
-            },
+            { page: "Building", route: "/cms-college/infrastructure/building" },
+            { page: "Library", route: "/cms-college/infrastructure/library" },
+            { page: "Canteen", route: "/cms-college/infrastructure/canteen" },
+            { page: "Hostel", route: "/cms-college/infrastructure/hostel" },
+            { page: "Sports", route: "/cms-college/infrastructure/sports" },
           ],
         },
         {
           subModule: "Academics",
-          route: "/cms-portal/academics",
+          route: "/cms-college/academics",
           pages: [
             {
               page: "Departments",
-              route: "/cms-portal/academics/departments",
+              route: "/cms-college/academics/departments",
             },
             {
               page: "Regular Courses",
-              route: "/cms-portal/academics/regular-courses",
+              route: "/cms-college/academics/regular-courses",
             },
             {
               page: "Distance Education Courses",
-              route: "/cms-portal/academics/distance-education",
+              route: "/cms-college/academics/distance-education",
             },
-            { page: "Prospectus", route: "/cms-portal/academics/prospectus" },
-            { page: "Time table", route: "/cms-portal/academics/time-table" },
-            { page: "Research", route: "/cms-portal/academics/research" },
+            { page: "Prospectus", route: "/cms-college/academics/prospectus" },
+            { page: "Time table", route: "/cms-college/academics/time-table" },
+            { page: "Research", route: "/cms-college/academics/research" },
           ],
         },
         {
           subModule: "Students",
-          route: "/cms-portal/students",
+          route: "/cms-college/students",
           pages: [
             {
-              page: "List Of Topper Students",
-              route: "/cms-portal/students/list-of-topper-students",
+              page: "Student Details",
+              route: "/cms-college/students/student-details",
             },
             {
-              page: "Student Details",
-              route: "/cms-portal/students/student-details",
+              page: "List of Topper Students",
+              route: "/cms-college/students/list-of-toppers",
             },
-            { page: "ELearning", route: "/cms-portal/students/e-learning" },
+            { page: "E-Learning", route: "/cms-college/students/e-learning" },
+            { page: "Scholarship", route: "/cms-college/students/scholarship" },
+            { page: "Alumni", route: "/cms-college/students/alumni" },
+          ],
+        },
+        {
+          subModule: "NAAC",
+          route: "/cms-college/naac",
+          pages: [
+            { page: "NAAC Award", route: "/cms-college/naac/naac-award" },
+            { page: "Self Study Report (SSR)", route: "/cms-college/naac/ssr" },
+            {
+              page: "Recommendations of Previous Cycle",
+              route: "/cms-college/naac/recommendations",
+            },
+            { page: "IQAC", route: "/cms-college/naac/iqac" },
+            {
+              page: "Institutional Distinctiveness",
+              route: "/cms-college/naac/institutional-distinctiveness",
+            },
+          ],
+        },
+        {
+          subModule: "Highlights",
+          route: "/cms-college/highlights",
+          pages: [
+            {
+              page: "Highlights of Achievements",
+              route: "/cms-college/highlights/achievements",
+            },
+            {
+              page: "New Course Started",
+              route: "/cms-college/highlights/new-course-started",
+            },
+            {
+              page: "Best Practices, Green Initiative",
+              route: "/cms-college/highlights/best-practices",
+            },
+            {
+              page: "Idea House, Idea Hub",
+              route: "/cms-college/highlights/idea-house-hub",
+            },
+          ],
+        },
+        {
+          subModule: "Governance & Activities",
+          route: "/cms-college/governance",
+          pages: [
+            { page: "Policies", route: "/cms-college/governance/policies" },
+            { page: "Audits", route: "/cms-college/governance/audits" },
+            {
+              page: "Research Activities",
+              route: "/cms-college/governance/research-activities",
+            },
+            {
+              page: "Extension Activities",
+              route: "/cms-college/governance/extension-activities",
+            },
+            { page: "Placement", route: "/cms-college/governance/placement" },
           ],
         },
         {
           subModule: "Others",
-          route: "/cms-portal/others",
+          route: "/cms-college/others",
           pages: [
-            { page: "Login", route: "/cms-portal/others/cms-login" },
-            {
-              page: "English / Hindi",
-              route: "/cms-portal/others/english-hindi",
-            },
-            { page: "Contact Us", route: "/cms-portal/others/contact-us" },
-            { page: "Events", route: "/cms-portal/others/events" },
-            {
-              page: "Extra Co-Curricular",
-              route: "/cms-portal/others/extra-co-curricular",
-            },
-            {
-              page: "Image Gallery",
-              route: "/cms-portal/others/image-gallery",
-            },
-            { page: "MOU", route: "/cms-portal/others/mou" },
-            { page: "NCC / NSS", route: "/cms-portal/others/ncc-nss" },
-            {
-              page: "Notifications",
-              route: "/cms-portal/others/notifications",
-            },
+            { page: "RUSA", route: "/cms-college/others/rusa" },
+            { page: "World Bank", route: "/cms-college/others/world-bank" },
             {
               page: "Press Release",
-              route: "/cms-portal/others/press-release",
+              route: "/cms-college/others/press-release",
             },
-            { page: "RUSA", route: "/cms-portal/others/rusa" },
+            { page: "MOU", route: "/cms-college/others/mou" },
+            {
+              page: "Extra Co-Curricular",
+              route: "/cms-college/others/extra-co-curricular",
+            },
+            { page: "NCC, NSS", route: "/cms-college/others/ncc-nss" },
+          ],
+        },
+        {
+          subModule: "General",
+          route: "/cms-college/general",
+          pages: [
+            { page: "CMS Login", route: "/cms-college/general/cms-login" },
+            { page: "Contact Us", route: "/cms-college/general/contact-us" },
+            { page: "English/Hindi", route: "/cms-college/general/language" },
+            { page: "Events", route: "/cms-college/general/events" },
+            {
+              page: "Notifications",
+              route: "/cms-college/general/notifications",
+            },
+            { page: "Images", route: "/cms-college/general/images" },
             {
               page: "Video Gallery",
-              route: "/cms-portal/others/video-gallery",
-            },
-            {
-              page: "World Bank Programs",
-              route: "/cms-portal/others/world-bank",
+              route: "/cms-college/general/video-gallery",
             },
           ],
         },
       ],
     },
-
   ],
 };
 
