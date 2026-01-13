@@ -5,6 +5,7 @@ import BudgetAndFinance from "./budget-and-finance";
 import Dashboard from "./Dashboard";
 import DepartmentEnquiryManagement from "./department-enquiry-management";
 import APRMS from "./employee-aprms";
+import EmployeeDirectoryManagement from "./employee-directory-management";
 import ExamManagement from "./exam-management";
 import GenericPage from "./GenericPage";
 import GuestFacultyManagement from "./guest-faculty-management";
@@ -17,8 +18,6 @@ import StudentManagementSystem from "./student-management-system";
 import TourManagementSystem from "./tour-mangement";
 import TransportManagementSYS from "./transport-management";
 import UserManagement from "./user-management";
-import EmployeeDirectoryManagement from "./employee-directory-management";
-import EmployeeIDCardManagement from "./employee-directory-management/employee-ID-card-management-system";
 
 export default function AppFeature() {
   return (
