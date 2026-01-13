@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from "react";
 import PageLayout from "@/components/PageLayout";
-import { Card } from "primereact/card";
-import { DataTable } from "primereact/datatable";
-import { Column } from "primereact/column";
+import Dropdown from "@/ui/shared/Dropdown";
 import { Button } from "primereact/button";
+import { Card } from "primereact/card";
+import { Column } from "primereact/column";
+import { DataTable } from "primereact/datatable";
 import { InputText } from "primereact/inputtext";
 import { Tag } from "primereact/tag";
-import Dropdown from "@/ui/shared/Dropdown";
+import React, { useState } from "react";
 
 interface AtAGlanceData {
   establishmentYear: string;
@@ -106,19 +106,19 @@ const AtAGlance: React.FC = () => {
               </div>
             )}
           >
-            <Column expander style={{ width: "3rem" }} />
-            <Column header="Sr No." body={(_, opt) => opt.rowIndex + 1} sortable/>
-            <Column field="establishmentYear" header="Establishment Year"sortable />
-            <Column field="landArea" header="Total Land Area (Sq.mtr)"sortable />
+            <Column expander style={{ width: "3rem" }} headerStyle={{ whiteSpace: 'nowrap' }} />
+            <Column header="Sr No." body={(_, opt) => opt.rowIndex + 1} sortable headerStyle={{ whiteSpace: 'nowrap' }} />
+            <Column field="establishmentYear" header="Establishment Year" sortable headerStyle={{ whiteSpace: 'nowrap' }} />
+            <Column field="landArea" header="Total Land Area (Sq.mtr)" sortable headerStyle={{ whiteSpace: 'nowrap' }} />
             <Column
               field="constructedArea"
               header="Total Constructed Area (Sq.mtr)"
-            sortable/>
-            <Column field="staff" header="Total Staff" sortable/>
-            <Column field="department" header="Total Department" sortable/>
-            <Column field="diploma" header="Diploma / Certificate" sortable/>
-            <Column field="ug" header="Total Student in UG" sortable/>
-            <Column field="pg" header="Total Student in PG"sortable />
+              sortable headerStyle={{ whiteSpace: 'nowrap' }} />
+            <Column field="staff" header="Total Staff" sortable headerStyle={{ whiteSpace: 'nowrap' }} />
+            <Column field="department" header="Total Department" sortable headerStyle={{ whiteSpace: 'nowrap' }} />
+            <Column field="diploma" header="Diploma / Certificate" sortable headerStyle={{ whiteSpace: 'nowrap' }} />
+            <Column field="ug" header="Total Student in UG" sortable headerStyle={{ whiteSpace: 'nowrap' }} />
+            <Column field="pg" header="Total Student in PG" sortable headerStyle={{ whiteSpace: 'nowrap' }} />
           </DataTable>
         </Card>
       )}
