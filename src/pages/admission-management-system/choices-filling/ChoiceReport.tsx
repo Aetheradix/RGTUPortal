@@ -1,11 +1,11 @@
 
+import { Button } from "primereact/button";
+import { Calendar } from "primereact/calendar";
+import { Column } from "primereact/column";
+import { DataTable, type DataTableExpandedRows } from "primereact/datatable";
+import { InputText } from "primereact/inputtext";
 import React, { useState } from "react";
 import PageLayout from "../../../components/PageLayout";
-import { Button } from "primereact/button";
-import { InputText } from "primereact/inputtext";
-import { Calendar } from "primereact/calendar";
-import { DataTable, type DataTableExpandedRows } from "primereact/datatable";
-import { Column } from "primereact/column";
 
 interface ChoiceData {
   id: string;
@@ -186,33 +186,30 @@ const ChoiceReport: React.FC = () => {
           paginator
           rows={10}
           className="p-datatable-sm text-sm">
-          <Column expander={true} style={{ width: "3rem" }} />
+          <Column expander={true} headerStyle={{ whiteSpace: 'nowrap' }} />
 
-          <Column
-            field="srNo"
-            header="Sr No."
-            sortable
-            style={{ width: "70px" }}
-          />
-          <Column field="regNo" header="Registration No." sortable />
-          <Column field="name" header="Name" sortable />
-          <Column field="dob" header="Date of Birth" sortable />
-          <Column field="gender" header="Gender" sortable />
-          <Column field="course" header="Course Applied For" sortable />
+
+          <Column field="regNo" header="Registration No." sortable headerStyle={{ whiteSpace: 'nowrap' }} />
+          <Column field="name" header="Name" sortable headerStyle={{ whiteSpace: 'nowrap' }} />
+          <Column field="dob" header="Date of Birth" sortable headerStyle={{ whiteSpace: 'nowrap' }} />
+          <Column field="gender" header="Gender" sortable headerStyle={{ whiteSpace: 'nowrap' }} />
+          <Column field="course" header="Course Applied For" sortable headerStyle={{ whiteSpace: 'nowrap' }} />
           <Column
             field="specialization"
             header="Preferred Specialization"
             sortable
+            headerStyle={{ whiteSpace: 'nowrap' }}
           />
-          <Column field="admissionStatus" header="Admission Status" sortable />
-          <Column field="firstChoice" header="First Choice Course" />
-          <Column field="seatStatus" header="Seat Allotment Status" />
+          <Column field="admissionStatus" header="Admission Status" sortable headerStyle={{ whiteSpace: 'nowrap' }} />
+          <Column field="firstChoice" header="First Choice Course" headerStyle={{ whiteSpace: 'nowrap' }} />
+          <Column field="seatStatus" header="Seat Allotment Status" headerStyle={{ whiteSpace: 'nowrap' }} />
           <Column
             field="submissionDate"
             header="Application Submission Date"
             sortable
+            headerStyle={{ whiteSpace: 'nowrap' }}
           />
-          <Column field="feeStatus" header="Fee Status" sortable />
+          <Column field="feeStatus" header="Fee Status" sortable headerStyle={{ whiteSpace: 'nowrap' }} />
         </DataTable>
       </div>
     </PageLayout>

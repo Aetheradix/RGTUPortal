@@ -1,10 +1,9 @@
-import React, { useState, useRef } from "react";
-import PageLayout from "../../../components/PageLayout";
 import { Button } from "primereact/button";
-import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
+import { DataTable } from "primereact/datatable";
 import { MultiSelect } from "primereact/multiselect";
-import { Toast } from "primereact/toast"; // Import Toast
+import React, { useState } from "react";
+import PageLayout from "../../../components/PageLayout";
 
 interface StudentInitialData {
   id: number;
@@ -37,10 +36,7 @@ const EkycApproval: React.FC = () => {
   const [selectedAcademicYear, setSelectedAcademicYear] = useState<string[]>(
     []
   );
-  const toast = useRef<Toast>(null); // Initialize Toast ref
-
   const academicYears = ["2024-25", "2023-24", "2022-23", "2021-22"];
-
   const [initialData] = useState<StudentInitialData[]>([
     {
       id: 1,
@@ -72,57 +68,35 @@ const EkycApproval: React.FC = () => {
     {
       id: 2,
       samagraId: "553366336688",
-      studentName: "Arti Sharma ",
-      fatherName: " Ravi Sharma",
+      studentName: "Arti Sharma	",
+      fatherName: "	Ravi Sharma",
       dob: "15/08/2004",
       gender: "Female",
       course: "MCA",
-      year: "2nd Year",
+      year: "2nd",
     },
   ]);
 
   const handleFilter = () => {
     if (selectedAcademicYear.length > 0) {
       setShowFilteredGrid(true);
-      toast.current?.show({
-        severity: "success",
-        summary: "Records Filtered",
-        detail: `Found records for selected years.`,
-        life: 3000,
-      });
     } else {
-      toast.current?.show({
-        severity: "warn",
-        summary: "Selection Required",
-        detail: "Please select Academic Year",
-        life: 3000,
-      });
+      alert("Please select Academic Year");
     }
   };
-
   const handleClear = () => {
     setSelectedAcademicYear([]);
     setShowFilteredGrid(false);
-    toast.current?.show({
-      severity: "info",
-      summary: "Cleared",
-      detail: "Filters have been reset.",
-      life: 2000,
-    });
   };
-  const approveActionTemplate = () => {
-    return (
-      <Button
-        label="Approve"
-        className="p-button-outlined p-button-success text-xs px-3 py-1"
-        style={{ fontWeight: "600" }}
-      />
-    );
-  };
+  const expandTemplate = () => (
+    <i
+      className="pi pi-plus-circle text-indigo-500 cursor-pointer"
+      style={{ fontSize: "1.1rem" }}
+    ></i>
+  );
 
   return (
     <PageLayout title="eKYC Approval">
-      <Toast ref={toast} />
       <div className="space-y-8">
         <section className="bg-white p-4 rounded-lg">
           <h3 className="text-lg font-semibold mb-4 text-gray-800">
@@ -130,29 +104,29 @@ const EkycApproval: React.FC = () => {
           </h3>
           <DataTable
             value={initialData}
-            className="p-datatable-sm text-sm"
+            className="p-datatable-sm text-sm no-border-table"
             rowHover
           >
-            <Column field="id" header="Sr.No." style={{ width: "80px" }} />
-            <Column field="aadhaarNumber" header="Aadhaar Number" />
-            <Column field="name" header="Name" />
-            <Column field="fatherName" header="Father's Name" />
-            <Column field="relation" header="Relation" />
-            <Column field="dob" header="Date of Birth" />
-            <Column field="gender" header="Gender" />
-            <Column field="permanentAddress" header="Permanent Address" />
-            <Column field="pinCode" header="Pin Code" />
-            <Column field="district" header="District" />
-            <Column field="localBody" header="Local Body" />
-            <Column field="landmark" header="Landmark" />
+            <Column body={expandTemplate} headerStyle={{ whiteSpace: 'nowrap' }} />
+            <Column field="id" header="S.No." headerStyle={{ whiteSpace: 'nowrap' }} />
+            <Column field="aadhaarNumber" header="Aadhaar Number" headerStyle={{ whiteSpace: 'nowrap' }} />
+            <Column field="name" header="Name" headerStyle={{ whiteSpace: 'nowrap' }} />
+            <Column field="fatherName" header="Father's Name" headerStyle={{ whiteSpace: 'nowrap' }} />
+            <Column field="relation" header="Relation" headerStyle={{ whiteSpace: 'nowrap' }} />
+            <Column field="dob" header="Date of Birth" headerStyle={{ whiteSpace: 'nowrap' }} />
+            <Column field="gender" header="Gender" headerStyle={{ whiteSpace: 'nowrap' }} />
+            <Column field="permanentAddress" header="Permanent Address" headerStyle={{ whiteSpace: 'nowrap' }} />
+            <Column field="pinCode" header="Pin Code" headerStyle={{ whiteSpace: 'nowrap' }} />
+            <Column field="district" header="District" headerStyle={{ whiteSpace: 'nowrap' }} />
+            <Column field="localBody" header="Local Body" headerStyle={{ whiteSpace: 'nowrap' }} />
+            <Column field="landmark" header="Landmark" headerStyle={{ whiteSpace: 'nowrap' }} />
           </DataTable>
         </section>
-
-        <section className="p-6 rounded-lg border border-gray-200 bg-white">
+        <section className=" p-6 rounded-lg border border-gray-200">
           <h3 className="text-md font-bold mb-4 uppercase text-gray-600 tracking-wider">
-            Filter Approval Details
+            Filter Approval Details{" "}
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Select Academic Years <span className="text-red-500">*</span>
@@ -177,12 +151,12 @@ const EkycApproval: React.FC = () => {
             <Button
               label="Clear"
               icon="pi pi-refresh"
-              className="p-button-outlined"
+              className="bg-red-100 text-red-600 border-none px-6"
               onClick={handleClear}
             />
           </div>
         </section>
-
+        {/* SECTION 3: FILTERED GRID (Appears only after filter is clicked) */}
         {showFilteredGrid && (
           <section className="bg-white p-4 rounded shadow-sm border border-gray-100 animate-fade-in">
             <h3 className="text-lg font-bold mb-4 text-gray-700 border-b pb-2">
@@ -195,27 +169,29 @@ const EkycApproval: React.FC = () => {
               className="p-datatable-sm text-sm"
               responsiveLayout="scroll"
             >
-              <Column
-                field="id"
-                header="Sr.No."
-                style={{ width: "80px" }}
-                sortable
-              />
-              <Column field="samagraId" header="Samagra Id" sortable />
-              <Column field="studentName" header="Student Name" sortable />
-              <Column field="fatherName" header="Father's Name" sortable />
-              <Column field="dob" header="DOB" sortable />
-              <Column field="course" header="Course" sortable />
-              <Column field="year" header="Year" sortable />
-              <Column field="gender" header="Gender" sortable />
+              <Column field="id" header="S.No." style={{ width: "60px" }} />
+              <Column field="samagraId" header="Samagra Id" />
+              <Column field="studentName" header=" Student Name" />
+              <Column field="fatherName" header=" Father's Name" />
+              <Column field="dob" header=" DOB" />
+              <Column field="course" header="Course" />
+              <Column field="year" header=" Year" />
+              <Column field="gender" header=" Gender" />
               <Column
                 header="Status"
-                sortable
                 body={() => (
                   <span className="text-orange-500 font-medium">Pending</span>
                 )}
               />
-              <Column sortable header="Action" body={approveActionTemplate} />
+              <Column
+                header="Action"
+                body={() => (
+                  <Button
+                    label="Details"
+                    className="bg-blue-500 border-none text-xs px-3 py-1"
+                  />
+                )}
+              />
             </DataTable>
           </section>
         )}

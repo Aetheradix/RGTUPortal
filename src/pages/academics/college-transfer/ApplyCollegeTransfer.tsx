@@ -4,7 +4,6 @@ import { Button } from 'primereact/button';
 import { Input, Dropdown, Table, type TableColumn } from '../../../ui/shared';
 import { Textarea } from '../../../ui/shared/Input';
 
-// --- Interfaces ---
 interface CollegeTransferRow {
   srNo: number;
   department: string;
@@ -17,7 +16,6 @@ interface CollegeTransferRow {
   currentUniversity: string;
 }
 
-// --- Realistic Dropdown Options ---
 const facultyOptions = [
   { label: 'Faculty of Engineering', value: 'Engineering' },
   { label: 'Faculty of Management', value: 'Management' },
@@ -130,7 +128,6 @@ const ApplyCollegeTransfer: React.FC = () => {
     <PageLayout title="Apply College Transfer">
       <form className="space-y-8 bg-white p-6 rounded-lg shadow-sm border border-gray-100">
         
-        {/* Section 1: Basic Details */}
         <div className="space-y-4">
           <h3 className="text-md font-bold text-indigo-700 border-b pb-2 flex items-center gap-2">
             <i className="pi pi-user"></i> Student Basic Details
@@ -143,7 +140,6 @@ const ApplyCollegeTransfer: React.FC = () => {
           </div>
         </div>
 
-        {/* Section 2: Current College Details */}
         <div className="space-y-4">
           <h3 className="text-md font-bold text-indigo-700 border-b pb-2 flex items-center gap-2">
             <i className="pi pi-building"></i> Current College Details
@@ -156,7 +152,6 @@ const ApplyCollegeTransfer: React.FC = () => {
           </div>
         </div>
 
-        {/* Section 3: Transfer College Details */}
         <div className="space-y-4">
           <h3 className="text-md font-bold text-indigo-700 border-b pb-2 flex items-center gap-2">
             <i className="pi pi-directions"></i> Transfer College Details
@@ -169,7 +164,6 @@ const ApplyCollegeTransfer: React.FC = () => {
           </div>
         </div>
 
-        {/* Section 4: Document Uploads & Reason */}
         <div className="space-y-4">
           <h3 className="text-md font-bold text-indigo-700 border-b pb-2 flex items-center gap-2">
             <i className="pi pi-file-pdf"></i> Document Uploads & Reason
