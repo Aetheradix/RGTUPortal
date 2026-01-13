@@ -1,6 +1,8 @@
 import {
+  FaBed,
   FaBook,
   FaBookReader,
+  FaBuilding,
   FaBus,
   FaChalkboardTeacher,
   FaClipboardList,
@@ -10,6 +12,8 @@ import {
   FaHome,
   FaMoneyBillWave,
   FaMoneyCheckAlt,
+  FaPlane,
+  FaSchool,
   FaUniversity,
   FaUserFriends,
   FaUserGraduate,
@@ -1870,7 +1874,7 @@ const sidebarMenu = {
     },
     {
       module: "Employee Annual Property Returns Management System",
-      icon: FaUniversity,
+      icon: FaBuilding,
       route: "/aprms",
       subModules: [
         {
@@ -1903,7 +1907,7 @@ const sidebarMenu = {
     },
     {
       module: "Department Enquiry Management",
-      icon: FaUniversity,
+      icon: FaBookReader,
       route: "/department-enquiry-management",
       subModules: [
         {
@@ -1937,7 +1941,7 @@ const sidebarMenu = {
     },
     {
       module: "Tour Management",
-      icon: FaUniversity,
+      icon: FaPlane,
       route: "/tour-management",
       subModules: [
         {
@@ -1968,7 +1972,7 @@ const sidebarMenu = {
     },
     {
       module: "OIS Setup",
-      icon: FaUniversity,
+      icon: FaSchool,
       route: "/ois",
       subModules: [
         {
@@ -2061,7 +2065,7 @@ const sidebarMenu = {
     },
     {
       module: "Hostel Management",
-      icon: FaUniversity,
+      icon: FaBed,
       route: "/hostel-management",
       subModules: [
         {
