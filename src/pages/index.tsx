@@ -1,15 +1,33 @@
 import { Route, Routes } from "react-router-dom";
-import Dashboard from "./Dashboard";
-import GenericPage from "./GenericPage";
-import Master from "./masters";
-import ExamManagement from "./exam-management";
-import BudgetAndFinance from "./budget-and-finance";
 import Academics from "./academics";
 import Admissonmanagementsystem from "./admission-management-system";
-import SchemeManagement from "./scheme-management";
-import StudentManagementSystem from "./student-management-system";
-import TransportManagementSYS from "./transport-management";
+import BudgetAndFinance from "./budget-and-finance";
+import CmsPortal from "./cms-portal";
+import CompassionManagement from "./compassion-management";
+import Dashboard from "./Dashboard";
+import DepartmentEnquiryManagement from "./department-enquiry-management";
+import APRMS from "./employee-aprms";
+import EmployeeDirectoryManagement from "./employee-directory-management";
+import ExamManagement from "./exam-management";
+import GenericPage from "./GenericPage";
+import GuestFacultyManagement from "./guest-faculty-management";
+import HostelManagementSystem from "./hostel-management";
 import Hrms from "./hrms/Index";
+import IncrementManagement from "./increment-management";
+import LeaveManagement from "./leave-management";
+import MasterDataManagement from "./master-data-management";
+import Master from "./masters";
+import OIS from "./ois";
+import Payroll from "./payroll";
+import ProfilePage from "./profile";
+import SchemeManagement from "./scheme-management";
+import SchemeManagementSystem from "./scheme-mangament-master";
+import StudentManagementSystem from "./student-management-system";
+import TourManagementSystem from "./tour-mangement";
+import Trainingawardsystem from "./training-and-awards-management";
+import TransportManagementSYS from "./transport-management";
+import UserManagement from "./user-management";
+import VocationalManagement from "./vocational-management";
 
 export default function AppFeature() {
   return (
@@ -38,6 +56,45 @@ export default function AppFeature() {
       <Route path="*" element={<GenericPage />} />
       <Route path="scheme-management/*" element={<SchemeManagement />} />
       <Route path="hrms/*" element={<Hrms />} />
+      <Route path="*" element={<GenericPage />} />
+      <Route path="scheme-management/*" element={<SchemeManagement />} />
+      <Route path="guest-faculty/*" element={<GuestFacultyManagement />} />
+      <Route path="aprms/*" element={<APRMS />} />
+      <Route
+        path="department-enquiry-management/*"
+        element={<DepartmentEnquiryManagement />}
+      />
+      <Route
+        path="tour-management-system/*"
+        element={<TourManagementSystem />}
+      />
+      <Route path="user-management/*" element={<UserManagement />} />
+      <Route path="ois/*" element={<OIS />} />
+      <Route
+        path="hostel-management-system/*"
+        element={<HostelManagementSystem />}
+      />
+      <Route path="exam-management/*" element={<ExamManagement />} />
+      {/* Fallback for any route where dedicated UI is not implemented yet */}
+      <Route path="*" element={<GenericPage />} />
+      <Route path="scheme-management-system/*" element={<SchemeManagementSystem />} />
+      <Route path="cms-portal/*" element={<CmsPortal />} />
+      <Route path="guest-faculty/*" element={<GuestFacultyManagement />} />
+      <Route path="payroll/*" element={<Payroll />} />
+      <Route path="vocational-management/*" element={<VocationalManagement />} />
+      <Route path="compassion-management/*" element={<CompassionManagement />} />
+      <Route path="training-and-awards-management/*" element={<Trainingawardsystem />} />
+      <Route path="increment-management/*" element={<IncrementManagement />} />
+      <Route path="leave-management/*" element={<LeaveManagement />} />
+      <Route
+        path="master-data-management/*"
+        element={<MasterDataManagement />}
+      />
+      <Route
+        path="employee-directory-management/*"
+        element={<EmployeeDirectoryManagement />}
+      />
+      <Route path="profile" element={<ProfilePage />} />
     </Routes>
   );
 }

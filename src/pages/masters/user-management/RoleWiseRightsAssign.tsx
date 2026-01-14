@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import PageLayout from '../../../components/PageLayout';
 import { Button } from 'primereact/button';
+import { Column } from 'primereact/column';
+import { DataTable } from 'primereact/datatable';
 import { Dropdown } from 'primereact/dropdown';
 import { MultiSelect } from 'primereact/multiselect';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
+import React, { useState } from 'react';
+import PageLayout from '../../../components/PageLayout';
 
 interface RoleRights {
   id: number;
@@ -79,8 +79,7 @@ const RoleWiseRightsAssign: React.FC = () => {
 
         <div className="flex gap-3">
           <Button type="submit" label="Assign Rights" icon="pi pi-save" className="p-button-primary" />
-          <Button type="button" label="Cancel" icon="pi pi-times" className="p-button-secondary" />
-          <Button type="button" label="Reset" icon="pi pi-refresh" className="p-button-outlined" onClick={() => setFormData({ roleName: '', selectedForms: [] })} /> 
+          <Button type="button" label="Reset" icon="pi pi-refresh" className="p-button-outlined" onClick={() => setFormData({ roleName: '', selectedForms: [] })} />
         </div>
       </form>
 

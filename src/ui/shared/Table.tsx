@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { DataTable, type DataTableProps } from 'primereact/datatable';
 import { Column, type ColumnProps } from 'primereact/column';
+import { DataTable, type DataTableProps } from 'primereact/datatable';
 import { Paginator } from 'primereact/paginator';
+import React, { useState } from 'react';
 
 export interface TableColumn extends ColumnProps {
   field: string;
@@ -12,7 +12,7 @@ export interface TableColumn extends ColumnProps {
   body?: (rowData: any) => React.ReactNode;
 }
 
-export interface TableProps extends Omit<DataTableProps<any>, 'paginator' | 'rows'> {
+export interface TableProps extends Omit<DataTableProps<any>, 'paginator' | 'rows' | 'cellSelection'> {
   columns: TableColumn[];
   data: any[];
   title?: string;
@@ -38,11 +38,12 @@ const Table: React.FC<TableProps> = ({
   emptyMessage = 'No records found',
   loading = false,
   onPageChange,
-  onSort,
-  onFilter,
+  // onSort,
+  // onFilter,
   className,
-  ...dataTableProps
+  // ...dataTableProps
 }) => {
+  // const { cellSelection, ...restProps } = dataTableProps;
   const [first, setFirst] = useState(0);
   const [rows, setRows] = useState(rowsPerPage);
 
@@ -67,16 +68,17 @@ const Table: React.FC<TableProps> = ({
         loading={loading}
         emptyMessage={emptyMessage}
         className={`w-full ${className || ''}`}
-        {...(dataTableProps as any)}
+      // {...(cellSelection === true ? { ...restProps, cellSelection: true } : restProps)}
       >
         {columns.map((column, index) => (
           <Column
             key={column.field || index}
             {...column}
+            headerStyle={{ whiteSpace: 'nowrap' }}
           />
         ))}
       </DataTable>
-      
+
       {showPagination && totalRecords > 0 && (
         <div className={`mt-4 ${paginationClassName || ''}`}>
           <Paginator

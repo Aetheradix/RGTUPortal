@@ -26,6 +26,7 @@ interface DuplicateApplication {
   reason: string;
 }
 
+/* ================= OPTIONS ================= */
 const examOptions = [
   { label: 'Mid-Term Exams', value: 'Mid-Term Exams' },
   { label: 'Final Exams', value: 'Final Exams' },
@@ -48,6 +49,7 @@ const paymentOptions = [
   { label: 'Unpaid', value: 'Unpaid' },
 ];
 
+/* ================= LIST ================= */
 const applicationList: DuplicateApplication[] = [
   {
     id: 1,
@@ -63,44 +65,30 @@ const applicationList: DuplicateApplication[] = [
     status: 'Processed',
     reason: 'I lost my marksheet',
   },
-  {
-    id: 2,
-    rollNo: '2023100456',
-    examName: 'Final Exams',
-    course: 'M.Tech',
-    subject: 'Operating Systems',
-    issueDate: '15 October, 2024',
-    applicationDate: '18 October, 2024',
-    processedBy: 'Prof. Verma',
-    fee: 350,
-    paymentStatus: 'Paid',
-    status: 'Processed',
-    reason: 'Damaged marksheet',
-  },
-  {
-    id: 3,
-    rollNo: '2023100789',
-    examName: 'Quarterly Tests',
-    course: 'BCA',
-    subject: 'Artificial Intelligence',
-    issueDate: '10 September, 2024',
-    applicationDate: '12 September, 2024',
-    processedBy: 'Prof. Singh',
-    fee: 350,
-    paymentStatus: 'Paid',
-    status: 'Processed',
-    reason: 'Lost during shifting',
-  },
 ];
 
 const DuplicateMarksheetApplications: React.FC = () => {
   const [view, setView] = useState<'list' | 'add'>('list');
   const [expandedRows, setExpandedRows] = useState<any>(null);
 
+  /* ✅ FORM STATE */
+  const [form, setForm] = useState({
+    rollNo: '',
+    examName: null as string | null,
+    subject: null as string | null,
+    reason: '',
+    status: null as string | null,
+    paymentStatus: null as string | null,
+    applicationDate: null as Date | null,
+    processedBy: '',
+    processingDate: null as Date | null,
+    remarks: '',
+  });
+
   return (
     <PageLayout title="Duplicate Marksheet Applications">
 
-
+      {/* ================= LIST ================= */}
       {view === 'list' && (
         <Card>
           <div className="flex justify-between items-center mb-3">
@@ -112,38 +100,57 @@ const DuplicateMarksheetApplications: React.FC = () => {
             />
           </div>
 
-          <DataTable
-            value={applicationList}
-            paginator
-            rows={10}
-            showGridlines
-            expandedRows={expandedRows}
-            onRowToggle={(e) => setExpandedRows(e.data)}
-            rowExpansionTemplate={(row: DuplicateApplication) => (
-              <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-3 bg-gray-50 text-sm">
-                <div><strong>Date of Issue:</strong> {row.issueDate}</div>
-                <div><strong>Application Date:</strong> {row.applicationDate}</div>
-                <div><strong>Processed By:</strong> {row.processedBy}</div>
-                <div><strong>Duplicate Marksheet Fee:</strong> ₹{row.fee}</div>
-                <div><strong>Payment Status:</strong> <Tag value={row.paymentStatus} severity="success" /></div>
-                <div><strong>Status:</strong> <Tag value={row.status} severity="info" /></div>
-                <div className="md:col-span-2">
-                  <strong>Reason for Duplicate Marksheet:</strong> {row.reason}
-                </div>
-              </div>
-            )}
-          >
-            <Column expander style={{ width: '3rem' }} />
-            <Column header="Sr No." body={(_, opt) => opt.rowIndex + 1} />
-            <Column field="rollNo" header="Roll Number *" />
-            <Column field="examName" header="Exam Name" />
-            <Column field="course" header="Course" />
-            <Column field="subject" header="Subject" />
-          </DataTable>
+   <DataTable
+  value={applicationList}
+  paginator
+  rows={10}
+  showGridlines
+  className="p-datatable-sm"
+  expandedRows={expandedRows}
+  onRowToggle={(e) => setExpandedRows(e.data)}
+  rowExpansionTemplate={(row: DuplicateApplication) => (
+    <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-3 bg-gray-50 text-sm">
+      <div><strong>Date of Issue:</strong> {row.issueDate}</div>
+      <div><strong>Application Date:</strong> {row.applicationDate}</div>
+      <div><strong>Processed By:</strong> {row.processedBy}</div>
+      <div><strong>Duplicate Marksheet Fee:</strong> ₹{row.fee}</div>
+      <div>
+        <strong>Payment Status:</strong>{' '}
+        <Tag value={row.paymentStatus} severity="success" />
+      </div>
+      <div>
+        <strong>Status:</strong>{' '}
+        <Tag value={row.status} severity="info" />
+      </div>
+      <div className="md:col-span-2">
+        <strong>Reason:</strong> {row.reason}
+      </div>
+    </div>
+  )}
+>
+  <Column
+    expander
+    style={{ width: '3rem' }}
+  />
+  <Column
+    field="srNo"
+    header="Sr No."
+    body={(_, opt) => opt.rowIndex + 1}
+    style={{ width: '80px' }}
+    sortable
+    filter
+    filterPlaceholder="Search"
+  />
+  <Column field="rollNo" header="Roll Number" sortable filter filterPlaceholder="Search" />
+  <Column field="examName" header="Exam Name" sortable filter filterPlaceholder="Search" />
+  <Column field="course" header="Course" sortable filter filterPlaceholder="Search" />
+  <Column field="subject" header="Subject" sortable filter filterPlaceholder="Search" />
+</DataTable>
+
         </Card>
       )}
 
-
+      {/* ================= ADD ================= */}
       {view === 'add' && (
         <Card>
           <div className="flex justify-between items-center mb-3">
@@ -157,17 +164,108 @@ const DuplicateMarksheetApplications: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-            <InputText placeholder="Enter Roll Number *" />
-            <Dropdown options={examOptions} placeholder="Select Exam Name *" />
-            <Dropdown options={subjectOptions} placeholder="Select Subject *" />
-            <InputText placeholder="Enter Reason for Duplicate Marksheet" />
-            <Dropdown options={statusOptions} placeholder="Application Status *" />
-            <Dropdown options={paymentOptions} placeholder="Payment Status *" />
-            <Calendar placeholder="Application Date *" dateFormat="dd/mm/yy" />
-            <InputText placeholder="Processed By *" />
-            <Calendar placeholder="Processing Date *" dateFormat="dd/mm/yy" />
-            <InputText placeholder="Enter Remarks *" />
-            <FileUpload mode="basic" chooseLabel="Document Upload *" />
+
+            <div className="flex flex-col gap-1">
+              <label>Roll Number *</label>
+              <InputText
+                placeholder="Enter Roll Number *"
+                value={form.rollNo}
+                onChange={(e) => setForm({ ...form, rollNo: e.target.value })}
+              />
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <label>Exam Name *</label>
+              <Dropdown
+                options={examOptions}
+                placeholder="Select Exam Name *"
+                value={form.examName}
+                onChange={(e) => setForm({ ...form, examName: e.value })}
+              />
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <label>Subject *</label>
+              <Dropdown
+                options={subjectOptions}
+                placeholder="Select Subject *"
+                value={form.subject}
+                onChange={(e) => setForm({ ...form, subject: e.value })}
+              />
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <label>Reason for Duplicate Marksheet</label>
+              <InputText
+                placeholder="Enter Reason for Duplicate Marksheet"
+                value={form.reason}
+                onChange={(e) => setForm({ ...form, reason: e.target.value })}
+              />
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <label>Application Status *</label>
+              <Dropdown
+                options={statusOptions}
+                placeholder="Application Status *"
+                value={form.status}
+                onChange={(e) => setForm({ ...form, status: e.value })}
+              />
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <label>Payment Status *</label>
+              <Dropdown
+                options={paymentOptions}
+                placeholder="Payment Status *"
+                value={form.paymentStatus}
+                onChange={(e) => setForm({ ...form, paymentStatus: e.value })}
+              />
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <label>Application Date *</label>
+              <Calendar
+                placeholder="Application Date *"
+                dateFormat="dd/mm/yy"
+                value={form.applicationDate}
+                onChange={(e) => setForm({ ...form, applicationDate: e.value ?? null })}
+              />
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <label>Processed By *</label>
+              <InputText
+                placeholder="Processed By *"
+                value={form.processedBy}
+                onChange={(e) => setForm({ ...form, processedBy: e.target.value })}
+              />
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <label>Processing Date *</label>
+              <Calendar
+                placeholder="Processing Date *"
+                dateFormat="dd/mm/yy"
+                value={form.processingDate}
+                onChange={(e) => setForm({ ...form, processingDate: e.value ?? null })}
+              />
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <label>Remarks *</label>
+              <InputText
+                placeholder="Enter Remarks *"
+                value={form.remarks}
+                onChange={(e) => setForm({ ...form, remarks: e.target.value })}
+              />
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <label>Document Upload *</label>
+              <FileUpload mode="basic" chooseLabel="Choose File" />
+            </div>
+
           </div>
 
           <div className="flex gap-3">

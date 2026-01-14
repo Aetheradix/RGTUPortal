@@ -69,7 +69,7 @@ const ModuleMapping: React.FC = () => {
         <div className="flex gap-3">
           <Button type="submit" label="Map Modules" icon="pi pi-link" className="p-button-primary" />
           <Button type="button" label="Cancel" icon="pi pi-times" className="p-button-secondary" />
-          <Button type="button" label="Reset" icon="pi pi-refresh" className="p-button-outlined" />
+         
         </div>
       </form>
 

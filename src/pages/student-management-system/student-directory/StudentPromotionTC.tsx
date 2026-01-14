@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react';
 import PageLayout from '../../../components/PageLayout';
 import { DataTable } from 'primereact/datatable';
@@ -93,7 +94,6 @@ const StudentPromotionTC: React.FC = () => {
                 </div>
             </div>
 
-            {/* 2. LIST VIEW (image_554656) */}
             {viewMode === 'list' && (
                 <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100 animate-in fade-in duration-300">
                     <h3 className="text-md font-bold mb-4 text-gray-600">Student Promotion & TC List</h3>
@@ -112,7 +112,6 @@ const StudentPromotionTC: React.FC = () => {
                 </div>
             )}
 
-            {/* 3. ADD/ENTRY VIEW (image_554652) */}
             {viewMode === 'add' && (
                 <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100 animate-in slide-in-from-bottom-4 duration-400">
                     <div className="flex justify-between items-center mb-4">

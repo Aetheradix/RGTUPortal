@@ -1,10 +1,16 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 interface AuthContextType {
   isAuthenticated: boolean;
   login: (email: string, password: string) => Promise<boolean>;
   logout: () => void;
-  user: { email: string } | null;
+  user: {
+    email: string;
+    name: string;
+    role: string;
+    joinDate: string;
+    avatar?: string;
+  } | null;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -16,34 +22,40 @@ const DUMMY_CREDENTIALS = {
 };
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const [user, setUser] = useState<{ email: string } | null>(null);
-
- 
-  useEffect(() => {
-    const storedAuth = localStorage.getItem('isAuthenticated');
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
+    return localStorage.getItem('isAuthenticated') === 'true';
+  });
+  const [user, setUser] = useState<{
+    email: string;
+    name: string;
+    role: string;
+    joinDate: string;
+    avatar?: string;
+  } | null>(() => {
     const storedUser = localStorage.getItem('user');
-    
-    if (storedAuth === 'true' && storedUser) {
-      setIsAuthenticated(true);
-      setUser(JSON.parse(storedUser));
-    }
-  }, []);
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
+
 
   const login = async (email: string, password: string): Promise<boolean> => {
 
     await new Promise(resolve => setTimeout(resolve, 500));
-    
-    
+
+
     if (email === DUMMY_CREDENTIALS.email && password === DUMMY_CREDENTIALS.password) {
-      const userData = { email };
+      const userData = {
+        email,
+        name: 'Admin User',
+        role: 'System Administrator',
+        joinDate: 'January 2024'
+      };
       setIsAuthenticated(true);
       setUser(userData);
       localStorage.setItem('isAuthenticated', 'true');
       localStorage.setItem('user', JSON.stringify(userData));
       return true;
     }
-    
+
     return false;
   };
 

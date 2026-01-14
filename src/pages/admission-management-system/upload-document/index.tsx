@@ -3,8 +3,6 @@ import AddDocumentRequirement from "./ConfigureDocumentRequirement";
 import UploadDocuments from "./UploadDocuments";
 import UploadedDocumentsList from "./UploadedDocuments";
 
-
-
 export default function 
 UploadDocument() {
   return (
@@ -13,9 +11,6 @@ UploadDocument() {
       <Route path="configure-document-requirement" element={<AddDocumentRequirement />} />
       <Route path="upload-documents" element={<UploadDocuments />} />
       <Route path="uploaded-documents" element={< UploadedDocumentsList/>} />
-    
-    
-     
       <Route path="*" element={<Navigate to="configure-document-requirement" replace />} />
     </Routes>
   );

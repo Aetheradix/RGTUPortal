@@ -18,13 +18,10 @@ const StudentAchievementTrackingReport: React.FC = () => {
   const [selectedYear, setSelectedYear] = useState(null);
   const [showPdf, setShowPdf] = useState(false);
 
-  // --- Dropdown Options ---
   const academicYears = [
     { label: "2023-24", value: "2023-24" },
     { label: "2024-25", value: "2024-25" },
   ];
-
-  // --- Table Mock Data (Based on image_cb99b2) ---
   const reportData: AchievementReportRow[] = [
     { srNo: 1, enrollmentNo: '0501CS221C01', studentName: 'Aruhi Sharma', semester: '3rd Semester', achievementTitle: 'Active Participation in NSS Camp' },
     { srNo: 2, enrollmentNo: '0501CS221C02', studentName: 'Arnav Gupta', semester: '5th Semester', achievementTitle: 'Gold Medal in Athletics' },
@@ -35,7 +32,6 @@ const StudentAchievementTrackingReport: React.FC = () => {
     { srNo: 7, enrollmentNo: '0501CS221C07', studentName: 'Simran Singh', semester: '1st Semester', achievementTitle: 'Participant in State-Level Cricket Tournament' },
   ];
 
-  // --- Certificate View Button Template ---
   const certificateTemplate = () => (
     <Button 
       icon="pi pi-eye" 
@@ -48,7 +44,6 @@ const StudentAchievementTrackingReport: React.FC = () => {
   return (
     <PageLayout title="Student Achievement Tracking Report">
       
-      {/* 1. FILTER SECTION (image_cb99b0) */}
       <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 mb-8">
       
         <div className="w-full md:w-1/4">
@@ -71,7 +66,6 @@ const StudentAchievementTrackingReport: React.FC = () => {
         </div>
       </div>
 
-      {/* 2. REPORT TABLE SECTION (image_cb99b2) */}
       <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
         <div className="flex justify-between items-center mb-4">
            <h2 className="text-lg font-bold text-gray-700">Student Achievement Tracking Report</h2>
@@ -91,8 +85,6 @@ const StudentAchievementTrackingReport: React.FC = () => {
           <Column header="Certificate" body={certificateTemplate} style={{ width: '100px', textAlign: 'center' }} />
         </DataTable>
       </div>
-
-      {/* 3. PDF PREVIEW MODAL (image_cb99b4) */}
       <Dialog 
         header="PDF Preview" 
         visible={showPdf} 
@@ -101,7 +93,6 @@ const StudentAchievementTrackingReport: React.FC = () => {
         maximized
       >
         <div className="bg-gray-700 w-full h-full flex flex-col">
-          {/* Mock PDF Toolbar */}
           <div className="bg-gray-800 p-2 flex justify-between items-center text-white text-xs">
             <span>certificatepdf (1).pdf</span>
             <div className="flex gap-4">
@@ -109,8 +100,6 @@ const StudentAchievementTrackingReport: React.FC = () => {
               <i className="pi pi-download pointer"></i>
             </div>
           </div>
-          
-          {/* Mock Certificate Content */}
           <div className="flex-grow overflow-auto p-10 flex justify-center">
             <div className="bg-white p-12 shadow-2xl relative" style={{ width: '800px', height: '560px' }}>
               <div className="border-8 border-double border-indigo-100 h-full w-full p-8 flex flex-col items-center">

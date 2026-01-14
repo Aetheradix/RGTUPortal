@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
-import PageLayout from '../../../components/PageLayout';
+import React, { useState } from "react";
+import PageLayout from "../../../components/PageLayout";
 
-import { Dropdown } from 'primereact/dropdown';
-import { Button } from 'primereact/button';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
+import { Dropdown } from "primereact/dropdown";
+import { Button } from "primereact/button";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column";
+
+/* ================= TYPES ================= */
 
 interface QuestionPaperRow {
   id: number;
@@ -14,17 +16,67 @@ interface QuestionPaperRow {
   subject: string;
 }
 
-const selectOptions = [
-  { label: 'Select', value: '' },
-  { label: 'Option 1', value: '1' },
-  { label: 'Option 2', value: '2' },
+interface Option {
+  label: string;
+  value: string;
+}
+
+/* ================= DROPDOWN OPTIONS ================= */
+
+const academicYearOptions: Option[] = [
+  { label: "Select", value: "" },
+  { label: "2022-23", value: "2022-23" },
+  { label: "2023-24", value: "2023-24" },
+  { label: "2024-25", value: "2024-25" },
 ];
 
-const questionTypeOptions = [
-  { label: 'MCQ', value: 'MCQ' },
-  { label: 'Short Answer', value: 'Short Answer' },
-  { label: 'Long Answer', value: 'Long Answer' },
+const examTypeOptions: Option[] = [
+  { label: "Select", value: "" },
+  { label: "Internal", value: "Internal" },
+  { label: "External", value: "External" },
 ];
+
+const examNameOptions: Option[] = [
+  { label: "Select", value: "" },
+  { label: "Mid-Term", value: "Mid-Term" },
+  { label: "End-Term", value: "End-Term" },
+];
+
+const courseOptions: Option[] = [
+  { label: "Select", value: "" },
+  { label: "B.Tech", value: "B.Tech" },
+  { label: "MBA", value: "MBA" },
+  { label: "BCA", value: "BCA" },
+];
+
+const specializationOptions: Option[] = [
+  { label: "Select", value: "" },
+  { label: "CSE", value: "CSE" },
+  { label: "ECE", value: "ECE" },
+  { label: "Mechanical", value: "Mechanical" },
+];
+
+const semesterOptions: Option[] = [
+  { label: "Select", value: "" },
+  { label: "1st Semester", value: "1st Semester" },
+  { label: "2nd Semester", value: "2nd Semester" },
+  { label: "3rd Semester", value: "3rd Semester" },
+];
+
+const subjectOptions: Option[] = [
+  { label: "Select", value: "" },
+  { label: "Mathematics", value: "Mathematics" },
+  { label: "Data Structures", value: "Data Structures" },
+  { label: "DBMS", value: "DBMS" },
+];
+
+const questionTypeOptions: Option[] = [
+  { label: "MCQ", value: "MCQ" },
+  { label: "Short Answer", value: "Short Answer" },
+  { label: "Long Answer", value: "Long Answer" },
+];
+
+/* ================= COMPONENT ================= */
 
 const AddQuestionPaper: React.FC = () => {
   const [showList, setShowList] = useState(false);
@@ -32,49 +84,47 @@ const AddQuestionPaper: React.FC = () => {
 
   /* ---------- SEARCH FILTERS ---------- */
   const [filters, setFilters] = useState({
-    academicYear: '',
-    examType: '',
-    examName: '',
-    courseName: '',
-    specialization: '',
-    semester: '',
+    academicYear: "",
+    examType: "",
+    examName: "",
+    courseName: "",
+    specialization: "",
+    semester: "",
   });
 
   /* ---------- LIST DATA ---------- */
   const questionPaperList: QuestionPaperRow[] = [
     {
       id: 1,
-      courseName: 'B.Tech',
-      specialization: 'CSE',
-      semester: '1st Semester',
-      subject: 'Mathematics',
+      courseName: "B.Tech",
+      specialization: "CSE",
+      semester: "1st Semester",
+      subject: "Mathematics",
     },
   ];
 
   /* ---------- FORM DATA ---------- */
   const [formData, setFormData] = useState({
-    academicYear: '',
-    examType: '',
-    examName: '',
-    courseName: '',
-    specialization: '',
-    semester: '',
-    subject: '',
-    questionType: '',
+    academicYear: "",
+    examType: "",
+    examName: "",
+    courseName: "",
+    specialization: "",
+    semester: "",
+    subject: "",
+    questionType: "",
   });
 
-  const handleSearch = () => {
-    setShowList(true);
-  };
+  const handleSearch = () => setShowList(true);
 
   const handleClearSearch = () => {
     setFilters({
-      academicYear: '',
-      examType: '',
-      examName: '',
-      courseName: '',
-      specialization: '',
-      semester: '',
+      academicYear: "",
+      examType: "",
+      examName: "",
+      courseName: "",
+      specialization: "",
+      semester: "",
     });
     setShowList(false);
   };
@@ -85,35 +135,54 @@ const AddQuestionPaper: React.FC = () => {
       {!showForm && (
         <>
           <div className="grid grid-cols-1 md:grid-cols-6 gap-6 mb-6">
-            <Dropdown placeholder="Academic Year *" options={selectOptions}
+            <FilterDropdown
+              label="Academic Year *"
               value={filters.academicYear}
-              onChange={(e) => setFilters({ ...filters, academicYear: e.value })}
+              options={academicYearOptions}
+              onChange={(val) => setFilters({ ...filters, academicYear: val })}
             />
-            <Dropdown placeholder="Select Exam Type *" options={selectOptions}
+            <FilterDropdown
+              label="Exam Type *"
               value={filters.examType}
-              onChange={(e) => setFilters({ ...filters, examType: e.value })}
+              options={examTypeOptions}
+              onChange={(val) => setFilters({ ...filters, examType: val })}
             />
-            <Dropdown placeholder="Select Exam Name *" options={selectOptions}
+            <FilterDropdown
+              label="Exam Name *"
               value={filters.examName}
-              onChange={(e) => setFilters({ ...filters, examName: e.value })}
+              options={examNameOptions}
+              onChange={(val) => setFilters({ ...filters, examName: val })}
             />
-            <Dropdown placeholder="Select Course Name *" options={selectOptions}
+            <FilterDropdown
+              label="Course Name *"
               value={filters.courseName}
-              onChange={(e) => setFilters({ ...filters, courseName: e.value })}
+              options={courseOptions}
+              onChange={(val) => setFilters({ ...filters, courseName: val })}
             />
-            <Dropdown placeholder="Select Specialization" options={selectOptions}
+            <FilterDropdown
+              label="Specialization"
               value={filters.specialization}
-              onChange={(e) => setFilters({ ...filters, specialization: e.value })}
+              options={specializationOptions}
+              onChange={(val) =>
+                setFilters({ ...filters, specialization: val })
+              }
             />
-            <Dropdown placeholder="Select Semester *" options={selectOptions}
+            <FilterDropdown
+              label="Semester *"
               value={filters.semester}
-              onChange={(e) => setFilters({ ...filters, semester: e.value })}
+              options={semesterOptions}
+              onChange={(val) => setFilters({ ...filters, semester: val })}
             />
           </div>
 
           <div className="flex gap-3 mb-8">
             <Button label="Search" icon="pi pi-search" onClick={handleSearch} />
-            <Button label="Clear" icon="pi pi-refresh" className="p-button-secondary" onClick={handleClearSearch} />
+            <Button
+              label="Clear"
+              icon="pi pi-refresh"
+              className="p-button-secondary"
+              onClick={handleClearSearch}
+            />
           </div>
         </>
       )}
@@ -130,12 +199,18 @@ const AddQuestionPaper: React.FC = () => {
             />
           </div>
 
-          <DataTable value={questionPaperList} paginator rows={10} showGridlines className="p-datatable-sm">
+          <DataTable
+            value={questionPaperList}
+            paginator
+            rows={10}
+            showGridlines
+            className="p-datatable-sm"
+          >
             <Column header="S.No." body={(_, opt) => opt.rowIndex + 1} />
-            <Column field="courseName" header="Course Name" />
-            <Column field="specialization" header="Specialization" />
-            <Column field="semester" header="Semester" />
-            <Column field="subject" header="Subject" />
+            <Column field="courseName" header="Course Name" sortable />
+            <Column field="specialization" header="Specialization" sortable />
+            <Column field="semester" header="Semester" sortable />
+            <Column field="subject" header="Subject" sortable />
           </DataTable>
         </>
       )}
@@ -154,60 +229,116 @@ const AddQuestionPaper: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-6 gap-6 mb-6">
-            <Dropdown placeholder="Academic Year *" options={selectOptions} />
-            <Dropdown placeholder="Select Exam Type *" options={selectOptions} />
-            <Dropdown placeholder="Select Exam Name *" options={selectOptions} />
-            <Dropdown placeholder="Select Course Name *" options={selectOptions} />
-            <Dropdown placeholder="Select Specialization" options={selectOptions} />
-            <Dropdown placeholder="Select Semester *" options={selectOptions} />
-            <Dropdown placeholder="Select Subject *" options={selectOptions} />
+            <FormDropdown
+              label="Academic Year *"
+              options={academicYearOptions}
+            />
+            <FormDropdown label="Exam Type *" options={examTypeOptions} />
+            <FormDropdown label="Exam Name *" options={examNameOptions} />
+            <FormDropdown label="Course Name *" options={courseOptions} />
+            <FormDropdown
+              label="Specialization"
+              options={specializationOptions}
+            />
+            <FormDropdown label="Semester *" options={semesterOptions} />
+            <FormDropdown label="Subject *" options={subjectOptions} />
           </div>
 
-          {/* ================= QUESTION PAPER PATTERN ================= */}
           <h3 className="text-lg font-semibold mb-4">Question Paper Pattern</h3>
 
-          <div className="overflow-x-auto mb-6">
-            <table className="min-w-full border border-gray-300 text-sm">
+          <div className="overflow-x-auto mb-6 rounded-lg border">
+            <table className="min-w-full text-sm border-collapse">
               <thead className="bg-gray-100">
                 <tr>
-                  <th className="border p-2">Total Marks</th>
-                  <th className="border p-2">Total Questions</th>
-                  <th className="border p-2">MCQ</th>
-                  <th className="border p-2">Short Answer</th>
-                  <th className="border p-2">Long Answer</th>
+                  <th className="border p-3">Total Marks</th>
+                  <th className="border p-3">Total Questions</th>
+                  <th className="border p-3">MCQ</th>
+                  <th className="border p-3">Short Answer</th>
+                  <th className="border p-3">Long Answer</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className="border p-2 text-center">100</td>
-                  <td className="border p-2 text-center">20</td>
-                  <td className="border p-2">10 Questions (1 Mark each)</td>
-                  <td className="border p-2">5 Questions (6 Marks each)</td>
-                  <td className="border p-2">5 Questions (12 Marks each)</td>
+                  <td className="border p-3 text-center">100</td>
+                  <td className="border p-3 text-center">20</td>
+                  <td className="border p-3">10 × 1 Mark</td>
+                  <td className="border p-3">5 × 6 Marks</td>
+                  <td className="border p-3">5 × 12 Marks</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
-          {/* ================= ADD QUESTION ================= */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-            <Dropdown
-              placeholder="Select Question Type *"
-              options={questionTypeOptions}
-              value={formData.questionType}
-              onChange={(e) => setFormData({ ...formData, questionType: e.value })}
-            />
-            <Button icon="pi pi-plus" label="Add" />
+            <div>
+              <label className="block text-sm font-medium mb-2">
+                Question Type *
+              </label>
+              <Dropdown
+                options={questionTypeOptions}
+                value={formData.questionType}
+                onChange={(e) =>
+                  setFormData({ ...formData, questionType: e.value })
+                }
+                className="w-full"
+                placeholder="Select"
+              />
+            </div>
+            <div className="flex items-end">
+              <Button label="Add" icon="pi pi-plus" />
+            </div>
           </div>
 
           <div className="flex gap-3 mt-6">
             <Button label="Save" icon="pi pi-save" />
-            <Button label="Clear" icon="pi pi-refresh" className="p-button-secondary" />
+            <Button
+              label="Clear"
+              icon="pi pi-refresh"
+              className="p-button-secondary"
+            />
           </div>
         </>
       )}
     </PageLayout>
   );
 };
+
+/* ================= REUSABLE DROPDOWNS ================= */
+
+const FilterDropdown = ({
+  label,
+  value,
+  options,
+  onChange,
+}: {
+  label: string;
+  value: string;
+  options: Option[];
+  onChange: (val: string) => void;
+}) => (
+  <div>
+    <label className="block text-sm font-medium mb-2">{label}</label>
+    <Dropdown
+      value={value}
+      options={options}
+      className="w-full"
+      placeholder="Select"
+      onChange={(e) => onChange(e.value)}
+    />
+  </div>
+);
+
+const FormDropdown = ({
+  label,
+  options,
+}: {
+  label: string;
+  options: Option[];
+}) => (
+  <div>
+    <label className="block text-sm font-medium mb-2">{label}</label>
+    <Dropdown options={options} className="w-full" placeholder="Select" />
+  </div>
+);
 
 export default AddQuestionPaper;

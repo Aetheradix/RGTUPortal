@@ -5,7 +5,6 @@ import { Checkbox } from 'primereact/checkbox';
 import { Input, Dropdown, Table, type TableColumn } from '../../../ui/shared';
 import { Textarea } from '../../../ui/shared/Input';
 
-// --- Interfaces ---
 interface StudyMaterialRow {
   srNo: number;
   department: string;
@@ -18,7 +17,6 @@ interface StudyMaterialRow {
   instructor: string;
 }
 
-// --- Dynamic Dropdown Options ---
 const departmentOptions = [
   { label: 'Higher Education Department (HED)', value: 'HED' },
   { label: 'Technical Education Department (TED)', value: 'TED' },

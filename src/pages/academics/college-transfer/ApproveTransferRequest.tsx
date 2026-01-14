@@ -99,8 +99,6 @@ const ApproveTransferRequest: React.FC = () => {
         
         <form className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            
-            {/* Disabled Inputs - Label is black, only box is grey */}
             <Input 
                 label="Request ID" 
                 value={formData.requestId} 
@@ -146,7 +144,6 @@ const ApproveTransferRequest: React.FC = () => {
                 style={disabledInputStyle} 
             />
 
-            {/* View Document Group */}
             <div className="flex flex-col gap-1">
               <label className="text-sm font-bold text-gray-700">Supporting Documents *</label>
               <div className="flex gap-2">
@@ -154,8 +151,6 @@ const ApproveTransferRequest: React.FC = () => {
                 <Button icon="pi pi-eye" className="p-button-indigo p-button-sm" style={{ backgroundColor: '#6366F1' }} />
               </div>
             </div>
-
-            {/* Active Fields - Standard White */}
             <Dropdown 
               label="Select Status" 
               required
@@ -218,7 +213,6 @@ const ApproveTransferRequest: React.FC = () => {
         </form>
       </div>
 
-     {/* TABLE SECTION - DATA ADDED HERE */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
         <div className="p-4 bg-gray-50/50 border-b">
            <h2 className="text-lg font-bold text-gray-700">Recent Transfer Requests</h2>

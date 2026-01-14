@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import { MdChevronRight } from 'react-icons/md';
+import { useLocation } from 'react-router-dom';
 import type { SubModuleItemProps } from '../types';
 
 
@@ -12,16 +12,16 @@ const SubModuleItem: React.FC<SubModuleItemProps> = ({ subModule, collapsed, onN
   useEffect(() => {
     const currentPath = location.pathname;
     let shouldExpand = false;
-    
+
     if (subModule.pages) {
       shouldExpand = subModule.pages.some(page => currentPath === page.route);
-    } 
-    
+    }
+
     // Check if the current route is the submodule route itself or starts with it
     if (!shouldExpand) {
       shouldExpand = currentPath === subModule.route || currentPath.startsWith(subModule.route + '/');
     }
-    
+
     setIsExpanded(shouldExpand);
   }, [location.pathname, subModule.route, subModule.pages]);
 
@@ -52,20 +52,19 @@ const SubModuleItem: React.FC<SubModuleItemProps> = ({ subModule, collapsed, onN
     <div className="ml-4 mb-1">
       <button
         onClick={handleClick}
-        className={`w-full text-left py-2 px-4 rounded-lg transition-all duration-200 flex items-center justify-between group ${
-          isSubModuleActive 
-            ? 'text-white bg-slate-700/50' 
+        className={`w-full text-left py-2 px-4 rounded-lg transition-all duration-200 flex items-center justify-between group cursor-pointer ${isSubModuleActive
+            ? 'text-white bg-slate-700/50'
             : 'text-gray-400 hover:text-white hover:bg-slate-700/30'
-        }`}
+          }`}
       >
         <span className="text-sm font-medium">{subModule.subModule}</span>
         {hasPages && (
-          <MdChevronRight 
+          <MdChevronRight
             className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${isExpanded ? 'rotate-90' : ''}`}
           />
         )}
       </button>
-      
+
       {/* Pages list */}
       {hasPages && isExpanded && (
         <div className="ml-4 space-y-1 pt-1">
@@ -75,11 +74,10 @@ const SubModuleItem: React.FC<SubModuleItemProps> = ({ subModule, collapsed, onN
               <button
                 key={page.route}
                 onClick={() => onNavigate && onNavigate(page.route)}
-                className={`w-full text-left py-1.5 px-4 rounded-lg transition-all duration-200 text-xs ${
-                  isPageActive
+                className={`w-full text-left py-1.5 px-4 rounded-lg transition-all duration-200 text-xs cursor-pointer ${isPageActive
                     ? 'text-white bg-slate-700/40'
                     : 'text-gray-500 hover:text-white hover:bg-slate-700/20'
-                }`}
+                  }`}
               >
                 {page.page}
               </button>

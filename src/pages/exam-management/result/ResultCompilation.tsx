@@ -127,10 +127,10 @@ const ResultCompilation: React.FC = () => {
             )}
           >
             <Column expander style={{ width: '3rem' }} />
-            <Column header="Sr No." body={(_, opt) => opt.rowIndex + 1} />
-            <Column field="rollNo" header="Roll Number" />
-            <Column field="name" header="Student Name" />
-            <Column field="subject" header="Subject" />
+            <Column header="Sr No." body={(_, opt) => opt.rowIndex + 1} sortable/>
+            <Column field="rollNo" header="Roll Number" sortable />
+            <Column field="name" header="Student Name" sortable />
+            <Column field="subject" header="Subject" sortable/>
           </DataTable>
         </Card>
       )}

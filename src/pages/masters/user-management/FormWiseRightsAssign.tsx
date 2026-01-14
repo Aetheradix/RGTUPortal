@@ -1,10 +1,10 @@
+import { Button } from 'primereact/button';
+import { Checkbox } from 'primereact/checkbox';
+import { Column } from 'primereact/column';
+import { DataTable } from 'primereact/datatable';
+import { Dropdown } from 'primereact/dropdown';
 import React, { useState } from 'react';
 import PageLayout from '../../../components/PageLayout';
-import { Button } from 'primereact/button';
-import { Dropdown } from 'primereact/dropdown';
-import { Checkbox } from 'primereact/checkbox';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
 
 interface FormRights {
   id: number;
@@ -125,7 +125,7 @@ const FormWiseRightsAssign: React.FC = () => {
         <div className="flex gap-3">
           <Button type="submit" label="Assign Rights" icon="pi pi-save" className="p-button-primary" />
           <Button type="button" label="Cancel" icon="pi pi-times" className="p-button-secondary" />
-          <Button type="button" label="Reset" icon="pi pi-refresh" className="p-button-outlined" />
+          {/* */}
         </div>
       </form>
 
@@ -135,24 +135,24 @@ const FormWiseRightsAssign: React.FC = () => {
           <Column field="id" header="ID" sortable style={{ width: '80px' }} />
           <Column field="formName" header="Form Name" sortable />
           <Column field="roleName" header="Role Name" sortable />
-          <Column 
-            field="canView" 
-            header="View" 
+          <Column
+            field="canView"
+            header="View"
             body={(rowData: FormRights) => rowData.canView ? 'Yes' : 'No'}
           />
-          <Column 
-            field="canAdd" 
-            header="Add" 
+          <Column
+            field="canAdd"
+            header="Add"
             body={(rowData: FormRights) => rowData.canAdd ? 'Yes' : 'No'}
           />
-          <Column 
-            field="canEdit" 
-            header="Edit" 
+          <Column
+            field="canEdit"
+            header="Edit"
             body={(rowData: FormRights) => rowData.canEdit ? 'Yes' : 'No'}
           />
-          <Column 
-            field="canDelete" 
-            header="Delete" 
+          <Column
+            field="canDelete"
+            header="Delete"
             body={(rowData: FormRights) => rowData.canDelete ? 'Yes' : 'No'}
           />
           <Column field="status" header="Status" />

@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from 'react';
-import PageLayout from '@/components/PageLayout';
-import { Card } from 'primereact/card';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
-import { Button } from 'primereact/button';
-import { Tag } from 'primereact/tag';
-import { InputText } from 'primereact/inputtext';
-import { Dropdown } from 'primereact/dropdown';
-import { Calendar } from 'primereact/calendar';
+import React, { useState } from "react";
+import PageLayout from "@/components/PageLayout";
+import { Card } from "primereact/card";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column";
+import { Button } from "primereact/button";
+import { Tag } from "primereact/tag";
+import { InputText } from "primereact/inputtext";
+import { Dropdown } from "primereact/dropdown";
+import { Calendar } from "primereact/calendar";
 
 interface RowData {
   rollNo: string;
@@ -25,60 +25,100 @@ interface RowData {
 
 const listData: RowData[] = [
   {
-    rollNo: '2023100123',
-    examName: 'Mid-Term Exams',
-    course: 'B.Tech',
-    subject: 'Data Structures',
-    fee: '350',
-    generationDate: '28 November, 2024',
-    generatedBy: 'Prof. Sharma',
-    paymentStatus: 'Paid',
-    deliveryMethod: 'Processed',
-    remarks: 'I lost my marksheet',
+    rollNo: "2023100123",
+    examName: "Mid-Term Exams",
+    course: "B.Tech",
+    subject: "Data Structures",
+    fee: "350",
+    generationDate: "28 November, 2024",
+    generatedBy: "Prof. Sharma",
+    paymentStatus: "Paid",
+    deliveryMethod: "Processed",
+    remarks: "I lost my marksheet",
   },
   {
-    rollNo: '2023100456',
-    examName: 'Final Exams',
-    course: 'M.Tech',
-    subject: 'Operating Systems',
-    fee: '350',
-    generationDate: '29 November, 2024',
-    generatedBy: 'Admin',
-    paymentStatus: 'Paid',
-    deliveryMethod: 'Processed',
-    remarks: 'Damaged',
+    rollNo: "2023100456",
+    examName: "Final Exams",
+    course: "M.Tech",
+    subject: "Operating Systems",
+    fee: "350",
+    generationDate: "29 November, 2024",
+    generatedBy: "Admin",
+    paymentStatus: "Paid",
+    deliveryMethod: "Processed",
+    remarks: "Damaged",
   },
   {
-    rollNo: '2023100789',
-    examName: 'Quarterly Tests',
-    course: 'BCA',
-    subject: 'Artificial Intelligence',
-    fee: '350',
-    generationDate: '30 November, 2024',
-    generatedBy: 'Admin',
-    paymentStatus: 'Paid',
-    deliveryMethod: 'Processed',
-    remarks: 'Lost',
+    rollNo: "2023100789",
+    examName: "Quarterly Tests",
+    course: "BCA",
+    subject: "Artificial Intelligence",
+    fee: "350",
+    generationDate: "30 November, 2024",
+    generatedBy: "Admin",
+    paymentStatus: "Paid",
+    deliveryMethod: "Processed",
+    remarks: "Lost",
   },
+];
+
+const examOptions = [
+  { label: "Mid-Term Exams", value: "Mid-Term Exams" },
+  { label: "Final Exams", value: "Final Exams" },
+  { label: "Quarterly Tests", value: "Quarterly Tests" },
+];
+
+const courseOptions = [
+  { label: "B.Tech", value: "B.Tech" },
+  { label: "M.Tech", value: "M.Tech" },
+  { label: "BCA", value: "BCA" },
+];
+
+const subjectOptions = [
+  { label: "Data Structures", value: "Data Structures" },
+  { label: "Operating Systems", value: "Operating Systems" },
+  { label: "Artificial Intelligence", value: "Artificial Intelligence" },
+];
+
+const paymentOptions = [
+  { label: "Paid", value: "Paid" },
+  { label: "Unpaid", value: "Unpaid" },
+];
+
+const deliveryOptions = [
+  { label: "Processed", value: "Processed" },
+  { label: "Courier", value: "Courier" },
 ];
 
 const GenerateDuplicateMarksheet: React.FC = () => {
   const [expandedRows, setExpandedRows] = useState<any>(null);
-  const [view, setView] = useState<'list' | 'add'>('list');
+  const [view, setView] = useState<"list" | "add">("list");
   const [showPreview, setShowPreview] = useState(false);
+
+  /* ✅ FORM STATE */
+  const [form, setForm] = useState({
+    rollNo: "",
+    examName: null as string | null,
+    course: null as string | null,
+    subject: null as string | null,
+    fee: "",
+    generationDate: null as Date | null,
+    generatedBy: "",
+    paymentStatus: null as string | null,
+    deliveryMethod: null as string | null,
+    remarks: "",
+  });
 
   return (
     <PageLayout title="Generate Duplicate Marksheet">
-
-
-      {view === 'list' && (
+      {view === "list" && (
         <Card>
           <div className="flex justify-between items-center mb-3">
             <h3 className="font-semibold">Generate Duplicate Marksheet</h3>
             <Button
               label="Generate Duplicate Marksheet"
               icon="pi pi-plus"
-              onClick={() => setView('add')}
+              onClick={() => setView("add")}
             />
           </div>
 
@@ -86,38 +126,78 @@ const GenerateDuplicateMarksheet: React.FC = () => {
             value={listData}
             paginator
             rows={10}
-            showGridlines
+            className="p-datatable-sm"
             expandedRows={expandedRows}
             onRowToggle={(e) => setExpandedRows(e.data)}
             rowExpansionTemplate={(row: RowData) => (
               <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-3 bg-gray-50 text-sm">
-                <div><b>Duplicate Marksheet Fee:</b> ₹{row.fee}</div>
-                <div><b>Date of Generation:</b> {row.generationDate}</div>
-                <div><b>Generated By:</b> {row.generatedBy}</div>
                 <div>
-                  <b>Payment Status:</b>{' '}
+                  <b>Duplicate Marksheet Fee:</b> ₹{row.fee}
+                </div>
+                <div>
+                  <b>Date of Generation:</b> {row.generationDate}
+                </div>
+                <div>
+                  <b>Generated By:</b> {row.generatedBy}
+                </div>
+                <div>
+                  <b>Payment Status:</b>{" "}
                   <Tag value={row.paymentStatus} severity="success" />
                 </div>
-                <div><b>Delivery Method:</b> {row.deliveryMethod}</div>
-                <div><b>Remarks:</b> {row.remarks}</div>
+                <div>
+                  <b>Delivery Method:</b> {row.deliveryMethod}
+                </div>
+                <div>
+                  <b>Remarks:</b> {row.remarks}
+                </div>
                 <div>
                   <Button label="View" icon="pi pi-eye" size="small" />
                 </div>
               </div>
             )}
           >
-            <Column expander style={{ width: '3rem' }} />
-            <Column header="Sr No." body={(_, opt) => opt.rowIndex + 1} />
-            <Column field="rollNo" header="Roll Number" />
-            <Column field="examName" header="Exam Name" />
-            <Column field="course" header="Course" />
-            <Column field="subject" header="Subject" />
+            <Column
+              field="srNo"
+              header="Sr No."
+              body={(_, opt) => opt.rowIndex + 1}
+              style={{ width: "80px" }}
+              sortable
+              filter
+              filterPlaceholder="Search"
+            />
+            <Column
+              field="rollNo"
+              header="Roll Number"
+              sortable
+              filter
+              filterPlaceholder="Search"
+            />
+            <Column
+              field="examName"
+              header="Exam Name"
+              sortable
+              filter
+              filterPlaceholder="Search"
+            />
+            <Column
+              field="course"
+              header="Course"
+              sortable
+              filter
+              filterPlaceholder="Search"
+            />
+            <Column
+              field="subject"
+              header="Subject"
+              sortable
+              filter
+              filterPlaceholder="Search"
+            />
           </DataTable>
         </Card>
       )}
 
-  
-      {view === 'add' && (
+      {view === "add" && (
         <Card>
           <div className="flex justify-between items-center mb-3">
             <h3 className="font-semibold">Add Generate Duplicate Marksheet</h3>
@@ -126,7 +206,7 @@ const GenerateDuplicateMarksheet: React.FC = () => {
               icon="pi pi-arrow-left"
               className="p-button-text"
               onClick={() => {
-                setView('list');
+                setView("list");
                 setShowPreview(false);
               }}
             />
@@ -135,52 +215,107 @@ const GenerateDuplicateMarksheet: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
             <div>
               <label>Enter Roll Number*</label>
-              <InputText className="w-full" />
+              <InputText
+                className="w-full"
+                value={form.rollNo}
+                onChange={(e) => setForm({ ...form, rollNo: e.target.value })}
+              />
             </div>
 
             <div>
               <label>Select Exam Name*</label>
-              <Dropdown className="w-full" placeholder="Select" />
+              <Dropdown
+                className="w-full"
+                options={examOptions}
+                value={form.examName}
+                onChange={(e) => setForm({ ...form, examName: e.value })}
+                placeholder="Select"
+              />
             </div>
 
             <div>
               <label>Select Course</label>
-              <Dropdown className="w-full" placeholder="Select" />
+              <Dropdown
+                className="w-full"
+                options={courseOptions}
+                value={form.course}
+                onChange={(e) => setForm({ ...form, course: e.value })}
+                placeholder="Select"
+              />
             </div>
 
             <div>
               <label>Select Subject</label>
-              <Dropdown className="w-full" placeholder="Select" />
+              <Dropdown
+                className="w-full"
+                options={subjectOptions}
+                value={form.subject}
+                onChange={(e) => setForm({ ...form, subject: e.value })}
+                placeholder="Select"
+              />
             </div>
 
             <div>
               <label>Enter Duplicate Marksheet Fee*</label>
-              <InputText className="w-full" />
+              <InputText
+                className="w-full"
+                value={form.fee}
+                onChange={(e) => setForm({ ...form, fee: e.target.value })}
+              />
             </div>
 
             <div>
               <label>Date of Generation*</label>
-              <Calendar className="w-full" dateFormat="dd/mm/yy" />
+              <Calendar
+                className="w-full"
+                dateFormat="dd/mm/yy"
+                value={form.generationDate}
+                onChange={(e) =>
+                  setForm({ ...form, generationDate: e.value ?? null })
+                }
+              />
             </div>
 
             <div>
               <label>Enter Generated By*</label>
-              <InputText className="w-full" />
+              <InputText
+                className="w-full"
+                value={form.generatedBy}
+                onChange={(e) =>
+                  setForm({ ...form, generatedBy: e.target.value })
+                }
+              />
             </div>
 
             <div>
               <label>Payment Status</label>
-              <Dropdown className="w-full" placeholder="Select" />
+              <Dropdown
+                className="w-full"
+                options={paymentOptions}
+                value={form.paymentStatus}
+                onChange={(e) => setForm({ ...form, paymentStatus: e.value })}
+                placeholder="Select"
+              />
             </div>
 
             <div>
               <label>Select Delivery Method</label>
-              <Dropdown className="w-full" placeholder="Select" />
+              <Dropdown
+                className="w-full"
+                options={deliveryOptions}
+                value={form.deliveryMethod}
+                onChange={(e) => setForm({ ...form, deliveryMethod: e.value })}
+                placeholder="Select"
+              />
             </div>
 
-            <div className="md:col-span-3">
-              <label>Enter Remarks</label>
-              <InputText className="w-full" />
+            <div>
+              <label>Enter Remark</label>
+              <InputText
+                className="w-full"
+                value={form.remarks}
+                onChange={(e) => setForm({ ...form, remarks: e.target.value })}
+              />
             </div>
           </div>
 
@@ -191,20 +326,23 @@ const GenerateDuplicateMarksheet: React.FC = () => {
               onClick={() => setShowPreview(true)}
             />
             <Button label="Save" icon="pi pi-save" />
-            <Button label="Clear" icon="pi pi-refresh" className="p-button-secondary" />
+            <Button
+              label="Clear"
+              icon="pi pi-refresh"
+              className="p-button-secondary"
+            />
           </div>
 
           {showPreview && (
             <div className="p-4 border rounded bg-gray-50 text-sm">
               <b>Preview Marksheet:</b>
               <p className="text-blue-600 cursor-pointer mt-2">
-                📄 Duplicate_Marksheet_2023100123.pdf
+                📄 Duplicate_Marksheet_{form.rollNo || "XXXXXXX"}.pdf
               </p>
             </div>
           )}
         </Card>
       )}
-
     </PageLayout>
   );
 };

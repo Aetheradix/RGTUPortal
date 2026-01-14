@@ -272,7 +272,6 @@ const FillChoicesAndLock: React.FC = () => {
           <DataTable
             value={choicesGrid}
             className="p-datatable-sm border mb-4"
-            responsiveLayout="scroll"
           >
             <Column field="srNo" header="Sr.No." />
             <Column field="cityName" header="City Name" />
@@ -313,18 +312,17 @@ const FillChoicesAndLock: React.FC = () => {
             <Button
               label="Proceed to Lock Choices"
               icon="pi pi-lock"
-              className="p-button-danger w-full py-3"
+              className="p-button-danger w-80 py-3"
               onClick={() => setShowLockConfirm(true)}
             />
           ) : (
-            <div className="p-4 bg-green-100 text-green-800 font-bold border rounded text-center">
+            <div className="p-4 bg-green-100 text-green-800  font-bold border rounded text-center">
               <i className="pi pi-check-circle mr-2"></i> YOUR CHOICES HAVE BEEN
               LOCKED SUCCESSFULLY
             </div>
           )}
         </div>
       )}
-
 
       <Dialog
         header="Are you sure?"

@@ -4,7 +4,6 @@ import { Button } from 'primereact/button';
 import { Dropdown, Table, type TableColumn } from '../../../ui/shared';
 import { Checkbox } from 'primereact/checkbox';
 
-// --- Interfaces ---
 interface ViewStudyMaterialRow {
   sNo: number;
   studyLevel: string;
@@ -17,7 +16,6 @@ interface ViewStudyMaterialRow {
   publicationDate: string;
 }
 
-// --- Realistic Dropdown Options ---
 const studyLevelOptions = [
   { label: 'Under Graduate (UG)', value: 'UG' },
   { label: 'Post Graduate (PG)', value: 'PG' },
@@ -96,7 +94,7 @@ const ViewStudyMaterials: React.FC = () => {
     subjectName: null as string | null,
     materialType: null as string | null,
     accessType: null as string | null,
-    isActive: true, // Defaulting to true as per standard view
+    isActive: true, 
   });
 
   const [rows] = useState<ViewStudyMaterialRow[]>(dummyData);
@@ -132,7 +130,6 @@ const ViewStudyMaterials: React.FC = () => {
 
   return (
     <PageLayout title="View Study Materials">
-      {/* SEARCH SECTION - Theme Matched */}
       <form className="space-y-6 bg-white p-6 rounded-lg shadow-sm border border-gray-100">
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
           <Dropdown
@@ -199,8 +196,6 @@ const ViewStudyMaterials: React.FC = () => {
           />
         </div>
       </form>
-
-      {/* TABLE SECTION */}
       <div className="mt-8 bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
         <div className="flex justify-between items-center p-4 bg-gray-50/50 border-b">
           <h2 className="text-lg font-semibold text-gray-700">Study Material List</h2>

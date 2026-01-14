@@ -5,7 +5,6 @@ import { Checkbox } from 'primereact/checkbox';
 import { Input, Dropdown, Table, type TableColumn } from '../../../ui/shared';
 import { DateInput, Textarea } from '../../../ui/shared/Input';
 
-// --- Interfaces ---
 interface StudyMaterialRow {
   srNo: number;
   department: string;
@@ -18,7 +17,6 @@ interface StudyMaterialRow {
   instructor: string;
 }
 
-// --- Constants & Options ---
 const departments = [{ label: 'Higher Education Department (HED)', value: 'HED' }];
 const courseLevels = [
   { label: 'Under Graduate', value: 'UG' },
@@ -87,7 +85,6 @@ const StudyMaterialMaster: React.FC = () => {
 
   return (
     <PageLayout title="Add Study Materials">
-      {/* FORM SECTION */}
       <form className="space-y-6 bg-white p-6 rounded-lg shadow-sm border border-gray-100">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <Dropdown

@@ -4,7 +4,6 @@ import { Button } from 'primereact/button';
 import { Input, Dropdown, Table, type TableColumn } from '../../../ui/shared';
 import { DateInput, Textarea } from '../../../ui/shared/Input';
 
-// --- Interface ---
 interface TransferOutRow {
   sNo: number;
   studentId: string;
@@ -51,10 +50,9 @@ const AddTransferOut: React.FC = () => {
     transferStatus: null,
   });
 
-  // Common Style for Disabled Input Boxes (Grey Background, Black Label)
   const disabledBoxStyle = {
-    backgroundColor: '#F3F4F6', // gray-100
-    color: '#4B5563', // gray-600
+    backgroundColor: '#F3F4F6', 
+    color: '#4B5563', 
     cursor: 'not-allowed',
     border: '1px solid #E5E7EB'
   };
@@ -80,7 +78,6 @@ const AddTransferOut: React.FC = () => {
 
   return (
     <PageLayout title="Add Transfer Out">
-      {/* FORM SECTION */}
       <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 mb-8">
         <div className="flex justify-between items-center mb-6 border-b pb-3">
           <h2 className="text-lg font-bold text-gray-700">Student Transfer Out Details</h2>
@@ -88,7 +85,6 @@ const AddTransferOut: React.FC = () => {
         
         <form className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            {/* Disabled Fields (Grey Boxes) */}
             <Input label="Student ID" value={formData.studentId} disabled style={disabledBoxStyle} />
             <Input label="Student Name" value={formData.studentName} disabled style={disabledBoxStyle} />
             <Input label="Current College" value={formData.currentCollegeName} disabled style={disabledBoxStyle} />
@@ -96,7 +92,6 @@ const AddTransferOut: React.FC = () => {
             
             <Dropdown label="New College Name" value={formData.newCollegeName} options={[]} disabled placeholder="IET-DAVV, Indore" style={disabledBoxStyle} />
 
-            {/* Editable Fields (White Boxes) */}
             <Dropdown 
               label="New Course Name" 
               required 
@@ -141,7 +136,6 @@ const AddTransferOut: React.FC = () => {
               placeholder="Select Status" 
             />
 
-            {/* View Document Group */}
             <div className="flex flex-col gap-1">
               <label className="text-sm font-bold text-gray-700">View Documents</label>
                <div className="flex gap-2">
@@ -168,7 +162,6 @@ const AddTransferOut: React.FC = () => {
         </form>
       </div>
 
-      {/* TABLE SECTION */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
         <div className="flex justify-between items-center p-4 bg-gray-50/50 border-b">
           <h2 className="text-lg font-bold text-gray-700">Pending Transfer Out Requests</h2>

@@ -4,7 +4,6 @@ import { Button } from 'primereact/button';
 import { Input, Table, type TableColumn } from '../../../ui/shared';
 import { DateInput } from '../../../ui/shared/Input';
 
-// Interface based on Image aea398
 interface AttendanceReportRow {
   srNo: number;
   attendanceDate: string;
@@ -86,7 +85,6 @@ const AttendanceReport: React.FC = () => {
 
   return (
     <PageLayout title="Attendance Report">
-      {/* Search Section - Based on Image aea39a */}
       <form onSubmit={handleSearch} className="space-y-6 bg-white p-4 rounded-lg shadow-sm">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 ">
           <Input
@@ -128,8 +126,6 @@ const AttendanceReport: React.FC = () => {
           />
         </div>
       </form>
-
-      {/* Report Table - Based on Image aea398 */}
       <div className="mt-8">
         <Table 
           title="Attendance Report List" 
