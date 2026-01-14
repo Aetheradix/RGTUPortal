@@ -16,10 +16,7 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 
-const DUMMY_CREDENTIALS = {
-  email: 'admin@nexusedu.com',
-  password: 'admin123'
-};
+
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
@@ -37,26 +34,24 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   });
 
 
-  const login = async (email: string, password: string): Promise<boolean> => {
+  const login = async (email: string): Promise<boolean> => {
 
     await new Promise(resolve => setTimeout(resolve, 500));
 
 
-    if (email === DUMMY_CREDENTIALS.email && password === DUMMY_CREDENTIALS.password) {
-      const userData = {
-        email,
-        name: 'Admin User',
-        role: 'System Administrator',
-        joinDate: 'January 2024'
-      };
-      setIsAuthenticated(true);
-      setUser(userData);
-      localStorage.setItem('isAuthenticated', 'true');
-      localStorage.setItem('user', JSON.stringify(userData));
-      return true;
-    }
 
-    return false;
+    const userData = {
+      email,
+      name: 'Admin User',
+      role: 'System Administrator',
+      joinDate: new Date().toLocaleString()
+    };
+    setIsAuthenticated(true);
+    setUser(userData);
+    localStorage.setItem('isAuthenticated', 'true');
+    localStorage.setItem('user', JSON.stringify(userData));
+    return true;
+
   };
 
   const logout = () => {

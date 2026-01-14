@@ -25,8 +25,8 @@ const AuthPage: React.FC<AuthPageProps> = ({
 
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
-  const [email, setEmail] = useState('admin@nexusedu.com');
-  const [password, setPassword] = useState('admin123');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [activeFeature, setActiveFeature] = useState(0);
@@ -292,19 +292,6 @@ const AuthPage: React.FC<AuthPageProps> = ({
                 </svg>
                 Sign in with Google
               </button>
-
-              {/* Demo Credentials */}
-              <div className="mt-4 lg:mt-6 p-3 lg:p-4 bg-gradient-to-r from-purple-50 to-pink-50 border-2 border-purple-200 rounded-xl">
-                <p className="text-xs font-bold text-purple-900 mb-1.5 lg:mb-2">🔐 Demo Credentials:</p>
-                <div className="space-y-0.5 lg:space-y-1">
-                  <p className="text-xs text-purple-700">
-                    <span className="font-semibold">Email:</span> admin@nexusedu.com
-                  </p>
-                  <p className="text-xs text-purple-700">
-                    <span className="font-semibold">Password:</span> admin123
-                  </p>
-                </div>
-              </div>
 
               {/* Footer */}
               <p className="text-center text-xs lg:text-sm text-gray-600 mt-4 lg:mt-6">

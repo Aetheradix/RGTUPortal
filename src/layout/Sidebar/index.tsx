@@ -1,4 +1,5 @@
 import sidebarMenu, { type SidebarMenu } from '@/config/sidebar';
+import { useAuth } from '@/context/AuthContext';
 import { Logo } from '@/ui/shared';
 import React, { useEffect, useState } from 'react';
 import { FaHome } from 'react-icons/fa';
@@ -10,6 +11,7 @@ import SubModuleItem from './components/SubModuleItems';
 import type { Module, SidebarProps } from './types';
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, collapsed, onClose }) => {
+  const { user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const [sidebarModules, setSidebarModules] = useState<Module[]>([]);
@@ -135,7 +137,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, collapsed, onClose }) => {
           {/* Close button - only visible on mobile */}
           <button
             onClick={onClose}
-            className="lg:hidden text-gray-400 hover:text-white transition-colors"
+            className="lg:hidden text-gray-400 hover:text-white transition-colors cursor-pointer"
           >
             <MdClose className="w-6 h-6" />
           </button>
@@ -203,8 +205,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, collapsed, onClose }) => {
                 <span className="text-white font-semibold text-sm">A</span>
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-white font-medium text-sm truncate">Admin User</p>
-                <p className="text-gray-400 text-xs truncate">admin@nexusedu.com</p>
+                <p className="text-white font-medium text-sm truncate">{user?.name}</p>
+                <p className="text-gray-400 text-xs truncate">{user?.email}</p>
               </div>
             </div>
           </div>
