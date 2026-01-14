@@ -285,17 +285,17 @@ const AuthPage: React.FC<AuthPageProps> = ({
               </button>
 
               {/* Divider */}
-              <div className="relative my-4 lg:my-6">
+              {/* <div className="relative my-4 lg:my-6">
                 <div className="absolute inset-0 flex items-center">
                   <div className="w-full border-t border-gray-300"></div>
                 </div>
                 <div className="relative flex justify-center text-xs lg:text-sm">
                   <span className="px-3 lg:px-4 bg-white text-gray-500">Or continue with</span>
                 </div>
-              </div>
+              </div> */}
 
               {/* SSO Button */}
-              <button
+              {/* <button
                 type="button"
                 className="w-full flex items-center justify-center gap-2 lg:gap-3 border-2 border-gray-200 py-3 lg:py-3.5 rounded-xl hover:bg-gray-50 hover:border-gray-300 transition-all text-sm lg:text-base font-medium text-gray-700"
               >
@@ -306,7 +306,7 @@ const AuthPage: React.FC<AuthPageProps> = ({
                   <path d="M10.2 3.97727C11.6773 3.97727 13.0091 4.48182 14.0682 5.47273L16.9364 2.60455C15.1709 0.940909 12.9 0 10.2 0C6.27273 0 2.87273 2.24091 1.22727 5.50909L4.58636 8.1C5.38182 5.73636 7.59545 3.97727 10.2 3.97727Z" fill="#EA4335" />
                 </svg>
                 Sign in with Google
-              </button>
+              </button> */}
 
               {/* Footer */}
               <p className="text-center text-xs lg:text-sm text-gray-600 mt-4 lg:mt-6">
