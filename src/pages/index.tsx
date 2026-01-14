@@ -12,6 +12,7 @@ import ExamManagement from "./exam-management";
 import GenericPage from "./GenericPage";
 import GuestFacultyManagement from "./guest-faculty-management";
 import HostelManagementSystem from "./hostel-management";
+import Hrms from "./hrms/Index";
 import IncrementManagement from "./increment-management";
 import LeaveManagement from "./leave-management";
 import MasterDataManagement from "./master-data-management";
@@ -20,13 +21,13 @@ import OIS from "./ois";
 import Payroll from "./payroll";
 import ProfilePage from "./profile";
 import SchemeManagement from "./scheme-management";
+import SchemeManagementSystem from "./scheme-mangament-master";
 import StudentManagementSystem from "./student-management-system";
 import TourManagementSystem from "./tour-mangement";
 import Trainingawardsystem from "./training-and-awards-management";
 import TransportManagementSYS from "./transport-management";
 import UserManagement from "./user-management";
 import VocationalManagement from "./vocational-management";
-import SchemeManagementSystem from "./scheme-mangament-master";
 
 export default function AppFeature() {
   return (
@@ -51,6 +52,10 @@ export default function AppFeature() {
       {/* <Route path="exam-management/*" element={<ExamManagement />} />
         <Route path="home/*" element={<Home />} /> */}
       <Route path="exam-management/*" element={<ExamManagement />} />
+      {/* Fallback for any route where dedicated UI is not implemented yet */}
+      <Route path="*" element={<GenericPage />} />
+      <Route path="scheme-management/*" element={<SchemeManagement />} />
+      <Route path="hrms/*" element={<Hrms />} />
       <Route path="*" element={<GenericPage />} />
       <Route path="scheme-management/*" element={<SchemeManagement />} />
       <Route path="guest-faculty/*" element={<GuestFacultyManagement />} />
@@ -72,7 +77,7 @@ export default function AppFeature() {
       <Route path="exam-management/*" element={<ExamManagement />} />
       {/* Fallback for any route where dedicated UI is not implemented yet */}
       <Route path="*" element={<GenericPage />} />
-   <Route path="scheme-management-system/*" element={<SchemeManagementSystem />} />
+      <Route path="scheme-management-system/*" element={<SchemeManagementSystem />} />
       <Route path="cms-portal/*" element={<CmsPortal />} />
       <Route path="guest-faculty/*" element={<GuestFacultyManagement />} />
       <Route path="payroll/*" element={<Payroll />} />

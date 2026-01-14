@@ -84,7 +84,7 @@ const StudentProfileSubManagement: React.FC = () => {
       <Toast ref={toast} />
 
       <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
             <label
               htmlFor="academicYears"
