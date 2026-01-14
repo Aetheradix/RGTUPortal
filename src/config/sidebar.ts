@@ -10,12 +10,12 @@ import {
   FaClipboardList,
   FaCogs,
   FaDatabase,
-  FaGlobe,
   FaHandsHelping,
   FaHome,
   FaMoneyBillWave,
   FaMoneyCheckAlt,
   FaPlane,
+  FaProjectDiagram,
   FaSchool,
   FaUniversity,
   FaUserFriends,
@@ -1328,81 +1328,171 @@ const sidebarMenu = {
       ],
     },
     {
-      module: "Scheme Management",
-      icon: FaGlobe,
-      route: "/scheme-management",
+      module: "Scheme Management System",
+      icon: FaProjectDiagram,
+      route: "/scheme-management-system",
       subModules: [
         {
-          subModule: "New Scheme Management",
-          route: "/scheme-management/new-scheme-management",
+          subModule: "Apply",
+          route: "/scheme-management-system/apply",
           pages: [
             {
-              page: "Apply For Scheme",
-              route:
-                "/scheme-management/new-scheme-management/apply-for-scheme",
+              page: "Apply Scheme",
+              route: "/scheme-management-system/apply/apply-scheme",
             },
             {
-              page: "View Scheme Wise Generate List",
+              page: "View Scheme Wise Generated List",
               route:
-                "/scheme-management/new-scheme-management/view-scheme-wise-generate-list",
+                "/scheme-management-system/apply/view-scheme-wise-generated-list",
+            },
+            {
+              page: "Scheme Wise Eligible Student List",
+              route:
+                "/scheme-management-system/apply/schemewise-eligible-student-list",
+            },
+          ],
+        },
+        {
+          subModule: "Payment",
+          route: "/scheme-management-system/payment",
+          pages: [
+            {
+              page: "Scheme Wise Disbursement Amount",
+              route:
+                "/scheme-management-system/payment/schemewise-disbursement-amount",
             },
             {
               page: "Scheme Wise Generate Payment File",
               route:
-                "/scheme-management/new-scheme-management/scheme-wise-generate-payment-file",
+                "/scheme-management-system/payment/schemewise-generate-paymentfile-module",
             },
           ],
         },
         {
-          subModule: "Student Profile Management",
-          route: "/scheme-management/student-profile-management",
+          subModule: "Scheme Management Master",
+          route: "/scheme-management-system/scheme-management-master",
           pages: [
             {
-              page: "Student Profile View Edit Lock",
+              page: "Apply Student Scheme Applications",
               route:
-                "/scheme-management/student-profile-management/student-profile-view-edit-lock",
+                "/scheme-management-system/scheme-management-master/apply-student-scheme-applications",
             },
             {
-              page: "Student Profile Management",
+              page: "Check Scheme Eligibility",
               route:
-                "/scheme-management/student-profile-management/student-profile-sub-management",
+                "/scheme-management-system/scheme-management-master/check-scheme-eligibility",
             },
             {
-              page: "Update Student Profile for Scholarships",
+              page: "Departmental Scheme",
               route:
-                "/scheme-management/student-profile-management/update-student-profile",
+                "/scheme-management-system/scheme-management-master/departmental-scheme",
+            },
+            {
+              page: "Departmental Scheme Details",
+              route:
+                "/scheme-management-system/scheme-management-master/departmental-scheme-details",
+            },
+            {
+              page: "Scheme Wise Print",
+              route:
+                "/scheme-management-system/scheme-management-master/schemewise-print",
+            },
+            {
+              page: "Special Scheme",
+              route:
+                "/scheme-management-system/scheme-management-master/special-scheme",
+            },
+            {
+              page: "Upload Special Scheme Students",
+              route:
+                "/scheme-management-system/scheme-management-master/upload-special-scheme-students",
             },
           ],
         },
         {
-          subModule: "E-KYC",
-          route: "/scheme-management/e-kyc",
+          subModule: "Special Scheme Management",
+          route: "/scheme-management-system/special-scheme-management",
           pages: [
             {
-              page: "eKYC Verification",
-              route: "/scheme-management/e-kyc/e-kyc-verification",
+              page: "District Wise Eligible Student Report",
+              route:
+                "/scheme-management-system/special-scheme-management/districtwise-eligible-student-report",
             },
             {
-              page: "Student Details KYC",
-              route: "/scheme-management/e-kyc/student-details-kyc",
+              page: "Special Scheme Print",
+              route:
+                "/scheme-management-system/special-scheme-management/special-scheme-print",
             },
             {
-              page: "eKYC Approval",
-              route: "/scheme-management/e-kyc/e-kyc-approval",
+              page: "Special Scheme Registration",
+              route:
+                "/scheme-management-system/special-scheme-management/special-scheme-registration",
             },
             {
-              page: "Student Samagra e-KYC Approval",
-              route: "/scheme-management/e-kyc/student-samagra-e-kyc-approval",
+              page: "Update Special Scheme Students",
+              route:
+                "/scheme-management-system/special-scheme-management/update-special-scheme-students",
+            },
+            {
+              page: "Upload Special Scheme Student Data",
+              route:
+                "/scheme-management-system/special-scheme-management/upload-special-scheme-student-data",
+            },
+            {
+              page: "Laptop Distribution Report",
+              route:
+                "/scheme-management-system/special-scheme-management/laptop-distribution-report",
             },
           ],
         },
         {
-          subModule: "Scheme Reports",
-          route: "/scheme-management/reports",
+          subModule: "Scheme Management Reports",
+          route: "/scheme-management-system/scheme-management-reports",
           pages: [
             {
-              page: "Various Level Reports - HO, JD, District, University, College",
-              route: "/scheme-management/reports/various-level-reports",
+              page: "Department Wise Scheme Report",
+              route:
+                "/scheme-management-system/scheme-management-reports/departmentwise-scheme-report",
+            },
+            {
+              page: "District Wise Apply Scheme Report",
+              route:
+                "/scheme-management-system/scheme-management-reports/districtwise-apply-scheme-report",
+            },
+            {
+              page: "District Wise Eligible Students Report",
+              route:
+                "/scheme-management-system/scheme-management-reports/districtwise-eligible-students-report",
+            },
+            {
+              page: "Scheme Applications Reject List Report",
+              route:
+                "/scheme-management-system/scheme-management-reports/scheme-applications-reject-list-report",
+            },
+            {
+              page: "Scheme Application Student Status Report",
+              route:
+                "/scheme-management-system/scheme-management-reports/scheme-application-student-status-report",
+            },
+            {
+              page: "Scheme Payment Report",
+              route:
+                "/scheme-management-system/scheme-management-reports/scheme-payment-report",
+            },
+            {
+              page: "Scheme Status Report",
+              route:
+                "/scheme-management-system/scheme-management-reports/scheme-status-report",
+            },
+            {
+              page: "Scheme Wise Eligible Student List Reports",
+              route:
+                "/scheme-management-system/scheme-management-reports/schemeWise-eligible-student-list-reports",
+            },
+            {
+              page: "Special Scheme Student Data",
+              route:
+                "/scheme-management-system/scheme-management-reports/special-scheme-student-data",
             },
           ],
         },

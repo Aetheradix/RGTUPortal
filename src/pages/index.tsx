@@ -26,6 +26,7 @@ import Trainingawardsystem from "./training-and-awards-management";
 import TransportManagementSYS from "./transport-management";
 import UserManagement from "./user-management";
 import VocationalManagement from "./vocational-management";
+import SchemeManagementSystem from "./scheme-mangament-master";
 
 export default function AppFeature() {
   return (
@@ -71,7 +72,7 @@ export default function AppFeature() {
       <Route path="exam-management/*" element={<ExamManagement />} />
       {/* Fallback for any route where dedicated UI is not implemented yet */}
       <Route path="*" element={<GenericPage />} />
-      <Route path="scheme-management/*" element={<SchemeManagement />} />
+   <Route path="scheme-management-system/*" element={<SchemeManagementSystem />} />
       <Route path="cms-portal/*" element={<CmsPortal />} />
       <Route path="guest-faculty/*" element={<GuestFacultyManagement />} />
       <Route path="payroll/*" element={<Payroll />} />
