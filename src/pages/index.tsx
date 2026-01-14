@@ -19,6 +19,7 @@ import ProfilePage from "./profile";
 import SchemeManagement from "./scheme-management";
 import StudentManagementSystem from "./student-management-system";
 import TourManagementSystem from "./tour-mangement";
+import Trainingawardsystem from "./training-and-awards-management";
 import TransportManagementSYS from "./transport-management";
 import UserManagement from "./user-management";
 import VocationalManagement from "./vocational-management";
@@ -73,6 +74,8 @@ export default function AppFeature() {
       <Route path="payroll/*" element={<Payroll />} />
       <Route path="vocational-management/*" element={<VocationalManagement />} />
       <Route path="compassion-management/*" element={<CompassionManagement />} />
+      <Route path="training-and-awards-management/*" element={<Trainingawardsystem />} />
+
       <Route
         path="employee-directory-management/*"
         element={<EmployeeDirectoryManagement />}

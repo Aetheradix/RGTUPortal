@@ -2384,6 +2384,40 @@ const sidebarMenu = {
         },
       ],
     },
+    {
+      module: "Training and Awards Management",
+      icon: FaBookReader,
+      route: "/training-and-awards-management",
+      subModules: [
+        {
+          subModule: "Training and Awards Management",
+          route:
+            "/training-and-awards-management/training-and-awards-management",
+          pages: [
+            {
+              page: "National or State Level Training",
+              route:
+                "/training-and-awards-management/training-and-awards-management/national-or-state-level-training",
+            },
+            {
+              page: "National Or State Level Awards",
+              route:
+                "/training-and-awards-management/training-and-awards-management/national-or-state-level-awards",
+            },
+            {
+              page: "Special Training Details",
+              route:
+                "/training-and-awards-management/training-and-awards-management/special-training-details",
+            },
+            {
+              page: "Employee Other Curriculum Activities Report",
+              route:
+                "/training-and-awards-management/training-and-awards-management/employee-other-curriculum-activities-report",
+            },
+          ],
+        },
+      ],
+    },
   ],
 };
 
