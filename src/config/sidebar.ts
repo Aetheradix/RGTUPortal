@@ -20,6 +20,7 @@ import {
   FaUniversity,
   FaUserFriends,
   FaUserGraduate,
+  FaUsers,
 } from "react-icons/fa";
 
 import type { IconType } from "react-icons";
@@ -431,6 +432,727 @@ const sidebarMenu = {
             {
               page: "Application Status",
               route: "/masters/grant-application/application-status",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      module: "HRMS",
+      icon: FaUsers,
+      route: "/hrms",
+      subModules: [
+        {
+          subModule: "Transfer Request",
+          route: "/hrms/transfer-request",
+          pages: [
+            {
+              page: "About Voluntary and Mutual Transfer",
+              route: "/hrms/transfer-request/about",
+            },
+            {
+              page: "Apply Voluntary Transfer",
+              route: "/hrms/transfer-request/apply-voluntary-transfer",
+            },
+            {
+              page: "Apply Mutual Transfer",
+              route: "/hrms/transfer-request/apply-mutual-transfer",
+            },
+            {
+              page: "Print Draft Application",
+              route: "/hrms/transfer-request/print-draft-application",
+            },
+            {
+              page: "Lock Application",
+              route: "/hrms/transfer-request/lock-application",
+            },
+          ],
+        },
+        {
+          subModule: "Administrative Level Transfer",
+          route: "/hrms/administrative-level-transfer",
+          pages: [
+            {
+              page: "Transfer",
+              route: "/hrms/administrative-level-transfer/transfer",
+            },
+            {
+              page: "Print Draft Transfer Or Update Application",
+              route: "/hrms/administrative-level-transfer/print-draft-letter",
+            },
+            {
+              page: "Generate Transfer Order",
+              route:
+                "/hrms/administrative-level-transfer/generate-transfer-order",
+            },
+            {
+              page: "Print Transfer Order",
+              route: "/hrms/administrative-level-transfer/print-transfer-order",
+            },
+            {
+              page: "View Post Code With Vacancies",
+              route:
+                "/hrms/administrative-level-transfer/view-post-code-vacancies",
+            },
+            {
+              page: "District Wise Counting Report",
+              route:
+                "/hrms/administrative-level-transfer/district-counting-report",
+            },
+            {
+              page: "Block Wise Counting Report",
+              route:
+                "/hrms/administrative-level-transfer/block-counting-report",
+            },
+            {
+              page: "Transfer Report",
+              route: "/hrms/administrative-level-transfer/transfer-report",
+            },
+          ],
+        },
+        {
+          subModule: "HOD Transfer Approval",
+          route: "/hrms/hod-transfer-approval",
+          pages: [
+            {
+              page: "Mutual Transfer Approve",
+              route: "/hrms/hod-transfer-approval/mutual-transfer-approval",
+            },
+            {
+              page: "Mutual Transfer Print",
+              route: "/hrms/hod-transfer-approval/mutual-transfer-print",
+            },
+          ],
+        },
+        {
+          subModule: "Transfer Approval by Head Office",
+          route: "/hrms/transfer-approval-head-office",
+          pages: [
+            {
+              page: "About HO Level Transfer Approval",
+              route:
+                "/hrms/transfer-approval-head-office/about-ho-level-transfer-approval",
+            },
+            {
+              page: "View Transfer Request & Approve",
+              route:
+                "/hrms/transfer-approval-head-office/view-transfer-request-approve",
+            },
+            {
+              page: "Voluntary Transfer Final Approve",
+              route:
+                "/hrms/transfer-approval-head-office/voluntary-transfer-final-approve",
+            },
+            {
+              page: "Voluntary Transfer Print",
+              route:
+                "/hrms/transfer-approval-head-office/voluntary-transfer-print",
+            },
+            {
+              page: "Mutual Transfer Approve",
+              route:
+                "/hrms/transfer-approval-head-office/mutual-transfer-approve",
+            },
+            {
+              page: "Mutual Transfer Print",
+              route:
+                "/hrms/transfer-approval-head-office/mutual-transfer-print",
+            },
+          ],
+        },
+        {
+          subModule: "Higher Designation Counselling",
+          route: "/hrms/higher-designation-counselling",
+          pages: [
+            {
+              page: "Employee Higher Designation Charge",
+              route:
+                "/hrms/higher-designation-counselling/employee-higher-designation-charge",
+            },
+            {
+              page: "Generate List",
+              route: "/hrms/higher-designation-counselling/generate-list",
+            },
+            {
+              page: "Generate List Report",
+              route:
+                "/hrms/higher-designation-counselling/generate-list-report",
+            },
+          ],
+        },
+        {
+          subModule: "Automatic Transfer System",
+          route: "/hrms/automatic-transfer-system",
+          pages: [
+            {
+              page: "About Automatic Transfer System",
+              route:
+                "/hrms/automatic-transfer-system/about-automatic-transfer-system",
+            },
+            {
+              page: "Generate Transfer",
+              route: "/hrms/automatic-transfer-system/generate-transfer",
+            },
+          ],
+        },
+        {
+          subModule: "Cancel Transfer Order",
+          route: "/hrms/cancel-transfer-order",
+          pages: [
+            {
+              page: "About Cancel Transfer Order",
+              route: "/hrms/cancel-transfer-order/about-cancel-transfer-order",
+            },
+            {
+              page: "Cancel Transfer Order",
+              route: "/hrms/cancel-transfer-order/cancel-transfer-order",
+            },
+            {
+              page: "Print Cancel Transfer Order",
+              route: "/hrms/cancel-transfer-order/print-cancel-transfer-order",
+            },
+            {
+              page: "Report",
+              route: "/hrms/cancel-transfer-order/report",
+            },
+          ],
+        },
+        {
+          subModule: "Employee Joining ",
+          route: "/hrms/employee-joining-In-office",
+          pages: [
+            {
+              page: "About Employee Joining",
+              route: "/hrms/employee-joining-In-office/about-employee-joining",
+            },
+            {
+              page: "Employee Joining in Office",
+              route: "/hrms/employee-joining-In-office/add-employee-to-office",
+            },
+            {
+              page: "Employee Joining Report",
+              route: "/hrms/employee-joining-In-office/report",
+            },
+          ],
+        },
+        {
+          subModule: "Tour ",
+          route: "/hrms/tour",
+          pages: [
+            {
+              page: "About Employee Joining",
+              route: "/hrms/tour/about-tour",
+            },
+            {
+              page: "Approve Tour",
+              route: "/hrms/tour/tour-approve",
+            },
+            {
+              page: "Apply Tour",
+              route: "/hrms/tour/tour-apply",
+            },
+            {
+              page: "Tour Report",
+              route: "/hrms/tour/tour-report",
+            },
+          ],
+        },
+        {
+          subModule: "Promotion",
+          route: "/hrms/promotion",
+          pages: [
+            {
+              page: "Promotion Process",
+              route: "/hrms/promotion/promotion-process",
+            },
+            {
+              page: "Generate Promotion Order",
+              route: "/hrms/promotion/promotion-order",
+            },
+            {
+              page: "Cancel Promotion Order",
+              route: "/hrms/promotion/promotion-hold-orders",
+            },
+            {
+              page: "Print Promotion Order",
+              route: "/hrms/promotion/promotion-with-transfer-report",
+            },
+            {
+              page: "Promotion Order Report",
+              route: "/hrms/promotion/promotion-order-report",
+            },
+          ],
+        },
+        {
+          subModule: "E-Service Book",
+          route: "/hrms/e-Service-book",
+          pages: [
+            {
+              page: "E-Service Book",
+              route: "/hrms/e-Service-book/e-service-book",
+            },
+            {
+              page: "E-Service Book Report",
+              route: "/hrms/e-Service-book/e-service-book-report",
+            },
+          ],
+        },
+        {
+          subModule: "Departmental Enquiry",
+          route: "/hrms/departmental-enquiry",
+          pages: [
+            {
+              page: "About Departmental Enquiry",
+              route: "/hrms/departmental-enquiry/about-departmental-enquiry",
+            },
+            {
+              page: "Add Departmental Enquiry",
+              route: "/hrms/departmental-enquiry/add-departmental-enquiry",
+            },
+            {
+              page: "Departmental Enquiry List",
+              route: "/hrms/departmental-enquiry/departmental-enquiry-list",
+            },
+            {
+              page: "Departmental Enquiry Report",
+              route: "/hrms/departmental-enquiry/departmental-enquiry-report",
+            },
+          ],
+        },
+        {
+          subModule: "Annual Confidential Report (ACR)",
+          route: "/hrms/annual-confidential-report",
+          pages: [
+            {
+              page: "About ACR",
+              route: "/hrms/annual-confidential-report/aboutACR",
+            },
+            {
+              page: "Employee Apply ACR",
+              route: "/hrms/annual-confidential-report/employee-apply-acr",
+            },
+            {
+              page: "Employee ACR Resend & Edit Application",
+              route:
+                "/hrms/annual-confidential-report/employee-acr-resend-edit-application",
+            },
+            {
+              page: "ACR Report Fill By Reporting Officer",
+              route:
+                "/hrms/annual-confidential-report/acr-report-fill-by-reporting-officer",
+            },
+            {
+              page: "ACR Report Reviewing Fill Accepting Authority",
+              route:
+                "/hrms/annual-confidential-report/acr-report-reviewing-fill-accepting-authority",
+            },
+            {
+              page: "Employee ACR Report",
+              route: "/hrms/annual-confidential-report/employee-acr-report",
+            },
+            {
+              page: "Reporting Officer ACR Report",
+              route:
+                "/hrms/annual-confidential-report/reportin-officer-acr-report",
+            },
+            {
+              page: "Accepting Authority ACR Report",
+              route:
+                "/hrms/annual-confidential-report/accepting-authority-acr-report",
+            },
+            {
+              page: "District Wise ACR Report",
+              route:
+                "/hrms/annual-confidential-report/district-wise-acr-report",
+            },
+          ],
+        },
+        {
+          subModule: "Employee Anukampa Application",
+          route: "/hrms/employee-anukampa-application",
+          pages: [
+            {
+              page: "Anukampa Appointment Home",
+              route:
+                "/hrms/employee-anukampa-application/anukampa-appointment-home",
+            },
+            {
+              page: "Apply for Anukampa Appointment",
+              route:
+                "/hrms/employee-anukampa-application/apply-anukampa-appointment",
+            },
+            {
+              page: "Print Status of Anukampa Appointment Application",
+              route:
+                "/hrms/employee-anukampa-application/print-status-anukampa-appointment-application",
+            },
+          ],
+        },
+        {
+          subModule: "HOD Anukampa Application Approval",
+          route: "/hrms/hod-anukampa-application-approval",
+          pages: [
+            {
+              page: "HOD Anukampa Application Approval Home",
+              route:
+                "/hrms/hod-anukampa-application-approval/hod-anukampa-application-approval-home",
+            },
+            {
+              page: "Register/Correct Application for Anukampa Appointment",
+              route:
+                "/hrms/hod-anukampa-application-approval/register-correct-application-for-anukampa-appointment",
+            },
+            {
+              page: "Print Application",
+              route:
+                "/hrms/hod-anukampa-application-approval/print-application",
+            },
+            {
+              page: "Action on Anukampa Appointment",
+              route:
+                "/hrms/hod-anukampa-application-approval/action-on-anukampa-appointment",
+            },
+            {
+              page: "Decision On Application",
+              route:
+                "/hrms/hod-anukampa-application-approval/decision-on-application",
+            },
+            {
+              page: "NOC Report Sent to District Collector",
+              route:
+                "/hrms/hod-anukampa-application-approval/noc-report-sent-to-district-collector",
+            },
+            {
+              page: "Dispose Cases",
+              route: "/hrms/hod-anukampa-application-approval/dispose-cases",
+            },
+            {
+              page: "Block-Wise Statistics",
+              route:
+                "/hrms/hod-anukampa-application-approval/block-wise-statistics",
+            },
+            {
+              page: "District-Wise Statistics",
+              route:
+                "/hrms/hod-anukampa-application-approval/district-wise-statistics",
+            },
+            {
+              page: "NOC Report",
+              route: "/hrms/hod-anukampa-application-approval/noc-report",
+            },
+          ],
+        },
+        {
+          subModule: "Director Anukampa Application Approval",
+          route: "/hrms/director-anukampa-application-approval",
+          pages: [
+            {
+              page: "JD Anukampa Application Approval Home",
+              route:
+                "/hrms/director-anukampa-application-approval/jd-anukampa-application-approval-home",
+            },
+            {
+              page: "Register/Correct Application for Anukampa Appointment",
+              route:
+                "/hrms/director-anukampa-application-approval/register-correct-application-for-anukampa-appointment",
+            },
+            {
+              page: "Print Application",
+              route:
+                "/hrms/director-anukampa-application-approval/print-application",
+            },
+            {
+              page: "Action on Anukampa Appointment",
+              route:
+                "/hrms/director-anukampa-application-approval/action-on-anukampa-appointment",
+            },
+            {
+              page: "Decision On Application",
+              route:
+                "/hrms/director-anukampa-application-approval/decision-on-application",
+            },
+            {
+              page: "NOC Report Sent to District Collector",
+              route:
+                "/hrms/director-anukampa-application-approval/noc-report-sent-to-district-collector",
+            },
+            {
+              page: "Dispose Cases",
+              route:
+                "/hrms/director-anukampa-application-approval/dispose-cases",
+            },
+            {
+              page: "Block-Wise Statistics",
+              route:
+                "/hrms/director-anukampa-application-approval/block-wise-statistics",
+            },
+            {
+              page: "District-Wise Statistics",
+              route:
+                "/hrms/director-anukampa-application-approval/district-wise-statistics",
+            },
+            {
+              page: "NOC Report",
+              route: "/hrms/director-anukampa-application-approval/noc-report",
+            },
+          ],
+        },
+        {
+          subModule: "Head Office Anukampa Application Approval",
+          route: "/hrms/head-office-anukampa-application-approval",
+          pages: [
+            {
+              page: "Head Office Anukampa Application Approval Home",
+              route:
+                "/hrms/head-office-anukampa-application-approval/head-anukampa-application-approval-home",
+            },
+            {
+              page: "Register/Correct Application for Anukampa Appointment",
+              route:
+                "/hrms/head-office-anukampa-application-approval/register-correct-application-for-anukampa-appointment",
+            },
+            {
+              page: "Print Application",
+              route:
+                "/hrms/head-office-anukampa-application-approval/print-application",
+            },
+            {
+              page: "Action on Anukampa Appointment",
+              route:
+                "/hrms/head-office-anukampa-application-approval/action-on-anukampa-appointment",
+            },
+            {
+              page: "Decision On Application",
+              route:
+                "/hrms/head-office-anukampa-application-approval/decision-on-application",
+            },
+            {
+              page: "NOC Report Sent to District Collector",
+              route:
+                "/hrms/head-office-anukampa-application-approval/noc-report-sent-to-district-collector",
+            },
+            {
+              page: "Dispose Cases",
+              route:
+                "/hrms/head-office-anukampa-application-approval/dispose-cases",
+            },
+            {
+              page: "Block-Wise Statistics",
+              route:
+                "/hrms/head-office-anukampa-application-approval/block-wise-statistics",
+            },
+            {
+              page: "District-Wise Statistics",
+              route:
+                "/hrms/head-office-anukampa-application-approval/district-wise-statistics",
+            },
+            {
+              page: "NOC Report",
+              route:
+                "/hrms/head-office-anukampa-application-approval/noc-report",
+            },
+            {
+              page: "Anukampa Appointment Report",
+              route:
+                "/hrms/head-office-anukampa-application-approval/anukampa-appointment-report",
+            },
+          ],
+        },
+        {
+          subModule: "Dashboard Display Circulars-Orders",
+          route: "/hrms/dashboard-display-orders",
+          pages: [
+            {
+              page: "All Order Details",
+              route: "/hrms/dashboard-display-orders/all-orders",
+            },
+            {
+              page: "Circular Order",
+              route: "/hrms/dashboard-display-orders/circular-order",
+            },
+            {
+              page: "Order Master",
+              route: "/hrms/dashboard-display-orders/order-master",
+            },
+            {
+              page: "Tender Master",
+              route: "/hrms/dashboard-display-orders/tender-master",
+            },
+            {
+              page: "Photo Master",
+              route: "/hrms/dashboard-display-orders/photo-master",
+            },
+            {
+              page: "News Master",
+              route: "/hrms/dashboard-display-orders/news-master",
+            },
+            {
+              page: "Event Information Master",
+              route: "/hrms/dashboard-display-orders/event-master",
+            },
+            {
+              page: "Message Information Master",
+              route:
+                "/hrms/dashboard-display-orders/message-information-master",
+            },
+          ],
+        },
+
+        {
+          subModule: "Grievance Management System",
+          route: "/hrms/grievance-management-system",
+          pages: [
+            {
+              page: "Grievance Management System Home",
+              route:
+                "/hrms/grievance-management-system/grievance-management-system-home",
+            },
+            {
+              page: "Add Employee Grievance Details",
+              route:
+                "/hrms/grievance-management-system/add-employee-grievance-details",
+            },
+            {
+              page: "Complaint Tracking Status",
+              route:
+                "/hrms/grievance-management-system/grievance-tracking-report",
+            },
+            {
+              page: "Print Complaint",
+              route: "/hrms/grievance-management-system/print-complaint-report",
+            },
+            {
+              page: "Grievances Processing",
+              route: "/hrms/grievance-management-system/grievance-processing",
+            },
+            {
+              page: "Grievances Complaint Resolution",
+              route: "/hrms/grievance-management-system/grievance-resolution",
+            },
+          ],
+        },
+        {
+          subModule: "Grievance Report",
+          route: "/hrms/grievance-report",
+          pages: [
+            {
+              page: "Grivence Disposed Report",
+              route: "/hrms/grievance-report/grivence-disposed-report",
+            },
+            {
+              page: "Rejected Complaint Report",
+              route: "/hrms/grievance-report/rejected-complaint-report",
+            },
+            {
+              page: "District Wise Forwarded Complaint",
+              route: "/hrms/grievance-report/district-wise-complaint-report",
+            },
+            {
+              page: "Complaint Forwarded From CPI",
+              route: "/hrms/grievance-report/complaint-forwarded-from-cpi",
+            },
+            {
+              page: "District Wise Progress Report",
+              route: "/hrms/grievance-report/district-wise-progress-report",
+            },
+            {
+              page: "Section Wise Pending Report",
+              route: "/hrms/grievance-report/section-wise-pending-report",
+            },
+          ],
+        },
+        {
+          subModule: "Employee Annual Property Returns Management System",
+          route: "/hrms/apr-management",
+          pages: [
+            {
+              page: "Employee Annual Property Returns Management System",
+              route: "/hrms/apr-management/aprms-home",
+            },
+            {
+              page: "Employee APR Form",
+              route: "/hrms/apr-management/apr-form",
+            },
+            {
+              page: "Employee APR Form Print",
+              route: "/hrms/apr-management/apr-form-print",
+            },
+            {
+              page: "Upload APR Form Document",
+              route: "/hrms/apr-management/apr-dcoument-upload",
+            },
+            {
+              page: "Employee APR Form Report",
+              route: "/hrms/apr-management/apr-form-report",
+            },
+            {
+              page: "APRMS District Wise Report",
+              route: "/hrms/apr-management/apr-district-report",
+            },
+          ],
+        },
+        {
+          subModule: "Punishment System",
+          route: "/hrms/punishment-system",
+          pages: [
+            {
+              page: "About Punishment System",
+              route: "/hrms/punishment-system/about-punishment-system",
+            },
+            {
+              page: "Generate Punishment",
+              route: "/hrms/punishment-system/generate-punishment",
+            },
+            {
+              page: "Restore Punishment",
+              route: "/hrms/punishment-system/restore-punishment",
+            },
+            {
+              page: "Punishment Report",
+              route: "/hrms/punishment-system/punishment-report",
+            },
+          ],
+        },
+        {
+          subModule: "HRMS Reports",
+          route: "/hrms/hrms-reports",
+          pages: [
+            {
+              page: "E-Service Book Report",
+              route: "/hrms/hrms-reports/e-service-book-report",
+            },
+            {
+              page: "Employee Retirement Report",
+              route: "/hrms/hrms-reports/employee-retirement-report",
+            },
+          ],
+        },
+        {
+          subModule: "Bonus",
+          route: "/hrms/bonus",
+          pages: [
+            { page: "Employee Bonus", route: "/hrms/bonus/employee-bonus" },
+          ],
+        },
+        {
+          subModule: "Arrear Process",
+          route: "/hrms/arrear-process",
+          pages: [
+            {
+              page: "Level upgrade And Salary Arrear Process",
+              route: "/hrms/arrear-process/salary-process",
+            },
+            {
+              page: "DA Arrear Process",
+              route: "/hrms/arrear-process/da-process",
+            },
+            {
+              page: "Arrear Final Generate Process",
+              route: "/hrms/arrear-process/final-generate",
+            },
+            {
+              page: "Arrear Report",
+              route: "/hrms/arrear-process/arrear-report",
             },
           ],
         },
