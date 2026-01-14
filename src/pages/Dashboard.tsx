@@ -1,12 +1,12 @@
 import {
+  BookOpen,
   Calendar,
   Download,
   ShoppingCart,
   TrendingDown,
   TrendingUp,
-  Users,
-  BookOpen,
   UserCheck,
+  Users,
   type LucideIcon
 } from 'lucide-react';
 
@@ -91,8 +91,8 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-4 md:p-6">
-      <div className="max-w-7xl w-full mx-auto space-y-6">
-        
+      <div className=" w-full mx-auto space-y-6">
+
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
             <h1 className="text-3xl md:text-4xl font-bold text-slate-900">University ERP Dashboard</h1>
@@ -236,13 +236,12 @@ const Dashboard = () => {
                     <td className="py-4 px-4 text-sm font-semibold text-slate-900">{reg.course}</td>
                     <td className="py-4 px-4">
                       <span
-                        className={`px-3 py-1 rounded-full text-xs font-medium ${
-                          reg.status === 'Completed'
+                        className={`px-3 py-1 rounded-full text-xs font-medium ${reg.status === 'Completed'
                             ? 'bg-green-100 text-green-700'
                             : reg.status === 'Processing'
-                            ? 'bg-blue-100 text-blue-700'
-                            : 'bg-orange-100 text-orange-700'
-                        }`}>
+                              ? 'bg-blue-100 text-blue-700'
+                              : 'bg-orange-100 text-orange-700'
+                          }`}>
                         {reg.status}
                       </span>
                     </td>
