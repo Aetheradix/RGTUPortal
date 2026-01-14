@@ -50,9 +50,8 @@ const SearchBar: React.FC = () => {
 
           {submodule.children && submodule.children.length > 0 && (
             <ChevronDown
-              className={`w-4 h-4 text-gray-400 transition-transform shrink-0 ${
-                isExpanded ? "rotate-180" : ""
-              }`}
+              className={`w-4 h-4 text-gray-400 transition-transform shrink-0 ${isExpanded ? "rotate-180" : ""
+                }`}
             />
           )}
         </button>
@@ -146,7 +145,17 @@ const SearchBar: React.FC = () => {
 
       {/* Search Results Dropdown */}
       {showSearchResults && searchResults.length > 0 && (
-        <div className="absolute top-full mt-2 w-full bg-white border border-gray-200 rounded-lg shadow-lg max-h-[500px] overflow-y-auto z-50">
+        <div className=" absolute top-full mt-2
+    left-1/2 -translate-x-1/2
+    w-[95vw]
+    sm:w-full sm:left-0 sm:translate-x-0
+    bg-white
+    border border-gray-200
+    rounded-lg
+    shadow-lg
+    max-h-96
+    overflow-y-auto
+    z-50">
           {searchResults.map((item: SearchResult) => renderSearchResult(item))}
         </div>
       )}

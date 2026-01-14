@@ -35,11 +35,11 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
         </div>
 
         <div className="flex items-center gap-2">
-          <button className="p-2 rounded-lg hover:bg-gray-100 relative">
+          <button className="p-2 rounded-lg hover:bg-gray-100 relative lg:flex hidden">
             <Bell className="w-6 h-6 text-gray-600" />
             <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
           </button>
-          <button className="p-2 rounded-lg hover:bg-gray-100">
+          <button className="p-2 rounded-lg hover:bg-gray-100 lg:flex hidden">
             <Settings className="w-6 h-6 text-gray-600" />
           </button>
 
