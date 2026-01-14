@@ -4,7 +4,9 @@ import {
   FaBookReader,
   FaBuilding,
   FaBus,
+  FaCalendarAlt,
   FaChalkboardTeacher,
+  FaChartLine,
   FaClipboardList,
   FaCogs,
   FaDatabase,
@@ -2625,6 +2627,110 @@ const sidebarMenu = {
             {
               page: "Critical Illness Master",
               route: "/master-data-management/hr-master/critical-illness",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      module: "Increment Management",
+      icon: FaChartLine,
+      route: "/increment-management",
+      subModules: [
+        {
+          subModule: "Increment Management",
+          route: "/increment-management/increment-managementt",
+          pages: [
+            {
+              page: "Add Increment",
+              route:
+                "/increment-management/increment-managementt/add-increment",
+            },
+            {
+              page: "Increment Report",
+              route:
+                "/increment-management/increment-managementt/increment-report",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      module: "Leave Management",
+      icon: FaCalendarAlt,
+      route: "/leave-management",
+      subModules: [
+        {
+          subModule: "Leave Process",
+          route: "/leave-management/leave-process",
+          pages: [
+            {
+              page: "Leave Type",
+              route: "/leave-management/leave-process/leave-type",
+            },
+            {
+              page: "Leave Status",
+              route: "/leave-management/leave-process/leave-status",
+            },
+            {
+              page: "Leave Allocation",
+              route: "/leave-management/leave-process/leave-allocation",
+            },
+            {
+              page: "Department Wise Leave Approval",
+              route:
+                "/leave-management/leave-process/department-wise-leave-approval",
+            },
+            {
+              page: "Apply Leave",
+              route: "/leave-management/leave-process/apply-leave",
+            },
+            {
+              page: "Balance Leave",
+              route: "/leave-management/leave-process/balance-leave",
+            },
+            {
+              page: "Leave Approver",
+              route: "/leave-management/leave-process/leave-approver",
+            },
+            {
+              page: "Employee Leave Opening Balance",
+              route:
+                "/leave-management/leave-process/employee-leave-opening-balance",
+            },
+          ],
+        },
+        {
+          subModule: "Leave Report",
+          route: "/leave-management/leave-report",
+          pages: [
+            {
+              page: "Leave Pendency Monitor Report",
+              route:
+                "/leave-management/leave-report/leave-pendency-monitor-report",
+            },
+            {
+              page: "DEO Monitoring Grid Report",
+              route:
+                "/leave-management/leave-report/deo-monitoring-grid-report",
+            },
+            {
+              page: "District Wise Leave Type Report",
+              route:
+                "/leave-management/leave-report/district-wise-leave-type-report",
+            },
+            {
+              page: "Teacher Wise Details Report",
+              route:
+                "/leave-management/leave-report/teacher-wise-details-reports",
+            },
+            {
+              page: "View Leave Request",
+              route: "/leave-management/leave-report/view-leave-request",
+            },
+            {
+              page: "Leave History Report",
+              route: "/leave-management/leave-report/leave-history-report",
             },
           ],
         },

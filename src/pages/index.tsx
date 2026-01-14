@@ -12,6 +12,8 @@ import ExamManagement from "./exam-management";
 import GenericPage from "./GenericPage";
 import GuestFacultyManagement from "./guest-faculty-management";
 import HostelManagementSystem from "./hostel-management";
+import IncrementManagement from "./increment-management";
+import LeaveManagement from "./leave-management";
 import MasterDataManagement from "./master-data-management";
 import Master from "./masters";
 import OIS from "./ois";
@@ -76,6 +78,8 @@ export default function AppFeature() {
       <Route path="vocational-management/*" element={<VocationalManagement />} />
       <Route path="compassion-management/*" element={<CompassionManagement />} />
       <Route path="training-and-awards-management/*" element={<Trainingawardsystem />} />
+      <Route path="increment-management/*" element={<IncrementManagement />} />
+      <Route path="leave-management/*" element={<LeaveManagement />} />
       <Route
         path="master-data-management/*"
         element={<MasterDataManagement />}
