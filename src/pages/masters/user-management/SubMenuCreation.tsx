@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import PageLayout from '../../../components/PageLayout';
 import { Button } from 'primereact/button';
+import { Column } from 'primereact/column';
+import { DataTable } from 'primereact/datatable';
+import { Dropdown } from 'primereact/dropdown';
 import { InputText } from 'primereact/inputtext';
 import { InputTextarea } from 'primereact/inputtextarea';
-import { Dropdown } from 'primereact/dropdown';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
+import React, { useState } from 'react';
+import PageLayout from '../../../components/PageLayout';
 
 interface SubMenu {
   id: number;
@@ -118,7 +118,7 @@ const SubMenuCreation: React.FC = () => {
         <div className="flex gap-3">
           <Button type="submit" label="Save" icon="pi pi-save" className="p-button-primary" />
           <Button type="button" label="Cancel" icon="pi pi-times" className="p-button-secondary" />
-          <Button type="button" label="Reset" icon="pi pi-refresh" className="p-button-outlined" />
+          {/* */}
         </div>
       </form>
 

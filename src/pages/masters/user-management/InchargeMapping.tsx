@@ -1,9 +1,9 @@
+import { Button } from 'primereact/button';
+import { Column } from 'primereact/column';
+import { DataTable } from 'primereact/datatable';
+import { Dropdown } from 'primereact/dropdown';
 import React, { useState } from 'react';
 import PageLayout from '../../../components/PageLayout';
-import { Button } from 'primereact/button';
-import { Dropdown } from 'primereact/dropdown';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
 
 interface InchargeMapping {
   id: number;
@@ -68,8 +68,8 @@ const InchargeMapping: React.FC = () => {
               options={employees}
               onChange={(e) => {
                 const selectedEmployee = employees.find(emp => emp.value === e.value);
-                setFormData({ 
-                  ...formData, 
+                setFormData({
+                  ...formData,
                   employeeId: e.value,
                   inchargeName: selectedEmployee?.label.split(' (')[0] || ''
                 });
@@ -84,7 +84,7 @@ const InchargeMapping: React.FC = () => {
         <div className="flex gap-3">
           <Button type="submit" label="Save" icon="pi pi-save" className="p-button-primary" />
           <Button type="button" label="Cancel" icon="pi pi-times" className="p-button-secondary" />
-          <Button type="button" label="Reset" icon="pi pi-refresh" className="p-button-outlined" />
+          {/* */}
         </div>
       </form>
 

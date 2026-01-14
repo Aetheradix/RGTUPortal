@@ -1,10 +1,10 @@
+import { Button } from 'primereact/button';
+import { Column } from 'primereact/column';
+import { DataTable } from 'primereact/datatable';
+import { Dropdown } from 'primereact/dropdown';
+import { MultiSelect } from 'primereact/multiselect';
 import React, { useState } from 'react';
 import PageLayout from '../../../components/PageLayout';
-import { Button } from 'primereact/button';
-import { MultiSelect } from 'primereact/multiselect';
-import { Dropdown } from 'primereact/dropdown';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
 
 interface RoleModuleMapping {
   id: number;
@@ -69,7 +69,7 @@ const RoleWiseModuleMapping: React.FC = () => {
         <div className="flex gap-3">
           <Button type="submit" label="Map Modules" icon="pi pi-link" className="p-button-primary" />
           <Button type="button" label="Cancel" icon="pi pi-times" className="p-button-secondary" />
-          <Button type="button" label="Reset" icon="pi pi-refresh" className="p-button-outlined" />
+          {/* */}
         </div>
       </form>
 

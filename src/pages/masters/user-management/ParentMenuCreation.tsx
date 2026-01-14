@@ -1,9 +1,8 @@
+import { Button } from 'primereact/button';
 import React, { useState } from 'react';
 import PageLayout from '../../../components/PageLayout';
-import { Button } from 'primereact/button';
-import { Input, Textarea, NumberInput } from '../../../ui/shared';
-import { Table, type TableColumn } from '../../../ui/shared';
 import { DUMMY_PARENT_MENUS, type ParentMenu } from '../../../constants';
+import { Input, NumberInput, Table, Textarea, type TableColumn } from '../../../ui/shared';
 
 const ParentMenuCreation: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -62,7 +61,7 @@ const ParentMenuCreation: React.FC = () => {
         <div className="flex gap-3">
           <Button type="submit" label="Save" icon="pi pi-save" className="p-button-primary" />
           <Button type="button" label="Cancel" icon="pi pi-times" className="p-button-secondary" />
-          <Button type="button" label="Reset" icon="pi pi-refresh" className="p-button-outlined" />
+          {/* */}
         </div>
       </form>
 
