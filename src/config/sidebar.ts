@@ -1,16 +1,25 @@
 import {
+  FaBed,
   FaBook,
+  FaBookReader,
+  FaBuilding,
   FaBus,
+  FaCalendarAlt,
   FaChalkboardTeacher,
+  FaChartLine,
   FaClipboardList,
   FaCogs,
-  FaGlobe,
+  FaDatabase,
+  FaHandsHelping,
   FaHome,
   FaMoneyBillWave,
+  FaMoneyCheckAlt,
+  FaPlane,
+  FaProjectDiagram,
+  FaSchool,
   FaUniversity,
   FaUserFriends,
   FaUserGraduate,
-  FaUsers,
 } from "react-icons/fa";
 
 import type { IconType } from "react-icons";
@@ -428,831 +437,146 @@ const sidebarMenu = {
       ],
     },
     {
-      module: "Employee Directory",
+      module: "Employee Directory Management",
       icon: FaHome,
-      route: "/employee-directory",
+      route: "/employee-directory-management",
       subModules: [
         {
           subModule: "Employee Directory Management",
-          route: "/employee-directory/management",
+          route: "/employee-directory-management/employee-diirectory",
           pages: [
             {
               page: "Employee Directory",
-              route: "/employee-directory/management/employee-directory",
+              route:
+                "/employee-directory-management/employee-directory/employee-directory",
             },
             {
               page: "Official Details Update",
-              route: "/employee-directory/management/official-details-update",
+              route:
+                "/employee-directory-management/employee-directory/official-details-update",
+            },
+            {
+              page: "Official Details Update-Sub",
+              route:
+                "/employee-directory-management/employee-directory/official-details-update-sub",
             },
             {
               page: "Employee Data Change Request",
               route:
-                "/employee-directory/management/employee-data-change-request",
+                "/employee-directory-management/employee-directory/employee-data-chnage",
             },
             {
               page: "Employee Verification",
-              route: "/employee-directory/management/employee-verification",
+              route:
+                "/employee-directory-management/employee-directory/employee-verification",
             },
             {
               page: "Employee Verification PDF",
-              route: "/employee-directory/management/employee-verification-pdf",
+              route:
+                "/employee-directory-management/employee-directory/employee-verification-pdf",
+            },
+            {
+              page: "Employee Verification-Sub",
+              route:
+                "/employee-directory-management/employee-directory/employee-verification-sub",
             },
             {
               page: "Employee Verification HO Level",
               route:
-                "/employee-directory/management/employee-verification-ho-level",
+                "/employee-directory-management/employee-directory/employee-verification-ho",
             },
             {
               page: "Exam Wise Employee Enrollment",
               route:
-                "/employee-directory/management/exam-wise-employee-enrollment",
+                "/employee-directory-management/employee-directory/exam-wise-employee-enrollment",
             },
           ],
         },
         {
           subModule: "Employee ID Card Management",
-          route: "/employee-directory/id-card",
+          route: "/employee-directory-management/employee-id-card-management",
           pages: [
             {
               page: "Print Employee Card",
-              route: "/employee-directory/id-card/print-employee-card",
+              route:
+                "/employee-directory-management/employee-id-card-management/print-employee-card",
             },
             {
               page: "Approve Employee Id Card",
-              route: "/employee-directory/id-card/approve-employee-id-card",
+              route:
+                "/employee-directory-management/employee-id-card-management/approve-employee-id-card",
             },
             {
               page: "Employee ID Card Generate",
-              route: "/employee-directory/id-card/generate",
+              route:
+                "/employee-directory-management/employee-id-card-management/employee-id-card-generate",
             },
+          ],
+        },
+        {
+          subModule: "Employee ID Card Reports",
+          route: "/employee-directory-management/employee-id-card-reports",
+          pages: [
             {
               page: "District Wise ID Card",
-              route: "/employee-directory/id-card/district-wise-id-card",
+              route:
+                "/employee-directory-management/employee-id-card-reports/district-wise-id-card",
             },
             {
               page: "College Wise ID Card",
-              route: "/employee-directory/id-card/college-wise-id-card",
+              route:
+                "/employee-directory-management/employee-id-card-reports/college-wise-id-card",
             },
             {
               page: "Missing Employee Details",
-              route: "/employee-directory/id-card/missing-employee-details",
+              route:
+                "/employee-directory-management/employee-id-card-reports/employee-missing-details",
             },
-            {
-              page: "Employee Details Report",
-              route: "/employee-directory/id-card/employee-details-report",
-            },
+          ],
+        },
+        {
+          subModule: "Employee Reports",
+          route: "/employee-directory-management/employee-reports",
+          pages: [
             {
               page: "Change Request Verification Statistic Report",
               route:
-                "/employee-directory/id-card/change-request-verification-statistic-report",
+                "/employee-directory-management/employee-reports/change-request-verification-report",
             },
             {
               page: "Employee Verification Statistic Report",
               route:
-                "/employee-directory/id-card/employee-verification-statistic-report",
+                "/employee-directory-management/employee-reports/employee-verification-statistic-report",
+            },
+            {
+              page: "Employee Details Report",
+              route:
+                "/employee-directory-management/employee-reports/employee-details-report",
             },
             {
               page: "Exam Wise Employee Enrollment Report",
-              route: "/employee-directory/id-card/exam-wise-enrollment-report",
+              route:
+                "/employee-directory-management/employee-reports/exam-wise-enrollment-report",
             },
             {
               page: "Employee Verification Report",
-              route: "/employee-directory/id-card/employee-verification-report",
+              route:
+                "/employee-directory-management/employee-reports/employee-verification-report",
             },
             {
               page: "Handicapped Employees Report",
-              route: "/employee-directory/id-card/handicapped-employees-report",
+              route:
+                "/employee-directory-management/employee-reports/handicapped-employees-report",
             },
             {
               page: "Employee Customized Report",
-              route: "/employee-directory/id-card/employee-customized-report",
+              route:
+                "/employee-directory-management/employee-reports/employee-customized-report",
             },
           ],
         },
       ],
     },
-    {
-      module: "HRMS",
-      icon: FaUsers,
-      route: "/hrms",
-      subModules: [
-        {
-          subModule: "Transfer Request",
-          route: "/hrms/transfer-request",
-          pages: [
-            {
-              page: "About Voluntary and Mutual Transfer",
-              route: "/hrms/transfer-request/about",
-            },
-            {
-              page: "Apply Voluntary Transfer",
-              route: "/hrms/transfer-request/apply-voluntary-transfer",
-            },
-            {
-              page: "Apply Mutual Transfer",
-              route: "/hrms/transfer-request/apply-mutual-transfer",
-            },
-            {
-              page: "Print Draft Application",
-              route: "/hrms/transfer-request/print-draft-application",
-            },
-            {
-              page: "Lock Application",
-              route: "/hrms/transfer-request/lock-application",
-            },
-          ],
-        },
-        {
-          subModule: "Administrative Level Transfer",
-          route: "/hrms/administrative-level-transfer",
-          pages: [
-            {
-              page: "Transfer",
-              route: "/hrms/administrative-level-transfer/transfer",
-            },
-            {
-              page: "Print Draft Transfer Or Update Application",
-              route: "/hrms/administrative-level-transfer/print-draft-letter",
-            },
-            {
-              page: "Generate Transfer Order",
-              route:
-                "/hrms/administrative-level-transfer/generate-transfer-order",
-            },
-            {
-              page: "Print Transfer Order",
-              route: "/hrms/administrative-level-transfer/print-transfer-order",
-            },
-            {
-              page: "View Post Code With Vacancies",
-              route:
-                "/hrms/administrative-level-transfer/view-post-code-vacancies",
-            },
-            {
-              page: "District Wise Counting Report",
-              route:
-                "/hrms/administrative-level-transfer/district-counting-report",
-            },
-            {
-              page: "Block Wise Counting Report",
-              route:
-                "/hrms/administrative-level-transfer/block-counting-report",
-            },
-            {
-              page: "Transfer Report",
-              route: "/hrms/administrative-level-transfer/transfer-report",
-            },
-          ],
-        },
-        {
-          subModule: "HOD Transfer Approval",
-          route: "/hrms/hod-transfer-approval",
-          pages: [
-            {
-              page: "Mutual Transfer Approve",
-              route: "/hrms/hod-transfer-approval/mutual-transfer-approval",
-            },
-            {
-              page: "Mutual Transfer Print",
-              route: "/hrms/hod-transfer-approval/mutual-transfer-print",
-            },
-          ],
-        },
-        {
-          subModule: "Transfer Approval by Head Office",
-          route: "/hrms/transfer-approval-head-office",
-          pages: [
-            {
-              page: "About HO Level Transfer Approval",
-              route:
-                "/hrms/transfer-approval-head-office/about-ho-level-transfer-approval",
-            },
-            {
-              page: "View Transfer Request & Approve",
-              route:
-                "/hrms/transfer-approval-head-office/view-transfer-request-approve",
-            },
-            {
-              page: "Voluntary Transfer Final Approve",
-              route:
-                "/hrms/transfer-approval-head-office/voluntary-transfer-final-approve",
-            },
-            {
-              page: "Voluntary Transfer Print",
-              route:
-                "/hrms/transfer-approval-head-office/voluntary-transfer-print",
-            },
-            {
-              page: "Mutual Transfer Approve",
-              route:
-                "/hrms/transfer-approval-head-office/mutual-transfer-approve",
-            },
-            {
-              page: "Mutual Transfer Print",
-              route:
-                "/hrms/transfer-approval-head-office/mutual-transfer-print",
-            },
-          ],
-        },
-        {
-          subModule: "Higher Designation Counselling",
-          route: "/hrms/higher-designation-counselling",
-          pages: [
-            {
-              page: "Employee Higher Designation Charge",
-              route:
-                "/hrms/higher-designation-counselling/employee-higher-designation-charge",
-            },
-            {
-              page: "Generate List",
-              route: "/hrms/higher-designation-counselling/generate-list",
-            },
-            {
-              page: "Generate List Report",
-              route:
-                "/hrms/higher-designation-counselling/generate-list-report",
-            },
-          ],
-        },
-        {
-          subModule: "Automatic Transfer System",
-          route: "/hrms/automatic-transfer-system",
-          pages: [
-            {
-              page: "About Automatic Transfer System",
-              route:
-                "/hrms/automatic-transfer-system/about-automatic-transfer-system",
-            },
-            {
-              page: "Generate Transfer",
-              route: "/hrms/automatic-transfer-system/generate-transfer",
-            },
-          ],
-        },
-        {
-          subModule: "Cancel Transfer Order",
-          route: "/hrms/cancel-transfer-order",
-          pages: [
-            {
-              page: "About Cancel Transfer Order",
-              route: "/hrms/cancel-transfer-order/about-cancel-transfer-order",
-            },
-            {
-              page: "Cancel Transfer Order",
-              route: "/hrms/cancel-transfer-order/cancel-transfer-order",
-            },
-            {
-              page: "Print Cancel Transfer Order",
-              route: "/hrms/cancel-transfer-order/print-cancel-transfer-order",
-            },
-            {
-              page: "Report",
-              route: "/hrms/cancel-transfer-order/report",
-            },
-          ],
-        },
-        {
-          subModule: "Employee Joining ",
-          route: "/hrms/employee-joining-In-office",
-          pages: [
-            {
-              page: "About Employee Joining",
-              route: "/hrms/employee-joining-In-office/about-employee-joining",
-            },
-            {
-              page: "Employee Joining in Office",
-              route: "/hrms/employee-joining-In-office/add-employee-to-office",
-            },
-            {
-              page: "Employee Joining Report",
-              route: "/hrms/employee-joining-In-office/report",
-            },
-          ],
-        },
-        {
-          subModule: "Tour ",
-          route: "/hrms/tour",
-          pages: [
-            {
-              page: "About Employee Joining",
-              route: "/hrms/tour/about-tour",
-            },
-            {
-              page: "Approve Tour",
-              route: "/hrms/tour/tour-approve",
-            },
-            {
-              page: "Apply Tour",
-              route: "/hrms/tour/tour-apply",
-            },
-            {
-              page: "Tour Report",
-              route: "/hrms/tour/tour-report",
-            },
-          ],
-        },
-        {
-          subModule: "Promotion",
-          route: "/hrms/promotion",
-          pages: [
-            {
-              page: "Promotion Process",
-              route: "/hrms/promotion/promotion-process",
-            },
-            {
-              page: "Generate Promotion Order",
-              route: "/hrms/promotion/promotion-order",
-            },
-            {
-              page: "Cancel Promotion Order",
-              route: "/hrms/promotion/promotion-hold-orders",
-            },
-            {
-              page: "Print Promotion Order",
-              route: "/hrms/promotion/promotion-with-transfer-report",
-            },
-            {
-              page: "Promotion Order Report",
-              route: "/hrms/promotion/promotion-order-report",
-            },
-          ],
-        },
-        {
-          subModule: "E-Service Book",
-          route: "/hrms/e-Service-book",
-          pages: [
-            {
-              page: "E-Service Book",
-              route: "/hrms/e-Service-book/e-service-book",
-            },
-            {
-              page: "E-Service Book Report",
-              route: "/hrms/e-Service-book/e-service-book-report",
-            },
-          ],
-        },
-        {
-          subModule: "Departmental Enquiry",
-          route: "/hrms/departmental-enquiry",
-          pages: [
-            {
-              page: "About Departmental Enquiry",
-              route: "/hrms/departmental-enquiry/about-departmental-enquiry",
-            },
-            {
-              page: "Add Departmental Enquiry",
-              route: "/hrms/departmental-enquiry/add-departmental-enquiry",
-            },
-            {
-              page: "Departmental Enquiry List",
-              route: "/hrms/departmental-enquiry/departmental-enquiry-list",
-            },
-            {
-              page: "Departmental Enquiry Report",
-              route: "/hrms/departmental-enquiry/departmental-enquiry-report",
-            },
-          ],
-        },
-        {
-          subModule: "Annual Confidential Report (ACR)",
-          route: "/hrms/annual-confidential-report",
-          pages: [
-            {
-              page: "About ACR",
-              route: "/hrms/annual-confidential-report/aboutACR",
-            },
-            {
-              page: "Employee Apply ACR",
-              route: "/hrms/annual-confidential-report/employee-apply-acr",
-            },
-            {
-              page: "Employee ACR Resend & Edit Application",
-              route:
-                "/hrms/annual-confidential-report/employee-acr-resend-edit-application",
-            },
-            {
-              page: "ACR Report Fill By Reporting Officer",
-              route:
-                "/hrms/annual-confidential-report/acr-report-fill-by-reporting-officer",
-            },
-            {
-              page: "ACR Report Reviewing Fill Accepting Authority",
-              route:
-                "/hrms/annual-confidential-report/acr-report-reviewing-fill-accepting-authority",
-            },
-            {
-              page: "Employee ACR Report",
-              route: "/hrms/annual-confidential-report/employee-acr-report",
-            },
-            {
-              page: "Reporting Officer ACR Report",
-              route:
-                "/hrms/annual-confidential-report/reportin-officer-acr-report",
-            },
-            {
-              page: "Accepting Authority ACR Report",
-              route:
-                "/hrms/annual-confidential-report/accepting-authority-acr-report",
-            },
-            {
-              page: "District Wise ACR Report",
-              route:
-                "/hrms/annual-confidential-report/district-wise-acr-report",
-            },
-          ],
-        },
-        {
-          subModule: "Employee Anukampa Application",
-          route: "/hrms/employee-anukampa-application",
-          pages: [
-            {
-              page: "Anukampa Appointment Home",
-              route:
-                "/hrms/employee-anukampa-application/anukampa-appointment-home",
-            },
-            {
-              page: "Apply for Anukampa Appointment",
-              route:
-                "/hrms/employee-anukampa-application/apply-anukampa-appointment",
-            },
-            {
-              page: "Print Status of Anukampa Appointment Application",
-              route:
-                "/hrms/employee-anukampa-application/print-status-anukampa-appointment-application",
-            },
-          ],
-        },
-        {
-          subModule: "HOD Anukampa Application Approval",
-          route: "/hrms/hod-anukampa-application-approval",
-          pages: [
-            {
-              page: "HOD Anukampa Application Approval Home",
-              route:
-                "/hrms/hod-anukampa-application-approval/hod-anukampa-application-approval-home",
-            },
-            {
-              page: "Register/Correct Application for Anukampa Appointment",
-              route:
-                "/hrms/hod-anukampa-application-approval/register-correct-application-for-anukampa-appointment",
-            },
-            {
-              page: "Print Application",
-              route:
-                "/hrms/hod-anukampa-application-approval/print-application",
-            },
-            {
-              page: "Action on Anukampa Appointment",
-              route:
-                "/hrms/hod-anukampa-application-approval/action-on-anukampa-appointment",
-            },
-            {
-              page: "Decision On Application",
-              route:
-                "/hrms/hod-anukampa-application-approval/decision-on-application",
-            },
-            {
-              page: "NOC Report Sent to District Collector",
-              route:
-                "/hrms/hod-anukampa-application-approval/noc-report-sent-to-district-collector",
-            },
-            {
-              page: "Dispose Cases",
-              route: "/hrms/hod-anukampa-application-approval/dispose-cases",
-            },
-            {
-              page: "Block-Wise Statistics",
-              route:
-                "/hrms/hod-anukampa-application-approval/block-wise-statistics",
-            },
-            {
-              page: "District-Wise Statistics",
-              route:
-                "/hrms/hod-anukampa-application-approval/district-wise-statistics",
-            },
-            {
-              page: "NOC Report",
-              route: "/hrms/hod-anukampa-application-approval/noc-report",
-            },
-          ],
-        },
-        {
-          subModule: "Director Anukampa Application Approval",
-          route: "/hrms/director-anukampa-application-approval",
-          pages: [
-            {
-              page: "JD Anukampa Application Approval Home",
-              route:
-                "/hrms/director-anukampa-application-approval/jd-anukampa-application-approval-home",
-            },
-            {
-              page: "Register/Correct Application for Anukampa Appointment",
-              route:
-                "/hrms/director-anukampa-application-approval/register-correct-application-for-anukampa-appointment",
-            },
-            {
-              page: "Print Application",
-              route:
-                "/hrms/director-anukampa-application-approval/print-application",
-            },
-            {
-              page: "Action on Anukampa Appointment",
-              route:
-                "/hrms/director-anukampa-application-approval/action-on-anukampa-appointment",
-            },
-            {
-              page: "Decision On Application",
-              route:
-                "/hrms/director-anukampa-application-approval/decision-on-application",
-            },
-            {
-              page: "NOC Report Sent to District Collector",
-              route:
-                "/hrms/director-anukampa-application-approval/noc-report-sent-to-district-collector",
-            },
-            {
-              page: "Dispose Cases",
-              route:
-                "/hrms/director-anukampa-application-approval/dispose-cases",
-            },
-            {
-              page: "Block-Wise Statistics",
-              route:
-                "/hrms/director-anukampa-application-approval/block-wise-statistics",
-            },
-            {
-              page: "District-Wise Statistics",
-              route:
-                "/hrms/director-anukampa-application-approval/district-wise-statistics",
-            },
-            {
-              page: "NOC Report",
-              route: "/hrms/director-anukampa-application-approval/noc-report",
-            },
-          ],
-        },
-        {
-          subModule: "Head Office Anukampa Application Approval",
-          route: "/hrms/head-office-anukampa-application-approval",
-          pages: [
-            {
-              page: "Head Office Anukampa Application Approval Home",
-              route:
-                "/hrms/head-office-anukampa-application-approval/head-anukampa-application-approval-home",
-            },
-            {
-              page: "Register/Correct Application for Anukampa Appointment",
-              route:
-                "/hrms/head-office-anukampa-application-approval/register-correct-application-for-anukampa-appointment",
-            },
-            {
-              page: "Print Application",
-              route:
-                "/hrms/head-office-anukampa-application-approval/print-application",
-            },
-            {
-              page: "Action on Anukampa Appointment",
-              route:
-                "/hrms/head-office-anukampa-application-approval/action-on-anukampa-appointment",
-            },
-            {
-              page: "Decision On Application",
-              route:
-                "/hrms/head-office-anukampa-application-approval/decision-on-application",
-            },
-            {
-              page: "NOC Report Sent to District Collector",
-              route:
-                "/hrms/head-office-anukampa-application-approval/noc-report-sent-to-district-collector",
-            },
-            {
-              page: "Dispose Cases",
-              route:
-                "/hrms/head-office-anukampa-application-approval/dispose-cases",
-            },
-            {
-              page: "Block-Wise Statistics",
-              route:
-                "/hrms/head-office-anukampa-application-approval/block-wise-statistics",
-            },
-            {
-              page: "District-Wise Statistics",
-              route:
-                "/hrms/head-office-anukampa-application-approval/district-wise-statistics",
-            },
-            {
-              page: "NOC Report",
-              route:
-                "/hrms/head-office-anukampa-application-approval/noc-report",
-            },
-            {
-              page: "Anukampa Appointment Report",
-              route:
-                "/hrms/head-office-anukampa-application-approval/anukampa-appointment-report",
-            },
-          ],
-        },
-        {
-          subModule: "Dashboard Display Circulars-Orders",
-          route: "/hrms/dashboard-display-orders",
-          pages: [
-            {
-              page: "All Order Details",
-              route: "/hrms/dashboard-display-orders/all-orders",
-            },
-            {
-              page: "Circular Order",
-              route: "/hrms/dashboard-display-orders/circular-order",
-            },
-            {
-              page: "Order Master",
-              route: "/hrms/dashboard-display-orders/order-master",
-            },
-            {
-              page: "Tender Master",
-              route: "/hrms/dashboard-display-orders/tender-master",
-            },
-            {
-              page: "Photo Master",
-              route: "/hrms/dashboard-display-orders/photo-master",
-            },
-            {
-              page: "News Master",
-              route: "/hrms/dashboard-display-orders/news-master",
-            },
-            {
-              page: "Event Information Master",
-              route: "/hrms/dashboard-display-orders/event-master",
-            },
-            {
-              page: "Message Information Master",
-              route:
-                "/hrms/dashboard-display-orders/message-information-master",
-            },
-          ],
-        },
-
-        {
-          subModule: "Grievance Management System",
-          route: "/hrms/grievance-management-system",
-          pages: [
-            {
-              page: "Grievance Management System Home",
-              route:
-                "/hrms/grievance-management-system/grievance-management-system-home",
-            },
-            {
-              page: "Add Employee Grievance Details",
-              route:
-                "/hrms/grievance-management-system/add-employee-grievance-details",
-            },
-            {
-              page: "Complaint Tracking Status",
-              route:
-                "/hrms/grievance-management-system/grievance-tracking-report",
-            },
-            {
-              page: "Print Complaint",
-              route: "/hrms/grievance-management-system/print-complaint-report",
-            },
-            {
-              page: "Grievances Processing",
-              route: "/hrms/grievance-management-system/grievance-processing",
-            },
-            {
-              page: "Grievances Complaint Resolution",
-              route: "/hrms/grievance-management-system/grievance-resolution",
-            },
-          ],
-        },
-        {
-          subModule: "Grievance Report",
-          route: "/hrms/grievance-report",
-          pages: [
-            {
-              page: "Grivence Disposed Report",
-              route: "/hrms/grievance-report/grivence-disposed-report",
-            },
-            {
-              page: "Rejected Complaint Report",
-              route: "/hrms/grievance-report/rejected-complaint-report",
-            },
-            {
-              page: "District Wise Forwarded Complaint",
-              route: "/hrms/grievance-report/district-wise-complaint-report",
-            },
-            {
-              page: "Complaint Forwarded From CPI",
-              route: "/hrms/grievance-report/complaint-forwarded-from-cpi",
-            },
-            {
-              page: "District Wise Progress Report",
-              route: "/hrms/grievance-report/district-wise-progress-report",
-            },
-            {
-              page: "Section Wise Pending Report",
-              route: "/hrms/grievance-report/section-wise-pending-report",
-            },
-          ],
-        },
-        {
-          subModule: "Employee Annual Property Returns Management System",
-          route: "/hrms/apr-management",
-          pages: [
-            {
-              page: "Employee Annual Property Returns Management System",
-              route: "/hrms/apr-management/aprms-home",
-            },
-            {
-              page: "Employee APR Form",
-              route: "/hrms/apr-management/apr-form",
-            },
-            {
-              page: "Employee APR Form Print",
-              route: "/hrms/apr-management/apr-form-print",
-            },
-            {
-              page: "Upload APR Form Document",
-              route: "/hrms/apr-management/apr-dcoument-upload",
-            },
-            {
-              page: "Employee APR Form Report",
-              route: "/hrms/apr-management/apr-form-report",
-            },
-            {
-              page: "APRMS District Wise Report",
-              route: "/hrms/apr-management/apr-district-report",
-            },
-          ],
-        },
-        {
-          subModule: "Punishment System",
-          route: "/hrms/punishment-system",
-          pages: [
-            {
-              page: "About Punishment System",
-              route: "/hrms/punishment-system/about-punishment-system",
-            },
-            {
-              page: "Generate Punishment",
-              route: "/hrms/punishment-system/generate-punishment",
-            },
-            {
-              page: "Restore Punishment",
-              route: "/hrms/punishment-system/restore-punishment",
-            },
-            {
-              page: "Punishment Report",
-              route: "/hrms/punishment-system/punishment-report",
-            },
-          ],
-        },
-        {
-          subModule: "HRMS Reports",
-          route: "/hrms/hrms-reports",
-          pages: [
-            {
-              page: "E-Service Book Report",
-              route: "/hrms/hrms-reports/e-service-book-report",
-            },
-            {
-              page: "Employee Retirement Report",
-              route: "/hrms/hrms-reports/employee-retirement-report",
-            },
-          ],
-        },
-        {
-          subModule: "Bonus",
-          route: "/hrms/bonus",
-          pages: [
-            { page: "Employee Bonus", route: "/hrms/bonus/employee-bonus" },
-          ],
-        },
-        {
-          subModule: "Arrear Process",
-          route: "/hrms/arrear-process",
-          pages: [
-            {
-              page: "Level upgrade And Salary Arrear Process",
-              route: "/hrms/arrear-process/salary-process",
-            },
-            {
-              page: "DA Arrear Process",
-              route: "/hrms/arrear-process/da-process",
-            },
-            {
-              page: "Arrear Final Generate Process",
-              route: "/hrms/arrear-process/final-generate",
-            },
-            {
-              page: "Arrear Report",
-              route: "/hrms/arrear-process/arrear-report",
-            },
-          ],
-        },
-      ],
-    },
-
     {
       module: "Academics",
       icon: FaBook,
@@ -1443,24 +767,134 @@ const sidebarMenu = {
           ],
         },
         {
-          subModule: "Admission Fee",
-          route: "/admission/fee",
+          subModule: "Allotment Letter",
+          route: "/admission-management-system/allotment-letter",
           pages: [
-            { page: "Set Admission Fee", route: "/admission/fee/set" },
+            {
+              page: "Get Allotment Letter",
+              route:
+                "/admission-management-system/allotment-letter/get-allotment-letter",
+            },
+            {
+              page: "Generate Allotment Letters",
+              route:
+                "/admission-management-system/allotment-letter/generate-allotment-letters",
+            },
+            {
+              page: "Manage Allotment Status",
+              route:
+                "/admission-management-system/allotment-letter/manage-allotment-status",
+            },
+            {
+              page: "College Wise Allotment Status",
+              route:
+                "/admission-management-system/allotment-letter/college-wise-allotment-status",
+            },
+          ],
+        },
+        {
+          subModule: "Admission Fee",
+          route: "/admission-management-system/admission-fee",
+          pages: [
+            {
+              page: "Set Admission Fee",
+              route:
+                "/admission-management-system/admission-fee/set-admission-fee",
+            },
             {
               page: "View Fee Structure",
-              route: "/admission/fee/view-structure",
+              route:
+                "/admission-management-system/admission-fee/view-fee-structure",
             },
-            { page: "Make Payment", route: "/admission/fee/make-payment" },
+            {
+              page: "Make Payment",
+              route: "/admission-management-system/admission-fee/make-payment",
+            },
             {
               page: "Payment Verification",
-              route: "/admission/fee/payment-verification",
+              route:
+                "/admission-management-system/admission-fee/payment-verification",
             },
             {
               page: "Payment History Receipt Download",
-              route: "/admission/fee/payment-history",
+              route:
+                "/admission-management-system/admission-fee/payment-history-and-receipt-download",
             },
-            { page: "Payment Report", route: "/admission/fee/payment-report" },
+            {
+              page: "Payment Report",
+              route:
+                "/admission-management-system/admission-fee/payment-report",
+            },
+          ],
+        },
+        {
+          subModule: "Merit List",
+          route: "/admission-management-system/merit-list",
+          pages: [
+            {
+              page: "Candidates Rrank",
+              route: "/admission-management-system/merit-list/candidates-rank",
+            },
+            {
+              page: "Genrate Merit List",
+              route:
+                "/admission-management-system/merit-list/genrate-marit-list",
+            },
+            {
+              page: "Merit List",
+              route: "/admission-management-system/merit-list/merit-list",
+            },
+            {
+              page: "Set Tie Braking Criteria of Rank",
+              route:
+                "/admission-management-system/merit-list/set-tie-braking-criteria-of-rank",
+            },
+          ],
+        },
+        {
+          subModule: "Seat Allocation ",
+          route: "/admission-management-system/seat-allocation",
+          pages: [
+            {
+              page: "View Allocation Status",
+              route:
+                "/admission-management-system/seat-allocation/view-allocation-status",
+            },
+            {
+              page: "Accept/Reject Allocation",
+              route:
+                "/admission-management-system/seat-allocation/accept-reject-allocation",
+            },
+            {
+              page: "Reserved Categories/Quota (Hed)",
+              route:
+                "/admission-management-system/seat-allocation/reserved-categories-quota",
+            },
+            {
+              page: "Set Categories/Quota Percentages (Hed)",
+              route:
+                "/admission-management-system/seat-allocation/set-categories-quota-percentages",
+            },
+            {
+              page: "Seat Allocation per Course  (Hed/University)",
+              route:
+                "/admission-management-system/seat-allocation/seat-allocation-per-course",
+            },
+            {
+              page: "Seat  Acceptance Window (College,University)",
+              route:
+                "/admission-management-system/seat-allocation/seat-acceptance-window",
+            },
+            {
+              page: "View Available Seats",
+              route:
+                "/admission-management-system/seat-allocation/view-available-seats",
+            },
+            {
+              page: "Allocation Report ",
+              route:
+                "/admission-management-system/seat-allocation/allocation-report",
+            },
           ],
         },
       ],
@@ -1894,81 +1328,171 @@ const sidebarMenu = {
       ],
     },
     {
-      module: "Scheme Management",
-      icon: FaGlobe,
-      route: "/scheme-management",
+      module: "Scheme Management System",
+      icon: FaProjectDiagram,
+      route: "/scheme-management-system",
       subModules: [
         {
-          subModule: "New Scheme Management",
-          route: "/scheme-management/new-scheme-management",
+          subModule: "Apply",
+          route: "/scheme-management-system/apply",
           pages: [
             {
-              page: "Apply For Scheme",
-              route:
-                "/scheme-management/new-scheme-management/apply-for-scheme",
+              page: "Apply Scheme",
+              route: "/scheme-management-system/apply/apply-scheme",
             },
             {
-              page: "View Scheme Wise Generate List",
+              page: "View Scheme Wise Generated List",
               route:
-                "/scheme-management/new-scheme-management/view-scheme-wise-generate-list",
+                "/scheme-management-system/apply/view-scheme-wise-generated-list",
+            },
+            {
+              page: "Scheme Wise Eligible Student List",
+              route:
+                "/scheme-management-system/apply/schemewise-eligible-student-list",
+            },
+          ],
+        },
+        {
+          subModule: "Payment",
+          route: "/scheme-management-system/payment",
+          pages: [
+            {
+              page: "Scheme Wise Disbursement Amount",
+              route:
+                "/scheme-management-system/payment/schemewise-disbursement-amount",
             },
             {
               page: "Scheme Wise Generate Payment File",
               route:
-                "/scheme-management/new-scheme-management/scheme-wise-generate-payment-file",
+                "/scheme-management-system/payment/schemewise-generate-paymentfile-module",
             },
           ],
         },
         {
-          subModule: "Student Profile Management",
-          route: "/scheme-management/student-profile-management",
+          subModule: "Scheme Management Master",
+          route: "/scheme-management-system/scheme-management-master",
           pages: [
             {
-              page: "Student Profile View Edit Lock",
+              page: "Apply Student Scheme Applications",
               route:
-                "/scheme-management/student-profile-management/student-profile-view-edit-lock",
+                "/scheme-management-system/scheme-management-master/apply-student-scheme-applications",
             },
             {
-              page: "Student Profile Management",
+              page: "Check Scheme Eligibility",
               route:
-                "/scheme-management/student-profile-management/student-profile-sub-management",
+                "/scheme-management-system/scheme-management-master/check-scheme-eligibility",
             },
             {
-              page: "Update Student Profile for Scholarships",
+              page: "Departmental Scheme",
               route:
-                "/scheme-management/student-profile-management/update-student-profile",
+                "/scheme-management-system/scheme-management-master/departmental-scheme",
+            },
+            {
+              page: "Departmental Scheme Details",
+              route:
+                "/scheme-management-system/scheme-management-master/departmental-scheme-details",
+            },
+            {
+              page: "Scheme Wise Print",
+              route:
+                "/scheme-management-system/scheme-management-master/schemewise-print",
+            },
+            {
+              page: "Special Scheme",
+              route:
+                "/scheme-management-system/scheme-management-master/special-scheme",
+            },
+            {
+              page: "Upload Special Scheme Students",
+              route:
+                "/scheme-management-system/scheme-management-master/upload-special-scheme-students",
             },
           ],
         },
         {
-          subModule: "E-KYC",
-          route: "/scheme-management/e-kyc",
+          subModule: "Special Scheme Management",
+          route: "/scheme-management-system/special-scheme-management",
           pages: [
             {
-              page: "eKYC Verification",
-              route: "/scheme-management/e-kyc/e-kyc-verification",
+              page: "District Wise Eligible Student Report",
+              route:
+                "/scheme-management-system/special-scheme-management/districtwise-eligible-student-report",
             },
             {
-              page: "Student Details KYC",
-              route: "/scheme-management/e-kyc/student-details-kyc",
+              page: "Special Scheme Print",
+              route:
+                "/scheme-management-system/special-scheme-management/special-scheme-print",
             },
             {
-              page: "eKYC Approval",
-              route: "/scheme-management/e-kyc/e-kyc-approval",
+              page: "Special Scheme Registration",
+              route:
+                "/scheme-management-system/special-scheme-management/special-scheme-registration",
             },
             {
-              page: "Student Samagra e-KYC Approval",
-              route: "/scheme-management/e-kyc/student-samagra-e-kyc-approval",
+              page: "Update Special Scheme Students",
+              route:
+                "/scheme-management-system/special-scheme-management/update-special-scheme-students",
+            },
+            {
+              page: "Upload Special Scheme Student Data",
+              route:
+                "/scheme-management-system/special-scheme-management/upload-special-scheme-student-data",
+            },
+            {
+              page: "Laptop Distribution Report",
+              route:
+                "/scheme-management-system/special-scheme-management/laptop-distribution-report",
             },
           ],
         },
         {
-          subModule: "Scheme Reports",
-          route: "/scheme-management/reports",
+          subModule: "Scheme Management Reports",
+          route: "/scheme-management-system/scheme-management-reports",
           pages: [
             {
-              page: "Various Level Reports - HO, JD, District, University, College",
-              route: "/scheme-management/reports/various-level-reports",
+              page: "Department Wise Scheme Report",
+              route:
+                "/scheme-management-system/scheme-management-reports/departmentwise-scheme-report",
+            },
+            {
+              page: "District Wise Apply Scheme Report",
+              route:
+                "/scheme-management-system/scheme-management-reports/districtwise-apply-scheme-report",
+            },
+            {
+              page: "District Wise Eligible Students Report",
+              route:
+                "/scheme-management-system/scheme-management-reports/districtwise-eligible-students-report",
+            },
+            {
+              page: "Scheme Applications Reject List Report",
+              route:
+                "/scheme-management-system/scheme-management-reports/scheme-applications-reject-list-report",
+            },
+            {
+              page: "Scheme Application Student Status Report",
+              route:
+                "/scheme-management-system/scheme-management-reports/scheme-application-student-status-report",
+            },
+            {
+              page: "Scheme Payment Report",
+              route:
+                "/scheme-management-system/scheme-management-reports/scheme-payment-report",
+            },
+            {
+              page: "Scheme Status Report",
+              route:
+                "/scheme-management-system/scheme-management-reports/scheme-status-report",
+            },
+            {
+              page: "Scheme Wise Eligible Student List Reports",
+              route:
+                "/scheme-management-system/scheme-management-reports/schemeWise-eligible-student-list-reports",
+            },
+            {
+              page: "Special Scheme Student Data",
+              route:
+                "/scheme-management-system/scheme-management-reports/special-scheme-student-data",
             },
           ],
         },
@@ -2192,7 +1716,7 @@ const sidebarMenu = {
             },
             {
               page: "Generate Score Card",
-              route: "/guest-faculty/login/generate-score-card",
+              route: "/guest-faculty/login/score-card",
             },
           ],
         },
@@ -2257,166 +1781,1046 @@ const sidebarMenu = {
     {
       module: "CMS Portal College",
       icon: FaUniversity,
-      route: "/cms-college",
+      route: "/cms-portal",
       subModules: [
         {
           subModule: "About Us",
-          route: "/cms-college/about",
+          route: "/cms-portal/about-us",
           pages: [
-            { page: "At a Glance", route: "/cms-college/about/at-a-glance" },
+            { page: "At a Glance", route: "/cms-portal/about-us/at-a-glance" },
             {
               page: "Principal Message",
-              route: "/cms-college/about/principal-message",
+              route: "/cms-portal/about-us/principal-message",
             },
-            { page: "Societies", route: "/cms-college/about/societies" },
+            { page: "Societies", route: "/cms-portal/about-us/societies" },
             {
               page: "Vision-Mission",
-              route: "/cms-college/about/vision-mission",
+              route: "/cms-portal/about-us/vision-mission",
             },
-            { page: "Objectives", route: "/cms-college/about/objectives" },
-            { page: "How to Reach", route: "/cms-college/about/how-to-reach" },
-            { page: "Who is Who", route: "/cms-college/about/who-is-who" },
+            { page: "Objectives", route: "/cms-portal/about-us/objectives" },
+            {
+              page: "How to Reach",
+              route: "/cms-portal/about-us/how-to-reach",
+            },
+            { page: "Who is Who", route: "/cms-portal/about-us/who-is-who" },
           ],
         },
         {
           subModule: "Infrastructure",
-          route: "/cms-college/infrastructure",
+          route: "/cms-portal/infrastructure",
           pages: [
-            { page: "Building", route: "/cms-college/infrastructure/building" },
-            { page: "Library", route: "/cms-college/infrastructure/library" },
-            { page: "Canteen", route: "/cms-college/infrastructure/canteen" },
-            { page: "Hostel", route: "/cms-college/infrastructure/hostel" },
-            { page: "Sports", route: "/cms-college/infrastructure/sports" },
+            { page: "Building", route: "/cms-portal/infrastructure/building" },
+            { page: "Library", route: "/cms-portal/infrastructure/library" },
+            { page: "Canteen", route: "/cms-portal/infrastructure/canteen" },
+            { page: "Hostel", route: "/cms-portal/infrastructure/hostel" },
+            { page: "Sports", route: "/cms-portal/infrastructure/sports" },
+          ],
+        },
+        {
+          subModule: "National Assessment And Accreditation Council",
+          route: "/cms-portal/national-assessment-and-accredition-council",
+          pages: [
+            {
+              page: "Award",
+              route:
+                "/cms-portal/national-assessment-and-accredition-council/award",
+            },
+            {
+              page: "Audits",
+              route:
+                "/cms-portal/national-assessment-and-accredition-council/audits",
+            },
+            {
+              page: "Idea House Idea Hub",
+              route:
+                "/cms-portal/national-assessment-and-accredition-council/idea-house-idea-hub",
+            },
+            {
+              page: "Best Practices Green Initiative",
+              route:
+                "/cms-portal/national-assessment-and-accredition-council/best-practices-green-initiative",
+            },
+            {
+              page: "Extension Activities",
+              route:
+                "/cms-portal/national-assessment-and-accredition-council/extension-activities",
+            },
+            {
+              page: "Highlights of Achievements",
+              route:
+                "/cms-portal/national-assessment-and-accredition-council/highlights-of-achievements",
+            },
+            {
+              page: "Self Study Report",
+              route:
+                "/cms-portal/national-assessment-and-accredition-council/self-study-report",
+            },
+            {
+              page: "IQAC",
+              route:
+                "/cms-portal/national-assessment-and-accredition-council/iqac",
+            },
+            {
+              page: "Institutional Distinctiveness",
+              route:
+                "/cms-portal/national-assessment-and-accredition-council/institutional-distinctiveness",
+            },
+            {
+              page: "New Course Started",
+              route:
+                "/cms-portal/national-assessment-and-accredition-council/new-course-started",
+            },
+            {
+              page: "Policies",
+              route:
+                "/cms-portal/national-assessment-and-accredition-council/policies",
+            },
+            {
+              page: "Recommendation of Previous Cycle",
+              route:
+                "/cms-portal/national-assessment-and-accredition-council/recommendation-of-previous-cycle",
+            },
+            {
+              page: "Research Activities",
+              route:
+                "/cms-portal/national-assessment-and-accredition-council/research-activities",
+            },
           ],
         },
         {
           subModule: "Academics",
-          route: "/cms-college/academics",
+          route: "/cms-portal/academics",
           pages: [
             {
               page: "Departments",
-              route: "/cms-college/academics/departments",
+              route: "/cms-portal/academics/departments",
             },
             {
               page: "Regular Courses",
-              route: "/cms-college/academics/regular-courses",
+              route: "/cms-portal/academics/regular-courses",
             },
             {
               page: "Distance Education Courses",
-              route: "/cms-college/academics/distance-education",
+              route: "/cms-portal/academics/distance-education",
             },
-            { page: "Prospectus", route: "/cms-college/academics/prospectus" },
-            { page: "Time table", route: "/cms-college/academics/time-table" },
-            { page: "Research", route: "/cms-college/academics/research" },
+            { page: "Prospectus", route: "/cms-portal/academics/prospectus" },
+            { page: "Time table", route: "/cms-portal/academics/time-table" },
+            { page: "Research", route: "/cms-portal/academics/research" },
           ],
         },
         {
           subModule: "Students",
-          route: "/cms-college/students",
+          route: "/cms-portal/students",
           pages: [
+            {
+              page: "List Of Topper Students",
+              route: "/cms-portal/students/list-of-topper-students",
+            },
             {
               page: "Student Details",
-              route: "/cms-college/students/student-details",
+              route: "/cms-portal/students/student-details",
             },
-            {
-              page: "List of Topper Students",
-              route: "/cms-college/students/list-of-toppers",
-            },
-            { page: "E-Learning", route: "/cms-college/students/e-learning" },
-            { page: "Scholarship", route: "/cms-college/students/scholarship" },
-            { page: "Alumni", route: "/cms-college/students/alumni" },
-          ],
-        },
-        {
-          subModule: "NAAC",
-          route: "/cms-college/naac",
-          pages: [
-            { page: "NAAC Award", route: "/cms-college/naac/naac-award" },
-            { page: "Self Study Report (SSR)", route: "/cms-college/naac/ssr" },
-            {
-              page: "Recommendations of Previous Cycle",
-              route: "/cms-college/naac/recommendations",
-            },
-            { page: "IQAC", route: "/cms-college/naac/iqac" },
-            {
-              page: "Institutional Distinctiveness",
-              route: "/cms-college/naac/institutional-distinctiveness",
-            },
-          ],
-        },
-        {
-          subModule: "Highlights",
-          route: "/cms-college/highlights",
-          pages: [
-            {
-              page: "Highlights of Achievements",
-              route: "/cms-college/highlights/achievements",
-            },
-            {
-              page: "New Course Started",
-              route: "/cms-college/highlights/new-course-started",
-            },
-            {
-              page: "Best Practices, Green Initiative",
-              route: "/cms-college/highlights/best-practices",
-            },
-            {
-              page: "Idea House, Idea Hub",
-              route: "/cms-college/highlights/idea-house-hub",
-            },
-          ],
-        },
-        {
-          subModule: "Governance & Activities",
-          route: "/cms-college/governance",
-          pages: [
-            { page: "Policies", route: "/cms-college/governance/policies" },
-            { page: "Audits", route: "/cms-college/governance/audits" },
-            {
-              page: "Research Activities",
-              route: "/cms-college/governance/research-activities",
-            },
-            {
-              page: "Extension Activities",
-              route: "/cms-college/governance/extension-activities",
-            },
-            { page: "Placement", route: "/cms-college/governance/placement" },
+            { page: "ELearning", route: "/cms-portal/students/e-learning" },
           ],
         },
         {
           subModule: "Others",
-          route: "/cms-college/others",
+          route: "/cms-portal/others",
           pages: [
-            { page: "RUSA", route: "/cms-college/others/rusa" },
-            { page: "World Bank", route: "/cms-college/others/world-bank" },
+            { page: "Login", route: "/cms-portal/others/cms-login" },
             {
-              page: "Press Release",
-              route: "/cms-college/others/press-release",
+              page: "English / Hindi",
+              route: "/cms-portal/others/english-hindi",
             },
-            { page: "MOU", route: "/cms-college/others/mou" },
+            { page: "Contact Us", route: "/cms-portal/others/contact-us" },
+            { page: "Events", route: "/cms-portal/others/events" },
             {
               page: "Extra Co-Curricular",
-              route: "/cms-college/others/extra-co-curricular",
+              route: "/cms-portal/others/extra-co-curricular",
             },
-            { page: "NCC, NSS", route: "/cms-college/others/ncc-nss" },
+            {
+              page: "Image Gallery",
+              route: "/cms-portal/others/image-gallery",
+            },
+            { page: "MOU", route: "/cms-portal/others/mou" },
+            { page: "NCC / NSS", route: "/cms-portal/others/ncc-nss" },
+            {
+              page: "Notifications",
+              route: "/cms-portal/others/notifications",
+            },
+            {
+              page: "Press Release",
+              route: "/cms-portal/others/press-release",
+            },
+            { page: "RUSA", route: "/cms-portal/others/rusa" },
+            {
+              page: "Video Gallery",
+              route: "/cms-portal/others/video-gallery",
+            },
+            {
+              page: "World Bank Programs",
+              route: "/cms-portal/others/world-bank",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      module: "Employee Annual Property Returns Management System",
+      icon: FaBuilding,
+      route: "/aprms",
+      subModules: [
+        {
+          subModule: "APRMS",
+          route: "/aprms/employee-aprms",
+          pages: [
+            {
+              page: "Employee APR Form",
+              route: "/aprms/employee-aprms/employee-apr-form",
+            },
+            {
+              page: "Employee APR Form Print",
+              route: "/aprms/employee-aprms/employee-apr-form-print",
+            },
+            {
+              page: "Upload APR Form Document",
+              route: "/aprms/employee-aprms/upload-apr-form-document",
+            },
+            {
+              page: "Employee APR Report",
+              route: "/aprms/employee-aprms/employee-apr-report",
+            },
+            {
+              page: "APRMS District Wise Report",
+              route: "/aprms/employee-aprms/aprms-district-wise-report",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      module: "Department Enquiry Management",
+      icon: FaBookReader,
+      route: "/department-enquiry-management",
+      subModules: [
+        {
+          subModule: "Department Enquiry Management",
+          route: "/department-enquiry-management/department-enquiry",
+          pages: [
+            {
+              page: "Fill Department Enquiry Details",
+              route:
+                "/department-enquiry-management/department-enquiry/fill-department-enquiry-details",
+            },
+            {
+              page: "Update Department Enquiry",
+              route:
+                "/department-enquiry-management/department-enquiry/update-department-enquiry",
+            },
           ],
         },
         {
-          subModule: "General",
-          route: "/cms-college/general",
+          subModule: "Department Enquiry Report",
+          route: "/department-enquiry-management/department-enquiry-report",
           pages: [
-            { page: "CMS Login", route: "/cms-college/general/cms-login" },
-            { page: "Contact Us", route: "/cms-college/general/contact-us" },
-            { page: "English/Hindi", route: "/cms-college/general/language" },
-            { page: "Events", route: "/cms-college/general/events" },
             {
-              page: "Notifications",
-              route: "/cms-college/general/notifications",
+              page: "Department Enquiry Report",
+              route:
+                "/department-enquiry-management/department-enquiry-report/report",
             },
-            { page: "Images", route: "/cms-college/general/images" },
+          ],
+        },
+      ],
+    },
+    {
+      module: "Tour Management",
+      icon: FaPlane,
+      route: "/tour-management",
+      subModules: [
+        {
+          subModule: "Tour Management",
+          route: "/tour-management-system/tour-management",
+          pages: [
             {
-              page: "Video Gallery",
-              route: "/cms-college/general/video-gallery",
+              page: "Apply Tour",
+              route: "/tour-management-system/tour-management/apply-tour",
+            },
+            {
+              page: "Approve Tour",
+              route: "/tour-management-system/tour-management/approve-tour",
+            },
+          ],
+        },
+        {
+          subModule: "Tour Report",
+          route: "/tour-management-system/tour-report",
+          pages: [
+            {
+              page: "Tour Report",
+              route: "/tour-management-system/tour-report/report",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      module: "OIS Setup",
+      icon: FaSchool,
+      route: "/ois",
+      subModules: [
+        {
+          subModule: "OIS Registration",
+          route: "/ois/ois-registration",
+          pages: [
+            {
+              page: "Office Registration",
+              route: "/ois/ois-registration/office-registration-form",
+            },
+            {
+              page: "Institute Registration",
+              route: "/ois/ois-registration/institute-registration-form",
+            },
+            {
+              page: "School Registration",
+              route: "/ois/ois-registration/school-registration-form",
+            },
+            { page: "Edit School", route: "/ois/ois-registration/edit-school" },
+            {
+              page: "Edit School Details",
+              route: "/ois/ois-registration/edit-school-details",
+            },
+          ],
+        },
+        {
+          subModule: "OIS Setup",
+          route: "/ois/ois-setup",
+          pages: [
+            { page: "Office Setup", route: "/ois/ois-setup/office-setup" },
+            {
+              page: "Institute Setup",
+              route: "/ois/ois-setup/institute-setup",
+            },
+            { page: "School Setup", route: "/ois/ois-setup/school-setup" },
+            { page: "HSS Setup", route: "/ois/ois-setup/hss-setup" },
+            {
+              page: "MPBSE Enrollment Class 9 To 12",
+              route: "/ois/ois-setup/mpbse-enrollment-class-9-to-12",
+            },
+            {
+              page: "MPBSE Enrollment Report",
+              route: "/ois/ois-setup/mpbse-enrollment-report",
+            },
+          ],
+        },
+        {
+          subModule: "OIS Master",
+          route: "/ois/ois-master",
+          pages: [
+            { page: "Varg Master", route: "/ois/ois-master/varg-master" },
+            {
+              page: "Varg to Sub Category Mapping",
+              route: "/ois/ois-master/varg-to-subcategory-mapping",
+            },
+            { page: "Panel Master", route: "/ois/ois-master/panel-master" },
+            {
+              page: "Panel To Designation Mapping",
+              route: "/ois/ois-master/panel-to-designation-mapping",
+            },
+          ],
+        },
+        {
+          subModule: "OIS Report",
+          route: "/ois/ois-report",
+          pages: [
+            {
+              page: "School Setup Report",
+              route: "/ois/ois-report/school-setup-report",
+            },
+            {
+              page: "Office Setup Details Report",
+              route: "/ois/ois-report/office-setup-details-report",
+            },
+            {
+              page: "Institute Setup Details Report",
+              route: "/ois/ois-report/institute-setup-details-report",
+            },
+            {
+              page: "District Wise Publish",
+              route: "/ois/ois-report/district-wise-publish",
+            },
+            {
+              page: "Post Code Report",
+              route: "/ois/ois-report/post-code-report",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      module: "Hostel Management",
+      icon: FaBed,
+      route: "/hostel-management",
+      subModules: [
+        {
+          subModule: "Hostel Management",
+          route: "/hostel-management-system/hostel-management",
+          pages: [
+            {
+              page: "Hostel Registration",
+              route:
+                "/hostel-management-system/hostel-management/hostel-registration",
+            },
+            {
+              page: "Student Application Report",
+              route:
+                "/hostel-management-system/hostel-management/student-application-report",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      module: "Compassion Management",
+      icon: FaHandsHelping,
+      route: "/compassion-management",
+      subModules: [
+        {
+          subModule: "Compassion",
+          route: "/compassion-management/compassion",
+          pages: [
+            {
+              page: "Compassionate Appointment",
+              route: "/compassion-management/compassion/compassion-appointment",
+            },
+            {
+              page: "Compassion Verification",
+              route:
+                "/compassion-management/compassion/compassion-verification",
+            },
+            {
+              page: "Compassion Apply",
+              route: "/compassion-management/compassion/compassion-apply",
+            },
+            {
+              page: "DEO Compassion Apply",
+              route: "/compassion-management/compassion/deo-compassion-apply",
+            },
+            {
+              page: "DEO NOC Certificate Release",
+              route:
+                "/compassion-management/compassion/deo-noc-certification-release",
+            },
+            {
+              page: "Generate & Forward NOC Request",
+              route:
+                "/compassion-management/compassion/generate-and-forward-noc-request",
+            },
+            {
+              page: "Update NOC Job Status",
+              route: "/compassion-management/compassion/update-noc-job-status",
+            },
+            {
+              page: "Final Decision",
+              route: "/compassion-management/compassion/final-decision",
+            },
+          ],
+        },
+        {
+          subModule: "Compassion Reports",
+          route: "/compassion-management/compassion-report",
+          pages: [
+            {
+              page: "Disposed Application Report",
+              route:
+                "/compassion-management/compassion-report/dispossed-application-report",
+            },
+            {
+              page: "District Wise Statistical Count Report",
+              route:
+                "/compassion-management/compassion-report/district-wise-statistical-count-report",
+            },
+            {
+              page: "NOC Report",
+              route: "/compassion-management/compassion-report/noc-report",
+            },
+            {
+              page: "NOC Statistical Count Report",
+              route:
+                "/compassion-management/compassion-report/noc-statistical-count-report",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      module: "Payroll",
+      icon: FaMoneyCheckAlt,
+      route: "/payroll",
+      subModules: [
+        {
+          subModule: "Payroll Reports",
+          route: "/payroll/payroll-reports",
+          pages: [
+            {
+              page: "Tax Challan Report",
+              route: "/payroll/payroll-reports/tax-challan-report",
+            },
+            {
+              page: "Salary Generation Status Report",
+              route: "/payroll/payroll-reports/salary-generation-status-report",
+            },
+            {
+              page: "Bank Wise Monthly Pay Bill",
+              route: "/payroll/payroll-reports/bank-wise-monthly-pay-bill",
+            },
+            {
+              page: "Employee Salary Ledger",
+              route: "/payroll/payroll-reports/employee-salary-ledger",
+            },
+            {
+              page: "Employee Wise Salary Slip",
+              route: "/payroll/payroll-reports/employee-wise-salary-slip",
+            },
+            {
+              page: "Final Summary Report",
+              route: "/payroll/payroll-reports/final-summary-report",
+            },
+            {
+              page: "Financial Year Earn Deduction",
+              route: "/payroll/payroll-reports/financial-year-earn-deduction",
+            },
+            {
+              page: "Monthly Earning Deduction Report",
+              route:
+                "/payroll/payroll-reports/monthly-earning-deduction-report",
+            },
+            {
+              page: "Monthly Pay Bill",
+              route: "/payroll/payroll-reports/monthly-pay-bill",
+            },
+            {
+              page: "Monthly Policy Report",
+              route: "/payroll/payroll-reports/monthly-policy-report",
+            },
+            {
+              page: "Office Salary Slip",
+              route: "/payroll/payroll-reports/office-salary-slip",
+            },
+          ],
+        },
+        {
+          subModule: "Gratuity",
+          route: "/payroll/gratuity",
+          pages: [
+            { page: "Gratuity File", route: "/payroll/gratuity/gratuity-file" },
+          ],
+        },
+        {
+          subModule: "Leave Encashment",
+          route: "/payroll/leave-encashment",
+          pages: [
+            {
+              page: "Leave Encashments",
+              route: "/payroll/leave-encashment/leave-encashments",
+            },
+          ],
+        },
+        {
+          subModule: "Payroll Baseline Data",
+          route: "/payroll/payroll-baseline-data",
+          pages: [
+            {
+              page: "Baseline Data",
+              route: "/payroll/payroll-baseline-data/earning-and-deduction",
+            },
+          ],
+        },
+        {
+          subModule: "Salary Process",
+          route: "/payroll/salary-process",
+          pages: [
+            {
+              page: "Set Attendance",
+              route: "/payroll/salary-process/set-attendance",
+            },
+            {
+              page: "Generate Salary",
+              route: "/payroll/salary-process/generate-salary",
+            },
+            {
+              page: "Salary Proccess",
+              route: "/payroll/salary-process/salary-proccess",
+            },
+          ],
+        },
+        {
+          subModule: "Set Head Value",
+          route: "/payroll/set-head-value",
+          pages: [
+            { page: "Head Value", route: "/payroll/set-head-value/set-head" },
+          ],
+        },
+      ],
+    },
+    {
+      module: "Vocational Management",
+      icon: FaBookReader,
+      route: "/vocational-management",
+      subModules: [
+        {
+          subModule: "Vocational Master",
+          route: "/vocational-management/vocational-master",
+          pages: [
+            {
+              page: "Vocational Trade Master",
+              route:
+                "/vocational-management/vocational-master/vocational-trade-master",
+            },
+            {
+              page: "Job Role Master",
+              route: "/vocational-management/vocational-master/job-role-master",
+            },
+            {
+              page: "Vocational Scheme Master",
+              route:
+                "/vocational-management/vocational-master/vocational-scheme-master",
+            },
+          ],
+        },
+        {
+          subModule: "Registration",
+          route: "/vocational-management/registraion",
+          pages: [
+            {
+              page: "Vocational Teacher Registration",
+              route:
+                "/vocational-management/registration/vocational-teacher-registration",
+            },
+            {
+              page: "Add VTP Registration",
+              route: "/vocational-management/registration/add-vtp-registration",
+            },
+          ],
+        },
+        {
+          subModule: "Vocational Activity and Mapping",
+          route: "/vocational-management/activity-mapping",
+          pages: [
+            {
+              page: "Vocational Teacher Class Mapping",
+              route:
+                "/vocational-management/vocational-activity-and-mapping/vocational-teacher-class-mapping",
+            },
+            {
+              page: "Vocational Student Activity",
+              route:
+                "/vocational-management/vocational-activity-and-mapping/vocational-student-activity",
+            },
+          ],
+        },
+        {
+          subModule: "Certificate Distribution",
+          route: "/vocational-management/certificate-distribution",
+          pages: [
+            {
+              page: "Vocational Certificate Download",
+              route:
+                "/vocational-management/certificate-distribution/vocational-certificate-download",
+            },
+            {
+              page: "Vocational Certificate Distribution Google link",
+              route:
+                "/vocational-management/certificate-distribution/vocational-certificate-distribution-google-link",
+            },
+          ],
+        },
+        {
+          subModule: "Vocational Payment",
+          route: "/vocational-management/vocational-payment",
+          pages: [
+            {
+              page: "VTP Payment",
+              route: "/vocational-management/vocational-payment/vtp-payment",
+            },
+            {
+              page: "VTP Payment Generate",
+              route:
+                "/vocational-management/vocational-payment/vtp-payment-generate",
+            },
+            {
+              page: "VTP Payment Status",
+              route:
+                "/vocational-management/vocational-payment/vtp-payment-status",
+            },
+          ],
+        },
+        {
+          subModule: "Vocational Management Reports",
+          route: "/vocational-management/vocational-management-reports",
+          pages: [
+            {
+              page: "Vocational Teacher Class Mapping Report",
+              route:
+                "/vocational-management/vocational-management-reports/vocational-teacher-class-mapping-report",
+            },
+            {
+              page: "District Wise Vocational Certificate Distribution",
+              route:
+                "/vocational-management/vocational-management-reports/district-wise-vocational-certificate-distribution",
+            },
+            {
+              page: "Vocational Certificate Distribution Report",
+              route:
+                "/vocational-management/vocational-management-reports/vocational-certificate-distribution-report",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      module: "Training and Awards Management",
+      icon: FaBookReader,
+      route: "/training-and-awards-management",
+      subModules: [
+        {
+          subModule: "Training and Awards Management",
+          route:
+            "/training-and-awards-management/training-and-awards-management",
+          pages: [
+            {
+              page: "National or State Level Training",
+              route:
+                "/training-and-awards-management/training-and-awards-management/national-or-state-level-training",
+            },
+            {
+              page: "National Or State Level Awards",
+              route:
+                "/training-and-awards-management/training-and-awards-management/national-or-state-level-awards",
+            },
+            {
+              page: "Special Training Details",
+              route:
+                "/training-and-awards-management/training-and-awards-management/special-training-details",
+            },
+            {
+              page: "Employee Other Curriculum Activities Report",
+              route:
+                "/training-and-awards-management/training-and-awards-management/employee-other-curriculum-activities-report",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      module: "Master Data Management",
+      icon: FaDatabase,
+      route: "/master-data-management",
+      subModules: [
+        {
+          subModule: "Location Master Data",
+          route: "/master-data-management/location-master",
+          pages: [
+            {
+              page: "State Master Data",
+              route: "/master-data-management/location-master/state-master",
+            },
+            {
+              page: "Division Master Data",
+              route: "/master-data-management/location-master/division-master",
+            },
+            {
+              page: "District Master Data",
+              route: "/master-data-management/location-master/district-master",
+            },
+            {
+              page: "Block Master Data",
+              route: "/master-data-management/location-master/block-master",
+            },
+            {
+              page: "Village Master Data",
+              route: "/master-data-management/location-master/village-master",
+            },
+            {
+              page: "Habitation Master Data",
+              route:
+                "/master-data-management/location-master/habitation-master",
+            },
+            {
+              page: "Local Body Type",
+              route: "/master-data-management/location-master/local-body-type",
+            },
+            {
+              page: "Local Body",
+              route: "/master-data-management/location-master/local-body",
+            },
+            {
+              page: "Zone or Panchayat Master",
+              route:
+                "/master-data-management/location-master/zone-panchayat-master",
+            },
+            {
+              page: "Tehsil Master Data",
+              route: "/master-data-management/location-master/tehsil-master",
+            },
+          ],
+        },
+        {
+          subModule: "Office Master Data",
+          route: "/master-data-management/office-master",
+          pages: [
+            {
+              page: "Office Type Master Data",
+              route: "/master-data-management/office-master/office-type",
+            },
+            {
+              page: "School Type Master Data",
+              route: "/master-data-management/office-master/school-type",
+            },
+            {
+              page: "School Management Group Master Data",
+              route:
+                "/master-data-management/office-master/school-management-group",
+            },
+            {
+              page: "Management Group Detail Master Data",
+              route: "/master-data-management/office-master/management-detail",
+            },
+            {
+              page: "School Board Master Data",
+              route: "/master-data-management/office-master/school-board",
+            },
+            {
+              page: "School Category Master Data",
+              route: "/master-data-management/office-master/school-category",
+            },
+            {
+              page: "School Sub Category Details Master Data",
+              route:
+                "/master-data-management/office-master/school-sub-category",
+            },
+            {
+              page: "School Incharge type Master Data",
+              route: "/master-data-management/office-master/incharge-type",
+            },
+            {
+              page: "School Medium Master Data",
+              route: "/master-data-management/office-master/school-medium",
+            },
+            {
+              page: "Subject Master Data",
+              route: "/master-data-management/office-master/subject-master",
+            },
+            {
+              page: "Special School Master Data",
+              route: "/master-data-management/office-master/special-school",
+            },
+            {
+              page: "School Class Name Master Data",
+              route: "/master-data-management/office-master/class-name",
+            },
+            {
+              page: "JSK Master Data",
+              route: "/master-data-management/office-master/jsk-master",
+            },
+            {
+              page: "Class to Subject Master",
+              route: "/master-data-management/office-master/class-to-subject",
+            },
+            {
+              page: "School Sub Category To Class Mapping",
+              route:
+                "/master-data-management/office-master/sub-category-mapping",
+            },
+            {
+              page: "Office Level To Designation Mapping",
+              route:
+                "/master-data-management/office-master/designation-mapping",
+            },
+          ],
+        },
+        {
+          subModule: "HR Master Data",
+          route: "/master-data-management/hr-master",
+          pages: [
+            {
+              page: "Class Master Data",
+              route: "/master-data-management/hr-master/class-master",
+            },
+            {
+              page: "Designation Type Master Data",
+              route: "/master-data-management/hr-master/designation-type",
+            },
+            {
+              page: "Designation Master Data",
+              route: "/master-data-management/hr-master/designation-master",
+            },
+            {
+              page: "Section Master Data",
+              route: "/master-data-management/hr-master/section-master",
+            },
+            {
+              page: "Pay Commission Master Data",
+              route: "/master-data-management/hr-master/pay-commission",
+            },
+            {
+              page: "Pay Scale Master Data",
+              route: "/master-data-management/hr-master/pay-scale",
+            },
+            {
+              page: "Grade Pay Master Data",
+              route: "/master-data-management/hr-master/grade-pay",
+            },
+            {
+              page: "Level Master Data",
+              route: "/master-data-management/hr-master/level-master",
+            },
+            {
+              page: "Level Basic Pay Master Data",
+              route: "/master-data-management/hr-master/level-basic-pay",
+            },
+            {
+              page: "Appointment Department Master Data",
+              route: "/master-data-management/hr-master/appointment-dept",
+            },
+            {
+              page: "Caste Master Data",
+              route: "/master-data-management/hr-master/caste-master",
+            },
+            {
+              page: "Blood Group Master Data",
+              route: "/master-data-management/hr-master/blood-group",
+            },
+            {
+              page: "Qualification Master Data",
+              route: "/master-data-management/hr-master/qualification",
+            },
+            {
+              page: "Sub Caste Master Data",
+              route: "/master-data-management/hr-master/sub-caste",
+            },
+            {
+              page: "Other Department Master",
+              route: "/master-data-management/hr-master/other-dept",
+            },
+            {
+              page: "Post Master Data",
+              route: "/master-data-management/hr-master/post-master",
+            },
+            {
+              page: "Sub Category To Class Mapping",
+              route: "/master-data-management/hr-master/sub-cat-class-mapping",
+            },
+            {
+              page: "Handicapped Type Master",
+              route: "/master-data-management/hr-master/handicapped-type",
+            },
+            {
+              page: "Critical Illness Master",
+              route: "/master-data-management/hr-master/critical-illness",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      module: "Increment Management",
+      icon: FaChartLine,
+      route: "/increment-management",
+      subModules: [
+        {
+          subModule: "Increment Management",
+          route: "/increment-management/increment-managementt",
+          pages: [
+            {
+              page: "Add Increment",
+              route:
+                "/increment-management/increment-managementt/add-increment",
+            },
+            {
+              page: "Increment Report",
+              route:
+                "/increment-management/increment-managementt/increment-report",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      module: "Leave Management",
+      icon: FaCalendarAlt,
+      route: "/leave-management",
+      subModules: [
+        {
+          subModule: "Leave Process",
+          route: "/leave-management/leave-process",
+          pages: [
+            {
+              page: "Leave Type",
+              route: "/leave-management/leave-process/leave-type",
+            },
+            {
+              page: "Leave Status",
+              route: "/leave-management/leave-process/leave-status",
+            },
+            {
+              page: "Leave Allocation",
+              route: "/leave-management/leave-process/leave-allocation",
+            },
+            {
+              page: "Department Wise Leave Approval",
+              route:
+                "/leave-management/leave-process/department-wise-leave-approval",
+            },
+            {
+              page: "Apply Leave",
+              route: "/leave-management/leave-process/apply-leave",
+            },
+            {
+              page: "Balance Leave",
+              route: "/leave-management/leave-process/balance-leave",
+            },
+            {
+              page: "Leave Approver",
+              route: "/leave-management/leave-process/leave-approver",
+            },
+            {
+              page: "Employee Leave Opening Balance",
+              route:
+                "/leave-management/leave-process/employee-leave-opening-balance",
+            },
+          ],
+        },
+        {
+          subModule: "Leave Report",
+          route: "/leave-management/leave-report",
+          pages: [
+            {
+              page: "Leave Pendency Monitor Report",
+              route:
+                "/leave-management/leave-report/leave-pendency-monitor-report",
+            },
+            {
+              page: "DEO Monitoring Grid Report",
+              route:
+                "/leave-management/leave-report/deo-monitoring-grid-report",
+            },
+            {
+              page: "District Wise Leave Type Report",
+              route:
+                "/leave-management/leave-report/district-wise-leave-type-report",
+            },
+            {
+              page: "Teacher Wise Details Report",
+              route:
+                "/leave-management/leave-report/teacher-wise-details-reports",
+            },
+            {
+              page: "View Leave Request",
+              route: "/leave-management/leave-report/view-leave-request",
+            },
+            {
+              page: "Leave History Report",
+              route: "/leave-management/leave-report/leave-history-report",
             },
           ],
         },
