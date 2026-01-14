@@ -24,6 +24,7 @@ const AuthPage: React.FC<AuthPageProps> = ({
   }, [isAuthenticated, navigate, redirectTo]);
 
   const [showPassword, setShowPassword] = useState(false);
+
   const [rememberMe, setRememberMe] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
