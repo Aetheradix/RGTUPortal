@@ -40,8 +40,16 @@ const AuthPage: React.FC<AuthPageProps> = ({
     return () => clearInterval(interval);
   }, []);
 
+  const validateEmail = (email: string) => {
+    return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
+  };
+
+  const isEmailValid = validateEmail(email);
+  const isFormValid = isEmailValid && password.length >= 6;
+
   const handleSubmit = async (e?: React.FormEvent) => {
     e?.preventDefault();
+    if (!isFormValid || loading) return;
     setError('');
     setLoading(true);
 
@@ -78,7 +86,7 @@ const AuthPage: React.FC<AuthPageProps> = ({
   ];
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && isFormValid && !loading) {
       handleSubmit(e);
     }
   };
@@ -203,6 +211,12 @@ const AuthPage: React.FC<AuthPageProps> = ({
                   placeholder="Enter your email"
                   disabled={loading}
                 />
+                {email && !isEmailValid && (
+                  <p className="mt-1.5 text-[11px] lg:text-xs font-medium text-red-500 flex items-center gap-1 animate-in fade-in slide-in-from-top-1">
+                    <span className="w-1 h-1 bg-red-500 rounded-full"></span>
+                    Please enter a valid email (e.g., user@example.com)
+                  </p>
+                )}
               </div>
 
               {/* Password Input */}
@@ -257,7 +271,7 @@ const AuthPage: React.FC<AuthPageProps> = ({
               {/* Submit Button */}
               <button
                 onClick={handleSubmit}
-                disabled={loading}
+                disabled={loading || !isFormValid}
                 className="w-full bg-gradient-to-r from-purple-600 via-purple-500 to-pink-500 text-white text-sm lg:text-base font-semibold py-3 lg:py-4 rounded-xl hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
                 {loading ? (
