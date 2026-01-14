@@ -7,6 +7,7 @@ import {
   FaChalkboardTeacher,
   FaClipboardList,
   FaCogs,
+  FaDatabase,
   FaGlobe,
   FaHandsHelping,
   FaHome,
@@ -2413,6 +2414,217 @@ const sidebarMenu = {
               page: "Employee Other Curriculum Activities Report",
               route:
                 "/training-and-awards-management/training-and-awards-management/employee-other-curriculum-activities-report",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      module: "Master Data Management",
+      icon: FaDatabase,
+      route: "/master-data-management",
+      subModules: [
+        {
+          subModule: "Location Master Data",
+          route: "/master-data-management/location-master",
+          pages: [
+            {
+              page: "State Master Data",
+              route: "/master-data-management/location-master/state-master",
+            },
+            {
+              page: "Division Master Data",
+              route: "/master-data-management/location-master/division-master",
+            },
+            {
+              page: "District Master Data",
+              route: "/master-data-management/location-master/district-master",
+            },
+            {
+              page: "Block Master Data",
+              route: "/master-data-management/location-master/block-master",
+            },
+            {
+              page: "Village Master Data",
+              route: "/master-data-management/location-master/village-master",
+            },
+            {
+              page: "Habitation Master Data",
+              route:
+                "/master-data-management/location-master/habitation-master",
+            },
+            {
+              page: "Local Body Type",
+              route: "/master-data-management/location-master/local-body-type",
+            },
+            {
+              page: "Local Body",
+              route: "/master-data-management/location-master/local-body",
+            },
+            {
+              page: "Zone or Panchayat Master",
+              route:
+                "/master-data-management/location-master/zone-panchayat-master",
+            },
+            {
+              page: "Tehsil Master Data",
+              route: "/master-data-management/location-master/tehsil-master",
+            },
+          ],
+        },
+        {
+          subModule: "Office Master Data",
+          route: "/master-data-management/office-master",
+          pages: [
+            {
+              page: "Office Type Master Data",
+              route: "/master-data-management/office-master/office-type",
+            },
+            {
+              page: "School Type Master Data",
+              route: "/master-data-management/office-master/school-type",
+            },
+            {
+              page: "School Management Group Master Data",
+              route:
+                "/master-data-management/office-master/school-management-group",
+            },
+            {
+              page: "Management Group Detail Master Data",
+              route: "/master-data-management/office-master/management-detail",
+            },
+            {
+              page: "School Board Master Data",
+              route: "/master-data-management/office-master/school-board",
+            },
+            {
+              page: "School Category Master Data",
+              route: "/master-data-management/office-master/school-category",
+            },
+            {
+              page: "School Sub Category Details Master Data",
+              route:
+                "/master-data-management/office-master/school-sub-category",
+            },
+            {
+              page: "School Incharge type Master Data",
+              route: "/master-data-management/office-master/incharge-type",
+            },
+            {
+              page: "School Medium Master Data",
+              route: "/master-data-management/office-master/school-medium",
+            },
+            {
+              page: "Subject Master Data",
+              route: "/master-data-management/office-master/subject-master",
+            },
+            {
+              page: "Special School Master Data",
+              route: "/master-data-management/office-master/special-school",
+            },
+            {
+              page: "School Class Name Master Data",
+              route: "/master-data-management/office-master/class-name",
+            },
+            {
+              page: "JSK Master Data",
+              route: "/master-data-management/office-master/jsk-master",
+            },
+            {
+              page: "Class to Subject Master",
+              route: "/master-data-management/office-master/class-to-subject",
+            },
+            {
+              page: "School Sub Category To Class Mapping",
+              route:
+                "/master-data-management/office-master/sub-category-mapping",
+            },
+            {
+              page: "Office Level To Designation Mapping",
+              route:
+                "/master-data-management/office-master/designation-mapping",
+            },
+          ],
+        },
+        {
+          subModule: "HR Master Data",
+          route: "/master-data-management/hr-master",
+          pages: [
+            {
+              page: "Class Master Data",
+              route: "/master-data-management/hr-master/class-master",
+            },
+            {
+              page: "Designation Type Master Data",
+              route: "/master-data-management/hr-master/designation-type",
+            },
+            {
+              page: "Designation Master Data",
+              route: "/master-data-management/hr-master/designation-master",
+            },
+            {
+              page: "Section Master Data",
+              route: "/master-data-management/hr-master/section-master",
+            },
+            {
+              page: "Pay Commission Master Data",
+              route: "/master-data-management/hr-master/pay-commission",
+            },
+            {
+              page: "Pay Scale Master Data",
+              route: "/master-data-management/hr-master/pay-scale",
+            },
+            {
+              page: "Grade Pay Master Data",
+              route: "/master-data-management/hr-master/grade-pay",
+            },
+            {
+              page: "Level Master Data",
+              route: "/master-data-management/hr-master/level-master",
+            },
+            {
+              page: "Level Basic Pay Master Data",
+              route: "/master-data-management/hr-master/level-basic-pay",
+            },
+            {
+              page: "Appointment Department Master Data",
+              route: "/master-data-management/hr-master/appointment-dept",
+            },
+            {
+              page: "Caste Master Data",
+              route: "/master-data-management/hr-master/caste-master",
+            },
+            {
+              page: "Blood Group Master Data",
+              route: "/master-data-management/hr-master/blood-group",
+            },
+            {
+              page: "Qualification Master Data",
+              route: "/master-data-management/hr-master/qualification",
+            },
+            {
+              page: "Sub Caste Master Data",
+              route: "/master-data-management/hr-master/sub-caste",
+            },
+            {
+              page: "Other Department Master",
+              route: "/master-data-management/hr-master/other-dept",
+            },
+            {
+              page: "Post Master Data",
+              route: "/master-data-management/hr-master/post-master",
+            },
+            {
+              page: "Sub Category To Class Mapping",
+              route: "/master-data-management/hr-master/sub-cat-class-mapping",
+            },
+            {
+              page: "Handicapped Type Master",
+              route: "/master-data-management/hr-master/handicapped-type",
+            },
+            {
+              page: "Critical Illness Master",
+              route: "/master-data-management/hr-master/critical-illness",
             },
           ],
         },
