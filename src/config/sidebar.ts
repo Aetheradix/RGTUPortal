@@ -9,14 +9,18 @@ import {
   FaChartLine,
   FaClipboardList,
   FaCogs,
+  FaComments,
   FaDatabase,
+  FaGraduationCap,
   FaHandsHelping,
+  FaHardHat,
   FaHome,
   FaMoneyBillWave,
   FaMoneyCheckAlt,
   FaPlane,
   FaProjectDiagram,
   FaSchool,
+  FaShieldAlt,
   FaSortAmountUp,
   FaUniversity,
   FaUserClock,
@@ -3756,6 +3760,287 @@ const sidebarMenu = {
               page: "Upcoming Retirement Report",
               route:
                 "/retirement-separation/retirement-separation-report/upcoming-retirement-report",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      module: "Civil Monitoring",
+      icon: FaHardHat,
+      route: "/civil-monitoring",
+      subModules: [
+        {
+          subModule: "Civil Monitoring Master",
+          route: "/civil-monitoring/construction-work-process",
+          pages: [
+            {
+              page: "Inspection Agency Type",
+              route:
+                "/civil-monitoring/civil-monitoring-master/inspection-agency-type",
+            },
+            {
+              page: "Construction Work Type ",
+              route:
+                "/civil-monitoring/construction-work-process/construction-work-type-details",
+            },
+          ],
+        },
+        {
+          subModule: "Construction Work Process",
+          route: "/civil-monitoring/construction-work-process",
+          pages: [
+            {
+              page: "Construction Work Details",
+              route:
+                "/civil-monitoring/civil-monitoring-master/construction-work-type",
+            },
+            {
+              page: "Update Construction Work Details",
+              route:
+                "/civil-monitoring/construction-work-process/construction-update-details",
+            },
+            {
+              page: "Pending Work Request",
+              route:
+                "/civil-monitoring/construction-work-process/pending-work-request",
+            },
+            {
+              page: "Construction Work Request",
+              route:
+                "/civil-monitoring/construction-work-process/construction-work-request",
+            },
+          ],
+        },
+        {
+          subModule: "Civil Monitoring Report",
+          route: "/civil-monitoring/civil-monitoring-report",
+          pages: [
+            {
+              page: "Construction Work Report",
+              route:
+                "/civil-monitoring/civil-monitoring-report/construction-work-report",
+            },
+            {
+              page: "Construction Work Status",
+              route:
+                "/civil-monitoring/civil-monitoring-report/construction-update-details",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      module: "Career Guidance and Test Preparation",
+      icon: FaGraduationCap,
+      route: "/career-guidance-test-preparation",
+      subModules: [
+        {
+          subModule: "Test Preparation Master",
+          route: "/career-guidance-test-preparation/test-preparation-master",
+          pages: [
+            {
+              page: "Test Preparation Master",
+              route:
+                "/career-guidance-test-preparation/test-preparation-master",
+            },
+            {
+              page: "Test Preparation Report",
+              route:
+                "/career-guidance-test-preparation/test-preparation-report",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      module: "Learning Resource Repository",
+      icon: FaBook,
+      route: "/learning-resource-repository",
+      subModules: [
+        {
+          subModule: "Learning Resource Repository",
+          route: "/learning-resource-repository/learning-resource",
+          pages: [
+            {
+              page: "Learning Book Master",
+              route:
+                "/learning-resource-repository/learning-resource/learning-book-master",
+            },
+            {
+              page: "Learning Video Master",
+              route:
+                "/learning-resource-repository/learning-resource/learning-video-master",
+            },
+          ],
+        },
+        {
+          subModule: "Learning Resource Repository Report",
+          route: "/learning-resource-repository/learning-resource-report",
+          pages: [
+            {
+              page: "Learning Book Master Report",
+              route:
+                "/learning-resource-repository/learning-resource-report/learning-book-master-report",
+            },
+            {
+              page: "Learning Video Master Report",
+              route:
+                "/learning-resource-repository/learning-resource-report/learning-video-master-report",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      module: "Academics Calendar",
+      icon: FaCalendarAlt,
+      route: "/academics-calendar",
+      subModules: [
+        {
+          subModule: "Academics Calendar",
+          route: "/academics-calendar/calendar",
+          pages: [
+            {
+              page: "Month Wise Syllabus Master",
+              route: "/academics-calendar/calendar/month-wise-syllabus-master",
+            },
+            {
+              page: "Month Wise Syllabus Print",
+              route: "/academics-calendar/calendar/month-wise-syllabus-print",
+            },
+            {
+              page: "Event & Holiday Calendar Master",
+              route: "/academics-calendar/calendar/event-and-circular-event",
+            },
+            {
+              page: "CCLE Calendar Master",
+              route: "/academics-calendar/calendar/ccle-calendar-master",
+            },
+          ],
+        },
+        {
+          subModule: "Academics Calendar Repport",
+          route: "/academics-calendar/academics-calendar-report",
+          pages: [
+            {
+              page: "Event & Holiday Calendar Master Report",
+              route:
+                "/academics-calendar/academics-calendar-report/school-event-report",
+            },
+            {
+              page: "CCLE Calendar Report",
+              route:
+                "/academics-calendar/academics-calendar-report/ccle-calendar-report ",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      module: "Community And Discussion Forum",
+      icon: FaComments,
+      route: "/community-discussion-forum",
+      subModules: [
+        {
+          subModule: "Community And Discussion Forum",
+          route: "/community-discussion-forum",
+          pages: [
+            {
+              page: "Topic Master",
+              route: "/community-discussion-forum/topic-master",
+            },
+            {
+              page: "Discussion Forum",
+              route: "/community-discussion-forum/discussion-chat-box",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      module: "Parents Management",
+      icon: FaUserFriends,
+      route: "/parents-management",
+      subModules: [
+        {
+          subModule: "Parents Management",
+          route: "/parents-management",
+          pages: [
+            {
+              page: "Student Diary",
+              route: "/parents-management/student-diary",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      module: "School Security Management",
+      icon: FaShieldAlt,
+      route: "/school-security-management",
+      subModules: [
+        {
+          subModule: "School Security Management",
+          route: "/school-security-management",
+          pages: [
+            {
+              page: "School Security Registration",
+              route: "/school-security-management/school-security-registration",
+            },
+            {
+              page: "School Security Registration Report",
+              route:
+                "/school-security-management/school-security-registration-report",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      module: "Teacher Management",
+      icon: FaChalkboardTeacher,
+      route: "/teacher-management-system",
+      subModules: [
+        {
+          subModule: "Teacher Management",
+          route: "/teacher-management-system/teacher-management",
+          pages: [
+            {
+              page: "Teacher To Class Mapping",
+              route:
+                "/teacher-management-system/teacher-management/teacher-class-mapping",
+            },
+            {
+              page: "Teacher To Class Mapping Report",
+              route:
+                "/teacher-management-system/teacher-management/teacher-class-mapping-report",
+            },
+            {
+              page: "Teacher Attendance",
+              route:
+                "/teacher-management-system/teacher-management/teacher-attendance",
+            },
+          ],
+        },
+        {
+          subModule: "Teacher Management Report",
+          route: "/teacher-management-system/teacher-management-report",
+          pages: [
+            {
+              page: "Teacher Attendance Report",
+              route:
+                "/teacher-management-system/teacher-management-report/teacher-attendance-report",
+            },
+            {
+              page: "Teacher/Employee Daily Activity",
+              route:
+                "/teacher-management-system/teacher-management-report/teacher-daily-activity",
+            },
+            {
+              page: "Student Daily Activity",
+              route:
+                "/teacher-management-system/teacher-management-report/student-daily-activity",
             },
           ],
         },

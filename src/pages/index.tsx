@@ -1,8 +1,12 @@
 import { Route, Routes } from "react-router-dom";
 import Academics from "./academics";
+import AcademicsCalendar from "./academics-calendar";
 import Admissonmanagementsystem from "./admission-management-system";
 import BudgetAndFinance from "./budget-and-finance";
+import CareerGuidanceTestPreparation from "./career-guidance-test-preparation";
+import CivilMonitoring from "./civil-monitoring";
 import CmsPortal from "./cms-portal";
+import CommunityDiscussionForum from "./community-discussion-forum";
 import CompassionManagement from "./compassion-management";
 import Dashboard from "./Dashboard";
 import DepartmentEnquiryManagement from "./department-enquiry-management";
@@ -16,17 +20,21 @@ import HostelManagementSystem from "./hostel-management";
 import Hrms from "./hrms/Index";
 import IncrementManagement from "./increment-management";
 import InfrastructureManagement from "./infrastructure-management";
+import LearningResourceRepository from "./learning-resource-repository";
 import LeaveManagement from "./leave-management";
 import MasterDataManagement from "./master-data-management";
 import Master from "./masters";
 import OIS from "./ois";
+import ParentsManagement from "./parents-management";
 import Payroll from "./payroll";
 import ProfilePage from "./profile";
 import RetirementSeparation from "./retirement-separation";
 import SchemeManagement from "./scheme-management";
 import SchemeManagementSystem from "./scheme-mangament-master";
+import SchoolSecurityManagement from "./school-security-management";
 import StudentDirectory from "./student-directory";
 import StudentManagementSystem from "./student-management-system";
+import TeacherManagementSystem from "./teacher-management-system";
 import TourManagementSystem from "./tour-mangement";
 import Trainingawardsystem from "./training-and-awards-management";
 import TransportManagementSYS from "./transport-management";
@@ -95,7 +103,14 @@ export default function AppFeature() {
       <Route path="increment-management/*" element={<IncrementManagement />} />
       <Route path="leave-management/*" element={<LeaveManagement />} />
       <Route path="student-directory/*" element={<StudentDirectory />} />
-
+      <Route path="civil-monitoring/*" element={<CivilMonitoring />} />
+      <Route path="career-guidance-test-preparation/*" element={<CareerGuidanceTestPreparation />} />
+      <Route path="learning-resource-repository/*" element={<LearningResourceRepository />} />
+      <Route path="academics-calendar/*" element={<AcademicsCalendar />} />
+      <Route path="community-discussion-forum/*" element={<CommunityDiscussionForum />} />
+      <Route path="parents-management/*" element={<ParentsManagement />} />
+      <Route path="school-security-management/*" element={<SchoolSecurityManagement />} />
+      <Route path="teacher-management-system/*" element={<TeacherManagementSystem />} />
       <Route
         path="master-data-management/*"
         element={<MasterDataManagement />}
