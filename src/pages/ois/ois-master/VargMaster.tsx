@@ -77,9 +77,9 @@ const VargMaster: React.FC = () => {
 
       {!showForm ? (
         <div className="bg-white rounded-lg shadow-sm border border-orange-200 relative ">
-          <h3 className="absolute -top-3 left-4 bg-white px-3 text-blue-600 font-bold border-2 border-blue-600 rounded-full text-xs py-1 z-10">
+          <span className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm">
             Varg Master Details
-          </h3>
+          </span>
           <div className="pt-8 p-4">
             <div className="flex justify-between items-center mb-4">
               <div className="flex items-center gap-2">
@@ -98,9 +98,9 @@ const VargMaster: React.FC = () => {
         </div>
       ) : (
         <div className="bg-white p-6 rounded-lg border border-orange-200 relative mt-4">
-          <h4 className="absolute -top-3 left-4 bg-white px-3 text-blue-600 font-bold border-2 border-blue-600 rounded-full text-xs py-1">
+           <span className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm">
             Add Varg
-          </h4>
+          </span>
           
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-4 items-end">
             <div className="flex flex-col gap-1">

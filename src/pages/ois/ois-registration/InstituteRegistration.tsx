@@ -176,12 +176,12 @@ const InstituteRegistrationForm: React.FC = () => {
     <PageLayout title="Institute Registration">
       <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100 mb-4 flex justify-between items-center">
         <span className="text-orange-600 font-bold text-sm"></span>
-        <Button label="Add New Institute" icon="pi pi-plus" onClick={() => openModal('add')} style={{ backgroundColor: '#FF8A65', border: 'none' }} />
+        <Button label="Add New Institute" icon="pi pi-plus" onClick={() => openModal('add')} style={{ backgroundColor: '#6366f1', border: 'none' }} />
       </div>
 
       <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
         <div className="p-4 border-b border-gray-100 flex justify-between items-center">
-          <h3 className="text-blue-600 font-bold border-2 border-blue-600 rounded-full px-4 py-1 text-sm">Institute Details</h3>
+           <h3 className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm">Institute Details</h3>
           <div className="flex gap-2">
             <Button label="Export To Excel" icon="pi pi-file-excel" className="p-button-outlined p-button-secondary p-button-sm" />
             <div className="p-input-icon-left">
@@ -200,8 +200,8 @@ const InstituteRegistrationForm: React.FC = () => {
         maximizable
       >
         <div className="space-y-8 p-2">
-          <div className="border border-gray-200 rounded-lg p-5 relative mt-4">
-            <h4 className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold border-2 border-blue-600 rounded-full text-xs py-1">Institute Basic Information</h4>
+          <div className="border border-orange-200  rounded-lg p-5 relative mt-4">
+              <span className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm">Institute Basic Information</span>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-2">
               {renderDropdown('Academic Year', 'academicYear', true)}
               {renderDropdown('Institute Type (Code)', 'instituteType', true)}
@@ -221,8 +221,8 @@ const InstituteRegistrationForm: React.FC = () => {
             </div>
           </div>
 
-          <div className="border border-gray-200 rounded-lg p-5 relative mt-4">
-            <h4 className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold border-2 border-blue-600 rounded-full text-xs py-1">Institute Address Information</h4>
+          <div className="border border-orange-200  rounded-lg p-5 relative mt-4">
+            <span className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm">Institute Address Information</span>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-2">
               {renderDropdown('Division (Code)', 'division', true)}
               {renderDropdown('District (Code)', 'district', true)}
@@ -241,8 +241,8 @@ const InstituteRegistrationForm: React.FC = () => {
             </div>
           </div>
 
-          <div className="border border-gray-200 rounded-lg p-5 relative mt-4">
-            <h4 className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold border-2 border-blue-600 rounded-full text-xs py-1">Institute Contact Details</h4>
+          <div className="border border-orange-200  rounded-lg p-5 relative mt-4">
+            <span className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm">Institute Contact Details</span>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-2">
               {renderField('Incharge Unique Id', 'inchargeId', true)}
               {renderField('Incharge Name', 'inchargeName', true)}
@@ -255,8 +255,8 @@ const InstituteRegistrationForm: React.FC = () => {
             </div>
           </div>
 
-          <div className="border border-gray-200 rounded-lg p-5 relative mt-4">
-            <h4 className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold border-2 border-blue-600 rounded-full text-xs py-1">Institute Bank Details</h4>
+          <div className="border border-orange-200  rounded-lg p-5 relative mt-4">
+            <span className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm">Institute Bank Details</span>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-2">
               {renderDropdown('Bank Type', 'bankType')}
               {renderDropdown('IFSC Code', 'ifscCode')}
