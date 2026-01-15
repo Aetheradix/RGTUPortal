@@ -28,6 +28,14 @@ import Trainingawardsystem from "./training-and-awards-management";
 import TransportManagementSYS from "./transport-management";
 import UserManagement from "./user-management";
 import VocationalManagement from "./vocational-management";
+import CivilMonitoring from "./civil-monitoring";
+import CareerGuidanceTestPreparation from "./career-guidance-test-preparation";
+import LearningResourceRepository from "./learning-resource-repository";
+import AcademicsCalendar from "./academics-calendar";
+import CommunityDiscussionForum from "./community-discussion-forum";
+import ParentsManagement from "./parents-management";
+import SchoolSecurityManagement from "./school-security-management";
+import TeacherManagementSystem from "./teacher-management-system";
 
 export default function AppFeature() {
   return (
@@ -86,6 +94,14 @@ export default function AppFeature() {
       <Route path="training-and-awards-management/*" element={<Trainingawardsystem />} />
       <Route path="increment-management/*" element={<IncrementManagement />} />
       <Route path="leave-management/*" element={<LeaveManagement />} />
+      <Route path="civil-monitoring/*" element={<CivilMonitoring />} />
+      <Route path="career-guidance-test-preparation/*" element={<CareerGuidanceTestPreparation />} />
+      <Route path="learning-resource-repository/*" element={<LearningResourceRepository />} />
+      <Route path="academics-calendar/*" element={<AcademicsCalendar />} />
+      <Route path="community-discussion-forum/*" element={<CommunityDiscussionForum />} />
+      <Route path="parents-management/*" element={<ParentsManagement />} />
+       <Route path="school-security-management/*" element={<SchoolSecurityManagement />} />
+       <Route path="teacher-management-system/*" element={<TeacherManagementSystem />} />
       <Route
         path="master-data-management/*"
         element={<MasterDataManagement />}
