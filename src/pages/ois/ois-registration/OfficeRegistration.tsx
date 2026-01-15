@@ -78,19 +78,19 @@ const OfficeRegistrationForm: React.FC = () => {
   if (!showForm) {
     return (
       <PageLayout title="Office Registration">
-        <div className="flex justify-between items-center mb-4 bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+        <div className="flex justify-between items-center mb-4 bg-white p-4 rounded-lg shadow-sm border border-orange-200 ">
           <span className="text-orange-600 font-bold"></span>
           <Button 
             label="Add New Office" 
             icon="pi pi-plus" 
             onClick={() => setShowForm(true)}
-            style={{ backgroundColor: '#FF8A65', border: 'none' }} 
+            style={{ backgroundColor: '#6366f1', border: 'none' }} 
           />
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
+        <div className="bg-white rounded-lg shadow-sm border border-orange-200  overflow-hidden">
           <div className="p-4 border-b border-gray-100 flex justify-between items-center">
-            <h3 className="text-indigo-500 font-bold border-2 border-indigo-500 rounded-full px-4 py-1 text-sm">Office Details</h3>
+            <h3 className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm"></h3>
             <div className="flex gap-2">
               <Button label="Export To Excel" icon="pi pi-file-excel" className="p-button-outlined p-button-secondary p-button-sm" />
               <span className="p-input-icon-left">
@@ -106,20 +106,20 @@ const OfficeRegistrationForm: React.FC = () => {
 
   return (
     <PageLayout title="Office Registration">
-      <div className="flex justify-between items-center mb-4 bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+      <div className="flex justify-between items-center mb-4 bg-white p-4 rounded-lg shadow-sm border border-orange-200 ">
         <span className="text-orange-600 font-bold"></span>
         <Button 
           label="Back to List" 
           icon="pi pi-undo" 
           className="p-button-secondary"
           onClick={() => setShowForm(false)}
-          style={{ backgroundColor: '#FF8A65', border: 'none' }} 
+          style={{ backgroundColor: '#6366f1', border: 'none' }} 
         />
       </div>
 
       <div className="space-y-6 pt-4">
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 relative">
-          <h3 className="absolute -top-3 left-6 bg-white px-3 text-indigo-500 font-bold border-2 border-indigo-500 rounded-full text-xs py-1">Office Basic Details</h3>
+        <div className="bg-white p-6 rounded-lg shadow-sm border border-orange-200  relative">
+           <span className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm">Office Basic Details</span>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-2">
             <Dropdown label="Office Type (Code)" required value={formData.officeType} options={[]} placeholder="--Select--" onChange={(e) => setFormData({...formData, officeType: e.value})} />
             <Input label="Office Name (In English)" required value={formData.officeNameEn} placeholder="Enter Office Name(In English)" onChange={(e) => setFormData({...formData, officeNameEn: e.target.value})} />
@@ -142,8 +142,8 @@ const OfficeRegistrationForm: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 relative">
-          <h3 className="absolute -top-3 left-6 bg-white px-3 text-indigo-500 font-bold border-2 border-indigo-500 rounded-full text-xs py-1">Office Bank Details</h3>
+        <div className="bg-white p-6 rounded-lg shadow-sm border border-orange-200  relative">
+           <span className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm">Office Bank Details</span>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-2">
             <Dropdown label="Bank Type" required value={formData.bankType} options={[]} placeholder="Select" onChange={(e) => setFormData({...formData, bankType: e.value})} />
             <Dropdown label="IFSC Code" required value={formData.ifscCode} options={[]} placeholder="Select" onChange={(e) => setFormData({...formData, ifscCode: e.value})} />
@@ -152,16 +152,16 @@ const OfficeRegistrationForm: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 relative">
-          <h3 className="absolute -top-3 left-6 bg-white px-3 text-indigo-500 font-bold border-2 border-indigo-500 rounded-full text-xs py-1">Office Geographical Details</h3>
+        <div className="bg-white p-6 rounded-lg shadow-sm border border-orange-200  relative">
+          <span className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm">Office Geographical Details</span>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-2">
             <Input label="Latitude" value={formData.latitude} placeholder="Enter Latitude" onChange={(e) => setFormData({...formData, latitude: e.target.value})} />
             <Input label="Longitude" value={formData.longitude} placeholder="Enter Longitude" onChange={(e) => setFormData({...formData, longitude: e.target.value})} />
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 relative">
-          <h3 className="absolute -top-3 left-6 bg-white px-3 text-indigo-500 font-bold border-2 border-indigo-500 rounded-full text-xs py-1">Office Incharge Details</h3>
+        <div className="bg-white p-6 rounded-lg shadow-sm border border-orange-200  relative">
+          <span className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm">Office Incharge Details</span>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-2">
             <Input label="Incharge Unique ID" required value={formData.inchargeId} placeholder="Enter Incharge Unique ID" onChange={(e) => setFormData({...formData, inchargeId: e.target.value})} />
             <Input label="Incharge Name" required value={formData.inchargeName} placeholder="Enter Incharge Name" onChange={(e) => setFormData({...formData, inchargeName: e.target.value})} />

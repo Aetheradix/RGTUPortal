@@ -73,14 +73,14 @@ const EditSchoolDetails: React.FC = () => {
   // );
 
   return (
-    <PageLayout title="स्कूल की जानकारी में संपादन">
+    <PageLayout title=" Edit School Details">
       <div className="flex justify-between items-center mb-4">
       </div>
 
       <div className="bg-white p-6 rounded-lg shadow-sm border border-orange-200 relative mb-6">
-        <h3 className="absolute -top-3 left-6 bg-white px-3 text-blue-600 font-bold border-2 border-blue-600 rounded-full text-xs py-1">
+        <span className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm">
           School Verification Request
-        </h3>
+        </span>
 
         <div className="flex gap-10 mt-4 mb-6">
           <div className="flex items-center">

@@ -85,9 +85,9 @@ const EditSchool: React.FC = () => {
   return (
     <PageLayout title=" Edit School Details">
       <div className="bg-white p-6 rounded-lg shadow-sm border border-orange-200 relative mb-8 mt-4">
-        <h3 className="absolute -top-3 left-6 bg-white px-3 text-blue-600 font-bold border-2 border-blue-600 rounded-full text-xs py-1">
+          <span className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm">
           Edit School Details
-        </h3>
+       </span>
         
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-2">
           <Dropdown 
@@ -121,10 +121,10 @@ const EditSchool: React.FC = () => {
       </div>
 
       {isSearched && (
-        <div className="bg-white rounded-lg shadow-sm border border-orange-200 relative overflow-hidden">
-          <h3 className="absolute top-3 left-6 bg-white px-3 text-blue-600 font-bold border-2 border-blue-600 rounded-full text-xs py-1 z-10">
+       <div className="bg-white p-6 rounded-lg shadow-sm border border-orange-200 relative mb-8 mt-4">
+           <span className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm">
             School Verification Details
-          </h3>
+          </span>
           <div className="pt-12">
             <Table columns={columns} data={rows} showPagination rowsPerPage={50} scrollable />
           </div>
@@ -139,8 +139,8 @@ const EditSchool: React.FC = () => {
         maximizable
       >
         <div className="space-y-6">
-          <div className="border border-orange-300 rounded p-4 relative">
-            <h4 className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold border border-blue-600 rounded-full text-xs">School Basic Information</h4>
+          <div className="bg-white p-6 rounded-lg shadow-sm border border-orange-200 relative mb-8 mt-4">
+             <span className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm">School Basic Information</span>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 mt-2">
               <DataItem label="Academic Year" value="2024-25" />
               <DataItem label="School UDISE Code" value="23040410206" />
@@ -154,7 +154,7 @@ const EditSchool: React.FC = () => {
           </div>
 
           <div className="border border-orange-300 rounded p-4 relative">
-            <h4 className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold border border-blue-600 rounded-full text-xs">School Address Information</h4>
+            <span className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm">School Address Information</span>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 mt-2">
               <DataItem label="Division" value="Gwalior" />
               <DataItem label="District" value="Gwalior" />
@@ -168,7 +168,7 @@ const EditSchool: React.FC = () => {
           </div>
 
           <div className="border border-orange-300 rounded p-4 relative">
-            <h4 className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold border border-blue-600 rounded-full text-xs">School Contact Details</h4>
+            <span className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm">School Contact Details</span>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 mt-2">
               <DataItem label="School Head Type (Code)" value="Acting Head Teacher" />
               <DataItem label="Employee Unique ID" value="AR1642" />
