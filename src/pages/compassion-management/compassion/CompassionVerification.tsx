@@ -47,8 +47,7 @@ export default function CompassionVerification() {
         <span className="text-orange-600 font-semibold">{row.status}</span>
       ),
     },
-    {
-      header: "Action",
+    { field:"",      header: "Action",
       style: { textAlign: "center" as const, width: "100px" },
       body: (row: any) => (
         <Button
@@ -126,7 +125,7 @@ export default function CompassionVerification() {
               columns={[
                 { field: "id", header: "Sr.No.", style: { width: "50px" } },
                 { field: "name", header: "Document Name" },
-                {
+                { field:"",
                   header: "Action",
                   body: () => (
                     <Button

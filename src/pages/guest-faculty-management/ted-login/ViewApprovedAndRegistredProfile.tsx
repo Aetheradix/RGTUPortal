@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from 'primereact/button';
 import React, { useState } from 'react';
 import PageLayout from '../../../components/PageLayout';

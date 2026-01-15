@@ -61,7 +61,7 @@ export default function FinalDecision() {
             </span>
         )
     },
-    {
+    { field:"",
       header: "Action",
       style: { textAlign: "center" as const, width: "80px" },
       body: (rowData: any) => (

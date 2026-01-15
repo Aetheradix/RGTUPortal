@@ -67,8 +67,7 @@ export default function SalaryOptionalHead() {
   ];
 
   const employeeColumns = [
-    {
-      header: "All",
+    { field:"",      header: "All",
       body: (row: any) => (
         <Checkbox
           checked={checkedEmployees.includes(row.id)}
@@ -78,10 +77,10 @@ export default function SalaryOptionalHead() {
       style: { width: "3rem" }
     },
     { field: "name", header: "Employee / कर्मचारी" },
-    { header: "Minimum Amount(₹)", body: () => <Input placeholder="0.00" className="w-full" /> },
-    { header: "Maximum Amount(₹)", body: () => <Input placeholder="0.00" className="w-full" /> },
-    { header: "Earning & Deduction Value", body: () => <Input placeholder="Enter Value" className="w-full" /> },
-    { header: "Status", body: () => <Button label="Ok" severity="success" size="small" /> },
+    { header: "Minimum Amount(₹)", field:"", body: () => <Input placeholder="0.00" className="w-full" /> },
+    { header: "Maximum Amount(₹)",field:"", body: () => <Input placeholder="0.00" className="w-full" /> },
+    { header: "Earning & Deduction Value", field:"",body: () => <Input placeholder="Enter Value" className="w-full" /> },
+    { header: "Status",field:"", body: () => <Button label="Ok" severity="success" size="small" /> },
   ];
 
   if (showAdd) {

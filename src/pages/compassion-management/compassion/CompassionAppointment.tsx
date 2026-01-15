@@ -174,7 +174,7 @@ export default function CompassionateAppointment() {
                 columns={[
                   { field: "sr", header: "Sr.No", style: { width: '80px' } },
                   { field: "name", header: "Document Name" },
-                  { 
+                  { field:"",
                     header: "Upload Action", 
                     body: () => <FileUpload mode="basic" chooseLabel="Upload File" className="p-button-sm" auto name="docs" /> 
                   },

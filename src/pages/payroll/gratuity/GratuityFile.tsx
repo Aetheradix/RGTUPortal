@@ -69,7 +69,7 @@ export default function GratuityFile() {
       header: "Gratuity Amount (₹)",
       body: (row: any) => `₹${row.amount.toLocaleString("en-IN")}`
     },
-    {
+    { field:"",
       header: "Action",
       body: () => <Button icon="pi pi-pencil" text rounded severity="info" />
     }
