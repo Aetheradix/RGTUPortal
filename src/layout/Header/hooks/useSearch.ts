@@ -24,7 +24,7 @@ const createSearchableMenu = () => {
 
   // Home
   searchableItems.push({
-    title: sidebarMenu.home.module.toLowerCase(),
+    title: (sidebarMenu.home.module || "").toLowerCase(),
     route: sidebarMenu.home.route,
     type: "module",
     breadcrumb: "Home",
@@ -32,7 +32,7 @@ const createSearchableMenu = () => {
 
   // All modules
   sidebarMenu.sidebar.forEach((module) => {
-    const moduleTitle = module.module.toLowerCase();
+    const moduleTitle = (module.module || "").toLowerCase();
 
     searchableItems.push({
       title: moduleTitle,
@@ -43,7 +43,7 @@ const createSearchableMenu = () => {
     });
 
     module.subModules?.forEach((subModule) => {
-      const subModuleTitle = subModule.subModule.toLowerCase();
+      const subModuleTitle = (subModule?.subModule || "").toLowerCase();
 
       searchableItems.push({
         title: subModuleTitle,
@@ -52,15 +52,15 @@ const createSearchableMenu = () => {
         breadcrumb: `${module.module} > ${subModule.subModule}`,
         moduleTitle: module.module,
         subModuleTitle: subModule.subModule,
-        pages: subModule.pages.map((p) => ({
+        pages: subModule.pages?.map((p) => ({
           title: p.page,
           route: p.route,
         })),
       });
 
-      subModule.pages.forEach((page) => {
+      subModule?.pages?.forEach((page) => {
         searchableItems.push({
-          title: page.page.toLowerCase(),
+          title: (page.page || "").toLowerCase(),
           route: page.route,
           type: "page",
           breadcrumb: `${module.module} > ${subModule.subModule} > ${page.page}`,
@@ -88,6 +88,7 @@ export const useSearch = () => {
   );
 
   const searchRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -116,7 +117,6 @@ export const useSearch = () => {
 
     for (const item of SEARCHABLE_MENU) {
       if (item.title.includes(searchTerm)) {
-       
         if (item.type === "module") {
           const module = sidebarMenu.sidebar.find(
             (m) => m.module === item.moduleTitle
@@ -124,17 +124,17 @@ export const useSearch = () => {
           if (module && module.subModules) {
             const submoduleResults: SearchResult[] = module.subModules.map(
               (sub) => ({
-                title: sub.subModule,
+                title: sub.subModule || "",
                 route: sub.route,
                 breadcrumb: `${module.module} > ${sub.subModule}`,
                 type: "submodule" as const,
-                children: sub.pages.map((page) => ({
-                  title: page.page,
+                children: sub.pages?.map((page) => ({
+                  title: page.page || "",
                   route: page.route,
                   breadcrumb: `${module.module} > ${sub.subModule} > ${page.page}`,
                   type: "page" as const,
-                })),
-                isExpanded: false, 
+                })) || [],
+                isExpanded: false,
               })
             );
 
@@ -147,10 +147,7 @@ export const useSearch = () => {
               isExpanded: true,
             });
           }
-        }
-
-       
-        else if (item.type === "submodule") {
+        } else if (item.type === "submodule") {
           // Check if parent module already exists
           const existingModule = Array.from(moduleMap.values()).find(
             (m) =>
@@ -159,7 +156,6 @@ export const useSearch = () => {
           );
 
           if (existingModule) {
-           
             const subExists = existingModule.children?.some(
               (s) => s.route === item.route
             );
@@ -179,7 +175,6 @@ export const useSearch = () => {
               });
             }
           } else {
-            
             const module = sidebarMenu.sidebar.find(
               (m) => m.module === item.moduleTitle
             );
@@ -208,10 +203,7 @@ export const useSearch = () => {
               });
             }
           }
-        }
-
-       
-        else {
+        } else {
           const existingModule = Array.from(moduleMap.values()).find(
             (m) =>
               m.type === "module" &&
@@ -219,27 +211,25 @@ export const useSearch = () => {
           );
 
           if (existingModule) {
-            
             let targetSubmodule = existingModule.children?.find(
               (s) =>
                 s.title.toLowerCase() === item.subModuleTitle?.toLowerCase()
             );
 
             if (!targetSubmodule) {
-             
               const subModule = sidebarMenu.sidebar
                 .find((m) => m.module === item.moduleTitle)
                 ?.subModules?.find((s) => s.subModule === item.subModuleTitle);
 
               if (subModule && existingModule.children) {
                 targetSubmodule = {
-                  title: subModule.subModule,
+                  title: subModule.subModule || "",
                   route: subModule.route,
                   breadcrumb: `${item.moduleTitle} > ${subModule.subModule}`,
                   type: "submodule",
                   children: [
                     {
-                      title: item.title,
+                      title: item.title || "",
                       route: item.route,
                       breadcrumb: item.breadcrumb,
                       type: "page",
@@ -247,17 +237,18 @@ export const useSearch = () => {
                   ],
                   isExpanded: false,
                 };
-                existingModule.children.push(targetSubmodule);
+                if (targetSubmodule) {
+                  existingModule.children.push(targetSubmodule);
+                }
               }
             } else {
-      
-              if (targetSubmodule.children) {
+              if (targetSubmodule && targetSubmodule.children) {
                 const pageExists = targetSubmodule.children.some(
                   (p) => p.route === item.route
                 );
                 if (!pageExists) {
                   targetSubmodule.children.push({
-                    title: item.title,
+                    title: item.title || "",
                     route: item.route,
                     breadcrumb: item.breadcrumb,
                     type: "page",
@@ -266,7 +257,6 @@ export const useSearch = () => {
               }
             }
           } else {
-       
             const module = sidebarMenu.sidebar.find(
               (m) => m.module === item.moduleTitle
             );
@@ -282,13 +272,13 @@ export const useSearch = () => {
                 type: "module",
                 children: [
                   {
-                    title: subModule.subModule,
+                    title: subModule.subModule || "",
                     route: subModule.route,
                     breadcrumb: `${module.module} > ${subModule.subModule}`,
                     type: "submodule",
                     children: [
                       {
-                        title: item.title,
+                        title: item.title || "",
                         route: item.route,
                         breadcrumb: item.breadcrumb,
                         type: "page",
@@ -329,6 +319,32 @@ export const useSearch = () => {
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  useEffect(() => {
+    const handleGlobalKeyDown = (e: KeyboardEvent) => {
+      // Check if user is typing in an input or textarea
+      const target = e.target as HTMLElement;
+      const isInput =
+        target.tagName === "INPUT" ||
+        target.tagName === "TEXTAREA" ||
+        target.isContentEditable;
+
+      // Handle Ctrl+K
+      if ((e.ctrlKey || e.metaKey) && e.key === "k") {
+        e.preventDefault();
+        inputRef.current?.focus();
+      }
+
+      // Handle '/' (only if not already in an input)
+      if (e.key === "/" && !isInput) {
+        e.preventDefault();
+        inputRef.current?.focus();
+      }
+    };
+
+    window.addEventListener("keydown", handleGlobalKeyDown);
+    return () => window.removeEventListener("keydown", handleGlobalKeyDown);
   }, []);
 
   const clearSearch = useCallback(() => {
@@ -379,7 +395,6 @@ export const useSearch = () => {
     ]
   );
 
-
   const toggleSubmodule = useCallback((submoduleRoute: string) => {
     setExpandedSubmodules((prev) => {
       const newSet = new Set(prev);
@@ -415,6 +430,7 @@ export const useSearch = () => {
     selectedIndex,
     expandedSubmodules,
     searchRef,
+    inputRef,
     clearSearch,
     handleNavigate,
     handleKeyDown,

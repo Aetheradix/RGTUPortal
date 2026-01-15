@@ -10,16 +10,19 @@ import APRMS from "./employee-aprms";
 import EmployeeDirectoryManagement from "./employee-directory-management";
 import ExamManagement from "./exam-management";
 import GenericPage from "./GenericPage";
+import GradationManagement from "./gradation-management";
 import GuestFacultyManagement from "./guest-faculty-management";
 import HostelManagementSystem from "./hostel-management";
 import Hrms from "./hrms/Index";
 import IncrementManagement from "./increment-management";
+import InfrastructureManagement from "./infrastructure-management";
 import LeaveManagement from "./leave-management";
 import MasterDataManagement from "./master-data-management";
 import Master from "./masters";
 import OIS from "./ois";
 import Payroll from "./payroll";
 import ProfilePage from "./profile";
+import RetirementSeparation from "./retirement-separation";
 import SchemeManagement from "./scheme-management";
 import SchemeManagementSystem from "./scheme-mangament-master";
 import StudentDirectory from "./student-directory";
@@ -75,6 +78,10 @@ export default function AppFeature() {
         path="hostel-management-system/*"
         element={<HostelManagementSystem />}
       />
+
+      <Route path="gradation-management/*" element={<GradationManagement />} />
+      <Route path="retirement-separation/*" element={<RetirementSeparation />} />
+      <Route path="infrastructure-management/*" element={<InfrastructureManagement />} />
       <Route path="exam-management/*" element={<ExamManagement />} />
       {/* Fallback for any route where dedicated UI is not implemented yet */}
       <Route path="*" element={<GenericPage />} />
@@ -88,6 +95,7 @@ export default function AppFeature() {
       <Route path="increment-management/*" element={<IncrementManagement />} />
       <Route path="leave-management/*" element={<LeaveManagement />} />
       <Route path="student-directory/*" element={<StudentDirectory />} />
+
       <Route
         path="master-data-management/*"
         element={<MasterDataManagement />}

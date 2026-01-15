@@ -17,7 +17,9 @@ import {
   FaPlane,
   FaProjectDiagram,
   FaSchool,
+  FaSortAmountUp,
   FaUniversity,
+  FaUserClock,
   FaUserFriends,
   FaUserGraduate,
   FaUsers,
@@ -3642,6 +3644,118 @@ const sidebarMenu = {
             {
               page: "Leave History Report",
               route: "/leave-management/leave-report/leave-history-report",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      module: "Gradation Management",
+      icon: FaSortAmountUp,
+      route: "/gradation-management",
+      subModules: [
+        {
+          subModule: "Gradation Process",
+          route: "/gradation-management/gradation-process",
+          pages: [
+            {
+              page: "Employee Gradation",
+              route:
+                "/gradation-management/gradation-process/employee-gradation",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      module: "Infrastructure Management",
+      icon: FaBuilding,
+      route: "/infrastructure-management",
+      subModules: [
+        {
+          subModule: "Infrastructure Master",
+          route: "/infrastructure-management/infrastructure-master",
+          pages: [
+            {
+              page: "Infrastructure Master",
+              route:
+                "/infrastructure-management/infrastructure-master/infrastructure-master",
+            },
+          ],
+        },
+        {
+          subModule: "Infrastructure Report",
+          route: "/infrastructure-management/infrastructure-report",
+          pages: [
+            {
+              page: "District Wise Infrastructure Report",
+              route:
+                "/infrastructure-management/infrastructure-report/district-wise-infrastructure-report",
+            },
+            {
+              page: "Infrastructure Report",
+              route:
+                "/infrastructure-management/infrastructure-report/infrastructure-report",
+            },
+          ],
+        },
+        {
+          subModule: "Infrastructure",
+          route: "/infrastructure-management/infrastructure",
+          pages: [
+            {
+              page: "Infrastructure",
+              route: "/infrastructure-management/infrastructure/infrastructure",
+            },
+          ],
+        },
+        {
+          subModule: "Add Infrastructure",
+          route: "/infrastructure-management/add-infrastructure",
+          pages: [
+            {
+              page: "Add Infrastructure Details",
+              route:
+                "/infrastructure-management/add-infrastructure/add-infrastructure-details",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      module: "Retirement & Separation",
+      icon: FaUserClock,
+      route: "/retirement-separation",
+      subModules: [
+        {
+          subModule: "Retirement & Separation",
+          route: "/retirement-separation/retirement-separation",
+          pages: [
+            {
+              page: "Retirement or Separation",
+              route:
+                "/retirement-separation/retirement-separation/employee-retirement-Or-separation",
+            },
+            {
+              page: "Generate Order",
+              route:
+                "/retirement-separation/retirement-separation/generate-order",
+            },
+          ],
+        },
+        {
+          subModule: "Retirement & Separation Report",
+          route: "/retirement-separation/retirement-separation-report",
+          pages: [
+            {
+              page: "Employee Retirement Report",
+              route:
+                "/retirement-separation/retirement-separation-report/employee-retirement-report",
+            },
+            {
+              page: "Upcoming Retirement Report",
+              route:
+                "/retirement-separation/retirement-separation-report/upcoming-retirement-report",
             },
           ],
         },

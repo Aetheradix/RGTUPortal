@@ -38,9 +38,9 @@ const searchMenu = (query: string): SearchResult[] => {
     // Search submodules and pages
     module.subModules?.forEach((subModule) => {
       // Search submodule
-      if (subModule.subModule.toLowerCase().includes(searchTerm)) {
+      if ((subModule.subModule || "").toLowerCase().includes(searchTerm)) {
         results.push({
-          title: subModule.subModule,
+          title: subModule.subModule || "",
           route: subModule.route,
           breadcrumb: `${module.module} > ${subModule.subModule}`,
           type: "submodule",
@@ -48,10 +48,10 @@ const searchMenu = (query: string): SearchResult[] => {
       }
 
       // Search pages
-      subModule.pages.forEach((page) => {
-        if (page.page.toLowerCase().includes(searchTerm)) {
+      subModule.pages?.forEach((page) => {
+        if ((page.page || "").toLowerCase().includes(searchTerm)) {
           results.push({
-            title: page.page,
+            title: page.page || "",
             route: page.route,
             breadcrumb: `${module.module} > ${subModule.subModule} > ${page.page}`,
             type: "page",
