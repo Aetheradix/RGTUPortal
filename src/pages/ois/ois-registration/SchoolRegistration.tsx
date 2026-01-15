@@ -124,7 +124,7 @@ const SchoolRegistrationForm: React.FC = () => {
     <PageLayout title="School Registration">
       <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100 mb-4 flex justify-between items-center">
         <span className="text-orange-600 font-bold text-sm"></span>
-        <Button label="Add New School" icon="pi pi-plus" onClick={() => openModal('add')} style={{ backgroundColor: '#FF8A65', border: 'none' }} />
+        <Button label="Add New School" icon="pi pi-plus" onClick={() => openModal('add')} style={{ backgroundColor: '#6366f1', border: 'none' }} />
       </div>
 
       <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
@@ -164,8 +164,8 @@ const SchoolRegistrationForm: React.FC = () => {
       >
         <div className="space-y-8 p-2">
           
-          <div className="border border-gray-200 rounded-lg p-5 relative mt-4">
-            <h4 className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold border-2 border-blue-600 rounded-full text-xs py-1">School Basic Information</h4>
+          <div className="border border-orange-200  rounded-lg p-5 relative mt-4">
+            <span className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm">School Basic Information</span>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-2">
               {renderDropdown('Academic Year', 'academicYear', true)}
               {renderField('School UDISE Code', 'udiseCode', true)}
@@ -203,8 +203,8 @@ const SchoolRegistrationForm: React.FC = () => {
             </div>
           </div>
 
-          <div className="border border-gray-200 rounded-lg p-5 relative mt-4">
-            <h4 className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold border-2 border-blue-600 rounded-full text-xs py-1">School Address Information</h4>
+          <div className="border border-orange-200  rounded-lg p-5 relative mt-4">
+            <span className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm">School Address Information</span>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-2">
               {renderDropdown('Division (Code)', 'division', true)}
               {renderDropdown('District (Code)', 'district', true)}
@@ -226,8 +226,8 @@ const SchoolRegistrationForm: React.FC = () => {
             </div>
           </div>
 
-          <div className="border border-gray-200 rounded-lg p-5 relative mt-4">
-            <h4 className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold border-2 border-blue-600 rounded-full text-xs py-1">School Contact Details</h4>
+          <div className="border border-orange-200  rounded-lg p-5 relative mt-4">
+            <span className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm">School Contact Details</span>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-2">
               {renderDropdown('School Head Type (Code)', 'headType')}
               {renderField('Employee Unique ID', 'empUniqueId', true)}
@@ -241,8 +241,8 @@ const SchoolRegistrationForm: React.FC = () => {
             </div>
           </div>
 
-          <div className="border border-gray-200 rounded-lg p-5 relative mt-4">
-            <h4 className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold border-2 border-blue-600 rounded-full text-xs py-1">School Geographical Data</h4>
+          <div className="border border-orange-200  rounded-lg p-5 relative mt-4">
+             <span className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm">School Geographical Data</span>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
               {renderField('Latitude', 'latitude')}
               {renderField('Longitude', 'longitude')}
