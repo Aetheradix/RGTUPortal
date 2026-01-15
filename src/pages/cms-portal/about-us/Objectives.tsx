@@ -79,7 +79,7 @@ const Objectives: React.FC = () => {
             )}
           >
             <Column expander style={{ width: '3rem' }} />
-            <Column header="Sr No." body={(_, opt) => opt.rowIndex + 1} />
+     
             <Column field="title" header="Objective Title" />
             <Column field="description" header="Objective Description" />
           </DataTable>

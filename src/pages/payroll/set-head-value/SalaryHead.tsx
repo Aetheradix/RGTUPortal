@@ -1,13 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import PageLayout from "@/components/PageLayout";
-import { Card } from "primereact/card";
 import { Button } from "primereact/button";
-import { Dropdown } from "primereact/dropdown";
-import { Calendar } from "primereact/calendar";
-import { InputText } from "primereact/inputtext";
-import { DataTable } from "primereact/datatable";
-import { Column } from "primereact/column";
+import { Table, Dropdown, Input } from "@/ui/shared";
+import { DateInput } from "@/ui/shared/Input";
 
 interface SalaryHeadRow {
   id: number;
@@ -52,93 +48,136 @@ const tableData: SalaryHeadRow[] = [
 const options = [{ label: "Teaching", value: "Teaching" }];
 const headTypeOptions = [{ label: "Deduction", value: "Deduction" }];
 const payCommissionOptions = [{ label: "Fifth Pay Commission", value: "Fifth Pay Commission" }];
-const calcMethodOptions = [{ label: "Percentage(%) (Basic + DA)", value: "Percentage" }];
+const calcMethodOptions = [{ label: "Percentage(%) (Basic + DA)", value: "Percentage(%) (Basic + DA)" }];
 
 export default function SalaryHead() {
   const [showResult, setShowResult] = useState(false);
   const [showAddForm, setShowAddForm] = useState(false);
+  const [form, setForm] = useState<any>({});
 
-  const rowTemplate = (row: SalaryHeadRow) => (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm p-3">
-      <div><b>Pay Commission:</b> {row.payCommission}</div>
-      <div><b>Amount Range:</b> {row.minAmt}-{row.maxAmt}</div>
-      <div><b>Earning & Deduction Value:</b> ₹{row.value}</div>
-      <div><b>Order Number:</b> {row.orderNo}</div>
-      <div><b>Order Date:</b> {row.orderDate}</div>
-      <div><b>Effective Date:</b> {row.effectiveDate}</div>
-    </div>
-  );
+ const columns = [
+  { field: "headType", header: "Head Type", sortable: true, style: { whiteSpace: "nowrap" } },
+  { field: "head", header: "Head", sortable: true, style: { whiteSpace: "nowrap" } },
+  { field: "method", header: "Calculation Method", sortable: true, style: { whiteSpace: "nowrap" } },
+  { field: "officeType", header: "Office Type" , sortable: true, style: { whiteSpace: "nowrap" } },
+  { field: "office", header: "Office Name" , sortable: true, style: { whiteSpace: "nowrap" } },
+  { field: "postType", header: "Type Of Post" , sortable: true, style: { whiteSpace: "nowrap" } },
+  { field: "designationType", header: "Designation Type" , sortable: true, style: { whiteSpace: "nowrap" } },
+  { field: "designation", header: "Designation" , sortable: true, style: { whiteSpace: "nowrap" } },
+];
+
 
   if (showAddForm) {
     return (
       <PageLayout title="Salary Head">
-        <div className="flex justify-end mb-3">
+        <div className="flex justify-end mb-4">
           <Button label="Go Back" icon="pi pi-arrow-left" onClick={() => setShowAddForm(false)} />
         </div>
 
-        <Card title="Salary Head">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
-            <div><label>Earning & Deduction Head Type*</label><Dropdown options={headTypeOptions} className="w-full" /></div>
-            <div><label>Earning & Deduction Head*</label><Dropdown options={options} className="w-full" /></div>
-            <div><label>Calculation Method*</label><Dropdown options={calcMethodOptions} className="w-full" /></div>
-            <div><label>Office Type*</label><Dropdown options={options} className="w-full" /></div>
-            <div><label>Office*</label><Dropdown options={options} className="w-full" /></div>
-            <div><label>Type of Post*</label><Dropdown options={options} className="w-full" /></div>
-            <div><label>Designation Type*</label><Dropdown options={options} className="w-full" /></div>
-            <div><label>Designation*</label><Dropdown options={options} className="w-full" /></div>
-            <div><label>Pay Commission*</label><Dropdown options={payCommissionOptions} className="w-full" /></div>
-            <div><label>Minimum Amount*</label><InputText className="w-full" /></div>
-            <div><label>Maximum Amount*</label><InputText className="w-full" /></div>
-            <div><label>Earning & Deduction Value*</label><InputText className="w-full" /></div>
-            <div><label>Order Number*</label><InputText className="w-full" /></div>
-            <div><label>Order Date*</label><Calendar className="w-full" dateFormat="dd/mm/yy" /></div>
-            <div><label>Effective Date*</label><Calendar className="w-full" dateFormat="dd/mm/yy" /></div>
-          </div>
+        <div className="bg-white p-6  shadow-sm">
+          <h2 className="text-xl font-bold mb-6">Add Salary Head</h2>
 
-          <div className="flex gap-3 mt-4">
-            <Button label="Save" />
-            <Button label="Clear" className="p-button-secondary" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <Dropdown label="Head Type" required options={headTypeOptions}
+              value={form.headType}
+              onChange={(e) => setForm({ ...form, headType: e.value })}
+              placeholder="Select" />
+
+            <Dropdown label="Head" required options={options}
+              value={form.head}
+              onChange={(e) => setForm({ ...form, head: e.value })}
+              placeholder="Select" />
+
+            <Dropdown label="Calculation Method" required options={calcMethodOptions}
+              value={form.method}
+              onChange={(e) => setForm({ ...form, method: e.value })}
+              placeholder="Select" />
+
+            <Dropdown label="Office Type" required options={options}
+              value={form.officeType}
+              onChange={(e) => setForm({ ...form, officeType: e.value })}
+              placeholder="Select" />
+
+            <Dropdown label="Office" required options={options}
+              value={form.office}
+              onChange={(e) => setForm({ ...form, office: e.value })}
+              placeholder="Select" />
+
+            <Dropdown label="Post Type" required options={options}
+              value={form.postType}
+              onChange={(e) => setForm({ ...form, postType: e.value })}
+              placeholder="Select" />
+
+            <Dropdown label="Designation Type" required options={options}
+              value={form.designationType}
+              onChange={(e) => setForm({ ...form, designationType: e.value })}
+              placeholder="Select" />
+
+            <Dropdown label="Designation" required options={options}
+              value={form.designation}
+              onChange={(e) => setForm({ ...form, designation: e.value })}
+              placeholder="Select" />
+
+            <Dropdown label="Pay Commission" required options={payCommissionOptions}
+              value={form.payCommission}
+              onChange={(e) => setForm({ ...form, payCommission: e.value })}
+              placeholder="Select" />
+
+            <Input label="Minimum Amount" required />
+            <Input label="Maximum Amount" required />
+            <Input label="Value" required />
+            <Input label="Order Number" required />
+            <DateInput label="Order Date" required />
+            <DateInput label="Effective Date" required />
           </div>
-        </Card>
+      <div className="flex gap-3 mt-6">
+            
+          <Button label="Save" onClick={() => setShowResult(true)} />
+          <Button label="Clear" severity="secondary" onClick={() => { setForm({}); setShowResult(false); }} />
+          </div>
+        </div>
       </PageLayout>
     );
   }
 
   return (
     <PageLayout title="Salary Head">
-      <div className="flex justify-end mb-3">
-        <Button label="Add" icon="pi pi-plus" onClick={() => setShowAddForm(true)} />
+      <div className="flex justify-end mb-4">
+        <Button label="Add Salary Head" icon="pi pi-plus" onClick={() => setShowAddForm(true)} />
       </div>
 
-      <Card className="mb-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
-          <div><label>Office Type*</label><Dropdown options={options} className="w-full" /></div>
-          <div><label>Office*</label><Dropdown options={options} className="w-full" /></div>
-          <div><label>Type of Post*</label><Dropdown options={options} className="w-full" /></div>
-          <div><label>Earning & Deduction Head Type*</label><Dropdown options={headTypeOptions} className="w-full" /></div>
+      <div className="bg-white p-6  shadow-sm mb-6">
+        <h3 className="text-lg font-bold mb-4">Search Salary Head</h3>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <Dropdown label="Office Type" required options={options}
+            value={form.officeType}
+            onChange={(e) => setForm({ ...form, officeType: e.value })}
+            placeholder="Select" />
+
+          <Dropdown label="Office" required options={options}
+            value={form.office}
+            onChange={(e) => setForm({ ...form, office: e.value })}
+            placeholder="Select" />
+
+          <Dropdown label="Post Type" required options={options}
+            value={form.postType}
+            onChange={(e) => setForm({ ...form, postType: e.value })}
+            placeholder="Select" />
+
+          <Dropdown label="Head Type" required options={headTypeOptions}
+            value={form.headType}
+            onChange={(e) => setForm({ ...form, headType: e.value })}
+            placeholder="Select" />
         </div>
 
-        <div className="flex gap-3 mt-4">
+        <div className="flex gap-3 mt-6">
           <Button label="Search" onClick={() => setShowResult(true)} />
-          <Button label="Clear" className="p-button-secondary" />
+          <Button label="Clear" severity="secondary" onClick={() => { setForm({}); setShowResult(false); }} />
         </div>
-      </Card>
+      </div>
 
-      {showResult && (
-        <Card title="Details">
-          <DataTable value={tableData} rowExpansionTemplate={rowTemplate} dataKey="id">
-            <Column expander />
-            <Column field="headType" header="Head Type"sortable />
-            <Column field="head" header="Head" sortable/>
-            <Column field="method" header="Calculation Method" sortable/>
-            <Column field="officeType" header="Office Type" sortable/>
-            <Column field="office" header="Office Name"sortable />
-            <Column field="postType" header="Type Of Post" sortable/>
-            <Column field="designationType" header="Designation Type" sortable/>
-            <Column field="designation" header="Designation" sortable/>
-          </DataTable>
-        </Card>
-      )}
+      {showResult && <Table columns={columns} data={tableData} />}
     </PageLayout>
   );
 }

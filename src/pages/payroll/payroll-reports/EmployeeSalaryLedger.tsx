@@ -14,8 +14,6 @@ const ledgerData = [
   { id: 3, date: "01/03/2023", basic: 50000, da: 0 },
   { id: 4, date: "01/04/2023", basic: 50000, da: 10000 },
   { id: 5, date: "01/05/2023", basic: 50000, da: 10000 },
-  { id: 6, date: "01/06/2023", basic: 50000, da: 10000 },
-  { id: 7, date: "01/07/2023", basic: 50000, da: 10000 },
 ];
 
 export default function EmployeeSalaryLedger() {
@@ -23,6 +21,12 @@ export default function EmployeeSalaryLedger() {
   const [empCode, setEmpCode] = useState("");
   const [show, setShow] = useState(false);
   const [expandedRows, setExpandedRows] = useState<any>(null);
+
+  const handleClear = () => {
+    setSelectedDate(null);
+    setEmpCode("");
+    setShow(false);
+  };
 
   const rowExpansionTemplate = (row: any) => {
     const hra = 8000;
@@ -35,27 +39,52 @@ export default function EmployeeSalaryLedger() {
     const netSalary = totalEarning - totalDeduction;
 
     return (
-      <div className="p-3 bg-gray-50 rounded text-sm">
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-          <div>House Rent Allowance : <b>{hra}</b></div>
-          <div>Total Earning (E) : <b>{totalEarning}</b></div>
-          <div>EPF : <b>{epf}</b></div>
-          <div>Professional Tax : <b>{pt}</b></div>
-          <div>LIC Life : <b>{lic}</b></div>
-          <div>Loan : <b>{loan}</b></div>
-          <div>Total Deduction (D) : <b>{totalDeduction}</b></div>
-          <div>Net Salary (S = E - D) : <b>{netSalary}</b></div>
+      <div className="p-4 bg-gray-50 border-y border-gray-200 animate-fadein">
+        <h4 className="text-blue-700 font-bold mb-3 uppercase text-xs tracking-wider">Salary Component Details</h4>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
+          <div className="p-2 bg-white rounded shadow-sm border">
+             <p className="text-gray-500 text-xs">House Rent Allowance</p>
+             <p className="font-bold text-gray-800">₹ {hra.toLocaleString('en-IN')}</p>
+          </div>
+          <div className="p-2 bg-green-50 rounded shadow-sm border border-green-100">
+             <p className="text-green-600 text-xs font-semibold">Total Earning (E)</p>
+             <p className="font-bold text-green-700 text-lg">₹ {totalEarning.toLocaleString('en-IN')}</p>
+          </div>
+          <div className="p-2 bg-white rounded shadow-sm border">
+             <p className="text-gray-500 text-xs">EPF / PF</p>
+             <p className="font-bold text-gray-800">₹ {epf.toLocaleString('en-IN')}</p>
+          </div>
+          <div className="p-2 bg-white rounded shadow-sm border">
+             <p className="text-gray-500 text-xs">Professional Tax</p>
+             <p className="font-bold text-gray-800">₹ {pt.toLocaleString('en-IN')}</p>
+          </div>
+          <div className="p-2 bg-white rounded shadow-sm border">
+             <p className="text-gray-500 text-xs">LIC Life</p>
+             <p className="font-bold text-gray-800">₹ {lic.toLocaleString('en-IN')}</p>
+          </div>
+          <div className="p-2 bg-white rounded shadow-sm border">
+             <p className="text-gray-500 text-xs">Loan Installment</p>
+             <p className="font-bold text-gray-800">₹ {loan.toLocaleString('en-IN')}</p>
+          </div>
+          <div className="p-2 bg-red-50 rounded shadow-sm border border-red-100">
+             <p className="text-red-600 text-xs font-semibold">Total Deduction (D)</p>
+             <p className="font-bold text-red-700">₹ {totalDeduction.toLocaleString('en-IN')}</p>
+          </div>
+          <div className="p-2 bg-blue-600 rounded shadow-sm border border-blue-700">
+             <p className="text-blue-100 text-xs font-semibold">Net Salary (E - D)</p>
+             <p className="font-bold text-white text-lg">₹ {netSalary.toLocaleString('en-IN')}</p>
+          </div>
         </div>
       </div>
     );
   };
 
   return (
-    <PageLayout title="Employee Salary Ledger">
-      <Card className="mb-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          <div>
-            <label className="text-sm font-semibold">Select Date *</label>
+    <PageLayout title="Employee Salary Ledger / कर्मचारी वेतन लेजर">
+      <Card>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="flex flex-col gap-1">
+            <label className="text-sm font-semibold text-gray-700 tracking-tight">Select Date *</label>
             <Calendar
               value={selectedDate}
               onChange={(e) => setSelectedDate(e.value as Date)}
@@ -66,8 +95,8 @@ export default function EmployeeSalaryLedger() {
             />
           </div>
 
-          <div>
-            <label className="text-sm font-semibold">Enter Employee Code *</label>
+          <div className="flex flex-col gap-1">
+            <label className="text-sm font-semibold text-gray-700 tracking-tight">Enter Employee Code *</label>
             <InputText
               value={empCode}
               onChange={(e) => setEmpCode(e.target.value)}
@@ -76,39 +105,61 @@ export default function EmployeeSalaryLedger() {
             />
           </div>
         </div>
-
-        <div className="flex justify-center gap-4 mt-4">
-          <Button label="Search" icon="pi pi-search" onClick={() => setShow(true)} />
-          <Button
-            label="Clear"
-            icon="pi pi-times"
-            severity="danger"
-            onClick={() => {
-              setSelectedDate(null);
-              setEmpCode("");
-              setShow(false);
-            }}
+        <div className="flex justify-center md:justify-start gap-3 mt-8 pt-4 border-t">
+          <Button 
+            label="Search Ledger" 
+            icon="pi pi-search" 
+            className="bg-blue-600 border-blue-600 px-8" 
+            onClick={() => setShow(true)} 
+          />
+          <Button 
+            label="Clear" 
+            icon="pi pi-refresh" 
+            severity="secondary" 
+            outlined 
+            className="px-8" 
+            onClick={handleClear} 
           />
         </div>
       </Card>
+
       {show && (
-        <Card>
-          <h3 className="font-semibold mb-2">Employee Salary Ledger Details</h3>
-          <DataTable
-            value={ledgerData}
-            expandedRows={expandedRows}
-            onRowToggle={(e) => setExpandedRows(e.data)}
-            rowExpansionTemplate={rowExpansionTemplate}
-            paginator
-            rows={10}
-            dataKey="id"
-          >
-            <Column expander />
-            <Column field="date" header="Date" sortable/>
-            <Column field="basic" header="Basic Salary" sortable/>
-            <Column field="da" header="DA"sortable />
-          </DataTable>
-        </Card>
+        <div className="animate-fadein">
+          <Card className="shadow-sm border-t border-gray-200">
+            <h3 className="text-lg font-bold text-gray-700 mb-4 px-2">Salary History</h3>
+            <DataTable
+              value={ledgerData}
+              expandedRows={expandedRows}
+              onRowToggle={(e) => setExpandedRows(e.data)}
+              rowExpansionTemplate={rowExpansionTemplate}
+              paginator
+              rows={10}
+              dataKey="id"
+              className="p-datatable-sm"
+              showGridlines
+            >
+              <Column expander style={{ width: '4rem' }} />
+              <Column 
+                field="date" 
+                header="Payment Date" 
+                sortable 
+                className="font-semibold"
+              />
+              <Column 
+                field="basic" 
+                header="Basic Salary" 
+                sortable 
+                body={(row) => `₹ ${row.basic.toLocaleString('en-IN')}`}
+              />
+              <Column 
+                field="da" 
+                header="DA (Dearness Allowance)" 
+                sortable 
+                body={(row) => `₹ ${row.da.toLocaleString('en-IN')}`}
+              />
+            </DataTable>
+          </Card>
+        </div>
       )}
     </PageLayout>
   );

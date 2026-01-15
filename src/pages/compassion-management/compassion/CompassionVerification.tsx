@@ -1,120 +1,183 @@
-import  { useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState } from "react";
+import PageLayout from "@/components/PageLayout";
 import { Card } from "primereact/card";
-import { InputText } from "primereact/inputtext";
-import { Dropdown } from "primereact/dropdown";
 import { Button } from "primereact/button";
-import { DataTable } from "primereact/datatable";
-import { Column } from "primereact/column";
 import { Dialog } from "primereact/dialog";
+import { Table, Input, Dropdown } from "@/ui/shared";
 
 export default function CompassionVerification() {
-    const [showForm, setShowForm] = useState(false);
-    const reportData = [
-        {
-            srNo: 1,
-            district: "Bhopal",
-            appNo: "CA/AA4880/25/01",
-            deceasedName: "Hemlata Singh (AA4880)",
-            designation: "Prathmik Shikshak",
-            deathDate: "05/08/2025",
-            applicantName: "ARJUN SINGH",
-            dob: "26/07/1998",
-            caste: "OBC",
-            mobile: "9999999999",
-            relation: "Son",
-            maritalStatus: "Un-Married",
-            postApplied: "Academic Cadre",
-            qualification: "Graduation",
-            status: "Objection on application",
-            reason: "Applicant not having educational qualification",
-            actionDate: "09/01/2026",
-            remark: "lmkk"
-        }
-    ];
-    
-    const actionBodyTemplate = () => {
-        return (
-            <Button 
-                icon="pi pi-pencil" 
-                className="p-button-rounded p-button-warning p-button-sm" 
-                onClick={() => setShowForm(true)} 
-                tooltip="Edit/View Form"
-            />
-        );
-    };
-    return (
-        <div className="p-4" style={{ backgroundColor: '#f8f9fa', minHeight: '100vh' }}>
-            <Card title="Action Report on Compassionate Appointment" className="mb-4">
-                <div className="flex justify-between mb-3">
-          </div>
-      <DataTable value={reportData} className="p-datatable-sm custom-table text-xs">
-                    <Column field="district" header="District Name" sortable/>
-                    <Column field="appNo" header="Application No."sortable />
-                    <Column field="deceasedName" header="Name of the Deceased" sortable/>
-                    <Column field="designation" header="Designation" sortable/>
-                    <Column field="deathDate" header="Date of Death"sortable />
-                    <Column field="applicantName" header="Name of the Applicant" sortable/>
-                    <Column field="caste" header="Caste" sortable/>
-                    <Column field="relation" header="Relation"sortable />
-                    <Column field="status" header="Application Status" sortable/>
-                    <Column header="Action" body={actionBodyTemplate} style={{ textAlign: 'center' }} />
-                </DataTable>
-            </Card>
-            <Dialog 
-                header="Compassion Verification विवरण" 
-                visible={showForm} 
-                style={{ width: '95vw' }} 
-                onHide={() => setShowForm(false)}
-                maximized
-            >
-                <div className="p-2">
-                    <Card title="Details of Deceased Employee" className="mb-4 border-orange-200">
-                        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-xs">
-                            <div className="flex flex-col"><label>Deceased Officer/Employee Code</label><InputText value="AA4880" disabled /></div>
-                            <div className="flex flex-col"><label>Name of Deceased Government Servant</label><InputText value="Hemlata Singh (AA4880)" disabled /></div>
-                            <div className="flex flex-col"><label>Gender</label><InputText value="Female" disabled /></div>
-                            <div className="flex flex-col"><label>Caste</label><InputText value="OBC" disabled /></div>
-                            <div className="flex flex-col"><label>Last Posting District</label><InputText value="Bhopal" disabled /></div>
-                            <div className="flex flex-col"><label>Deceased Officer/Staff Cadre</label><InputText value="Teaching" disabled /></div>
-                            <div className="flex flex-col"><label>Deceased Officer/Employee Designation</label><InputText value="Prathmik Shikshak" disabled /></div>
-                            <div className="flex flex-col"><label>Cause of Death</label><InputText value="HEART ATTACK" disabled /></div>
-                        </div>
-                    </Card>
-                    <Card title="Information About all the Family Members" className="mb-4">
-                        <DataTable value={[{sr:1, name:'ARJUN SINGH', gender:'Male', dob:'26/07/1998', relation:'Son', occupation:'There is no business'}]} className="p-datatable-sm">
-                            <Column field="sr" header="Sr.No." />
-                            <Column field="name" header="Name of Member" />
-                            <Column field="gender" header="Gender" />
-                            <Column field="dob" header="Date of Birth" />
-                            <Column field="relation" header="Relationship" />
-                            <Column field="occupation" header="Occupation" />
-                        </DataTable>
-                    </Card>
-                    <Card title="Applicant's Documents" className="mb-4">
-                        <DataTable value={[
-                            {id: 1, name: "Death Certificate of Deceased Government Servant"},
-                            {id: 2, name: "Birth Certificate of the Applicant"},
-                            {id: 3, name: "Caste Certificate"},
-                            {id: 4, name: "Family Samagra ID"}
-                        ]} className="p-datatable-sm">
-                            <Column field="id" header="Sr.No." />
-                            <Column field="name" header="Document Name" />
-                            <Column header="View Document" body={() => <Button icon="pi pi-eye" className="p-button-text p-button-sm" />} />
-                        </DataTable>
-                    </Card>
-                    <Card title="Proceeding" className="mb-4 bg-orange-50">
-                        <div className="flex flex-col max-w-sm">
-                            <label className="font-bold mb-1">Proceeding*</label>
-                            <Dropdown placeholder="--Select--" options={[{label: 'Approve', value: 'approve'}, {label: 'Reject', value: 'reject'}]} />
-                        </div>
-                    </Card>
+  const [showForm, setShowForm] = useState(false);
+  const [selectedRow, setSelectedRow] = useState<any>(null);
 
-                    <div className="flex gap-2">
-                        <Button label="Save" className="p-button-primary" icon="pi pi-save" />
-                        <Button label="Close" className="p-button-secondary" onClick={() => setShowForm(false)} />
-                    </div>
-                </div>
-            </Dialog>
-        </div>
-    );
+  const reportData = [
+    {
+      id: 1,
+      district: "Bhopal",
+      appNo: "CA/AA4880/25/01",
+      deceasedName: "Hemlata Singh (AA4880)",
+      designation: "Prathmik Shikshak",
+      deathDate: "05/08/2025",
+      applicantName: "ARJUN SINGH",
+      caste: "OBC",
+      relation: "Son",
+      status: "Objection on application",
+    },
+  ];
+
+  const handleAction = (rowData: any) => {
+    setSelectedRow(rowData);
+    setShowForm(true);
+  };
+
+  const tableColumns = [
+    { field: "district", header: "District Name", sortable: true },
+    { field: "appNo", header: "Application No.", sortable: true },
+    { field: "deceasedName", header: "Name of Deceased", sortable: true },
+    { field: "designation", header: "Designation", sortable: true },
+    { field: "deathDate", header: "Date of Death", sortable: true },
+    { field: "applicantName", header: "Applicant Name", sortable: true },
+    { field: "caste", header: "Caste", sortable: true },
+    { field: "relation", header: "Relation", sortable: true },
+    {
+      field: "status",
+      header: "Application Status",
+      sortable: true,
+      body: (row: any) => (
+        <span className="text-orange-600 font-semibold">{row.status}</span>
+      ),
+    },
+    {
+      header: "Action",
+      style: { textAlign: "center" as const, width: "100px" },
+      body: (row: any) => (
+        <Button
+          icon="pi pi-pencil"
+          className="p-button-rounded p-button-warning p-button-sm"
+          onClick={() => handleAction(row)}
+          tooltip="Verify Application"
+        />
+      ),
+    },
+  ];
+
+  return (
+    <PageLayout title="Action Report on Compassionate Appointment / अनुकंपा नियुक्ति कार्रवाई रिपोर्ट">
+      <div className="animate-fadein">
+        <Card>
+          <Table
+            columns={tableColumns}
+            data={reportData}
+            showPagination={true}
+            className="p-datatable-sm shadow-sm b"
+          />
+        </Card>
+
+        <Dialog
+          header="Compassion Verification Details / अनुकंपा सत्यापन विवरण"
+          visible={showForm}
+          style={{ width: "95vw" }}
+          onHide={() => setShowForm(false)}
+          maximized
+          modal
+        >
+          <div className="flex flex-col gap-6 p-2">
+
+            <Card className="border-l-4 border-l-orange-400 shadow-sm">
+              <h4 className="text-lg font-bold mb-4 text-orange-700 underline underline-offset-4">
+                Details of Deceased Employee
+              </h4>
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <Input label="Employee Code" value="AA4880" readOnly />
+                <Input label="Name of Servant" value={selectedRow?.deceasedName} readOnly />
+                <Input label="Gender" value="Female" readOnly />
+                <Input label="Caste" value={selectedRow?.caste} readOnly />
+                <Input label="Posting District" value={selectedRow?.district} readOnly />
+                <Input label="Cadre" value="Teaching" readOnly />
+                <Input label="Designation" value={selectedRow?.designation} readOnly />
+                <Input label="Cause of Death" value="HEART ATTACK" readOnly />
+              </div>
+            </Card>
+            <Table
+              title="Family Members Information"
+              columns={[
+                { field: "sr", header: "Sr.No.", style: { width: "50px" } },
+                { field: "name", header: "Name of Member" },
+                { field: "gender", header: "Gender" },
+                { field: "dob", header: "Date of Birth" },
+                { field: "relation", header: "Relationship" },
+                { field: "occupation", header: "Occupation" },
+              ]}
+              data={[
+                {
+                  sr: 1,
+                  name: "ARJUN SINGH",
+                  gender: "Male",
+                  dob: "26/07/1998",
+                  relation: "Son",
+                  occupation: "No Occupation",
+                },
+              ]}
+            />
+
+
+            <Table
+              title="Applicant's Uploaded Documents"
+              columns={[
+                { field: "id", header: "Sr.No.", style: { width: "50px" } },
+                { field: "name", header: "Document Name" },
+                {
+                  header: "Action",
+                  body: () => (
+                    <Button
+                      label="View"
+                      icon="pi pi-eye"
+                      text
+                      className="p-button-sm"
+                    />
+                  ),
+                },
+              ]}
+              data={[
+                { id: 1, name: "Death Certificate" },
+                { id: 2, name: "Birth Certificate" },
+                { id: 3, name: "Caste Certificate" },
+                { id: 4, name: "Family Samagra ID" },
+              ]}
+            />
+            <Card className="bg-orange-50 border border-orange-200">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
+                <Dropdown
+                  label="Proceeding / कार्रवाई"
+                  required
+                  options={[
+                    { label: "Approve", value: "approve" },
+                    { label: "Reject", value: "reject" },
+                    { label: "Send for Clarification", value: "clarify" },
+                  ]}
+                  placeholder="Select Decision"
+                />
+                <Input label="Verification Remark" placeholder="Enter comments" className="md:col-span-2" />
+              </div>
+            </Card>
+            <div className="flex justify-end gap-3 mt-4 pb-6">
+              <Button
+                label="Save Verification"
+                icon="pi pi-check"
+                className="bg-green-600 px-8"
+                onClick={() => setShowForm(false)}
+              />
+              <Button
+                label="Close"
+                icon="pi pi-times"
+                severity="secondary"
+                outlined
+                onClick={() => setShowForm(false)}
+              />
+            </div>
+          </div>
+        </Dialog>
+      </div>
+    </PageLayout>
+  );
 }

@@ -34,63 +34,117 @@ export default function MonthlyEarningDeductionReport() {
 
   const totalAmount = reportData.reduce((sum, r) => sum + r.amount, 0);
 
-  return (
-    <PageLayout title="Monthly Earning Deduction Report">
-      <Card className="mb-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+  const handleClear = () => {
+    setFilters({});
+    setMonth(null);
+    setShow(false);
+  };
 
-          {[
-            ["Division Name (Code)*", divisions, "division"],
-            ["District", districts, "district"],
-            ["Block*", blocks, "block"],
-            ["OUC Type*", oucTypes, "ouc"],
-            ["University Name (Code)*", universities, "uni"],
-            ["Office Name (Code)*", offices, "office"],
-            ["Post Type*", postTypes, "post"],
-            ["Earning & Deduction Type*", earnDedTypes, "type"],
-            ["Earning & Deduction Head*", earnDedHeads, "head"],
-          ].map(([label, opts, key]: any) => (
-            <div key={key}>
-              <label className="font-semibold text-sm">{label}</label>
-              <Dropdown value={filters[key]} options={opts}
-                onChange={e => setFilters({ ...filters, [key]: e.value })}
-                placeholder="Select" className="w-full" />
+  const dropdownConfigs = [
+    { label: "Division Name (Code)*", opts: divisions, key: "division" },
+    { label: "District", opts: districts, key: "district" },
+    { label: "Block*", opts: blocks, key: "block" },
+    { label: "OUC Type*", opts: oucTypes, key: "ouc" },
+    { label: "University Name (Code)*", opts: universities, key: "uni" },
+    { label: "Office Name (Code)*", opts: offices, key: "office" },
+    { label: "Post Type*", opts: postTypes, key: "post" },
+    { label: "Earning & Deduction Type*", opts: earnDedTypes, key: "type" },
+    { label: "Earning & Deduction Head*", opts: earnDedHeads, key: "head" },
+  ];
+
+  return (
+    <PageLayout title="Monthly Earning Deduction Report / मासिक आय कटौती रिपोर्ट">
+
+      <Card className="shadow-sm   mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          {dropdownConfigs.map(({ label, opts, key }) => (
+            <div key={key} className="flex flex-col gap-1">
+              <label className="font-semibold text-sm text-gray-700">{label}</label>
+              <Dropdown
+                value={filters[key]}
+                options={opts}
+                onChange={(e) => setFilters({ ...filters, [key]: e.value })}
+                placeholder="Select"
+                className="w-full"
+              />
             </div>
           ))}
 
-          <div>
-            <label className="font-semibold text-sm">Month*</label>
-            <Calendar value={month}
+          <div className="flex flex-col gap-1">
+            <label className="font-semibold text-sm text-gray-700">Month*</label>
+            <Calendar
+              value={month}
               onChange={(e) => setMonth(e.value as Date)}
-              dateFormat="dd/mm/yy"
               view="month"
+              dateFormat="mm/yy"
+              showIcon
               className="w-full"
-              placeholder="dd/mm/yyyy" />
+              placeholder="Select Month"
+            />
           </div>
         </div>
 
-        <div className="flex justify-center gap-4 mt-4">
-          <Button label="Search" icon="pi pi-search" onClick={() => setShow(true)} />
-          <Button label="Clear" icon="pi pi-times" severity="danger"
-            onClick={() => { setFilters({}); setMonth(null); setShow(false); }} />
+        <div className="flex justify-center md:justify-start gap-3 mt-8 pt-4 border-t">
+          <Button 
+            label="Search Report" 
+            icon="pi pi-search" 
+            className="bg-blue-600 border-blue-600 px-8" 
+            onClick={() => setShow(true)} 
+          />
+          <Button 
+            label="Clear" 
+            icon="pi pi-refresh" 
+            severity="secondary" 
+            outlined 
+            className="px-8" 
+            onClick={handleClear} 
+          />
         </div>
       </Card>
-
       {show && (
-        <Card>
-          <h3 className="font-semibold mb-2">Monthly Office Wise Single Head Report</h3>
+        <div className="animate-fadein">
+          <Card className="shadow-sm border-t border-gray-200">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-lg font-bold text-gray-700 px-2 uppercase tracking-tight">
+                Office Wise Single Head Details
+              </h3>
+              <Button icon="pi pi-download" label="Export" className="p-button-text p-button-sm" />
+            </div>
 
-          <DataTable value={reportData} paginator rows={10}>
-            <Column header="Sr.No." body={(_, opt) => opt.rowIndex + 1} />
-            <Column field="name" header="Employee" />
-            <Column field="designation" header="Designation" />
-            <Column field="amount" header="Amount (₹)" body={(r) => r.amount.toFixed(2)} />
-          </DataTable>
-
-          <div className="flex justify-end mt-2 font-semibold">
-            Total : ₹ {totalAmount.toFixed(2)}
-          </div>
-        </Card>
+            <DataTable 
+              value={reportData} 
+              paginator 
+              rows={10} 
+              className="p-datatable-sm"
+              showGridlines
+              rowHover
+            >
+              <Column 
+                header="Sr.No." 
+                body={(_, opt) => opt.rowIndex + 1} 
+                style={{ width: '4rem', textAlign: 'center' }} 
+              />
+              <Column field="name" header="Employee Name" sortable className="font-medium" />
+              <Column field="designation" header="Designation" sortable />
+              <Column 
+                field="amount" 
+                header="Amount (₹)" 
+                sortable 
+                body={(r) => `₹ ${r.amount.toLocaleString('en-IN', { minimumFractionDigits: 2 })}`}
+                className="font-bold text-gray-800"
+              
+              />
+            </DataTable>
+            <div className="flex justify-end mt-4">
+              <div className="bg-gray-50 border border-dashed border-gray-300 rounded-lg p-4 flex items-center gap-6">
+                <span className="text-gray-500 uppercase text-xs font-bold tracking-widest">Grand Total</span>
+                <span className="text-2xl font-black text-blue-700">
+                  ₹ {totalAmount.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
+                </span>
+              </div>
+            </div>
+          </Card>
+        </div>
       )}
     </PageLayout>
   );

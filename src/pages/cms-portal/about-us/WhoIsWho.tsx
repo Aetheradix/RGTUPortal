@@ -57,7 +57,6 @@ const WhoIsWhoPage: React.FC = () => {
           </div>
 
           <DataTable value={whoIsWhoList} paginator rows={10} showGridlines>
-            <Column header="S. No." body={(_, opt) => opt.rowIndex + 1} />
             <Column field="name" header="Name" />
             <Column field="designation" header="Designation" />
             <Column field="email" header="Email Id" />

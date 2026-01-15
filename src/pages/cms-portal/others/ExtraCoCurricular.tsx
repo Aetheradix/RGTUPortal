@@ -51,9 +51,9 @@ const ExtraCoCurricular: React.FC = () => {
           rows={10}
           showGridlines
         >
-          <Column header="S.No." body={(_, opt) => opt.rowIndex + 1} />
-          <Column field="activity" header="Activity" />
-          <Column field="year" header="Year" />
+
+          <Column field="activity" header="Activity" sortable/>
+          <Column field="year" header="Year" sortable/>
           <Column
             field="status"
             header="Status"

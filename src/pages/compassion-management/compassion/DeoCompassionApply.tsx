@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
+import PageLayout from "@/components/PageLayout";
 import { Card } from "primereact/card";
-import { InputText } from "primereact/inputtext";
-import { Dropdown } from "primereact/dropdown";
-import { Calendar } from "primereact/calendar";
 import { Button } from "primereact/button";
+// Using your shared components
+import { Dropdown, Input } from "@/ui/shared";
+import { DateInput } from "@/ui/shared/Input";
 
 export default function DEOCompassionApply() {
   const initialFormState = {
@@ -13,11 +14,12 @@ export default function DEOCompassionApply() {
     applicantName: "",
     deceasedName: "",
     designation: "",
-    district: "",
+    district: null,
     postingDate: null
   };
 
   const [formData, setFormData] = useState<any>(initialFormState);
+
   const districtList = [
     { label: "Bhopal", value: "Bhopal" },
     { label: "Indore", value: "Indore" },
@@ -37,113 +39,92 @@ export default function DEOCompassionApply() {
   };
 
   return (
-    <div className="p-4 bg-gray-100 min-h-screen flex justify-center">
-      <Card title="DEO Compassion Appointment Application" className="w-full max-w-4xl shadow-md">
-        <div className="p-fluid grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+    <PageLayout title="DEO Compassion Appointment / डीईओ अनुकंपा नियुक्ति">
+      <div className="animate-fadein flex justify-center">
+        <Card className="w-full max">
+          <h3 className="text-xl font-bold text-gray-700 mb-6  pb-2">
+            Application Details / आवेदन विवरण
+          </h3>
           
-          <div className="flex flex-col gap-2">
-            <label htmlFor="applicationNo" className="font-semibold text-sm text-gray-700">
-              Application No. <span className="text-red-500">*</span>
-            </label>
-            <InputText 
-              id="applicationNo"
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+            
+            <Input 
+              label="Application No." 
+              required 
               value={formData.applicationNo} 
-              onChange={(e) => handleChange("applicationNo", e.target.value)} 
+              onChange={(e: any) => handleChange("applicationNo", e.target.value)} 
               placeholder="e.g. APP/2026/001"
             />
-          </div>
 
-          <div className="flex flex-col gap-2">
-            <label htmlFor="nocNo" className="font-semibold text-sm text-gray-700">
-              NOC Certificate No. <span className="text-red-500">*</span>
-            </label>
-            <InputText 
-              id="nocNo"
+            <Input 
+              label="NOC Certificate No." 
+              required 
               value={formData.nocNo} 
-              onChange={(e) => handleChange("nocNo", e.target.value)} 
+              onChange={(e: any) => handleChange("nocNo", e.target.value)} 
               placeholder="Enter NOC Number"
             />
-          </div>
 
-          <div className="flex flex-col gap-2">
-            <label htmlFor="applicantName" className="font-semibold text-sm text-gray-700">
-              Applicant Name <span className="text-red-500">*</span>
-            </label>
-            <InputText 
-              id="applicantName"
+            <Input 
+              label="Applicant Name" 
+              required 
               value={formData.applicantName} 
-              onChange={(e) => handleChange("applicantName", e.target.value)} 
+              onChange={(e: any) => handleChange("applicantName", e.target.value)} 
               placeholder="Full name of applicant"
             />
-          </div>
 
-          <div className="flex flex-col gap-2">
-            <label htmlFor="deceasedName" className="font-semibold text-sm text-gray-700">
-              Deceased Employee Name <span className="text-red-500">*</span>
-            </label>
-            <InputText 
-              id="deceasedName"
+            <Input 
+              label="Deceased Employee Name" 
+              required 
               value={formData.deceasedName} 
-              onChange={(e) => handleChange("deceasedName", e.target.value)} 
+              onChange={(e: any) => handleChange("deceasedName", e.target.value)} 
               placeholder="Name of deceased employee"
             />
-          </div>
 
-          <div className="flex flex-col gap-2">
-            <label htmlFor="designation" className="font-semibold text-sm text-gray-700">
-              Designation <span className="text-red-500">*</span>
-            </label>
-            <InputText 
-              id="designation"
+            <Input 
+              label="Designation" 
+              required 
               value={formData.designation} 
-              onChange={(e) => handleChange("designation", e.target.value)} 
+              onChange={(e: any) => handleChange("designation", e.target.value)} 
               placeholder="e.g. Prathmik Shikshak"
             />
-          </div>
 
-          <div className="flex flex-col gap-2">
-            <label htmlFor="district" className="font-semibold text-sm text-gray-700">
-              District <span className="text-red-500">*</span>
-            </label>
             <Dropdown
-              id="district"
-              value={formData.district}
+              label="District"
+              required
               options={districtList}
+              value={formData.district}
               onChange={(e) => handleChange("district", e.value)}
               placeholder="Select District"
             />
-          </div>
 
-          <div className="flex flex-col gap-2">
-            <label htmlFor="postingDate" className="font-semibold text-sm text-gray-700">
-              Proposed Posting Date <span className="text-red-500">*</span>
-            </label>
-            <Calendar
-              id="postingDate"
+            <DateInput 
+              label="Proposed Posting Date" 
+              required 
               value={formData.postingDate}
               onChange={(e) => handleChange("postingDate", e.value)}
               placeholder="Select Date"
-              showIcon
               dateFormat="dd/mm/yy"
             />
           </div>
-        </div>
-        <div className="flex justify-start mt-8 gap-3">
-          <Button 
-            label="Submit Application" 
-            icon="pi pi-check" 
-            className="p-button-primary px-6" 
-            onClick={handleSubmit} 
-          />
-          <Button 
-            label="Clear" 
-            icon="pi pi-refresh" 
-            className="p-button-outlined p-button-secondary px-4" 
-            onClick={handleClear}
-          />
-        </div>
 
-      </Card>
-    </div>
+          <div className="flex justify-center mt-10 gap-4 pt-6 border-t">
+            <Button 
+              label="Submit Application" 
+              icon="pi pi-check" 
+              className="bg-blue-600 px-8 py-3" 
+              onClick={handleSubmit} 
+            />
+            <Button 
+              label="Clear Form" 
+              icon="pi pi-refresh" 
+              severity="secondary"
+              outlined 
+              className="px-8 py-3" 
+              onClick={handleClear}
+            />
+          </div>
+        </Card>
+      </div>
+    </PageLayout>
   );
 }

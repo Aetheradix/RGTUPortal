@@ -1,13 +1,10 @@
- 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import PageLayout from "@/components/PageLayout";
 import { Card } from "primereact/card";
-import { Dropdown } from "primereact/dropdown";
-import { Calendar } from "primereact/calendar";
 import { Button } from "primereact/button";
-import { DataTable } from "primereact/datatable";
-import { Column } from "primereact/column";
-import { InputNumber } from "primereact/inputnumber";
+import { Dropdown, Table, Input } from "@/ui/shared";
+import { DateInput } from "@/ui/shared/Input";
 
 const oucTypes = [{ label: "OUC 1", value: "ouc1" }];
 const officeTypes = [{ label: "Head Office", value: "head" }];
@@ -21,168 +18,213 @@ const employees = [
   { label: "Mamta Burman", value: "Mamta Burman" },
   { label: "Pradeep Saraswat", value: "Pradeep Saraswat" }
 ];
-const gratuityList = [
-  { id:1, name:"Rahul Sharma", from:"January 2020", to:"December 2020", wages:30000, year:1, amount:360000 },
-  { id:2, name:"Priya Gupta", from:"January 2021", to:"December 2021", wages:32000, year:1, amount:384000 },
-  { id:3, name:"Amit Verma", from:"January 2022", to:"December 2022", wages:35000, year:1, amount:420000 },
-  { id:4, name:"Sneha Reddy", from:"January 2023", to:"December 2023", wages:40000, year:1, amount:480000 },
-  { id:5, name:"Vikram Singh", from:"January 2020", to:"December 2023", wages:28000, year:4, amount:1344000 }
+
+const gratuityData = [
+  { id: 1, name: "Rahul Sharma", from: "Jan 2020", to: "Dec 2020", wages: 30000, year: 1, amount: 360000 },
+  { id: 2, name: "Priya Gupta", from: "Jan 2021", to: "Dec 2021", wages: 32000, year: 1, amount: 384000 }
 ];
+
 export default function GratuityFile() {
   const [showEntry, setShowEntry] = useState(false);
   const [showTable, setShowTable] = useState(false);
 
-  return (
-    <PageLayout title="Gratuity">
+  const [filters, setFilters] = useState<any>({
+    oucType: null,
+    officeType: null,
+    office: null,
+    postType: null,
+    designationType: null,
+    designation: null,
+    fromDate: null,
+    toDate: null
+  });
+  const [form, setForm] = useState<any>({
+    entryDate: null,
+    oucType: null,
+    officeType: null,
+    office: null,
+    postType: null,
+    designationType: null,
+    designation: null,
+    employee: null,
+    fromMonth: null,
+    toMonth: null,
+    wages: "",
+    years: "",
+    amount: ""
+  });
+  const tableColumns = [
+    { field: "id", header: "Sr.No.", sortable: true },
+    { field: "name", header: "Employee Name", sortable: true },
+    { field: "from", header: "From Month Year", sortable: true },
+    { field: "to", header: "To Month Year", sortable: true },
+    {
+      field: "wages",
+      header: "Wages (₹)",
+      body: (row: any) => `₹${row.wages.toLocaleString("en-IN")}`
+    },
+    { field: "year", header: "Working Year" },
+    {
+      field: "amount",
+      header: "Gratuity Amount (₹)",
+      body: (row: any) => `₹${row.amount.toLocaleString("en-IN")}`
+    },
+    {
+      header: "Action",
+      body: () => <Button icon="pi pi-pencil" text rounded severity="info" />
+    }
+  ];
 
-      {!showEntry && (
-        <>
-          <div className="flex justify-end mb-3">
-            <Button label="Go To Entry Page" icon="pi pi-plus" onClick={() => setShowEntry(true)} />
+  return (
+    <PageLayout title="Gratuity Management / उपदान प्रबंधन">
+      {!showEntry ? (
+        <div className="animate-fadein">
+          <div className="flex justify-end mb-4">
+            <Button
+              label="Add New Gratuity Entry"
+              icon="pi pi-plus"
+              className="bg-green-600"
+              onClick={() => setShowEntry(true)}
+            />
           </div>
 
           <Card>
-           <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <Dropdown label="OUC Type" options={oucTypes}
+                value={filters.oucType}
+                onChange={(e:any) => setFilters({ ...filters, oucType: e.value })} />
 
-  <div>
-    <label className="text-sm font-medium">OUC Type *</label>
-    <Dropdown placeholder="Select" options={oucTypes} className="w-full mt-1" />
-  </div>
+              <Dropdown label="Office Type" options={officeTypes}
+                value={filters.officeType}
+                onChange={(e:any) => setFilters({ ...filters, officeType: e.value })} />
 
-  <div>
-    <label className="text-sm font-medium">Office Type *</label>
-    <Dropdown placeholder="Select" options={officeTypes} className="w-full mt-1" />
-  </div>
+              <Dropdown label="Office" options={offices}
+                value={filters.office}
+                onChange={(e:any) => setFilters({ ...filters, office: e.value })} />
 
-  <div>
-    <label className="text-sm font-medium">Office *</label>
-    <Dropdown placeholder="Select" options={offices} className="w-full mt-1" />
-  </div>
+              <Dropdown label="Type of Post" options={postTypes}
+                value={filters.postType}
+                onChange={(e:any) => setFilters({ ...filters, postType: e.value })} />
 
-  <div>
-    <label className="text-sm font-medium">Type of Post *</label>
-    <Dropdown placeholder="Select" options={postTypes} className="w-full mt-1" />
-  </div>
+              <Dropdown label="Designation Type" options={designationTypes}
+                value={filters.designationType}
+                onChange={(e:any) => setFilters({ ...filters, designationType: e.value })} />
 
-  <div>
-    <label className="text-sm font-medium">Designation Type *</label>
-    <Dropdown placeholder="Select" options={designationTypes} className="w-full mt-1" />
-  </div>
+              <Dropdown label="Designation" options={designations}
+                value={filters.designation}
+                onChange={(e:any) => setFilters({ ...filters, designation: e.value })} />
 
-  <div>
-    <label className="text-sm font-medium">Designation *</label>
-    <Dropdown placeholder="Select" options={designations} className="w-full mt-1" />
-  </div>
+              <DateInput label="From Date"
+                value={filters.fromDate}
+                onChange={(val:any) => setFilters({ ...filters, fromDate: val })} />
 
-  <div>
-    <label className="text-sm font-medium">From Date *</label>
-    <Calendar placeholder="dd/mm/yyyy" showIcon className="w-full mt-1" />
-  </div>
+              <DateInput label="To Date"
+                value={filters.toDate}
+                onChange={(val:any) => setFilters({ ...filters, toDate: val })} />
+            </div>
 
-  <div>
-    <label className="text-sm font-medium">To Date *</label>
-    <Calendar placeholder="dd/mm/yyyy" showIcon className="w-full mt-1" />
-  </div>
-
-</div>
-            <div className="flex justify-center gap-4 mt-4">
-              <Button label="Search" onClick={() => setShowTable(true)} />
-              <Button label="Clear" severity="danger" />
+            <div className="flex justify-center gap-4 mt-8 border-t pt-4">
+              <Button label="Search Records" icon="pi pi-search"
+                onClick={() => setShowTable(true)} />
+              <Button label="Clear" icon="pi pi-refresh" outlined
+                onClick={() => {
+                  setFilters({
+                    oucType: null, officeType: null, office: null,
+                    postType: null, designationType: null, designation: null,
+                    fromDate: null, toDate: null
+                  });
+                  setShowTable(false);
+                }} />
             </div>
           </Card>
 
           {showTable && (
-            <Card className="mt-4">
-              <DataTable value={gratuityList} paginator rows={10}>
-                <Column field="id" header="Sr.No." />
-                <Column field="name" header="Employee Name" />
-                <Column field="from" header="From Month Year" />
-                <Column field="to" header="To Month Year" />
-                <Column field="wages" header="Wages (₹)" />
-                <Column field="year" header="Working Year" />
-                <Column field="amount" header="Amount (₹)" />
-              </DataTable>
-            </Card>
+            <div className="mt-6">
+              <Table
+                title="Gratuity Payment Details"
+                columns={tableColumns}
+                data={gratuityData}
+                showPagination
+              />
+            </div>
           )}
-        </>
-      )}
-      {showEntry && (
-        <Card>
-          <div className="flex justify-end mb-3">
-            <Button label="Go Back" icon="pi pi-arrow-left" onClick={() => setShowEntry(false)} />
+        </div>
+      ) : (
+        <div className="animate-fadein">
+          <div className="flex justify-between mb-4">
+            <h3 className="text-xl font-bold">New Gratuity Entry</h3>
+            <Button text icon="pi pi-arrow-left"
+              onClick={() => setShowEntry(false)} />
           </div>
-   <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
-  <div>
-    <label className="text-sm font-medium">Select Date *</label>
-    <Calendar placeholder="dd/mm/yyyy" showIcon className="w-full mt-1" />
-  </div>
 
-  <div>
-    <label className="text-sm font-medium">OUC Type *</label>
-    <Dropdown placeholder="Select" options={oucTypes} className="w-full mt-1" />
-  </div>
+          <Card>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <DateInput label="Entry Date"
+                value={form.entryDate}
+                onChange={(val:any) => setForm({ ...form, entryDate: val })} />
 
-  <div>
-    <label className="text-sm font-medium">Office Type *</label>
-    <Dropdown placeholder="Select" options={officeTypes} className="w-full mt-1" />
-  </div>
+              <Dropdown label="OUC Type" options={oucTypes}
+                value={form.oucType}
+                onChange={(e:any) => setForm({ ...form, oucType: e.value })} />
 
-  <div>
-    <label className="text-sm font-medium">Office *</label>
-    <Dropdown placeholder="Select" options={offices} className="w-full mt-1" />
-  </div>
+              <Dropdown label="Office Type" options={officeTypes}
+                value={form.officeType}
+                onChange={(e:any) => setForm({ ...form, officeType: e.value })} />
 
-  <div>
-    <label className="text-sm font-medium">Type of Post *</label>
-    <Dropdown placeholder="Select" options={postTypes} className="w-full mt-1" />
-  </div>
+              <Dropdown label="Office" options={offices}
+                value={form.office}
+                onChange={(e:any) => setForm({ ...form, office: e.value })} />
 
-  <div>
-    <label className="text-sm font-medium">Designation Type *</label>
-    <Dropdown placeholder="Select" options={designationTypes} className="w-full mt-1" />
-  </div>
+              <Dropdown label="Type of Post" options={postTypes}
+                value={form.postType}
+                onChange={(e:any) => setForm({ ...form, postType: e.value })} />
 
-  <div>
-    <label className="text-sm font-medium">Designation *</label>
-    <Dropdown placeholder="Select" options={designations} className="w-full mt-1" />
-  </div>
+              <Dropdown label="Designation Type" options={designationTypes}
+                value={form.designationType}
+                onChange={(e:any) => setForm({ ...form, designationType: e.value })} />
 
-  <div>
-    <label className="text-sm font-medium">Employee *</label>
-    <Dropdown placeholder="Select" options={employees} className="w-full mt-1" />
-  </div>
+              <Dropdown label="Designation" options={designations}
+                value={form.designation}
+                onChange={(e:any) => setForm({ ...form, designation: e.value })} />
 
-  <div>
-    <label className="text-sm font-medium">From Month *</label>
-    <Calendar view="month" dateFormat="mm/yy" placeholder="Enter Month" className="w-full mt-1" />
-  </div>
+              <Dropdown label="Employee" options={employees}
+                value={form.employee}
+                onChange={(e:any) => setForm({ ...form, employee: e.value })} />
 
-  <div>
-    <label className="text-sm font-medium">To Month *</label>
-    <Calendar view="month" dateFormat="mm/yy" placeholder="Enter Month" className="w-full mt-1" />
-  </div>
+              <DateInput label="From Month" view="month"
+                value={form.fromMonth}
+                onChange={(val:any) => setForm({ ...form, fromMonth: val })} />
 
-  <div>
-    <label className="text-sm font-medium">Wages *</label>
-    <InputNumber className="w-full mt-1" />
-  </div>
+              <DateInput label="To Month" view="month"
+                value={form.toMonth}
+                onChange={(val:any) => setForm({ ...form, toMonth: val })} />
 
-  <div>
-    <label className="text-sm font-medium">Working Year *</label>
-    <InputNumber className="w-full mt-1" />
-  </div>
+              <Input label="Wages (₹)"
+                value={form.wages}
+                onChange={(e:any) => setForm({ ...form, wages: e.target.value })} />
 
-  <div>
-    <label className="text-sm font-medium">Gratuity Amount *</label>
-    <InputNumber className="w-full mt-1" />
-  </div>
+              <Input label="Working Years"
+                value={form.years}
+                onChange={(e:any) => setForm({ ...form, years: e.target.value })} />
 
-</div>
-          <div className="flex justify-center gap-4 mt-4">
-            <Button label="Save" />
-            <Button label="Clear" severity="danger" />
-          </div>
-        </Card>
+              <Input label="Gratuity Amount (₹)"
+                value={form.amount}
+                className="font-bold text-blue-700"
+                onChange={(e:any) => setForm({ ...form, amount: e.target.value })} />
+            </div>
+
+            <div className="flex justify-center gap-4 mt-8 border-t pt-4">
+              <Button label="Save Entry" icon="pi pi-check" />
+              <Button label="Clear Form" icon="pi pi-times" outlined
+                onClick={() => setForm({
+                  entryDate: null, oucType: null, officeType: null,
+                  office: null, postType: null, designationType: null,
+                  designation: null, employee: null, fromMonth: null,
+                  toMonth: null, wages: "", years: "", amount: ""
+                })} />
+            </div>
+          </Card>
+        </div>
       )}
     </PageLayout>
   );

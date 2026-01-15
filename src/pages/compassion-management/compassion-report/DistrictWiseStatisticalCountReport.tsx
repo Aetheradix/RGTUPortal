@@ -75,17 +75,18 @@ export default function DistrictWiseStatisticReport() {
       </div>
       {showReport && (
         <Card title="District-wise Application Statistics">
-          <DataTable value={reportData} paginator rows={5}>
-            <Column field="division" header="Division Name" sortable/>
-            <Column field="district" header="District Name"sortable />
-            <Column field="received" header="Received Application"sortable />
-            <Column field="pending" header="Pending Application"sortable />
-            <Column field="accepted" header="Accepted Application" sortable/>
-            <Column field="forwarded" header="Forwarded to Senior Level" sortable/>
-            <Column field="rejected" header="Rejected Application"sortable />
-            <Column field="objection" header="Objection on Application" sortable/>
-            <Column field="disposed" header="Disposed Application"sortable />
-          </DataTable>
+          <DataTable value={reportData} paginator rows={5} className="p-datatable-sm">
+  <Column field="division" header="Division Name" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="district" header="District Name" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="received" header="Received Application" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="pending" header="Pending Application" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="accepted" header="Accepted Application" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="forwarded" header="Forwarded to Senior Level" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="rejected" header="Rejected Application" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="objection" header="Objection on Application" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="disposed" header="Disposed Application" sortable style={{ whiteSpace: "nowrap" }} />
+</DataTable>
+
         </Card>
       )}
     </Card>

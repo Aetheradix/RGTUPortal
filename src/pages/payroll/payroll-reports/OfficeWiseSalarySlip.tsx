@@ -22,102 +22,123 @@ const data = [
 ];
 
 export default function OfficeSalarySlip() {
-
   const [filters, setFilters] = useState<any>({});
   const [show, setShow] = useState(false);
 
-  const labelStyle = { fontSize: "13px", fontWeight: 600, color: "#374151", marginBottom: "4px", display: "block" };
-  const actionsStyle = { display: "flex", justifyContent: "center", gap: "1rem", marginTop: "1.5rem" };
+  const formatCurrency = (val: number) => 
+    `₹ ${val.toLocaleString('en-IN')}`;
+
+  const handleInputChange = (key: string, value: any) => {
+    setFilters((prev: any) => ({ ...prev, [key]: value }));
+  };
 
   const clearForm = () => {
     setFilters({});
     setShow(false);
   };
 
+  const filterFields = [
+    { label: "Division *", options: divisions, key: "division" },
+    { label: "District *", options: districts, key: "district" },
+    { label: "Block *", options: blocks, key: "block" },
+    { label: "OUC Type *", options: oucTypes, key: "ouc" },
+    { label: "University *", options: universities, key: "university" },
+    { label: "Office *", options: offices, key: "office" },
+    { label: "Month *", options: months, key: "month" },
+  ];
+
   return (
-    <PageLayout title="Office Wise Salary Slip">
-
-      <Card style={{ marginBottom: "1rem" }}>
-        <h3 style={{ fontSize: "1.1rem", fontWeight: 600, color: "#1f2937", marginBottom: "1rem" }}>
-          Office Wise Salary Slip
-        </h3>
-
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
-
-          <div>
-            <label style={labelStyle}>Division *</label>
-            <Dropdown value={filters.division} options={divisions}
-              onChange={e => setFilters({ ...filters, division: e.value })}
-              placeholder="Select" className="w-full" />
-          </div>
-
-          <div>
-            <label style={labelStyle}>District *</label>
-            <Dropdown value={filters.district} options={districts}
-              onChange={e => setFilters({ ...filters, district: e.value })}
-              placeholder="Select" className="w-full" />
-          </div>
-
-          <div>
-            <label style={labelStyle}>Block *</label>
-            <Dropdown value={filters.block} options={blocks}
-              onChange={e => setFilters({ ...filters, block: e.value })}
-              placeholder="Select" className="w-full" />
-          </div>
-
-          <div>
-            <label style={labelStyle}>OUC Type *</label>
-            <Dropdown value={filters.ouc} options={oucTypes}
-              onChange={e => setFilters({ ...filters, ouc: e.value })}
-              placeholder="Select" className="w-full" />
-          </div>
-
-          <div>
-            <label style={labelStyle}>University *</label>
-            <Dropdown value={filters.university} options={universities}
-              onChange={e => setFilters({ ...filters, university: e.value })}
-              placeholder="Select" className="w-full" />
-          </div>
-
-          <div>
-            <label style={labelStyle}>Office *</label>
-            <Dropdown value={filters.office} options={offices}
-              onChange={e => setFilters({ ...filters, office: e.value })}
-              placeholder="Select" className="w-full" />
-          </div>
-
-          <div>
-            <label style={labelStyle}>Month *</label>
-            <Dropdown value={filters.month} options={months}
-              onChange={e => setFilters({ ...filters, month: e.value })}
-              placeholder="Select" className="w-full" />
-          </div>
+    <PageLayout title="Office Wise Salary Slip / कार्यालय वार वेतन पर्ची">
+      <Card className="shadow-sm  mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          {filterFields.map((field) => (
+            <div key={field.key} className="flex flex-col gap-1">
+              <label className="text-sm font-semibold text-gray-700">{field.label}</label>
+              <Dropdown
+                value={filters[field.key]}
+                options={field.options}
+                onChange={(e) => handleInputChange(field.key, e.value)}
+                placeholder="Select"
+                className="w-full"
+              />
+            </div>
+          ))}
         </div>
 
-        <div style={actionsStyle}>
-          <Button label="Search" icon="pi pi-search" onClick={() => setShow(true)} />
-          <Button label="Clear" icon="pi pi-times" severity="danger" onClick={clearForm} />
+        <div className="flex justify-center md:justify-start gap-3 mt-8 pt-4 border-t">
+          <Button 
+            label="Generate Report" 
+            icon="pi pi-search" 
+            className="bg-blue-600 border-blue-600 px-8" 
+            onClick={() => setShow(true)} 
+          />
+          <Button 
+            label="Reset" 
+            icon="pi pi-refresh" 
+            severity="secondary" 
+            outlined 
+            className="px-8" 
+            onClick={clearForm} 
+          />
         </div>
       </Card>
-
       {show && (
-        <Card>
-          <div style={{ fontSize: "1.05rem", fontWeight: 600, marginBottom: "0.75rem" }}>
-            Report : Office Wise Salary Slip Details (Oct-Nov-Dec 2023)
-          </div>
+        <div className="animate-fadein">
+          <Card className="shadow-sm border border-gray-200">
+            <div className="flex justify-between items-center mb-4 px-2">
+              <div>
+                <h3 className="text-lg font-bold text-gray-700 uppercase tracking-tight">
+                  Office Wise Salary Slip Details
+                </h3>
+                <p className="text-sm text-blue-600 font-medium italic">Period: Oct-Nov-Dec 2023</p>
+              </div>
+              <Button icon="pi pi-file-excel" label="Export CSV" className="p-button-outlined p-button-success p-button-sm" />
+            </div>
 
-          <DataTable value={data} showGridlines stripedRows>
-            <Column field="name" header="Employee Name" sortable/>
-            <Column field="desig" header="Designation" sortable/>
-            <Column field="pan" header="PAN No" sortable/>
-            <Column field="oct" header="Oct" sortable/>
-            <Column field="nov" header="Nov"sortable />
-            <Column field="dec" header="Dec" sortable/>
-            <Column field="total" header="Total" sortable/>
-          </DataTable>
-        </Card>
+            <DataTable 
+              value={data} 
+              showGridlines 
+              stripedRows 
+              className="p-datatable-sm"
+              paginator rows={10}
+              rowHover
+            >
+              <Column field="name" header="Employee Name" sortable className="font-semibold text-gray-700" />
+              <Column field="desig" header="Designation" sortable />
+              <Column 
+                field="pan" 
+                header="PAN No" 
+                body={(row) => <span className="font-mono text-xs bg-gray-100 px-2 py-1 rounded">{row.pan}</span>} 
+              />
+              <Column 
+                field="oct" 
+                header="October" 
+                body={(row) => formatCurrency(row.oct)} 
+           
+              />
+              <Column 
+                field="nov" 
+                header="November" 
+                body={(row) => formatCurrency(row.nov)} 
+                
+              />
+              <Column 
+                field="dec" 
+                header="December" 
+                body={(row) => formatCurrency(row.dec)} 
+         
+              />
+              <Column 
+                field="total" 
+                header="Quarterly Total" 
+                body={(row) => <span className="font-bold text-blue-700">{formatCurrency(row.total)}</span>} 
+            
+                className="bg-blue-50/50"
+              />
+            </DataTable>
+          </Card>
+        </div>
       )}
-
     </PageLayout>
   );
 }

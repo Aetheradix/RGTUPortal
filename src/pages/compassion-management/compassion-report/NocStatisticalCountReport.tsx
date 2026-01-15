@@ -78,19 +78,20 @@ export default function NocStatisticalCountReport() {
         <Button label="Clear" icon="pi pi-times" severity="secondary" onClick={handleClear} />
       </div>
       {showTable && (
-        <DataTable value={data} paginator rows={10}> 
-          <Column field="division" header="Division Name" sortable/>
-          <Column field="district" header="District Name" sortable/>
-          <Column field="received" header="Received Application" sortable/>
-          <Column field="forwardDist" header="Forward to District" sortable/>
-          <Column field="forwardDiv" header="Forward to Division" sortable/>
-          <Column field="sentToHO" header="Sent to HO" sortable/>
-          <Column field="approved" header="Approved by HO" sortable/>
-          <Column field="disposed" header="Disposed Application" sortable/>
-          <Column field="sentCollector" header="Sending Collector"sortable />
-          <Column field="sentCollectorHO" header="Sending Collector to HO" sortable/>
-          <Column field="rejected" header="Rejected" sortable/>
-        </DataTable>
+        <DataTable value={data} paginator rows={10} className="p-datatable-sm">
+  <Column field="division" header="Division Name" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="district" header="District Name" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="received" header="Received Application" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="forwardDist" header="Forward to District" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="forwardDiv" header="Forward to Division" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="sentToHO" header="Sent to HO" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="approved" header="Approved by HO" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="disposed" header="Disposed Application" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="sentCollector" header="Sending Collector" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="sentCollectorHO" header="Sending Collector to HO" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="rejected" header="Rejected" sortable style={{ whiteSpace: "nowrap" }} />
+</DataTable>
+
       )}
     </Card>
   );

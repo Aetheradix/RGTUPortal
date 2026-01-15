@@ -90,7 +90,6 @@ const HowToReachPage: React.FC = () => {
             )}
           >
             <Column expander style={{ width: '3rem' }} />
-            <Column header="Sr.No." body={(_, opt) => opt.rowIndex + 1} />
             <Column field="address" header="Address" />
             <Column field="phone" header="Telephone No." />
             <Column field="email" header="E-Mail" />

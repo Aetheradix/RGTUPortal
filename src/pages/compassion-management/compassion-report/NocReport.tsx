@@ -64,24 +64,26 @@ export default function NocReport() {
       </div>
 
       {showTable && (
-        <DataTable value={data} paginator rows={10}>
-          <Column field="deceased" header="Name of the Deceased Employee Officer"sortable />
-          <Column field="appNo" header="Application Number" sortable/>
-          <Column field="designation" header="Designation" sortable/>
-          <Column field="deathDate" header="Date Of Death" sortable/>
-          <Column field="applicant" header="Name of the Applicant" sortable/>
-          <Column field="gender" header="Gender" sortable/>
-          <Column field="dob" header="Date Of Birth" sortable/>
-          <Column field="caste" header="Caste" sortable/>
-          <Column field="mobile" header="Mobile No."sortable />
-          <Column field="relation" header="Relationship with Deceased Employee"sortable />
-          <Column field="post" header="To which Post Applicant Want to be Appointed" sortable/>
-          <Column field="status" header="Application Status"sortable />
-          <Column
-            header="Print / Notesheet"
-            body={() => <Button icon="pi pi-eye" className="p-button-rounded p-button-text" />}
-          />
-        </DataTable>
+       <DataTable value={data} paginator rows={10} className="p-datatable-sm">
+  <Column field="deceased" header="Name of the Deceased Employee Officer" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="appNo" header="Application Number" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="designation" header="Designation" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="deathDate" header="Date Of Death" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="applicant" header="Name of the Applicant" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="gender" header="Gender" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="dob" header="Date Of Birth" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="caste" header="Caste" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="mobile" header="Mobile No." sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="relation" header="Relationship with Deceased Employee" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="post" header="To which Post Applicant Want to be Appointed" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="status" header="Application Status" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column
+    header="Print / Notesheet"
+    body={() => <Button icon="pi pi-eye" className="p-button-rounded p-button-text" />}
+    style={{ whiteSpace: "nowrap" }}
+  />
+</DataTable>
+
       )}
     </Card>
   );

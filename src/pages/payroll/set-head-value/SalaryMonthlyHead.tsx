@@ -1,14 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import PageLayout from "@/components/PageLayout";
-import { Card } from "primereact/card";
 import { Button } from "primereact/button";
-import { Dropdown } from "primereact/dropdown";
-import { Calendar } from "primereact/calendar";
-import { DataTable } from "primereact/datatable";
-import { Column } from "primereact/column";
-import { InputText } from "primereact/inputtext";
 import { Checkbox } from "primereact/checkbox";
+import { Table, Dropdown, Input } from "@/ui/shared";
+import { DateInput } from "@/ui/shared/Input";
 
 const officeTypeOptions = [{ label: "Head Office", value: "Head Office" }];
 const officeOptions = [{ label: "Ministry of Science & Technology", value: "MST" }];
@@ -38,121 +34,140 @@ export default function SalaryMonthlyHead() {
       prev.map((r) => (r.id === id ? { ...r, amount: value } : r))
     );
   };
+
+  const columns = [
+    {
+      field: "selection",
+      header: "All",
+      body: (row: any) => (
+        <Checkbox
+          checked={checked.includes(row.id)}
+          onChange={() => toggleRow(row.id)}
+        />
+      ),
+      style: { width: "3rem" }
+    },
+    { 
+      field: "designation", 
+      header: "Designation", 
+      sortable: true, 
+      style: { whiteSpace: "nowrap" } 
+    },
+    { 
+      field: "employee", 
+      header: "Employee", 
+      sortable: true, 
+      style: { whiteSpace: "nowrap" } 
+    },
+    {
+      field: "amount",
+      header: "Amount (₹)",
+      style: { whiteSpace: "nowrap", minWidth: "200px" },
+      body: (row: any) => (
+        <Input
+          value={row.amount}
+          onChange={(e: any) => updateAmount(row.id, e.target.value)}
+          placeholder="Enter Amount"
+          className="w-full"
+        />
+      ),
+    },
+  ];
+
   return (
     <PageLayout title="Monthly Head Value">
-      <Card className="mb-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
-          <div>
-            <label>Month *</label>
-            <Calendar
-              view="month"
-              dateFormat="MM yy"
-              value={form.month}
-              onChange={(e) => setForm({ ...form, month: e.value })}
-              className="w-full"
-            />
-          </div>
 
-          <div>
-            <label>Office Type*</label>
-            <Dropdown
-              options={officeTypeOptions}
-              value={form.officeType}
-              onChange={(e) => setForm({ ...form, officeType: e.value })}
-              placeholder="Select"
-              className="w-full"
-            />
-          </div>
+      <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm mb-6">
+        <h2 className="text-xl font-bold  mb-6  pb-4">Monthly Head Search</h2>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <DateInput
+            label="Month"
+            required
+            view="month"
+            dateFormat="MM yy"
+            value={form.month}
+            onChange={(e) => setForm({ ...form, month: e.value })}
+            placeholder="Select Month"
+          />
 
-          <div>
-            <label>Office *</label>
-            <Dropdown
-              options={officeOptions}
-              value={form.office}
-              onChange={(e) => setForm({ ...form, office: e.value })}
-              placeholder="Select"
-              className="w-full"
-            />
-          </div>
+          <Dropdown
+            label="Office Type"
+            required
+            options={officeTypeOptions}
+            value={form.officeType}
+            onChange={(e) => setForm({ ...form, officeType: e.value })}
+            placeholder="Select Office Type"
+          />
 
-          <div>
-            <label>Type of Post *</label>
-            <Dropdown
-              options={postTypeOptions}
-              value={form.postType}
-              onChange={(e) => setForm({ ...form, postType: e.value })}
-              placeholder="Select"
-              className="w-full"
-            />
-          </div>
+          <Dropdown
+            label="Office"
+            required
+            options={officeOptions}
+            value={form.office}
+            onChange={(e) => setForm({ ...form, office: e.value })}
+            placeholder="Select Office"
+          />
 
-          <div>
-            <label>Earning & Deduction Head Type *</label>
-            <Dropdown
-              options={headTypeOptions}
-              value={form.headType}
-              onChange={(e) => setForm({ ...form, headType: e.value })}
-              placeholder="Select"
-              className="w-full"
-            />
-          </div>
+          <Dropdown
+            label="Type of Post"
+            required
+            options={postTypeOptions}
+            value={form.postType}
+            onChange={(e) => setForm({ ...form, postType: e.value })}
+            placeholder="Select Post Type"
+          />
 
-          <div>
-            <label>Earning & Deduction Head *</label>
-            <Dropdown
-              options={headOptions}
-              value={form.head}
-              onChange={(e) => setForm({ ...form, head: e.value })}
-              placeholder="Select"
-              className="w-full"
-            />
-          </div>
+          <Dropdown
+            label="Earning & Deduction Head Type"
+            required
+            options={headTypeOptions}
+            value={form.headType}
+            onChange={(e) => setForm({ ...form, headType: e.value })}
+            placeholder="Select Head Type"
+          />
+
+          <Dropdown
+            label="Earning & Deduction Head"
+            required
+            options={headOptions}
+            value={form.head}
+            onChange={(e) => setForm({ ...form, head: e.value })}
+            placeholder="Select Head"
+          />
         </div>
-        <div className="flex gap-3 mt-4">
-          <Button label="Search" icon="pi pi-search" onClick={() => setShowResult(true)} />
+
+        <div className="flex gap-3 mt-6 pt-4 border-t">
+          <Button label="Search" icon="pi pi-search" className="bg-blue-600 px-8" onClick={() => setShowResult(true)} />
           <Button
             label="Clear"
             icon="pi pi-refresh"
-            className="p-button-secondary"
+            severity="secondary"
+            className="px-8"
             onClick={() => {
               setForm({});
               setShowResult(false);
             }}
           />
         </div>
-      </Card>
+      </div>
+
       {showResult && (
-        <Card title="Details">
-          <DataTable value={rows} paginator rows={10}>
-            <Column
-              header="All"
-              body={(row: any) => (
-                <Checkbox
-                  checked={checked.includes(row.id)}
-                  onChange={() => toggleRow(row.id)}
-                />
-              )}
-            />
-        
-            <Column field="designation" header="Designation" sortable/>
-            <Column field="employee" header="Employee" sortable/>
-            <Column
-              header="Amount (₹)"
-              body={(row: any) => (
-                <InputText
-                  value={row.amount}
-                  onChange={(e) => updateAmount(row.id, e.target.value)}
-                  placeholder="Enter Amount"
-                  className="w-full"
-                />
-              )}
-            />
-          </DataTable>
-          <div className="flex gap-3 mt-4">
-            <Button label="Save" icon="pi pi-save" />
-            <Button label="Clear" icon="pi pi-refresh" className="p-button-secondary" />
+        <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadein">
+          <h3 className="text-lg font-bold text-gray-700 mb-4">Employee Head Details</h3>
+          
+          <Table 
+            columns={columns} 
+            data={rows} 
+            showPagination 
+            rowsPerPage={10}
+          />
+
+          <div className="flex gap-3 mt-6 pt-4 border-t">
+            <Button label="Save Details" icon="pi pi-save" className="bg-green-600 px-8" />
+            <Button label="Reset Table" icon="pi pi-refresh" severity="danger" className="px-8" />
           </div>
-        </Card>
+        </div>
       )}
     </PageLayout>
   );

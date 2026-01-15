@@ -75,7 +75,7 @@ const Societies: React.FC = () => {
             rows={10}
             showGridlines
           >
-            <Column header="S.No." body={(_, opt) => opt.rowIndex + 1} />
+      
             <Column field="societyName" header="Society Name" />
             <Column field="memberName" header="Member Name" />
             <Column field="designation" header="Designation" />

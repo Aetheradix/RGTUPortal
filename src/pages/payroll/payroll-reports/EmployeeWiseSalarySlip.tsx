@@ -11,20 +11,48 @@ export default function EmployeeWiseSalarySlip() {
   const [empCode, setEmpCode] = useState("");
   const [show, setShow] = useState(false);
   const printRef = useRef<HTMLDivElement>(null);
+
   const handlePrint = () => {
-    const printContents = printRef.current?.innerHTML || "";
-    const original = document.body.innerHTML;
-    document.body.innerHTML = printContents;
-    window.print();
-    document.body.innerHTML = original;
-    window.location.reload();
+    const content = printRef.current?.innerHTML;
+    const printWindow = window.open('', '_blank');
+    if (printWindow && content) {
+      printWindow.document.write(`
+        <html>
+          <head>
+            <title>Salary Slip - ${empCode}</title>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+            <style>
+              @media print { .no-print { display: none; } }
+              body { padding: 20px; font-family: sans-serif; }
+              table { width: 100%; border-collapse: collapse; }
+              th, td { border: 1px solid #dee2e6; padding: 8px; }
+            </style>
+          </head>
+          <body>${content}</body>
+        </html>
+      `);
+      printWindow.document.close();
+      printWindow.focus();
+      setTimeout(() => {
+        printWindow.print();
+        printWindow.close();
+      }, 250);
+    }
+  };
+
+  const handleClear = () => {
+    setMonthDate(null);
+    setEmpCode("");
+    setShow(false);
   };
 
   return (
-    <PageLayout title="Salary Slip">
-      <Card className="mb-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Field label="Month *">
+    <PageLayout title="Salary Slip / वेतन पर्ची">
+
+      <Card>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="flex flex-col gap-1">
+            <label className="text-sm font-semibold text-gray-700">Select Month *</label>
             <Calendar
               value={monthDate}
               onChange={(e) => setMonthDate(e.value as Date)}
@@ -32,89 +60,111 @@ export default function EmployeeWiseSalarySlip() {
               showIcon
               dateFormat="MM yy"
               className="w-full"
+              placeholder="Select Month"
             />
-          </Field>
+          </div>
 
-          <Field label="Employee Code *">
-            <InputText value={empCode} onChange={(e) => setEmpCode(e.target.value)} className="w-full" placeholder="Enter Employee Code" />
-          </Field>
+          <div className="flex flex-col gap-1">
+            <label className="text-sm font-semibold text-gray-700">Employee Code *</label>
+            <InputText 
+                value={empCode} 
+                onChange={(e) => setEmpCode(e.target.value)} 
+                className="w-full" 
+                placeholder="Ex: WX8223" 
+            />
+          </div>
         </div>
 
-        <div className="flex justify-center gap-4 mt-4">
-          <Button label="Search" icon="pi pi-search" onClick={() => setShow(true)} />
-          <Button label="Clear" icon="pi pi-times" severity="danger" onClick={() => {
-            setMonthDate(null); setEmpCode(""); setShow(false);
-          }} />
+        <div className="flex justify-center md:justify-start gap-3 mt-8 pt-4 border-t">
+          <Button 
+            label="Generate Slip" 
+            icon="pi pi-search" 
+            className="bg-blue-600 border-blue-600 px-8" 
+            onClick={() => setShow(true)} 
+          />
+          <Button 
+            label="Clear" 
+            icon="pi pi-refresh" 
+            severity="secondary" 
+            outlined 
+            className="px-8" 
+            onClick={handleClear} 
+          />
         </div>
       </Card>
+
       {show && (
-        <div ref={printRef}>
-          <Card title = " Salary Slip">
-            <div className="text-center font-semibold text-xl mb-2">
-              Payslip - {monthDate?.toLocaleString("default", { month: "long", year: "numeric" })}
-            </div>
-            <div className="text-center mb-4 text-sm">
-              Department of Higher Education <br />
-              (Government of Madhya Pradesh)
+        <div className="animate-fadein">
+          <Card className="shadow-lg border border-gray-200">
+            <div className="flex justify-end mb-4 no-print">
+               <Button label="Download / Print" icon="pi pi-print" className="p-button-outlined" onClick={handlePrint} />
             </div>
 
-            <table className="w-full border text-sm mb-4">
-              <tbody>
-                <tr>
-                  <td className="border p-2 font-semibold">NAME OF EMPLOYEE :</td>
-                  <td className="border p-2">Rajesh Jain</td>
-                  <td className="border p-2 font-semibold">BANK NAME :</td>
-                  <td className="border p-2">PUNJAB NATIONAL BANK</td>
-                  <td className="border p-2 font-semibold">College/University NAME :</td>
-                  <td className="border p-2">Barkatullah University Bhopal</td>
-                </tr>
-                <tr>
-                  <td className="border p-2 font-semibold">Father/Husband Name :</td>
-                  <td className="border p-2">Ramesh</td>
-                  <td className="border p-2 font-semibold">ACCOUNT NUMBER :</td>
-                  <td className="border p-2">7887879878898</td>
-                  <td className="border p-2 font-semibold">Level :</td>
-                  <td className="border p-2">Level-1</td>
-                </tr>
-                <tr>
-                  <td className="border p-2 font-semibold">EMPLOYEE CODE :</td>
-                  <td className="border p-2">WX8223</td>
-                  <td className="border p-2 font-semibold">IFSC CODE :</td>
-                  <td className="border p-2">PUNB0105700</td>
-                  <td className="border p-2 font-semibold">Payable Days :</td>
-                  <td className="border p-2">31</td>
-                </tr>
-              </tbody>
-            </table>
+            <div ref={printRef} className="p-4 bg-white text-black">
 
-            <div className="grid grid-cols-2 gap-6 mb-4 bg-gray-100 p-4">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr><th colSpan={2} className="text-left">Earnings</th></tr>
-                </thead>
+              <div className="text-center mb-6">
+                <h2 className="text-2xl font-bold uppercase underline">Salary Slip</h2>
+                <p className="text-lg font-semibold mt-1">
+                  Payslip for {monthDate?.toLocaleString("default", { month: "long", year: "numeric" })}
+                </p>
+                <div className="mt-2 text-sm leading-relaxed">
+                  Department of Higher Education <br />
+                  <span className="italic font-medium">Government of Madhya Pradesh</span>
+                </div>
+              </div>
+
+              <table className="w-full border-collapse border border-gray-300 text-xs mb-6">
                 <tbody>
-                  <tr><td>BASIC PAY</td><td className="text-right">15500.00</td></tr>
-                  <tr className="font-semibold"><td>TOTAL EARNING</td><td className="text-right">15500.00</td></tr>
+                  <tr>
+                    <td className="border border-gray-300 bg-gray-50 p-2 font-bold w-1/6">EMPLOYEE NAME:</td>
+                    <td className="border border-gray-300 p-2 w-2/6">Rajesh Jain</td>
+                    <td className="border border-gray-300 bg-gray-50 p-2 font-bold w-1/6">BANK NAME:</td>
+                    <td className="border border-gray-300 p-2 w-2/6">PUNJAB NATIONAL BANK</td>
+                  </tr>
+                  <tr>
+                    <td className="border border-gray-300 bg-gray-50 p-2 font-bold">FATHER'S NAME:</td>
+                    <td className="border border-gray-300 p-2">Ramesh Jain</td>
+                    <td className="border border-gray-300 bg-gray-50 p-2 font-bold">ACCOUNT NO:</td>
+                    <td className="border border-gray-300 p-2">7887879878898</td>
+                  </tr>
+                  <tr>
+                    <td className="border border-gray-300 bg-gray-50 p-2 font-bold">EMPLOYEE CODE:</td>
+                    <td className="border border-gray-300 p-2">{empCode}</td>
+                    <td className="border border-gray-300 bg-gray-50 p-2 font-bold">IFSC CODE:</td>
+                    <td className="border border-gray-300 p-2">PUNB0105700</td>
+                  </tr>
                 </tbody>
               </table>
 
-              <table className="w-full text-sm">
-                <thead>
-                  <tr><th colSpan={2} className="text-left">Deductions</th></tr>
-                </thead>
-                <tbody>
-                  <tr className="font-semibold"><td>TOTAL DEDUCTION</td><td className="text-right">0.00</td></tr>
-                </tbody>
-              </table>
-            </div>
+              <div className="grid grid-cols-2 gap-0 border border-gray-300 mb-6">
 
-            <div className="flex justify-between bg-gray-100 p-3 text-sm">
-              <div><b>Net Salary :</b> 15500.00</div>
-              <div>THIS IS A COMPUTER GENERATED PAYSLIP, SIGNATURE NOT REQUIRED</div>
-            </div>
+                <div className="border-r border-gray-300">
+                  <div className="bg-gray-100 p-2 font-bold text-center border-b border-gray-300">EARNINGS</div>
+                  <div className="p-2 flex justify-between text-sm"><span>BASIC PAY</span> <span>15500.00</span></div>
+                  <div className="p-2 flex justify-between text-sm"><span>HRA</span> <span>0.00</span></div>
+                  <div className="p-2 flex justify-between font-bold border-t bg-green-50 text-green-800">
+                    <span>TOTAL EARNING (A)</span> <span>15500.00</span>
+                  </div>
+                </div>
+    
+                <div>
+                  <div className="bg-gray-100 p-2 font-bold text-center border-b border-gray-300">DEDUCTIONS</div>
+                  <div className="p-2 flex justify-between text-sm"><span>PROFESSIONAL TAX</span> <span>0.00</span></div>
+                  <div className="p-2 flex justify-between text-sm"><span>INCOME TAX</span> <span>0.00</span></div>
+                  <div className="p-2 flex justify-between font-bold border-t bg-red-50 text-red-800">
+                    <span>TOTAL DEDUCTION (B)</span> <span>0.00</span>
+                  </div>
+                </div>
+              </div>
 
-            <div className="text-center mt-4">
-              <Button label="Print" icon="pi pi-print" onClick={handlePrint} />
+              <div className="flex justify-between items-center bg-blue-600 text-white p-4 rounded shadow-inner">
+                <div className="text-lg font-bold">NET SALARY (A - B):</div>
+                <div className="text-2xl font-black underline decoration-double">₹ 15,500.00</div>
+              </div>
+
+              <div className="mt-8 text-center text-[10px] text-gray-500 italic">
+                * This is a computer-generated payslip and does not require a physical signature.
+              </div>
             </div>
           </Card>
         </div>
@@ -122,9 +172,3 @@ export default function EmployeeWiseSalarySlip() {
     </PageLayout>
   );
 }
-const Field = ({ label, children }: any) => (
-  <div>
-    <label className="text-sm font-semibold block mb-1">{label}</label>
-    {children}
-  </div>
-);

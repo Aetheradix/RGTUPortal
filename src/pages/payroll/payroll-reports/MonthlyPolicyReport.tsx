@@ -46,132 +46,139 @@ const policyData = [
     policyNo: "556789012",
     employees: [{ name: "Pooja", contribution: 5000 }],
   },
-  {
-    id: 6,
-    office: "Academic Affairs Office-Bhopal (009)",
-    policyNo: "667890123",
-    employees: [{ name: "Rohit", contribution: 5200 }],
-  },
-  {
-    id: 7,
-    office: "Academic Affairs Office-Bhopal (009)",
-    policyNo: "778901234",
-    employees: [{ name: "Neha", contribution: 5300 }],
-  },
-  {
-    id: 8,
-    office: "Academic Affairs Office-Bhopal (009)",
-    policyNo: "889012345",
-    employees: [{ name: "Amit", contribution: 5400 }],
-  },
-  {
-    id: 9,
-    office: "Student Affairs Office-Bhopal (TED90)",
-    policyNo: "990123456",
-    employees: [{ name: "Sanjay", contribution: 5500 }],
-  },
-  {
-    id: 10,
-    office: "Student Affairs Office-Bhopal (TED90)",
-    policyNo: "101234567",
-    employees: [{ name: "Priya", contribution: 5600 }],
-  },
 ];
 
 export default function MonthlyPolicyReport() {
-  const [division, setDivision] = useState<any>(null);
-  const [district, setDistrict] = useState<any>(null);
-  const [block, setBlock] = useState<any>(null);
-  const [officeType, setOfficeType] = useState<any>(null);
-  const [office, setOffice] = useState<any>(null);
-  const [monthDate, setMonthDate] = useState<Date | null>(null);
-  const [postType, setPostType] = useState<any>(null);
+  const [filters, setFilters] = useState<any>({
+    division: null,
+    district: null,
+    block: null,
+    officeType: null,
+    office: null,
+    monthDate: null,
+    postType: null,
+  });
   const [show, setShow] = useState(false);
   const [expandedRows, setExpandedRows] = useState<any>(null);
 
+  const handleInputChange = (key: string, value: any) => {
+    setFilters((prev: any) => ({ ...prev, [key]: value }));
+  };
+
+  const handleClear = () => {
+    setFilters({
+      division: null,
+      district: null,
+      block: null,
+      officeType: null,
+      office: null,
+      monthDate: null,
+      postType: null,
+    });
+    setShow(false);
+    setExpandedRows(null);
+  };
+
   const rowExpansionTemplate = (row: any) => {
     return (
-      <div className="p-3 bg-gray-50 rounded text-sm">
-        {row.employees.map((emp: any, index: number) => (
-          <div key={index} className="grid grid-cols-2 gap-2">
-            <div>Employee Name: <b>{emp.name}</b></div>
-            <div>LIC Policy Contribution: <b>{emp.contribution}</b></div>
-          </div>
-        ))}
+      <div className="p-4 bg-blue-50/50 rounded-lg border border-blue-100 mx-4 my-2 animate-fadein">
+        <div className="flex items-center gap-2 mb-3 text-blue-700">
+            <i className="pi pi-users text-sm"></i>
+            <span className="text-xs font-bold uppercase tracking-wider">Beneficiary Details</span>
+        </div>
+        <div className="bg-white rounded border shadow-sm overflow-hidden">
+            <table className="w-full text-sm">
+                <thead className="bg-gray-50 text-gray-600 text-[10px] uppercase font-bold">
+                    <tr>
+                        <th className="p-2 text-left border-b w-1/2">Employee Name</th>
+                        <th className="p-2 text-right border-b w-1/2">LIC Policy Contribution (₹)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {row.employees.map((emp: any, index: number) => (
+                        <tr key={index} className="hover:bg-gray-50">
+                            <td className="p-2 border-b font-medium text-gray-700">{emp.name}</td>
+                            <td className="p-2 border-b text-right font-mono text-blue-600">
+                                ₹ {emp.contribution.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
       </div>
     );
   };
 
   return (
-    <PageLayout title="Monthly Policy Report">
-      <Card className="mb-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <PageLayout title="Monthly Policy Report / मासिक पॉलिसी रिपोर्ट">
+      <Card className="shadow-sm  mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <DropdownField label="Division" value={filters.division} options={divisions} onChange={(val: any) => handleInputChange("division", val)} />
+          <DropdownField label="District" value={filters.district} options={districts} onChange={(val: any) => handleInputChange("district", val)} />
+          <DropdownField label="Block" value={filters.block} options={blocks} onChange={(val: any) => handleInputChange("block", val)} />
+          <DropdownField label="Office Type" value={filters.officeType} options={officeTypes} onChange={(val: any) => handleInputChange("officeType", val)} />
+          <DropdownField label="Office" value={filters.office} options={offices} onChange={(val: any) => handleInputChange("office", val)} />
           
-          <div>
-            <label className="text-sm font-semibold mb-1">Division *</label>
-            <Dropdown value={division} onChange={(e) => setDivision(e.value)} options={divisions} placeholder="Select Division" className="w-full" />
+          <div className="flex flex-col gap-1">
+            <label className="text-sm font-semibold text-gray-700">Month *</label>
+            <Calendar 
+                value={filters.monthDate} 
+                onChange={(e) => handleInputChange("monthDate", e.value)} 
+                view="month" 
+                dateFormat="MM yy" 
+                showIcon
+                placeholder="Select Month" 
+                className="w-full" 
+            />
           </div>
 
-          <div>
-            <label className="text-sm font-semibold mb-1">District *</label>
-            <Dropdown value={district} onChange={(e) => setDistrict(e.value)} options={districts} placeholder="Select District" className="w-full" />
-          </div>
-
-          <div>
-            <label className="text-sm font-semibold mb-1">Block *</label>
-            <Dropdown value={block} onChange={(e) => setBlock(e.value)} options={blocks} placeholder="Select Block" className="w-full" />
-          </div>
-
-          <div>
-            <label className="text-sm font-semibold mb-1">Office Type *</label>
-            <Dropdown value={officeType} onChange={(e) => setOfficeType(e.value)} options={officeTypes} placeholder="Select Office Type" className="w-full" />
-          </div>
-
-          <div>
-            <label className="text-sm font-semibold mb-1">Office *</label>
-            <Dropdown value={office} onChange={(e) => setOffice(e.value)} options={offices} placeholder="Select Office" className="w-full" />
-          </div>
-
-          <div>
-            <label className="text-sm font-semibold mb-1">Month *</label>
-            <Calendar value={monthDate} onChange={(e) => setMonthDate(e.value as Date)} view="month" dateFormat="MM yy" placeholder="Select Month" className="w-full" />
-          </div>
-
-          <div>
-            <label className="text-sm font-semibold mb-1">Type of Post *</label>
-            <Dropdown value={postType} onChange={(e) => setPostType(e.value)} options={postTypes} placeholder="Select Type of Post" className="w-full" />
-          </div>
-
+          <DropdownField label="Type of Post" value={filters.postType} options={postTypes} onChange={(val: any) => handleInputChange("postType", val)} />
         </div>
 
-        <div className="flex justify-center gap-4 mt-4">
-          <Button label="Search" icon="pi pi-search" onClick={() => setShow(true)} />
-          <Button label="Clear" icon="pi pi-times" severity="danger" onClick={() => {
-            setDivision(null); setDistrict(null); setBlock(null); setOfficeType(null);
-            setOffice(null); setMonthDate(null); setPostType(null); setShow(false); setExpandedRows(null);
-          }} />
+        <div className="flex justify-center md:justify-start gap-3 mt-8 pt-4 border-t">
+          <Button label="Search Policy" icon="pi pi-search" className="bg-blue-600 border-blue-600 px-8" onClick={() => setShow(true)} />
+          <Button label="Clear" icon="pi pi-refresh" severity="secondary" outlined className="px-8" onClick={handleClear} />
         </div>
       </Card>
 
       {show && (
-        <Card>
-          <h3 className="font-semibold mb-2">Policy Report Details</h3>
-          <DataTable
-            value={policyData}
-            expandedRows={expandedRows}
-            onRowToggle={(e) => setExpandedRows(e.data)}
-            rowExpansionTemplate={rowExpansionTemplate}
-            paginator
-            rows={10}
-            dataKey="id"
-          >
-            <Column expander />
-          
-            <Column field="office" header="Office Name" sortable/>
-            <Column field="policyNo" header="LIC Policy No." sortable />
-          </DataTable>
-        </Card>
+        <div className="animate-fadein">
+          <Card className="shadow-sm border-t border-gray-200">
+            <div className="flex justify-between items-center mb-4 px-2">
+                <h3 className="text-lg font-bold text-gray-700 tracking-tight uppercase">Policy Schedule Details</h3>
+                <Button icon="pi pi-file-pdf" label="Export PDF" className="p-button-outlined p-button-danger p-button-sm" />
+            </div>
+            
+            <DataTable
+              value={policyData}
+              expandedRows={expandedRows}
+              onRowToggle={(e) => setExpandedRows(e.data)}
+              rowExpansionTemplate={rowExpansionTemplate}
+              paginator rows={10} dataKey="id"
+              className="p-datatable-sm"
+              rowHover
+              showGridlines
+            >
+              <Column expander style={{ width: '3rem' }} />
+              <Column field="office" header="OFFICE NAME" sortable className="font-semibold text-gray-700" />
+              <Column 
+                field="policyNo" 
+                header="LIC POLICY NO." 
+                sortable 
+                body={(row) => <span className="font-mono bg-gray-100 px-2 py-1 rounded text-gray-600">{row.policyNo}</span>}
+              />
+            </DataTable>
+          </Card>
+        </div>
       )}
     </PageLayout>
   );
 }
+
+const DropdownField = ({ label, value, options, onChange }: any) => (
+  <div className="flex flex-col gap-1">
+    <label className="text-sm font-semibold text-gray-700">{label} *</label>
+    <Dropdown value={value} onChange={(e) => onChange(e.value)} options={options} placeholder="Select" className="w-full" />
+  </div>
+);

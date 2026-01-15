@@ -65,7 +65,7 @@ const Mou: React.FC = () => {
           rows={10}
           showGridlines
         >
-          <Column header="S.No." body={(_, opt) => opt.rowIndex + 1} />
+         
           <Column field="title" header="MOU (Memorandum of Understanding)" />
           <Column field="year" header="Year" />
           <Column field="status" header="Status" body={statusTemplate} />

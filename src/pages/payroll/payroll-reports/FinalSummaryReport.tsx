@@ -14,105 +14,145 @@ const offices = [{ label: "Barkatullah University, Bhopal", value: "bub" }];
 const postTypes = [{ label: "Regular", value: "regular" }];
 
 export default function FinalSummaryReport() {
-  const [division, setDivision] = useState<any>(null);
-  const [district, setDistrict] = useState<any>(null);
-  const [block, setBlock] = useState<any>(null);
-  const [officeType, setOfficeType] = useState<any>(null);
-  const [office, setOffice] = useState<any>(null);
-  const [monthDate, setMonthDate] = useState<Date | null>(null);
-  const [postType, setPostType] = useState<any>(null);
+  const [filters, setFilters] = useState<any>({
+    division: null,
+    district: null,
+    block: null,
+    officeType: null,
+    office: null,
+    monthDate: null,
+    postType: null,
+  });
   const [show, setShow] = useState(false);
-
   const printRef = useRef<HTMLDivElement>(null);
 
-  const handlePrint = () => {
-    const printContents = printRef.current?.innerHTML || "";
-    const original = document.body.innerHTML;
+  const handleInputChange = (field: string, value: any) => {
+    setFilters((prev: any) => ({ ...prev, [field]: value }));
+  };
 
-    document.body.innerHTML = printContents;
-    window.print();
-    document.body.innerHTML = original;
-    window.location.reload();
+  const handlePrint = () => {
+    const content = printRef.current?.innerHTML;
+    const printWindow = window.open("", "_blank");
+    if (printWindow && content) {
+      printWindow.document.write(`
+        <html>
+          <head>
+            <title>Final Summary Report</title>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+            <style>
+              @media print { .no-print { display: none; } }
+              body { padding: 40px; font-family: sans-serif; }
+              table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+              th, td { border: 1px solid #e5e7eb; padding: 12px; font-size: 14px; }
+              th { background-color: #f9fafb; font-weight: 700; }
+            </style>
+          </head>
+          <body>${content}</body>
+        </html>
+      `);
+      printWindow.document.close();
+      printWindow.focus();
+      setTimeout(() => {
+        printWindow.print();
+        printWindow.close();
+      }, 250);
+    }
+  };
+
+  const handleClear = () => {
+    setFilters({
+      division: null,
+      district: null,
+      block: null,
+      officeType: null,
+      office: null,
+      monthDate: null,
+      postType: null,
+    });
+    setShow(false);
   };
 
   return (
-    <PageLayout title="Final Summary Report">
-      <Card className="mb-4">
+    <PageLayout title="Final Summary Report / अंतिम सारांश रिपोर्ट">
+
+      <Card >
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <Field label="Division *">
-            <Dropdown value={division} onChange={(e) => setDivision(e.value)} options={divisions} placeholder="Select" className="w-full" />
+            <Dropdown value={filters.division} onChange={(e) => handleInputChange("division", e.value)} options={divisions} placeholder="Select" className="w-full" />
           </Field>
-
           <Field label="District *">
-            <Dropdown value={district} onChange={(e) => setDistrict(e.value)} options={districts} placeholder="Select" className="w-full" />
+            <Dropdown value={filters.district} onChange={(e) => handleInputChange("district", e.value)} options={districts} placeholder="Select" className="w-full" />
           </Field>
-
           <Field label="Block *">
-            <Dropdown value={block} onChange={(e) => setBlock(e.value)} options={blocks} placeholder="Select" className="w-full" />
+            <Dropdown value={filters.block} onChange={(e) => handleInputChange("block", e.value)} options={blocks} placeholder="Select" className="w-full" />
           </Field>
-
           <Field label="Office Type *">
-            <Dropdown value={officeType} onChange={(e) => setOfficeType(e.value)} options={officeTypes} placeholder="Select" className="w-full" />
+            <Dropdown value={filters.officeType} onChange={(e) => handleInputChange("officeType", e.value)} options={officeTypes} placeholder="Select" className="w-full" />
           </Field>
-
           <Field label="Office *">
-            <Dropdown value={office} onChange={(e) => setOffice(e.value)} options={offices} placeholder="Select" className="w-full" />
+            <Dropdown value={filters.office} onChange={(e) => handleInputChange("office", e.value)} options={offices} placeholder="Select" className="w-full" />
           </Field>
-
           <Field label="Month *">
-            <Calendar value={monthDate} onChange={(e) => setMonthDate(e.value as Date)} view="month" showIcon dateFormat="MM yy" className="w-full" />
+            <Calendar value={filters.monthDate} onChange={(e) => handleInputChange("monthDate", e.value)} view="month" showIcon dateFormat="MM yy" className="w-full" placeholder="Select Month" />
           </Field>
-
           <Field label="Type of Post *">
-            <Dropdown value={postType} onChange={(e) => setPostType(e.value)} options={postTypes} placeholder="Select" className="w-full" />
+            <Dropdown value={filters.postType} onChange={(e) => handleInputChange("postType", e.value)} options={postTypes} placeholder="Select" className="w-full" />
           </Field>
         </div>
 
-        <div className="flex justify-center gap-4 mt-4">
-          <Button label="Search" icon="pi pi-search" onClick={() => setShow(true)} />
-          <Button label="Clear" icon="pi pi-times" severity="danger"
-            onClick={() => {
-              setDivision(null); setDistrict(null); setBlock(null);
-              setOfficeType(null); setOffice(null); setMonthDate(null);
-              setPostType(null); setShow(false);
-            }} />
+        <div className="flex justify-center md:justify-start gap-3 mt-8 pt-4 border-t">
+          <Button label="Generate Report" icon="pi pi-file" className="bg-blue-600 border-blue-600 px-8" onClick={() => setShow(true)} />
+          <Button label="Clear" icon="pi pi-refresh" severity="secondary" outlined className="px-8" onClick={handleClear} />
         </div>
       </Card>
 
       {show && (
-        <div ref={printRef}>
-          <Card>
-            <div className="flex justify-between items-center mb-3">
-              <h3 className="font-semibold">Employee Details</h3>
-              <Button label="Print" icon="pi pi-print" onClick={handlePrint} />
+        <div className="animate-fadein">
+          <Card className="shadow-lg border border-gray-200">
+            <div className="flex justify-end mb-6 no-print">
+              <Button label="Print Report" icon="pi pi-print" className="p-button-outlined p-button-secondary" onClick={handlePrint} />
             </div>
 
-            <div className="text-center mb-4">
-              <div className="font-semibold text-lg">University</div>
-              <div>Barkatullah University, Bhopal</div>
-              <div className="font-medium">
-                Final Summary Report For The Month Of {monthDate?.toLocaleString("default", { month: "short", year: "numeric" })}
+            <div ref={printRef}>
+            <div className="text-center mb-8 border-b pb-6">
+                <div className="text-blue-700 font-bold text-2xl uppercase tracking-widest">University</div>
+                <div className="text-xl font-semibold text-gray-800">Barkatullah University, Bhopal</div>
+                <div className="bg-blue-50 text-blue-800 inline-block px-4 py-1 rounded-full mt-3 text-sm font-bold uppercase">
+                  Final Summary Report: {filters.monthDate?.toLocaleString("default", { month: "long", year: "numeric" })}
+                </div>
               </div>
-            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <SummaryTable title="Earning" rows={[
-                ["Basic", "638480.00"],
-                ["DEARNESS ALLOWANCE", "293702.00"],
-                ["HOUSE RENT ALLOWANCE", "9131.00"],
-                ["OTHER ALLOWANCE", "500.00"],
-                ["GROSS SALARY", "941813"],
-                ["NET AMOUNT", "822265.00"]
-              ]} />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <SummaryTable 
+                  title="Earnings (प्राप्तियां)" 
+                  headerClass="bg-green-600" 
+                  rows={[
+                    ["Basic", "6,38,480.00"],
+                    ["DEARNESS ALLOWANCE", "2,93,702.00"],
+                    ["HOUSE RENT ALLOWANCE", "9,131.00"],
+                    ["OTHER ALLOWANCE", "500.00"],
+                    ["GROSS SALARY", "9,41,813.00"],
+                    ["NET PAYABLE AMOUNT", "8,22,265.00"]
+                  ]} 
+                />
 
-              <SummaryTable title="Deduction" rows={[
-                ["GIS", "5200.00"],
-                ["HRR", "900.00"],
-                ["INCOME TAX", "23500.00"],
-                ["NPS", "88990.00"],
-                ["PROFESSIONAL TAX", "958.00"],
-                ["TOTAL DEDUCTION", "119548.00"]
-              ]} />
+                <SummaryTable 
+                  title="Deductions (कटौतियां)" 
+                  headerClass="bg-red-600"
+                  rows={[
+                    ["GIS", "5,200.00"],
+                    ["HRR", "900.00"],
+                    ["INCOME TAX", "23,500.00"],
+                    ["NPS", "88,990.00"],
+                    ["PROFESSIONAL TAX", "958.00"],
+                    ["TOTAL DEDUCTION", "1,19,548.00"]
+                  ]} 
+                />
+              </div>
+              <div className="mt-12 flex justify-between text-[10px] text-gray-400 border-t pt-4 italic">
+                <span>Report Generated on: {new Date().toLocaleDateString()}</span>
+                <span>Authorized Computer Generated Document</span>
+              </div>
             </div>
           </Card>
         </div>
@@ -122,28 +162,35 @@ export default function FinalSummaryReport() {
 }
 
 const Field = ({ label, children }: any) => (
-  <div>
-    <label className="text-sm font-semibold mb-1 block">{label}</label>
+  <div className="flex flex-col gap-1">
+    <label className="text-sm font-semibold text-gray-700">{label}</label>
     {children}
   </div>
 );
 
-const SummaryTable = ({ title, rows }: any) => (
-  <table className="w-full border text-sm">
-    <thead>
-      <tr><th colSpan={2} className="border p-2 text-center font-semibold">{title}</th></tr>
-      <tr className="bg-gray-50">
-        <th className="border p-2">Head Name</th>
-        <th className="border p-2">Amount (₹)</th>
-      </tr>
-    </thead>
-    <tbody>
-      {rows.map((r: any, i: number) => (
-        <tr key={i} className={i >= rows.length - 2 ? "font-semibold" : ""}>
-          <td className="border p-2">{r[0]}</td>
-          <td className="border p-2 text-right">{r[1]}</td>
+const SummaryTable = ({ title, rows, headerClass }: any) => (
+  <div className="border rounded-lg overflow-hidden shadow-sm">
+    <div className={`${headerClass} text-white p-3 text-center font-bold uppercase tracking-tight`}>
+      {title}
+    </div>
+    <table className="w-full text-sm">
+      <thead>
+        <tr className="bg-gray-50 text-gray-600 uppercase text-[10px] tracking-wider">
+          <th className="border-b p-3 text-left">Head Name</th>
+          <th className="border-b p-3 text-right">Amount (₹)</th>
         </tr>
-      ))}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        {rows.map((r: any, i: number) => {
+          const isTotal = i >= rows.length - 2;
+          return (
+            <tr key={i} className={`${isTotal ? "bg-gray-100 font-bold text-blue-800" : "text-gray-700"} hover:bg-gray-50 transition-colors`}>
+              <td className="border-b p-3">{r[0]}</td>
+              <td className="border-b p-3 text-right font-mono">₹ {r[1]}</td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  </div>
 );

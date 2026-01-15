@@ -80,26 +80,27 @@ export default function CompassionVerification() {
       {tableData.length > 0 && (
         <Card title="Compassion Application Details" className="shadow-sm">
           <DataTable 
-            value={tableData} 
-            stripedRows 
-            className="p-datatable-sm"
-          >
-            <Column field="district" header="District" sortable />
-            <Column field="appNo" header="Application No."sortable />
-            <Column field="deceasedName" header="Deceased Name" sortable/>
-            <Column field="designation" header="Designation"sortable />
-            <Column field="deathDate" header="Date of Death" sortable/>
-            <Column field="applicantName" header="Applicant Name" sortable/>
-            <Column field="caste" header="Caste" sortable/>
-            <Column field="relation" header="Relation" sortable/>
-            <Column field="status" header="Status" sortable/>
-            <Column 
-              header="Action" 
-              body={actionTemplate} 
-              headerStyle={{ textAlign: 'center', width: '80px' }} 
-              bodyStyle={{ textAlign: 'center' }} 
-            />
-          </DataTable>
+  value={tableData} 
+  stripedRows 
+  className="p-datatable-sm"
+>
+  <Column field="district" header="District" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="appNo" header="Application No." sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="deceasedName" header="Deceased Name" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="designation" header="Designation" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="deathDate" header="Date of Death" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="applicantName" header="Applicant Name" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="caste" header="Caste" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="relation" header="Relation" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="status" header="Status" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column 
+    header="Action" 
+    body={actionTemplate} 
+    headerStyle={{ textAlign: 'center', width: '80px', whiteSpace: "nowrap" }} 
+    bodyStyle={{ textAlign: 'center', whiteSpace: "nowrap" }} 
+  />
+</DataTable>
+
         </Card>
       )}
 

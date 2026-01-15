@@ -73,22 +73,23 @@ export default function DisposedApplicationReport() {
         <Button label="Clear" icon="pi pi-times" severity="secondary" onClick={handleClear} />
       </div>
       {showTable && (
-        <DataTable value={tableData} paginator rows={5}>
-          <Column field="district" header="District Name"sortable />
-          <Column field="appNo" header="Application Number" sortable/>
-          <Column field="deceased" header="Name Of Deceased Person" sortable/>
-          <Column field="applicant" header="Name Of Applicant"sortable />
-          <Column field="gender" header="Gender" sortable/>
-          <Column field="school" header="OIS Name (Code)" sortable/>
-          <Column field="dob" header="Date Of Birth" sortable/>
-          <Column field="mobile" header="Mobile No." sortable/>
-          <Column field="occupation" header="Occupation" sortable/>
-          <Column field="relation" header="Relationship With Deceased" sortable/>
-          <Column field="marital" header="Marital Status" sortable/>
-          <Column field="qualification" header="Educational Qualification" sortable/>
-          <Column field="cadre" header="Cadre for Appointment" sortable/>
-          <Column body={eyeTemplate} header="View Appointment Document" sortable/>
-        </DataTable>
+       <DataTable value={tableData} paginator rows={5} className="p-datatable-sm">
+  <Column field="district" header="District Name" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="appNo" header="Application Number" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="deceased" header="Name Of Deceased Person" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="applicant" header="Name Of Applicant" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="gender" header="Gender" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="school" header="OIS Name (Code)" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="dob" header="Date Of Birth" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="mobile" header="Mobile No." sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="occupation" header="Occupation" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="relation" header="Relationship With Deceased" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="marital" header="Marital Status" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="qualification" header="Educational Qualification" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column field="cadre" header="Cadre for Appointment" sortable style={{ whiteSpace: "nowrap" }} />
+  <Column body={eyeTemplate} header="View Appointment Document" sortable style={{ whiteSpace: "nowrap" }} />
+</DataTable>
+
       )}
       <Dialog
         header="Appointment Document"

@@ -56,20 +56,16 @@ const Events: React.FC = () => {
   return (
     <PageLayout title="Events">
       <Card>
-
-
         <DataTable
           value={eventList}
           paginator
           rows={10}
           showGridlines
-          responsiveLayout="scroll"
         >
-          <Column header="S.No." body={(_, opt) => opt.rowIndex + 1} />
-          <Column field="name" header="Event Name" />
-          <Column field="date" header="Date" />
-          <Column field="location" header="Location" />
-          <Column field="organizer" header="Organizer" />
+          <Column field="name" header="Event Name" sortable/>
+          <Column field="date" header="Date" sortable/>
+          <Column field="location" header="Location" sortable/>
+          <Column field="organizer" header="Organizer" sortable/>
           <Column
             field="status"
             header="Status"

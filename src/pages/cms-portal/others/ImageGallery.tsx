@@ -60,11 +60,11 @@ const ImageGallery: React.FC = () => {
           rows={10}
           showGridlines
         >
-          <Column field="title" header="Image Title"sortable />
-          <Column header="Image" body={viewTemplate} sortable/>
-          <Column field="description" header="Description" sortable/>
-          <Column field="uploadedDate" header="Uploaded Date"sortable />
-          <Column header="Status" body={statusTemplate}sortable />
+          <Column field="title" header="Image Title"sortable   style={{ whiteSpace: "nowrap" }}/>
+          <Column header="Image" body={viewTemplate} sortable  style={{ whiteSpace: "nowrap" }}/>
+          <Column field="description" header="Description" sortable  style={{ whiteSpace: "nowrap" }}/>
+          <Column field="uploadedDate" header="Uploaded Date"sortable   style={{ whiteSpace: "nowrap" }}/>
+          <Column header="Status" body={statusTemplate}sortable  style={{ whiteSpace: "nowrap" }} />
         </DataTable>
       </Card>
     </PageLayout>

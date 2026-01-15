@@ -81,7 +81,6 @@ const LibraryPage: React.FC = () => {
             )}
           >
             <Column expander style={{ width: '3rem' }} />
-            <Column header="Sr No." body={(_, opt) => opt.rowIndex + 1} />
             <Column field="name" header="Library Name" />
             <Column field="totalBooks" header="Total No. of Available Books" />
             <Column field="journals" header="Total Available Journals" />

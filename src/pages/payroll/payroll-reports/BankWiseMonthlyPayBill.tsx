@@ -3,10 +3,8 @@ import { useState } from "react";
 import PageLayout from "@/components/PageLayout";
 import { Card } from "primereact/card";
 import { Calendar } from "primereact/calendar";
-import { Dropdown } from "primereact/dropdown";
 import { Button } from "primereact/button";
-import { DataTable } from "primereact/datatable";
-import { Column } from "primereact/column";
+import { Dropdown, Table } from "@/ui/shared";
 
 const divisions = [
   { label: "Division 1", value: "division1" },
@@ -38,7 +36,6 @@ const postTypes = [
   { label: "Type 2", value: "type2" },
 ];
 
-
 const bankData = [
   { id: 1, bank: "STATE BANK OF INDIA", amount: 75207, total: null, ifsc: "SBIN0000348" },
   { id: 2, bank: "STATE BANK OF INDIA", amount: 63108, total: null, ifsc: "SBIN0008241" },
@@ -50,92 +47,164 @@ const bankData = [
 ];
 
 export default function BankWiseMonthlyPayBill() {
-  const [division, setDivision] = useState<any>(null);
-  const [district, setDistrict] = useState<any>(null);
-  const [block, setBlock] = useState<any>(null);
-  const [officeType, setOfficeType] = useState<any>(null);
-  const [office, setOffice] = useState<any>(null);
-  const [monthDate, setMonthDate] = useState<Date | null>(null);
-  const [postType, setPostType] = useState<any>(null);
+  const [filters, setFilters] = useState<any>({
+    division: null,
+    district: null,
+    block: null,
+    officeType: null,
+    office: null,
+    monthDate: null,
+    postType: null,
+  });
+  
   const [show, setShow] = useState(false);
 
+  const handleInputChange = (field: string, value: any) => {
+    setFilters((prev: any) => ({ ...prev, [field]: value }));
+  };
+
+  const handleClear = () => {
+    setFilters({
+      division: null,
+      district: null,
+      block: null,
+      officeType: null,
+      office: null,
+      monthDate: null,
+      postType: null,
+    });
+    setShow(false);
+  };
+
+  const tableColumns = [
+    { 
+      field: "bank", 
+      header: "NAME OF BANK", 
+      sortable: true, 
+      style: { whiteSpace: "nowrap" },
+      body: (rowData: any) => (
+        <span className={rowData.bank === "Total" ? "font-bold text-blue-700" : ""}>
+          {rowData.bank}
+        </span>
+      )
+    },
+    { 
+      field: "amount", 
+      header: "AMOUNT (₹)", 
+      sortable: true, 
+      style: { whiteSpace: "nowrap" },
+      body: (rowData: any) => `₹ ${rowData.amount.toLocaleString("en-IN")}`
+    },
+    { 
+      field: "total", 
+      header: "TOTAL BANK AMOUNT (₹)", 
+      sortable: true, 
+      style: { whiteSpace: "nowrap" },
+      body: (rowData: any) => rowData.total ? `₹ ${rowData.total.toLocaleString("en-IN")}` : "-"
+    },
+    { 
+      field: "ifsc", 
+      header: "IFSC CODE", 
+      sortable: true, 
+      style: { whiteSpace: "nowrap" } 
+    },
+  ];
+
   return (
-    <PageLayout title="Bank Wise Monthly Pay Bill">
-      <Card className="mb-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
-          <div>
-            <label className="text-sm font-semibold">Division *</label>
-            <Dropdown value={division} onChange={(e) => setDivision(e.value)} options={divisions} placeholder="Select Division" className="w-full" />
-          </div>
-
-          <div>
-            <label className="text-sm font-semibold">District *</label>
-            <Dropdown value={district} onChange={(e) => setDistrict(e.value)} options={districts} placeholder="Select District" className="w-full" />
-          </div>
-
-          <div>
-            <label className="text-sm font-semibold">Block *</label>
-            <Dropdown value={block} onChange={(e) => setBlock(e.value)} options={blocks} placeholder="Select Block" className="w-full" />
-          </div>
-
-          <div>
-            <label className="text-sm font-semibold">Office Type *</label>
-            <Dropdown value={officeType} onChange={(e) => setOfficeType(e.value)} options={officeTypes} placeholder="Select Office Type" className="w-full" />
-          </div>
-
-          <div>
-            <label className="text-sm font-semibold">Office *</label>
-            <Dropdown value={office} onChange={(e) => setOffice(e.value)} options={offices} placeholder="Select Office" className="w-full" />
-          </div>
-
-          <div>
+    <PageLayout title="Bank Wise Monthly Pay Bill / बैंक वार मासिक वेतन बिल">
+      <Card>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <Dropdown 
+            label="Division" 
+            required 
+            options={divisions} 
+            value={filters.division} 
+            onChange={(e) => handleInputChange("division", e.value)} 
+            placeholder="Select" 
+          />
+          <Dropdown 
+            label="District" 
+            required 
+            options={districts} 
+            value={filters.district} 
+            onChange={(e) => handleInputChange("district", e.value)} 
+            placeholder="Select" 
+          />
+          <Dropdown 
+            label="Block" 
+            required 
+            options={blocks} 
+            value={filters.block} 
+            onChange={(e) => handleInputChange("block", e.value)} 
+            placeholder="Select" 
+          />
+          <Dropdown 
+            label="Office Type" 
+            required 
+            options={officeTypes} 
+            value={filters.officeType} 
+            onChange={(e) => handleInputChange("officeType", e.value)} 
+            placeholder="Select" 
+          />
+          <Dropdown 
+            label="Office" 
+            required 
+            options={offices} 
+            value={filters.office} 
+            onChange={(e) => handleInputChange("office", e.value)} 
+            placeholder="Select" 
+          />
+          <div className="flex flex-col gap-1">
             <label className="text-sm font-semibold">Month *</label>
             <Calendar
-              value={monthDate}
-              onChange={(e) => setMonthDate(e.value as Date)}
+              value={filters.monthDate}
+              onChange={(e) => handleInputChange("monthDate", e.value)}
               view="month"
               dateFormat="MM yy"
               className="w-full"
               placeholder="Select Month"
+              showIcon
             />
           </div>
-
-          <div>
-            <label className="text-sm font-semibold">Type of Post *</label>
-            <Dropdown value={postType} onChange={(e) => setPostType(e.value)} options={postTypes} placeholder="Select Post Type" className="w-full" />
-          </div>
+          <Dropdown 
+            label="Type of Post" 
+            required 
+            options={postTypes} 
+            value={filters.postType} 
+            onChange={(e) => handleInputChange("postType", e.value)} 
+            placeholder="Select" 
+          />
         </div>
-
-        <div className="flex justify-center gap-4 mt-4">
-          <Button label="Search" icon="pi pi-search" onClick={() => setShow(true)} />
-          <Button
-            label="Clear"
-            icon="pi pi-times"
-            severity="danger"
-            onClick={() => {
-              setDivision(null);
-              setDistrict(null);
-              setBlock(null);
-              setOfficeType(null);
-              setOffice(null);
-              setMonthDate(null);
-              setPostType(null);
-              setShow(false);
-            }}
+        <div className="flex justify-center md:justify-start gap-3 mt-8 pt-4 border-t">
+          <Button 
+            label="Search" 
+            icon="pi pi-search" 
+            className="bg-blue-600 border-blue-600 px-8" 
+            onClick={() => setShow(true)} 
+          />
+          <Button 
+            label="Clear" 
+            icon="pi pi-refresh" 
+            severity="secondary" 
+            outlined 
+            className="px-8" 
+            onClick={handleClear} 
           />
         </div>
       </Card>
 
       {show && (
-        <Card>
-          <h3 className="font-semibold mb-2">Bank Wise Pay Bill Details</h3>
-          <DataTable value={bankData} paginator rows={10} dataKey="id">
-            <Column field="bank" header="NAME OF BANK" sortable/>
-            <Column field="amount" header="AMOUNT(₹)" sortable/>
-            <Column field="total" header="TOTAL BANK AMOUNT(₹)" sortable/>
-            <Column field="ifsc" header="IFSC CODE" sortable/>
-          </DataTable>
-        </Card>
+        <div className="animate-fadein">
+          <Card className="shadow-sm border-t border-gray-200">
+            <Table 
+              title="Bank Wise Pay Bill Details" 
+              columns={tableColumns} 
+              data={bankData} 
+              showPagination={true} 
+              rowsPerPage={10} 
+            />
+          </Card>
+        </div>
       )}
     </PageLayout>
   );
