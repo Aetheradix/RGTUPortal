@@ -2786,6 +2786,105 @@ const sidebarMenu = {
       ],
     },
     {
+      module: "Student Directory",
+      icon: FaUserGraduate,
+      route: "/student-directory",
+      subModules: [
+        {
+          subModule: "Student Registration",
+          route: "/student-directory/student-registration",
+          pages: [
+            {
+              page: "Profile Lock",
+              route: "/student-directory/student-registration/profile-lock",
+            },
+            {
+              page: "Student Registration",
+              route: "/student-directory/student-registration/registration",
+            },
+          ],
+        },
+        {
+          subModule: "Auto Promote Students",
+          route: "/student-directory/auto-promote",
+          pages: [
+            {
+              page: "Auto Promote Student List",
+              route: "/student-directory/auto-promote/student-list",
+            },
+            {
+              page: "Auto Promote Date For Classes",
+              route: "/student-directory/auto-promote/promote-date",
+            },
+          ],
+        },
+        {
+          subModule: "Student Promote Or TC",
+          route: "/student-directory/promote-tc",
+          pages: [
+            {
+              page: "Print Transfer Certificate",
+              route: "/student-directory/promote-tc/print-tc-list",
+            },
+            {
+              page: "Generate TC",
+              route: "/student-directory/promote-tc/generate-tc",
+            },
+            {
+              page: "Student Promote In Next Class",
+              route: "/student-directory/promote-tc/promote-student",
+            },
+            {
+              page: "Print Migration Certificate",
+              route: "/student-directory/promote-tc/print-migration",
+            },
+            {
+              page: "Generate Migration Certificate",
+              route: "/student-directory/promote-tc/generate-migration",
+            },
+          ],
+        },
+        {
+          subModule: "Report",
+          route: "/student-directory/reports",
+          pages: [
+            {
+              page: "Student Statistics Report",
+              route: "/student-directory/reports/statistics",
+            },
+            {
+              page: " School Wise Enrollment Report",
+              route: "/student-directory/reports/school-wise-enrollment",
+            },
+            {
+              page: "Enrollment Count Report",
+              route: "/student-directory/reports/enrollment-count",
+            },
+            {
+              page: "Promoted Or Transfer Student Report",
+              route: "/student-directory/reports/promoted-transfer",
+            },
+            {
+              page: "Sankul Wise Admission Report",
+              route: "/student-directory/reports/sankul-wise-admission",
+            },
+            {
+              page: "School Wise Admission Report",
+              route: "/student-directory/reports/school-wise-admission",
+            },
+            {
+              page: "Student Pool List Report",
+              route: "/student-directory/reports/pool-list",
+            },
+            {
+              page: "Student Details Report",
+              route: "/student-directory/reports/student-details",
+            },
+          ],
+        },
+      ],
+    },
+    {
       module: "OIS Setup",
       icon: FaSchool,
       route: "/ois",

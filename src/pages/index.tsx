@@ -22,6 +22,7 @@ import Payroll from "./payroll";
 import ProfilePage from "./profile";
 import SchemeManagement from "./scheme-management";
 import SchemeManagementSystem from "./scheme-mangament-master";
+import StudentDirectory from "./student-directory";
 import StudentManagementSystem from "./student-management-system";
 import TourManagementSystem from "./tour-mangement";
 import Trainingawardsystem from "./training-and-awards-management";
@@ -86,6 +87,7 @@ export default function AppFeature() {
       <Route path="training-and-awards-management/*" element={<Trainingawardsystem />} />
       <Route path="increment-management/*" element={<IncrementManagement />} />
       <Route path="leave-management/*" element={<LeaveManagement />} />
+      <Route path="student-directory/*" element={<StudentDirectory />} />
       <Route
         path="master-data-management/*"
         element={<MasterDataManagement />}
