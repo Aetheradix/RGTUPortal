@@ -38,6 +38,7 @@ import TeacherManagementSystem from "./teacher-management-system";
 import TourManagementSystem from "./tour-mangement";
 import Trainingawardsystem from "./training-and-awards-management";
 import TransportManagementSYS from "./transport-management";
+import TransportMgm from "./transport-management-system";
 import UserManagement from "./user-management";
 import VocationalManagement from "./vocational-management";
 
@@ -111,6 +112,9 @@ export default function AppFeature() {
       <Route path="parents-management/*" element={<ParentsManagement />} />
       <Route path="school-security-management/*" element={<SchoolSecurityManagement />} />
       <Route path="teacher-management-system/*" element={<TeacherManagementSystem />} />
+
+      <Route path="transport-management-system/*" element={<TransportMgm />} />
+
       <Route
         path="master-data-management/*"
         element={<MasterDataManagement />}

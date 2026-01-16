@@ -4046,6 +4046,210 @@ const sidebarMenu = {
         },
       ],
     },
+    {
+      module: "Transport Management",
+      icon: FaBus,
+      route: "/transport-management-system",
+      subModules: [
+        {
+          subModule: "Transport Registration",
+          route: "/transport-management-system/transport-registration",
+          pages: [
+            {
+              page: "Transporter Registration",
+              route:
+                "/transport-management-system/transport-registration/transporter-registration",
+            },
+            {
+              page: "Vehicle Registration",
+              route:
+                "/transport-management-system/transport-registration/vehicle-registration",
+            },
+            {
+              page: "Bus Driver and Attender Registration",
+              route:
+                "/transport-management-system/transport-registration/bus-driver-and-attender-registration",
+            },
+            {
+              page: "Student to Route and Stop Mapping",
+              route:
+                "/transport-management-system/transport-registration/student-to-route-and-stop-mapping",
+            },
+            {
+              page: "Transport Incharge Registration",
+              route:
+                "/transport-management-system/transport-registration/transport-incharge-Registration",
+            },
+          ],
+        },
+        {
+          subModule: "Transport Master",
+          route: "/transport-management-system/transport-master",
+          pages: [
+            {
+              page: "Motor Vechile Type Master",
+              route:
+                "/transport-management-system/transport-master/motor-vechile-type-master",
+            },
+            {
+              page: "Fuel Type Master",
+              route:
+                "/transport-management-system/transport-master/fuel-type-master",
+            },
+            {
+              page: "Insurance Company Master",
+              route:
+                "/transport-management-system/transport-master/insurance-company-master",
+            },
+            {
+              page: "Vehicle Company Master",
+              route:
+                "/transport-management-system/transport-master/vehicle-company-master",
+            },
+            {
+              page: "Route Registration Master",
+              route:
+                "/transport-management-system/transport-master/route-registration-master",
+            },
+            {
+              page: "Bus Stop Registration Master",
+              route:
+                "/transport-management-system/transport-master/bus-stop-registration-master",
+            },
+            {
+              page: "Route To Bus Stop Mapping Master",
+              route:
+                "/transport-management-system/transport-master/route-to-bus-stop-mapping-master",
+            },
+            {
+              page: "Route To Bus Mapping Master",
+              route:
+                "/transport-management-system/transport-master/route-to-bus-mapping-master",
+            },
+            {
+              page: "Transporter to Mapping",
+              route:
+                "/transport-management-system/transport-master/transporter-to-mapping",
+            },
+            {
+              page: "Vehicle to Mapping",
+              route:
+                "/transport-management-system/transport-master/vehicle-to-mapping",
+            },
+          ],
+        },
+        {
+          subModule: "Bus Driver and Attender Process",
+          route: "/transport-management-system/bus-driver-and-attender-process",
+          pages: [
+            {
+              page: "Student Pickup And Drop Entry Process",
+              route:
+                "/transport-management-system/bus-driver-and-attender-process/student-pickup-and-drop-entry-process",
+            },
+            {
+              page: "Driver to Vehicle Mapping",
+              route:
+                "/transport-management-system/bus-driver-and-attender-process/driver-to-vehicle-mapping",
+            },
+            {
+              page: "Route Stop Location Details",
+              route:
+                "/transport-management-system/bus-driver-and-attender-process/route-stop-location-details",
+            },
+            {
+              page: "Pickup Cancellation Details",
+              route:
+                "/transport-management-system/bus-driver-and-attender-process/pickup-cancellation-details",
+            },
+          ],
+        },
+        {
+          subModule: "Gate Keeper Process",
+          route: "/transport-management-system/gate-keeper-process",
+          pages: [
+            {
+              page: "Bus Gate Pass Process",
+              route:
+                "/transport-management-system/gate-keeper-process/bus-gate-pass-process",
+            },
+          ],
+        },
+        {
+          subModule: "Parent Process",
+          route: "/transport-management-system/parent-process",
+          pages: [
+            {
+              page: "Student Leave Entry",
+              route:
+                "/transport-management-system/parent-process/student-leave-entry",
+            },
+            {
+              page: "Student Pickup and Drop Details",
+              route:
+                "/transport-management-system/parent-process/student-pickup-and-drop-details",
+            },
+            {
+              page: "Bus Route and Stop Details",
+              route:
+                "/transport-management-system/parent-process/bus-route-and-stop-details",
+            },
+          ],
+        },
+        {
+          subModule: "Bill Payment Process",
+          route: "/transport-management-system/bill-payment-process",
+          pages: [
+            {
+              page: "Transporter Bill Upload",
+              route:
+                "/transport-management-system/bill-payment-process/transporter-bill-upload",
+            },
+            {
+              page: "Vendor Payment Process",
+              route:
+                "/transport-management-system/bill-payment-process/vendor-payment-process",
+            },
+          ],
+        },
+        {
+          subModule: "Transport Report",
+          route: "/transport-management-system/transport-report",
+          pages: [
+            {
+              page: "Vehicle Registration Report",
+              route:
+                "/transport-management-system/transport-report/vehicle-registration-report",
+            },
+            {
+              page: "Driver Attender Route Detail",
+              route:
+                "/transport-management-system/transport-report/driver-attender-route-detail",
+            },
+            {
+              page: "Route Wise Pickup and Drop Report",
+              route:
+                "/transport-management-system/transport-report/route-wise-pickup-and-drop-report",
+            },
+            {
+              page: "Gate Pass Report",
+              route:
+                "/transport-management-system/transport-report/gate-pass-report",
+            },
+            {
+              page: "Bill Payment Report",
+              route:
+                "/transport-management-system/transport-report/bill-payment-report",
+            },
+            {
+              page: "Bus Live Tracking",
+              route:
+                "/transport-management-system/transport-report/bus-live-tracking",
+            },
+          ],
+        },
+      ],
+    },
   ],
 };
 
