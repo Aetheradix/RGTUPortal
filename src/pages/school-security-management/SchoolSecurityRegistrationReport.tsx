@@ -48,7 +48,7 @@ const SchoolSecurityRegistrationReport: React.FC = () => {
         </div>
       </div>
 
-      <div className="border-orange-200 border rounded-xl p-6 bg-white relative mb-8 shadow-sm">
+      <div className=" rounded-xl p-6 bg-white relative mb-8 shadow-sm">
         <div className="absolute -top-3 left-6 bg-white px-3 border-orange-200  rounded text-blue-900 font-bold text-sm">
           Search Filters
         </div>
@@ -64,7 +64,7 @@ const SchoolSecurityRegistrationReport: React.FC = () => {
         </div>
       </div>
 
-      <div className="border-orange-200 border rounded-xl bg-white overflow-hidden shadow-sm">
+      <div className=" rounded-xl bg-white overflow-hidden shadow-sm">
          <div className="p-4 border-b bg-indigo-900 flex justify-between items-center">
             <span className="text-white font-bold text-sm">Visitor Log Details</span>
             <span className="text-orange-300 text-xs font-bold">Total Visitors Today: 0</span>

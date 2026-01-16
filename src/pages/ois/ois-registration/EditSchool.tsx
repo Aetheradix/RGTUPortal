@@ -84,7 +84,7 @@ const EditSchool: React.FC = () => {
 
   return (
     <PageLayout title=" Edit School Details">
-      <div className="bg-white p-6 rounded-lg shadow-sm border border-orange-200 relative mb-8 mt-4">
+      <div className="bg-white p-6 rounded-lg shadow-sm  relative mb-8 mt-4">
           <span className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm">
           Edit School Details
        </span>
@@ -121,7 +121,7 @@ const EditSchool: React.FC = () => {
       </div>
 
       {isSearched && (
-       <div className="bg-white p-6 rounded-lg shadow-sm border border-orange-200 relative mb-8 mt-4">
+       <div className="bg-white p-6 rounded-lg shadow-sm  relative mb-8 mt-4">
            <span className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm">
             School Verification Details
           </span>
@@ -139,7 +139,7 @@ const EditSchool: React.FC = () => {
         maximizable
       >
         <div className="space-y-6">
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-orange-200 relative mb-8 mt-4">
+          <div className="bg-white p-6 rounded-lg shadow-sm  relative mb-8 mt-4">
              <span className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm">School Basic Information</span>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 mt-2">
               <DataItem label="Academic Year" value="2024-25" />

@@ -66,9 +66,9 @@ const PendingWorkRequest: React.FC = () => {
           </div>
         </div>
 
-        <div className="border border-orange-200 rounded-xl p-6 relative bg-white mt-4">
-          <div className="absolute -top-4 left-6 bg-white px-4 py-1 rounded-lg">
-            <span className="text-blue-600 font-bold text-sm">
+        <div className=" rounded-xl p-6 relative bg-white mt-4">
+          <div className="absolute -top-4 left-6 bg-white rounded-lg">
+            <span className="font-bold ">
               Construction Work Request Details
             </span>
           </div>

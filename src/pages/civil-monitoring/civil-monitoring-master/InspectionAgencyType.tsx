@@ -47,7 +47,7 @@ const InspectionAgencyTypeDetails: React.FC = () => {
           <span
             className={`${
               rowData.status ? "bg-green-600" : "bg-red-600"
-            } text-white px-4 py-1 rounded text-[12px] font-bold min-w-10 text-center`}
+            } text-white  rounded text-[12px] font-bold min-w-10 text-center`}
           >
             {rowData.status ? "Active" : "Inactive"}
           </span>
@@ -61,7 +61,7 @@ const InspectionAgencyTypeDetails: React.FC = () => {
         <div className="flex justify-center">
           <Button
             icon="pi pi-pencil"
-            className="p-button-outlined p-button-sm text-orange-400 border border-orange-200 p-1 h-7 w-7"
+            className="p-button-outlined p-button-sm text-orange-400  p-1 h-7 w-7"
           />
         </div>
       ),
@@ -91,9 +91,9 @@ const InspectionAgencyTypeDetails: React.FC = () => {
 
         {view === "form" ? (
           <div className="flex flex-col gap-6">
-            <div className="border border-orange-200 rounded-xl p-6 relative bg-white mt-4">
-            <div className="absolute -top-4 left-6 bg-white px-4 py-1 rounded-lg">
-              <span className="text-blue-600 font-bold text-sm">
+            <div className=" rounded-xl p-6 relative bg-white mt-4">
+            <div className="absolute -top-4 left-6 bg-white  rounded-lg">
+              <span className="font-bold">
                  Add Inspection Agency Type
               </span>
             </div>
@@ -174,9 +174,9 @@ const InspectionAgencyTypeDetails: React.FC = () => {
             </div>
           </div>
         ) : (
-          <div className="border border-orange-200 rounded-xl p-6 relative bg-white mt-4">
-            <div className="absolute -top-4 left-6 bg-white px-4 py-1 rounded-lg">
-              <span className="text-blue-600 font-bold text-sm">
+          <div className=" rounded-xl p-6 relative bg-white mt-4">
+            <div className="absolute -top-4 left-6 bg-white  rounded-lg">
+              <span className="font-bold">
                 Inspection Agency Type List
               </span>
             </div>

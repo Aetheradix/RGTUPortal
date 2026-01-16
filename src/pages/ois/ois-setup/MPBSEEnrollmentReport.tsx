@@ -112,7 +112,7 @@ const MPBSEEnrollmentReport: React.FC = () => {
                 </div>
 
                 {showDetails && (
-                    <div className="border border-orange-200 rounded-lg p-6 relative bg-white mt-8">
+                    <div className=" rounded-lg p-6 relative bg-white mt-8">
                         <span className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm"> Details</span>
 
 

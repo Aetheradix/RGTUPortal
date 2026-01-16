@@ -6,7 +6,7 @@ import { Dropdown, Table } from '../../../ui/shared';
 const TeacherMappingReport: React.FC = () => {
   return (
     <PageLayout title="Teacher Management Report">
-      <div className="border-orange-200 border rounded-xl p-6 bg-white relative shadow-sm mb-6">
+      <div className=" rounded-xl p-6 bg-white relative shadow-sm mb-6">
         <div className="absolute -top-3 left-6 bg-white px-2 border-orange-200  rounded text-blue-800 font-bold text-sm">Filter Mapping Report</div>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-2">
           <Dropdown label="Academic Year" options={[{label: '2025-26', value: '25-26'}]} />
@@ -16,7 +16,7 @@ const TeacherMappingReport: React.FC = () => {
         </div>
       </div>
 
-      <div className="border-orange-200 border rounded-xl bg-white overflow-hidden">
+      <div className=" rounded-xl bg-white overflow-hidden">
         <div className="p-4 bg-gray-50 flex justify-between items-center">
            <span className="font-bold text-indigo-900 text-sm">Teacher to Class Mapping Details</span>
            <Button label="Export To Excel" icon="pi pi-file-excel" className="p-button-sm p-button-primary" />

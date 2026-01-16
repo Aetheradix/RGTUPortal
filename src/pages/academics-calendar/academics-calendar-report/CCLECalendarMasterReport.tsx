@@ -33,8 +33,8 @@ const CCLECalendarReport: React.FC = () => {
 
   return (
     <PageLayout title="CCLE Calendar Report">
-      <div className="border-orange-200 border rounded-xl p-6 bg-white relative mb-8">
-        <div className="absolute -top-3 left-4 bg-white px-2 border-orange-200  text-blue-800 font-bold text-sm">
+      <div className=" rounded-xl p-6 bg-white relative mb-8">
+        <div className="   font-bold pb-6">
           Continuous and Comprehensive Learning and Evaluation (CCLE) Calendar Report
         </div>
 
@@ -68,7 +68,7 @@ const CCLECalendarReport: React.FC = () => {
       </div>
 
       {showReport && (
-        <div className="bg-white border-orange-200 border rounded-xl p-8 shadow-sm">
+        <div className="bg-white  rounded-xl p-8 shadow-sm">
           
           <div className="flex justify-end gap-2 mb-6">
             <Button label="Print" icon="pi pi-print" className="p-button-sm" style={{ backgroundColor: '#6366F1', border: 'none' }} />

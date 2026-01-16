@@ -34,7 +34,7 @@ const TeacherClassMapping: React.FC = () => {
       </div>
 
       {showForm ? (
-        <div className="border-orange-200 border rounded-xl p-8 bg-white relative mt-4">
+        <div className=" rounded-xl p-8 bg-white relative mt-4">
           <div className="absolute -top-3 left-6 bg-white px-3 border-orange-200  rounded text-blue-900 font-bold text-sm">Assign Class & Subject</div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-4">
             <Dropdown label="Select Teacher" required options={teacherOptions} placeholder="Search Teacher..." />
@@ -50,7 +50,7 @@ const TeacherClassMapping: React.FC = () => {
           </div>
         </div>
       ) : (
-        <div className="border-orange-200 border rounded-xl bg-white overflow-hidden mt-6">
+        <div className=" rounded-xl bg-white overflow-hidden mt-6">
           <div className="p-4   font-bold text-sm flex justify-between">
             <span>Current Mapping Details (2025-26)</span>
             <Button icon="pi pi-file-excel" className="p-button-text p-button-sm text-white" label="Export" />

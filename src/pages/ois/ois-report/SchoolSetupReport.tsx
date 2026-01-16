@@ -36,7 +36,7 @@ const SchoolSetupReport: React.FC = () => {
         <PageLayout title="School Setup Report">
             <div className="flex flex-col gap-4">
                 
-                <div className="border border-orange-200 rounded-xl p-6 relative bg-white mt-4">
+                <div className=" rounded-xl p-6 relative bg-white mt-4">
                     <div className="absolute -top-4 left-6 bg-white  px-4 py-1 rounded-lg">
                         <span className="text-blue-600 font-bold text-sm">Note</span>
                     </div>
@@ -46,7 +46,7 @@ const SchoolSetupReport: React.FC = () => {
                     </div>
                 </div>
 
-                <div className="border border-orange-200 rounded-xl p-8 relative bg-white mt-6">
+                <div className=" rounded-xl p-8 relative bg-white mt-6">
                     <div className="absolute -top-4 left-6 bg-white  px-4 py-1 rounded-lg">
                         <span className="text-blue-600 font-bold text-sm">School Setup Report</span>
                     </div>

@@ -42,12 +42,9 @@ const SchoolEventReport: React.FC = () => {
 
   return (
     <PageLayout title="School Event And Notification Report">
-      <div className="flex justify-between items-center mb-4">
-       
-      </div>
-
-      <div className="bg-white p-6 rounded-lg shadow-sm border border-orange-200 mb-8 relative">
-        <div className="absolute -top-3 left-6 bg-white px-2  border-orange-300  text-blue-800 font-bold text-sm">
+    
+     <div className=" rounded-xl p-6 bg-white relative mb-8">
+        <div className="   font-bold pb-6">
           Event & Holiday Calendar Master Report
         </div>
 
@@ -98,7 +95,7 @@ const SchoolEventReport: React.FC = () => {
 
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
         <div className="p-4 border-b border-gray-100 flex justify-between items-center">
-          <h3 className="text-indigo-900 font-bold">Report Details</h3>
+          <h3 className=" font-bold">Report Details</h3>
           {hasSearched && (
              <Button 
                label="Export To Excel" 

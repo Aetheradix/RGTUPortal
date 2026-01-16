@@ -164,7 +164,7 @@ const SchoolRegistrationForm: React.FC = () => {
       >
         <div className="space-y-8 p-2">
           
-          <div className="border border-orange-200  rounded-lg p-5 relative mt-4">
+          <div className="  rounded-lg p-5 relative mt-4">
             <span className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm">School Basic Information</span>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-2">
               {renderDropdown('Academic Year', 'academicYear', true)}
@@ -203,7 +203,7 @@ const SchoolRegistrationForm: React.FC = () => {
             </div>
           </div>
 
-          <div className="border border-orange-200  rounded-lg p-5 relative mt-4">
+          <div className="  rounded-lg p-5 relative mt-4">
             <span className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm">School Address Information</span>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-2">
               {renderDropdown('Division (Code)', 'division', true)}
@@ -226,7 +226,7 @@ const SchoolRegistrationForm: React.FC = () => {
             </div>
           </div>
 
-          <div className="border border-orange-200  rounded-lg p-5 relative mt-4">
+          <div className="  rounded-lg p-5 relative mt-4">
             <span className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm">School Contact Details</span>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-2">
               {renderDropdown('School Head Type (Code)', 'headType')}
@@ -241,7 +241,7 @@ const SchoolRegistrationForm: React.FC = () => {
             </div>
           </div>
 
-          <div className="border border-orange-200  rounded-lg p-5 relative mt-4">
+          <div className="  rounded-lg p-5 relative mt-4">
              <span className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm">School Geographical Data</span>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
               {renderField('Latitude', 'latitude')}

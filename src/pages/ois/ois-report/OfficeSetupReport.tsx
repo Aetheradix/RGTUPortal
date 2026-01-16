@@ -60,7 +60,7 @@ const OfficeSetupReport: React.FC = () => {
             <div className="flex flex-col gap-4">
                
 
-                <div className="border border-orange-200 rounded-xl p-6 relative bg-white mt-4">
+                <div className=" rounded-xl p-6 relative bg-white mt-4">
                     <div className="absolute -top-4 left-6 bg-white px-4 py-1 rounded-lg">
                         <span className=" text-blue-600 font-bold text-sm">Office Setup Details</span>
                     </div>
@@ -137,7 +137,7 @@ const OfficeSetupReport: React.FC = () => {
                 </div>
 
                 {showResults && (
-                    <div className="border border-orange-200 rounded-xl p-6 relative bg-white mt-8 mb-10">
+                    <div className=" rounded-xl p-6 relative bg-white mt-8 mb-10">
                         <div className="absolute -top-4 left-6 bg-white  px-4 py-1 rounded-lg">
                             <span className=" text-blue-600 font-bold text-sm">Details</span>
                         </div>

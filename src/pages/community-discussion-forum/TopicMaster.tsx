@@ -46,7 +46,7 @@ const TopicMaster: React.FC = () => {
       </div>
 
       {showForm ? (
-        <div className="border-orange-200 border rounded-xl p-6 bg-white relative mt-6">
+        <div className=" rounded-xl p-6 bg-white relative mt-6">
           <div className="absolute -top-3 left-4 bg-white px-2 border-orange-200  rounded text-blue-800 font-bold text-sm">Add  Topic</div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
             <Input label="Topic Name" required placeholder="e.g., Science Fair 2026" value={formData.topicName} onChange={(e) => setFormData({...formData, topicName: e.target.value})} />
@@ -62,7 +62,7 @@ const TopicMaster: React.FC = () => {
           </div>
         </div>
       ) : (
-        <div className="border-orange-200 border rounded-xl bg-white overflow-hidden mt-6 shadow-sm">
+        <div className=" rounded-xl bg-white overflow-hidden mt-6 shadow-sm">
           <Table columns={columns} data={[]} showPagination rowsPerPage={10} emptyMessage="No topics found" />
         </div>
       )}

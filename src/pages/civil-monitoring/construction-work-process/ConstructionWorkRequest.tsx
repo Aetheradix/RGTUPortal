@@ -91,9 +91,9 @@ const ConstructionWorkRequest: React.FC = () => {
 
         {view === "form" ? (
           <div className="flex flex-col gap-6">
-            <div className="border border-orange-200 rounded-xl p-6 relative bg-white mt-4 shadow-sm">
-              <div className="absolute -top-4 left-6 bg-white px-4 py-1  border-orange-200">
-                <span className="text-blue-600 font-bold text-sm">
+            <div className=" rounded-xl p-6 relative bg-white mt-4 shadow-sm">
+              <div className="absolute -top-4 left-6 bg-white  border-orange-200">
+                <span className="font-bold">
                   Add Construction Work Details
                 </span>
               </div>
@@ -141,9 +141,9 @@ const ConstructionWorkRequest: React.FC = () => {
                 </div>
               </div>
 
-              <div className="border border-orange-200 rounded-xl p-6 relative bg-white mt-10 shadow-sm">
-                <div className="absolute -top-4 left-6 bg-white px-4 py-1   border-orange-200">
-                  <span className="text-blue-600 font-bold text-sm">
+              <div className=" rounded-xl p-6 relative bg-white mt-10 shadow-sm">
+                <div className="absolute -top-4 left-6 bg-white   border-orange-200">
+                  <span className="font-bold">
                     Add Agency Details
                   </span>
                 </div>
@@ -196,9 +196,9 @@ const ConstructionWorkRequest: React.FC = () => {
                 </div>
               </div>
 
-              <div className="border border-orange-200 rounded-xl p-6 relative bg-white mt-10 shadow-sm">
-                <div className="absolute -top-4 left-6 bg-white px-4 py-1   border-orange-200">
-                  <span className="text-blue-600 font-bold text-sm">
+              <div className=" rounded-xl p-6 relative bg-white mt-10 shadow-sm">
+                <div className="absolute -top-4 left-6 bg-white   border-orange-200">
+                  <span className="font-bold">
                     Add Estimation Details
                   </span>
                 </div>
@@ -307,9 +307,9 @@ const ConstructionWorkRequest: React.FC = () => {
           </div>
         ) : (
           <div className="flex flex-col gap-4">
-            <div className="border border-orange-200 rounded-xl p-6 relative bg-white mt-4 shadow-sm">
-              <div className="absolute -top-4 left-6 bg-white px-4 py-1   border-orange-200">
-                <span className="text-blue-600 font-bold text-sm">
+            <div className=" rounded-xl p-6 relative bg-white mt-4 shadow-sm">
+              <div className="absolute -top-4 left-6 bg-white   border-orange-200">
+                <span className="font-bold">
                   Construction Work Details 
                 </span>
               </div>

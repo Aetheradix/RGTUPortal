@@ -102,7 +102,7 @@ const OfficeSetup: React.FC = () => {
 
     return (
         <PageLayout title="Office Setup">
-                <div className="border border-orange-200 p-4 rounded-md relative mt-4">
+                <div className=" p-4 rounded-md relative mt-4">
                     <span className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm">Office Setup</span>
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-2">
                         <Dropdown

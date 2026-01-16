@@ -78,7 +78,7 @@ const HSSSetup: React.FC = () => {
         <PageLayout title="HSS Setup">
            
 
-                <div className="border border-orange-200 p-4 rounded-md relative mt-4">
+                <div className=" p-4 rounded-md relative mt-4">
                     <span className="absolute -top-3 left-4 bg-white px-2 text-blue-700 font-bold text-sm">11 to 12 School Setup</span>
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-2">
                         <Dropdown label="Academic Year" required value={searchFilters.academicYear} options={[{ label: '2025-26', value: '2025-26' }]} onChange={(e) => setSearchFilters({...searchFilters, academicYear: e.value})} />
@@ -99,7 +99,7 @@ const HSSSetup: React.FC = () => {
                 </div>
 
                 {isSearched && (
-                    <div className="mt-8 border border-orange-200 rounded-md relative p-4">
+                    <div className="mt-8  rounded-md relative p-4">
                         <span className="absolute -top-3 left-4 bg-white px-2 text-blue-700 font-bold text-sm">Details</span>
                         
                         <div className="overflow-x-auto border rounded-md mt-4">

@@ -59,7 +59,7 @@ const TestPreparationMaster: React.FC = () => {
     <PageLayout title="Career Guidance - Test Preparation Master">
       <div className="flex flex-col gap-4">
         <div className="flex justify-between items-center">
-          <div className=" px-4 py-1 rounded-full text-xs font-bold "></div>
+          <div className="rounded-full font-bold "></div>
           <Button
             label={view === "list" ? "Add New Test" : "Back to List"}
             icon={view === "list" ? "pi pi-plus" : "pi pi-list"}
@@ -69,9 +69,9 @@ const TestPreparationMaster: React.FC = () => {
         </div>
 
         {view === "form" ? (
-          <div className="border border-orange-200 rounded-xl p-6 relative bg-white mt-4">
-            <div className="absolute -top-4 left-6 bg-white px-4 py-1   border-orange-100">
-              <span className="text-blue-600 font-bold text-sm">
+          <div className="rounded-xl p-6 relative bg-white mt-4">
+            <div className="absolute -top-4 left-6 bg-white border-orange-100">
+              <span className=" font-bold ">
                 Create New Test Entry
               </span>
             </div>
@@ -144,9 +144,9 @@ const TestPreparationMaster: React.FC = () => {
             </p>
           </div>
         ) : (
-          <div className="border border-orange-200 rounded-xl p-6 relative bg-white mt-4 shadow-sm">
-            <div className="absolute -top-4 left-6 bg-white px-4 py-1   border-orange-100">
-              <span className="text-blue-600 font-bold text-sm">
+          <div className=" rounded-xl p-6 relative bg-white mt-4 shadow-sm">
+            <div className="absolute -top-4 left-6 bg-white   border-orange-100">
+              <span className=" font-bold ">
                 Defined Test List
               </span>
             </div>

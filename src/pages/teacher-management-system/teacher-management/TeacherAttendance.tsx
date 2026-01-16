@@ -7,7 +7,7 @@ import { DateInput } from '../../../ui/shared/Input';
 const TeacherAttendance: React.FC = () => {
   return (
     <PageLayout title="Teacher Attendance">
-      <div className="border-orange-200 border rounded-xl p-6 bg-white shadow-sm mb-6">
+      <div className=" rounded-xl p-6 bg-white shadow-sm mb-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <DateInput label="Attendance Date" value={new Date()} />
           <Dropdown label="Department" options={[{label: 'Primary', value: 'P'}, {label: 'Secondary', value: 'S'}]} />
@@ -15,7 +15,7 @@ const TeacherAttendance: React.FC = () => {
         </div>
       </div>
 
-      <div className="border-orange-200 border rounded-xl bg-white overflow-hidden">
+      <div className=" rounded-xl bg-white overflow-hidden">
         <table className="w-full text-sm border-collapse">
           <thead>
             <tr>

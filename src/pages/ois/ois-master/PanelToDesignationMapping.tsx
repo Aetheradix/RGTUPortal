@@ -77,7 +77,7 @@ const PanelDesignationMapping: React.FC = () => {
       </div>
 
       {!showForm ? (
-        <div className="bg-white rounded-lg shadow-sm border border-orange-200 relative ">
+        <div className="bg-white rounded-lg shadow-sm  relative ">
           <span className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm">
             Panel to Designation Mapping Master Details
           </span>
@@ -94,7 +94,7 @@ const PanelDesignationMapping: React.FC = () => {
           </div>
         </div>
       ) : (
-        <div className="bg-white p-6 rounded-lg border border-orange-200 relative mt-4">
+        <div className="bg-white p-6 rounded-lg  relative mt-4">
            <span className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm">
             Add Panel to Designation Mapping
           </span>

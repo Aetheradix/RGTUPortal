@@ -200,7 +200,7 @@ const InstituteRegistrationForm: React.FC = () => {
         maximizable
       >
         <div className="space-y-8 p-2">
-          <div className="border border-orange-200  rounded-lg p-5 relative mt-4">
+          <div className="  rounded-lg p-5 relative mt-4">
               <span className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm">Institute Basic Information</span>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-2">
               {renderDropdown('Academic Year', 'academicYear', true)}
@@ -221,7 +221,7 @@ const InstituteRegistrationForm: React.FC = () => {
             </div>
           </div>
 
-          <div className="border border-orange-200  rounded-lg p-5 relative mt-4">
+          <div className="  rounded-lg p-5 relative mt-4">
             <span className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm">Institute Address Information</span>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-2">
               {renderDropdown('Division (Code)', 'division', true)}
@@ -241,7 +241,7 @@ const InstituteRegistrationForm: React.FC = () => {
             </div>
           </div>
 
-          <div className="border border-orange-200  rounded-lg p-5 relative mt-4">
+          <div className="  rounded-lg p-5 relative mt-4">
             <span className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm">Institute Contact Details</span>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-2">
               {renderField('Incharge Unique Id', 'inchargeId', true)}
@@ -255,7 +255,7 @@ const InstituteRegistrationForm: React.FC = () => {
             </div>
           </div>
 
-          <div className="border border-orange-200  rounded-lg p-5 relative mt-4">
+          <div className="  rounded-lg p-5 relative mt-4">
             <span className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm">Institute Bank Details</span>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-2">
               {renderDropdown('Bank Type', 'bankType')}

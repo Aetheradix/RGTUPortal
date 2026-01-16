@@ -13,7 +13,7 @@ const DiscussionChatBox: React.FC = () => {
         <span className="text-blue-700 font-bold text-sm">Active Users: 12</span>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 h-150 border-orange-200 border rounded-xl overflow-hidden bg-gray-50">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 h-150  rounded-xl overflow-hidden bg-gray-50">
         <div className="bg-white border-r border-gray-200 flex flex-col">
           <div className="p-4 font-bold text-indigo-900 border-b bg-gray-50">Channels</div>
           <div className="flex-1 overflow-y-auto">

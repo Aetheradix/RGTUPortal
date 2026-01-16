@@ -29,9 +29,9 @@ const MonthWiseSyllabusPrint: React.FC = () => {
         <PageLayout title="Month Wise Syllabus Print">
             <div className="flex flex-col gap-4">
                 
-                <div className="border border-orange-200 rounded-xl p-6 relative bg-white mt-4 shadow-sm">
-                    <div className="absolute -top-4 left-6 bg-white px-4 py-1">
-                        <span className="text-blue-600 font-bold text-sm">Select Syllabus Criteria</span>
+                <div className=" rounded-xl p-6 relative bg-white mt-4 shadow-sm">
+                    <div className="absolute -top-4 left-6 bg-white">
+                        <span className=" font-bold">Select Syllabus Criteria</span>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-4">
@@ -86,9 +86,9 @@ const MonthWiseSyllabusPrint: React.FC = () => {
                 </div>
 
                 {showReport && (
-                    <div className="border border-orange-200 rounded-xl p-8 relative bg-white mt-8 mb-10 shadow-md print:border-none print:shadow-none">
-                        <div className="absolute -top-4 left-6 bg-white px-4 py-1  print:hidden">
-                            <span className="text-blue-600 font-bold text-sm">Syllabus Preview</span>
+                    <div className=" rounded-xl p-8 relative bg-white mt-8 mb-10 shadow-md print:border-none print:shadow-none">
+                        <div className="absolute -top-4 left-6 bg-white  print:hidden">
+                            <span className=" font-bold">Syllabus Preview</span>
                         </div>
                         
                         <div className="text-center border-b-2 border-gray-800 pb-4 mb-6">

@@ -53,7 +53,7 @@ const SchoolSecurityRegistration: React.FC = () => {
         <span className="text-blue-700 font-bold italic">Academic Year: 2025-26</span>
       </div>
 
-      <div className="border-orange-200 border rounded-xl p-8 bg-white relative shadow-sm">
+      <div className=" rounded-xl p-8 bg-white relative shadow-sm">
         <div className="absolute -top-3 left-6 bg-white px-3 border-orange-200  rounded text-blue-900 font-bold text-sm">
           New Visitor Registration
         </div>

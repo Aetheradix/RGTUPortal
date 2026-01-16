@@ -6,7 +6,7 @@ import { Dropdown } from '../../../ui/shared';
 const StudentDailyActivity: React.FC = () => {
   return (
     <PageLayout title="Daily Logs">
-      <div className="border-orange-200 border rounded-xl p-6 bg-white relative">
+      <div className=" rounded-xl p-6 bg-white relative">
         <div className="absolute -top-3 left-6 bg-white px-3 border-orange-200  rounded text-blue-900 font-bold text-sm">Student Activity / Behavioral Incident Entry</div>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-4">
           <Dropdown label="Academic Class" options={[]} placeholder="Select Class" />

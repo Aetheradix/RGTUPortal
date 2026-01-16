@@ -21,7 +21,7 @@ const StudentDiary: React.FC = () => {
         <span className="text-blue-700 font-bold text-sm">Post Daily Homework & Updates</span>
       </div>
 
-      <div className="border-orange-200 border rounded-xl p-6 bg-white mb-8 shadow-sm">
+      <div className=" rounded-xl p-6 bg-white mb-8 shadow-sm">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <Dropdown label="Academic Class" required placeholder="Select" options={classOptions} />
           <Dropdown label="Section" required placeholder="Select" options={sectionOptions} />
@@ -38,7 +38,7 @@ const StudentDiary: React.FC = () => {
         </div>
       </div>
 
-      <div className="border-orange-200 border rounded-xl bg-white overflow-hidden shadow-sm">
+      <div className=" rounded-xl bg-white overflow-hidden shadow-sm">
         <div className="p-4 border-b bg-gray-50 flex justify-between items-center">
           <span className="font-bold text-indigo-900">Recent Diary Posts</span>
           <Button label="View History" className="p-button-text p-button-sm text-orange-600" />

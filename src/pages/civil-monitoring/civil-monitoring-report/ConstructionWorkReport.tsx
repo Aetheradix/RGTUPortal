@@ -120,9 +120,9 @@ const ConstructionWorkStatus: React.FC = () => {
         </div>
 
        
-          <div className="border border-orange-200 rounded-xl p-6 relative bg-white mt-4 shadow-sm">
-              <div className="absolute -top-4 left-6 bg-white px-4 py-1  border-orange-200">
-                <span className="text-blue-600 font-bold text-sm">
+          <div className=" rounded-xl p-6 relative bg-white mt-4 shadow-sm">
+              <div className="absolute -top-4 left-6 bg-white   border-orange-200">
+                <span className="font-bold">
                    Construction Work Report
                 </span>
               </div>
@@ -180,9 +180,9 @@ const ConstructionWorkStatus: React.FC = () => {
         </div>
 
        
-          <div className="border border-orange-200 rounded-xl p-6 relative bg-white mt-4 shadow-sm">
-              <div className="absolute -top-4 left-6 bg-white px-4 py-1  border-orange-200">
-                <span className="text-blue-600 font-bold text-sm">
+          <div className=" rounded-xl p-6 relative bg-white mt-4 shadow-sm">
+              <div className="absolute -top-4 left-6 bg-white   border-orange-200">
+                <span className="font-bold">
                   Details
                 </span>
               </div>

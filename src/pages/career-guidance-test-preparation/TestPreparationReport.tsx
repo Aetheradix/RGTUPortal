@@ -38,10 +38,8 @@ const TestPreparationReport: React.FC = () => {
   return (
     <PageLayout title="Test Preparation Progress Report">
       <div className="flex flex-col gap-4">
-        <div className="border border-orange-200 rounded-xl p-6 relative bg-white mt-4 shadow-sm">
-          <div className="absolute -top-4 left-6 bg-white px-4 py-1   border-orange-100">
-            <span className="text-blue-600 font-bold text-sm"> Filter</span>
-          </div>
+        <div className=" rounded-xl p-6 relative bg-white  shadow-sm">
+          
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-4">
             <div className="flex flex-col gap-1">
               <label className="text-sm font-medium">Test Name</label>

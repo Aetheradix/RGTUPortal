@@ -7,7 +7,7 @@ import { DateInput } from '../../../ui/shared/Input';
 const TeacherDailyActivity: React.FC = () => {
   return (
     <PageLayout title="Daily Activity Log">
-      <div className="border-orange-200 border rounded-xl p-8 bg-white relative">
+      <div className=" rounded-xl p-8 bg-white relative">
         <div className="absolute -top-3 left-6 bg-white px-3 border-orange-200  rounded text-blue-900 font-bold text-sm">Work Done / Daily Activity Entry</div>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-4">
           <DateInput label="Activity Date" value={new Date()} />

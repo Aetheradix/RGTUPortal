@@ -57,7 +57,7 @@ const DistrictWisePublishSchools: React.FC = () => {
     return (
         <PageLayout title="District-Wise Publish Schools">
             <div className="flex flex-col gap-6 w-full">
-                <div className="border border-orange-200 rounded-xl p-6 relative bg-white shadow-sm">
+                <div className=" rounded-xl p-6 relative bg-white shadow-sm">
                     <div className="absolute -top-4 left-6 bg-white  px-5 py-1 rounded-lg">
                         <span className="text-blue-600 font-bold text-base">Filters</span>
                     </div>
@@ -95,7 +95,7 @@ const DistrictWisePublishSchools: React.FC = () => {
                 </div>
 
                 {showResults && (
-                    <div className="border border-orange-200 rounded-xl p-8 relative bg-white mt-10 mb-20 shadow-md">
+                    <div className=" rounded-xl p-8 relative bg-white mt-10 mb-20 shadow-md">
                         <div className="absolute -top-5 left-6 bg-white  px-6 py-2 rounded-lg">
                             <span className="text-blue-600 font-bold text-base ">Report Details</span>
                         </div>

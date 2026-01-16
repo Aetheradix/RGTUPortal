@@ -30,9 +30,9 @@ const MonthWiseSyllabusMaster: React.FC = () => {
     return (
         <PageLayout title="Month Wise Syllabus Master">
             <div className="flex flex-col gap-4">
-                <div className="border border-orange-200 rounded-xl p-6 relative bg-white mt-4 shadow-sm">
-                    <div className="absolute -top-4 left-6 bg-white px-4 py-1">
-                        <span className="text-blue-600 font-bold text-sm">Define Monthly Syllabus</span>
+                <div className=" rounded-xl relative bg-white mb-4 shadow-sm">
+                    <div className=" bg-white ">
+                        <span className=" font-bold">Define Monthly Syllabus</span>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-4">
@@ -62,16 +62,16 @@ const MonthWiseSyllabusMaster: React.FC = () => {
                         />
                     </div>
 
-                    <div className="flex gap-4 mt-8 pt-4 border-t border-gray-100">
+                    <div className="flex gap-4  p-4 border-t border-gray-100">
                         <Button label="Save " onClick={() => setShowTable(true)} className="px-10 bg-[#00bfa5] border-none text-sm h-10 shadow-md" />
                         <Button label="Clear" className="p-button-danger p-button-outlined px-10 text-sm border-pink-200 text-pink-500 h-10" />
                     </div>
                 </div>
   
                 {showTable && (
-                    <div className="border border-orange-200 rounded-xl p-6 relative bg-white mt-8 mb-10 shadow-sm">
-                        <div className="absolute -top-4 left-6 bg-white px-4 py-1 ">
-                            <span className="text-blue-600 font-bold text-sm">Defined Syllabus List</span>
+                    <div className=" rounded-xl p-6 relative bg-white mt-8 mb-10 shadow-sm">
+                        <div className="absolute -top-4 left-6 bg-white ">
+                            <span className=" font-bold ">Defined Syllabus List</span>
                         </div>
                         <Table columns={columns} data={rows} className="custom-student-table" />
                     </div>

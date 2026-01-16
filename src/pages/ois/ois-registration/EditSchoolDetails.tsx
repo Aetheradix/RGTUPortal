@@ -77,7 +77,7 @@ const EditSchoolDetails: React.FC = () => {
       <div className="flex justify-between items-center mb-4">
       </div>
 
-      <div className="bg-white p-6 rounded-lg shadow-sm border border-orange-200 relative mb-6">
+      <div className="bg-white p-6 rounded-lg shadow-sm  relative mb-6">
         <span className="absolute -top-3 left-4 bg-white px-2 text-blue-600 font-bold text-sm">
           School Verification Request
         </span>
@@ -121,7 +121,7 @@ const EditSchoolDetails: React.FC = () => {
       </div>
 {/* 
       {isSearched && (
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-orange-200 relative mb-6">
+        <div className="bg-white p-6 rounded-lg shadow-sm  relative mb-6">
           <h3 className="absolute -top-3 left-6 bg-white px-3 text-blue-600 font-bold border-2 border-blue-600 rounded-full text-xs py-1">
           School Verification Request
         </h3>
