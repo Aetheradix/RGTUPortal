@@ -141,7 +141,7 @@ const GuestFacultySelection: React.FC = () => {
           <div className="flex justify-center mt-8">
             <Button 
                 label="Save Status" 
-                className="px-10 border-1 border-green-500" 
+                className="px-10 border border-green-500" 
                 style={{ backgroundColor: 'white', color: '#22C55E' }} 
             />
           </div>

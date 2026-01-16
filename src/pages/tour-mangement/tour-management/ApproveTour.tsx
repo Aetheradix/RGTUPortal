@@ -37,17 +37,17 @@ const ApproveTour: React.FC = () => {
     return (
       <div className="p-4 bg-gray-50 border-y border-gray-100 space-y-3">
         <div className="flex gap-4">
-          <span className="font-bold text-sm min-w-[100px]">No. of Days</span>
+          <span className="font-bold text-sm min-w-25">No. of Days</span>
           <span className="text-sm">{data.noOfDays}</span>
         </div>
         <div className="flex gap-4 items-center">
-          <span className="font-bold text-sm min-w-[100px]">Status</span>
+          <span className="font-bold text-sm min-w-25">Status</span>
           <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">
             {data.status}
           </span>
         </div>
         <div className="flex gap-4">
-          <span className="font-bold text-sm min-w-[100px]">Tour Purpose</span>
+          <span className="font-bold text-sm min-w-25">Tour Purpose</span>
           <span className="text-sm text-gray-600">{data.tourPurpose}</span>
         </div>
       </div>
