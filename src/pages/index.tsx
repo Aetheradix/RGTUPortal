@@ -13,6 +13,7 @@ import DepartmentEnquiryManagement from "./department-enquiry-management";
 import APRMS from "./employee-aprms";
 import EmployeeDirectoryManagement from "./employee-directory-management";
 import ExamManagement from "./exam-management";
+import FRMS from "./frms";
 import GenericPage from "./GenericPage";
 import GradationManagement from "./gradation-management";
 import GuestFacultyManagement from "./guest-faculty-management";
@@ -87,6 +88,7 @@ export default function AppFeature() {
         path="hostel-management-system/*"
         element={<HostelManagementSystem />}
       />
+      <Route path="frms/*" element={<FRMS />} />
 
       <Route path="gradation-management/*" element={<GradationManagement />} />
       <Route path="retirement-separation/*" element={<RetirementSeparation />} />
