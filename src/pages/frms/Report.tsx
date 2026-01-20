@@ -1,233 +1,245 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { Button } from "primereact/button";
-import { Column } from "primereact/column";
-import { DataTable } from "primereact/datatable";
-import { InputText } from "primereact/inputtext";
-import React, { useState } from "react";
+import { motion } from 'framer-motion';
+import { Button } from 'primereact/button';
+import { Column } from 'primereact/column';
+import { DataTable } from 'primereact/datatable';
+import { InputText } from 'primereact/inputtext';
+import { useState } from 'react';
 import {
-	FaCheck,
-	FaCloudUploadAlt,
-	FaExclamationTriangle
-} from "react-icons/fa";
-import * as XLSX from "xlsx";
-
-interface ReconciliationData {
-	invoiceNo: string;
-	tallyData: string;
-	physicalDocs: string;
-	digitalDocs: string;
-	bankDb: string;
-	matchCase: "Yes" | "Needs Review";
-	assetValue: string;
-}
+	FaBuilding,
+	FaCalendarAlt,
+	FaFileAlt,
+	FaFileExcel,
+	FaLayerGroup,
+	FaTrash,
+	FaUpload
+} from 'react-icons/fa';
+import { DatePicker, Dropdown } from '../../ui/shared';
+import { appointmentDepartmentMockData, sectionMasterMockData } from '../master-data-management/hr-master-data/data';
+import type { ReportEntry } from './useReportUpload';
+import { useReportUpload } from './useReportUpload';
 
 const Report = () => {
-	const [data, setData] = useState<ReconciliationData[]>([]);
+	const {
+		entries,
+		globalDocType,
+		setGlobalDocType,
+		globalDept,
+		setGlobalDept,
+		globalSection,
+		setGlobalSection,
+		globalDate,
+		setGlobalDate,
+		fileInputRef,
+		addManualEntry,
+		removeEntry,
+		updateEntry,
+		handleExcelUpload
+	} = useReportUpload();
+
 	const [isDragging, setIsDragging] = useState(false);
-	const [globalFilter, setGlobalFilter] = useState("");
+	const [globalFilter, setGlobalFilter] = useState('');
 
-	const handleFileUpload = (
-		e: React.ChangeEvent<HTMLInputElement> | React.DragEvent
-	) => {
-		let file: File | undefined;
+	const docTypeOptions = [
+		{ label: 'Invoice', value: 'Invoice' },
+		{ label: 'Receipt', value: 'Receipt' },
+		{ label: 'Purchase Order', value: 'Purchase Order' },
+		{ label: 'Reconciliation Report', value: 'Reconciliation Report' },
+		{ label: 'Bank Statement', value: 'Bank Statement' },
+		{ label: 'Tax Document', value: 'Tax Document' },
+	];
 
-		if ("files" in e.target && e.target.files) {
-			file = e.target.files[0];
-		} else if ("dataTransfer" in e && e.dataTransfer.files) {
-			file = e.dataTransfer.files[0];
-		}
+	const deptOptions = appointmentDepartmentMockData.map(d => ({
+		label: d.departmentNameEn,
+		value: d.departmentNameEn
+	}));
 
-		if (!file) return;
+	const sectionOptions = sectionMasterMockData.map(s => ({
+		label: s.sectionNameEn,
+		value: s.sectionNameEn
+	}));
 
-		const reader = new FileReader();
-		reader.onload = (evt) => {
-			const bstr = evt.target?.result;
-			const wb = XLSX.read(bstr, { type: "binary" });
-			const wsname = wb.SheetNames[0];
-			const ws = wb.Sheets[wsname];
-			const json = XLSX.utils.sheet_to_json(ws) as any[];
+	// const matchCaseBodyTemplate = (rowData: ReportEntry) => (
+	// 	<span className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[10px] font-bold w-fit ${rowData.matchCase === 'Yes' ? 'bg-emerald-50 text-emerald-700' : 'bg-rose-50 text-rose-700'
+	// 		}`}>
+	// 		{rowData.matchCase === 'Yes' ? <FaCheck /> : <FaExclamationTriangle />}
+	// 		{rowData.matchCase}
+	// 	</span>
+	// );
 
-			const mappedData: ReconciliationData[] = json.map((row: any) => ({
-				invoiceNo: row["Invoice No"] || row["Invoice"] || row["No"] || "N/A",
-				tallyData: row["Rgpv Tally data"] || row["Tally"] || "Pending",
-				physicalDocs:
-					row["Rgpv physical documents"] || row["Physical"] || "Missing",
-				digitalDocs:
-					row["Rgpv digital documents"] || row["Digital"] || "Missing",
-				bankDb: row["bank database"] || row["Bank"] || "Unverified",
-				matchCase: row["match case"]?.toLowerCase().includes("yes")
-					? "Yes"
-					: "Needs Review",
-				assetValue: row["asset value"] || row["Value"] || "0",
-			}));
+	const textInputTemplate = (rowData: ReportEntry, field: keyof ReportEntry) => (
+		<input
+			type="text"
+			value={rowData[field] as string}
+			onChange={(e) => updateEntry(rowData.id, field, e.target.value)}
+			className={`w-full bg-transparent border-none focus:ring-0 outline-none ${field === 'invoiceNo' || field === 'documentName' ? 'font-bold text-indigo-600' : 'text-slate-600'}`}
+			placeholder={`Enter ${field}...`}
+		/>
+	);
 
-			setData(mappedData);
-		};
-		reader.readAsBinaryString(file);
-	};
+	const dropdownTemplate = (rowData: ReportEntry, field: keyof ReportEntry, options: any[]) => (
+		<Dropdown
+			value={rowData[field] as any}
+			options={options}
+			onChange={(e) => updateEntry(rowData.id, field, e.value)}
+			placeholder={`Select ${field}`}
+			className="!border-none !bg-transparent !shadow-none text-xs"
+		/>
+	);
 
-	const matchCaseBodyTemplate = (rowData: ReconciliationData) => {
-		return (
-			<span
-				className={`
-          flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold w-fit
-          ${rowData.matchCase === "Yes"
-						? "bg-emerald-50 text-emerald-700"
-						: "bg-rose-50 text-rose-700"
-					}
-        `}
-			>
-				{rowData.matchCase === "Yes" ? (
-					<FaCheck className="text-[10px]" />
-				) : (
-					<FaExclamationTriangle className="text-[10px]" />
-				)}
-				{rowData.matchCase}
-			</span>
-		);
-	};
+	const assetValueBodyTemplate = (rowData: ReportEntry) => (
+		<div className="flex items-center gap-1 font-extrabold text-slate-900">
+			<span>₹</span>
+			<input
+				type="text"
+				value={rowData.assetValue}
+				onChange={(e) => updateEntry(rowData.id, 'assetValue', e.target.value)}
+				className="w-full bg-transparent border-none focus:ring-0 outline-none p-0"
+			/>
+		</div>
+	);
 
-	const assetValueBodyTemplate = (rowData: ReconciliationData) => {
-		return (
-			<span className="font-extrabold text-slate-900">
-				₹{rowData.assetValue}
-			</span>
-		);
-	};
-
-	const invoiceNoBodyTemplate = (rowData: ReconciliationData) => {
-		return (
-			<span className="font-bold text-indigo-600">{rowData.invoiceNo}</span>
-		);
-	};
+	const actionsBodyTemplate = (rowData: ReportEntry) => (
+		<button
+			onClick={() => removeEntry(rowData.id)}
+			className="p-2 text-rose-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-all"
+		>
+			<FaTrash />
+		</button>
+	);
 
 	const header = (
-		<div className="flex flex-wrap justify-between items-center gap-4">
-			<div className="relative flex-1  max-w-md">
-
+		<div className="flex flex-wrap justify-between items-center gap-4 px-2 py-1">
+			<div className="relative flex-1 max-w-md">
 				<InputText
-					type="search"
-					onInput={(e) => setGlobalFilter((e.target as HTMLInputElement).value)}
-					placeholder="Search in report..."
-					className="w-full bg-slate-50 border border-slate-100 rounded-xl py-2.5 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-indigo-500/10 focus:border-indigo-500/50 transition-all text-sm"
+					value={globalFilter}
+					onChange={(e) => setGlobalFilter(e.target.value)}
+					placeholder="Search in queue..."
+					className="w-full bg-white border border-slate-100 rounded-xl py-3 pl-12 pr-4 focus:ring-2 focus:ring-indigo-500/10 focus:border-indigo-500 transition-all text-sm shadow-sm"
 				/>
 			</div>
 			<div className="flex gap-3">
 				<Button
-					type="button"
-					icon="pi pi-filter"
-					label="Filter"
-					className="p-button-outlined p-button-secondary p-button-sm border-slate-100 bg-white hover:bg-slate-50 text-slate-700 rounded-xl font-semibold shadow-sm px-4 py-2"
+					icon="pi pi-plus"
+					label="Add Row"
+					onClick={addManualEntry}
+					className="p-button-outlined p-button-sm border-slate-200 text-slate-600 hover:border-indigo-500 hover:text-indigo-600 rounded-xl font-bold px-4"
 				/>
 				<Button
-					type="button"
-					icon="pi pi-file-excel"
-					label="Export"
-					className="p-button-sm bg-indigo-600 hover:bg-indigo-700 text-white border-none rounded-xl font-semibold shadow-md shadow-indigo-600/20 px-4 py-2"
+					icon="pi pi-upload"
+					label="Process All"
+					disabled={entries.length === 0}
+					className="p-button-sm bg-indigo-600 hover:bg-indigo-700 text-white border-none rounded-xl font-bold shadow-lg shadow-indigo-600/20 px-4"
 				/>
 			</div>
 		</div>
 	);
 
 	return (
-		<div className="p-8 min-h-screen bg-slate-50/50 text-slate-800 frms-report">
-			<div className="mb-10">
-				<h1 className="text-4xl font-extrabold tracking-tight text-slate-900 border-l-4 border-indigo-600 pl-4">
-					Financial Reconciliation Report
-				</h1>
-				<p className="text-slate-500 mt-2 ml-5">
-					Upload and analyze asset reconciliation data
-				</p>
-			</div>
-
-			{/* Upload Section */}
-			<motion.div
-				initial={{ opacity: 0, scale: 0.98 }}
-				animate={{ opacity: 1, scale: 1 }}
-				className={`
-          relative border-2 border-dashed rounded-3xl p-12 text-center transition-all shadow-sm
-          ${isDragging
-						? "border-indigo-500 bg-indigo-50/50"
-						: "border-slate-200 bg-white hover:border-indigo-300"
-					}
-          ${data.length > 0 ? "mb-8 py-10" : "mb-0"}
-        `}
-				onDragOver={(e) => {
-					e.preventDefault();
-					setIsDragging(true);
-				}}
-				onDragLeave={() => setIsDragging(false)}
-				onDrop={(e) => {
-					e.preventDefault();
-					setIsDragging(false);
-					handleFileUpload(e);
-				}}
-			>
-				<input
-					type="file"
-					accept=".xlsx, .xls"
-					onChange={handleFileUpload}
-					className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-				/>
-				<div className="flex flex-col items-center">
-					<div className="w-20 h-20 rounded-full bg-indigo-50 flex items-center justify-center mb-4">
-						<FaCloudUploadAlt className="text-4xl text-indigo-600" />
+		<div className="p-8 min-h-screen bg-slate-50/50 text-slate-800">
+			<div className="max-w-7xl mx-auto">
+				<div className="mb-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+					<div>
+						<h1 className="text-4xl font-extrabold tracking-tight text-slate-900 border-l-4 border-indigo-600 pl-4">
+							Document Upload Portal
+						</h1>
+						<p className="text-slate-500 mt-2 ml-5">Tell us which document you are uploading and configure batch settings.</p>
 					</div>
-					<h3 className="text-xl font-bold text-slate-900">
-						Drop your Excel file here
-					</h3>
-					<p className="text-slate-500 mt-2">
-						or click to browse from your computer
-					</p>
-				</div>
-			</motion.div>
-
-			<AnimatePresence>
-				{data.length > 0 && (
-					<motion.div
-						initial={{ opacity: 0, y: 10 }}
-						animate={{ opacity: 1, y: 0 }}
-						className="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm p-6"
+					<button
+						onClick={() => fileInputRef.current?.click()}
+						className="flex items-center gap-2 px-6 py-3 bg-white border border-slate-200 text-slate-700 rounded-2xl font-black text-sm hover:border-emerald-500 hover:text-emerald-600 transition-all shadow-sm group"
 					>
-						<DataTable
-							value={data}
-							paginator
-							rows={10}
-							header={header}
-							globalFilter={globalFilter}
-							//   responsiveLayout="stack"
-							breakpoint="960px"
-							className="p-datatable-sm"
-							emptyMessage="No matching records found"
-							currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-							paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
+						<FaFileExcel className="text-emerald-500 group-hover:scale-110 transition-transform" />
+						Import From Excel
+					</button>
+					<input
+						type="file"
+						ref={fileInputRef}
+						onChange={handleExcelUpload}
+						className="hidden"
+						accept=".xlsx, .xls"
+					/>
+				</div>
+
+				{/* Global Config Panel */}
+				<motion.div
+					initial={{ opacity: 0, y: -20 }}
+					animate={{ opacity: 1, y: 0 }}
+					className="bg-white border border-slate-100 p-8 rounded-[2rem] shadow-sm mb-10"
+				>
+					<div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+						<div className="space-y-3">
+							<label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] flex items-center gap-2">
+								<FaFileAlt className="text-blue-400" /> Document Type
+							</label>
+							<Dropdown value={globalDocType} options={docTypeOptions} onChange={(e) => setGlobalDocType(e.value)} placeholder="Type of Document" className="!rounded-2xl !border-slate-100" />
+						</div>
+						<div className="space-y-3">
+							<label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] flex items-center gap-2">
+								<FaBuilding className="text-indigo-400" /> Department
+							</label>
+							<Dropdown value={globalDept} options={deptOptions} onChange={(e) => setGlobalDept(e.value)} placeholder="Select Department" className="!rounded-2xl !border-slate-100" />
+						</div>
+						<div className="space-y-3">
+							<label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] flex items-center gap-2">
+								<FaLayerGroup className="text-emerald-400" /> Section
+							</label>
+							<Dropdown value={globalSection} options={sectionOptions} onChange={(e) => setGlobalSection(e.value)} placeholder="Select Section" className="!rounded-2xl !border-slate-100" />
+						</div>
+						<div className="space-y-3">
+							<label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] flex items-center gap-2">
+								<FaCalendarAlt className="text-rose-400" /> Effective Date
+							</label>
+							<DatePicker value={globalDate} onChange={(e) => setGlobalDate(e.value as Date)} className="!rounded-2xl" />
+						</div>
+					</div>
+				</motion.div>
+
+				{/* Upload & Table Section */}
+				<div
+					className={`
+						relative border-2 border-dashed rounded-[2.5rem] p-4 transition-all
+						${isDragging ? 'border-indigo-500 bg-indigo-50/50' : 'border-slate-200 bg-white shadow-sm'}
+					`}
+					onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
+					onDragLeave={() => setIsDragging(false)}
+					onDrop={(e) => { e.preventDefault(); setIsDragging(false); handleExcelUpload(e); }}
+				>
+					{entries.length > 0 ? (
+						<div className="animate-in fade-in zoom-in-95 duration-500">
+							<DataTable
+								value={entries}
+								header={header}
+								globalFilter={globalFilter}
+								className="p-datatable-sm overflow-hidden rounded-3xl"
+								responsiveLayout="scroll"
+								emptyMessage="No entries found."
+							>
+								<Column field="documentName" header="Document Name" body={(r: ReportEntry) => textInputTemplate(r, 'documentName')} sortable />
+								<Column field="documentType" header="Type" body={(r: ReportEntry) => dropdownTemplate(r, 'documentType', docTypeOptions)} sortable />
+								<Column field="invoiceNo" header="Invoice No" body={(r: ReportEntry) => textInputTemplate(r, 'invoiceNo')} sortable />
+								<Column field="department" header="Department" body={(r: ReportEntry) => dropdownTemplate(r, 'department', deptOptions)} sortable />
+								<Column field="section" header="Section" body={(r: ReportEntry) => dropdownTemplate(r, 'section', sectionOptions)} sortable />
+								<Column field="date" header="Date" body={(r: ReportEntry) => <DatePicker value={r.date} onChange={(e) => updateEntry(r.id, 'date', e.value)} className="!border-none" />} sortable />
+								<Column field="assetValue" header="Value" body={assetValueBodyTemplate} sortable />
+								<Column body={actionsBodyTemplate} style={{ width: '50px' }} />
+							</DataTable>
+						</div>
+					) : (
+						<div
+							className="py-32 flex flex-col items-center justify-center text-center cursor-pointer group"
+							onClick={() => fileInputRef.current?.click()}
 						>
-							<Column
-								field="invoiceNo"
-								header="Invoice No"
-								body={invoiceNoBodyTemplate}
-								sortable
-							/>
-							<Column field="tallyData" header="Tally Data" sortable />
-							<Column field="physicalDocs" header="Physical Docs" sortable />
-							<Column field="digitalDocs" header="Digital Docs" sortable />
-							<Column field="bankDb" header="Bank DB" sortable />
-							<Column
-								field="matchCase"
-								header="Match Case"
-								body={matchCaseBodyTemplate}
-								sortable
-							/>
-							<Column
-								field="assetValue"
-								header="Asset Value"
-								body={assetValueBodyTemplate}
-								sortable
-							/>
-						</DataTable>
-					</motion.div>
-				)}
-			</AnimatePresence>
+							<div className="w-24 h-24 bg-indigo-50 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-indigo-100 transition-all">
+								<FaUpload className="text-4xl text-indigo-600" />
+							</div>
+							<h3 className="text-2xl font-black text-slate-900">Which document are you uploading?</h3>
+							<p className="text-slate-500 mt-2 max-w-sm font-medium">
+								Drop your Excel file here or click to browse. We'll map it to the right department and section.
+							</p>
+						</div>
+					)}
+				</div>
+			</div>
 		</div>
 	);
 };
