@@ -11,6 +11,7 @@ import {
   FaCogs,
   FaComments,
   FaDatabase,
+  FaFileInvoiceDollar,
   FaGraduationCap,
   FaHandsHelping,
   FaHardHat,
@@ -72,6 +73,23 @@ const sidebarMenu = {
     route: "/home",
   },
   sidebar: [
+    {
+      module: "FRMS",
+      icon: FaFileInvoiceDollar,
+      route: "/frms",
+      subModules: [
+        {
+          subModule: "Dashboard",
+          route: "/frms/dashboard",
+          pages: [],
+        },
+        {
+          subModule: "Report",
+          route: "/frms/report",
+          pages: [],
+        },
+      ],
+    },
     {
       module: "Masters",
       icon: FaCogs,
@@ -438,6 +456,11 @@ const sidebarMenu = {
             {
               page: "Application Status",
               route: "/masters/grant-application/application-status",
+            },
+            {
+              page: "District Wise ACR Report",
+              route:
+                "/hrms/annual-confidential-report/district-wise-acr-report",
             },
           ],
         },
