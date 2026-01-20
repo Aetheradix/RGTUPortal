@@ -219,7 +219,7 @@ const Report = () => {
 								<Column field="invoiceNo" header="Invoice No" body={(r: ReportEntry) => textInputTemplate(r, 'invoiceNo')} sortable />
 								<Column field="department" header="Department" body={(r: ReportEntry) => dropdownTemplate(r, 'department', deptOptions)} sortable />
 								<Column field="section" header="Section" body={(r: ReportEntry) => dropdownTemplate(r, 'section', sectionOptions)} sortable />
-								<Column field="date" header="Date" body={(r: ReportEntry) => <DatePicker value={r.date} onChange={(e) => updateEntry(r.id, 'date', e.value)} className="!border-none" />} sortable />
+								<Column field="date" header="Date" body={(r: ReportEntry) => <DatePicker value={r.date} onChange={(e) => updateEntry(r.id, 'date', e.value)} className="border-none!" />} sortable />
 								<Column field="assetValue" header="Value" body={assetValueBodyTemplate} sortable />
 								<Column body={actionsBodyTemplate} style={{ width: '50px' }} />
 							</DataTable>
