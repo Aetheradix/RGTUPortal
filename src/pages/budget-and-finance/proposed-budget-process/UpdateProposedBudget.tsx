@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/set-state-in-effect */
-import React, { useState, useEffect, useRef } from "react";
-import PageLayout from "../../../components/PageLayout";
 import { Button } from "primereact/button";
-import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
+import { DataTable } from "primereact/datatable";
 import { Dropdown } from "primereact/dropdown";
 import { InputText } from "primereact/inputtext";
 import { Toast } from "primereact/toast";
+import React, { useEffect, useRef, useState } from "react";
+import PageLayout from "../../../components/PageLayout";
 
 interface UpdateBudgetData {
   srNo: number;
@@ -246,8 +246,8 @@ const UpdateProposedBudget: React.FC = () => {
                     value: "DTE",
                   },
                   {
-                    label: "Rajiv Gandhi Proudyogiki Vishwavidyalaya (RGPV)",
-                    value: "RGPV",
+                    label: "Devi Ahilya Vishwavidyalaya (DAVV), Indore",
+                    value: "DAVV",
                   },
                   {
                     label: "MPSSDEGB",

@@ -1,7 +1,7 @@
+import { Button } from 'primereact/button';
 import React, { useState } from 'react';
 import PageLayout from '../../../components/PageLayout';
-import { Button } from 'primereact/button';
-import { Input, Dropdown, Table, type TableColumn } from '../../../ui/shared';
+import { Dropdown, Input, Table, type TableColumn } from '../../../ui/shared';
 import { Textarea } from '../../../ui/shared/Input';
 
 interface CollegeTransferRow {
@@ -27,8 +27,8 @@ const facultyOptions = [
 ];
 
 const universityOptions = [
-  { label: 'Rajiv Gandhi Technological University (RGPV)', value: 'RGPV' },
   { label: 'Devi Ahilya Vishwavidyalaya (DAVV)', value: 'DAVV' },
+  { label: 'Rajiv Gandhi Technological University (RGPV)', value: 'RGPV' },
   { label: 'Barkatullah University (BU)', value: 'BU' },
   { label: 'Jiwaji University', value: 'Jiwaji' },
   { label: 'Vikram University', value: 'Vikram' },
@@ -103,16 +103,16 @@ const ApplyCollegeTransfer: React.FC = () => {
     { field: 'faculty', header: 'Faculty' },
     { field: 'currentUniversity', header: 'Current University' },
     { field: 'mobileNumber', header: 'Mobile' },
-     {
-          header: 'Action',
-          body: () => (
-            <div className="flex gap-2">
-              <Button icon="pi pi-pencil" className="p-button-rounded p-button-secondary p-button-sm" style={{ backgroundColor: '#6366F1' }} />
-              <Button icon="pi pi-trash" className="p-button-rounded p-button-danger p-button-sm" />
-            </div>
-          ),
-          field: '',
-        },
+    {
+      header: 'Action',
+      body: () => (
+        <div className="flex gap-2">
+          <Button icon="pi pi-pencil" className="p-button-rounded p-button-secondary p-button-sm" style={{ backgroundColor: '#6366F1' }} />
+          <Button icon="pi pi-trash" className="p-button-rounded p-button-danger p-button-sm" />
+        </div>
+      ),
+      field: '',
+    },
   ];
 
   const handleReset = () => {
@@ -127,16 +127,16 @@ const ApplyCollegeTransfer: React.FC = () => {
   return (
     <PageLayout title="Apply College Transfer">
       <form className="space-y-8 bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-        
+
         <div className="space-y-4">
           <h3 className="text-md font-bold text-indigo-700 border-b pb-2 flex items-center gap-2">
             <i className="pi pi-user"></i> Student Basic Details
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <Input label="Student Name" required value={formData.studentName} onChange={(e) => setFormData({...formData, studentName: e.target.value})} placeholder="Enter Student Name" />
-            <Input label="Enrollment No." required value={formData.enrollmentNo} onChange={(e) => setFormData({...formData, enrollmentNo: e.target.value})} placeholder="Enter Enrollment No." />
-            <Input label="Email ID" required value={formData.emailId} onChange={(e) => setFormData({...formData, emailId: e.target.value})} placeholder="Enter Email" />
-            <Input label="Mobile Number" required value={formData.mobileNumber} onChange={(e) => setFormData({...formData, mobileNumber: e.target.value})} placeholder="Enter Mobile No." />
+            <Input label="Student Name" required value={formData.studentName} onChange={(e) => setFormData({ ...formData, studentName: e.target.value })} placeholder="Enter Student Name" />
+            <Input label="Enrollment No." required value={formData.enrollmentNo} onChange={(e) => setFormData({ ...formData, enrollmentNo: e.target.value })} placeholder="Enter Enrollment No." />
+            <Input label="Email ID" required value={formData.emailId} onChange={(e) => setFormData({ ...formData, emailId: e.target.value })} placeholder="Enter Email" />
+            <Input label="Mobile Number" required value={formData.mobileNumber} onChange={(e) => setFormData({ ...formData, mobileNumber: e.target.value })} placeholder="Enter Mobile No." />
           </div>
         </div>
 
@@ -145,10 +145,10 @@ const ApplyCollegeTransfer: React.FC = () => {
             <i className="pi pi-building"></i> Current College Details
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <Dropdown label="Select Faculty" required options={facultyOptions} value={formData.currentFaculty} onChange={(e) => setFormData({...formData, currentFaculty: e.value})} placeholder="Select" />
-            <Dropdown label="Select University" required options={universityOptions} value={formData.currentUniversity} onChange={(e) => setFormData({...formData, currentUniversity: e.value})} placeholder="Select" />
-            <Dropdown label="Select Course" required options={courseOptions} value={formData.currentCourse} onChange={(e) => setFormData({...formData, currentCourse: e.value})} placeholder="Select" />
-            <Dropdown label="Select Semester" required options={semesterOptions} value={formData.currentSemester} onChange={(e) => setFormData({...formData, currentSemester: e.value})} placeholder="Select" />
+            <Dropdown label="Select Faculty" required options={facultyOptions} value={formData.currentFaculty} onChange={(e) => setFormData({ ...formData, currentFaculty: e.value })} placeholder="Select" />
+            <Dropdown label="Select University" required options={universityOptions} value={formData.currentUniversity} onChange={(e) => setFormData({ ...formData, currentUniversity: e.value })} placeholder="Select" />
+            <Dropdown label="Select Course" required options={courseOptions} value={formData.currentCourse} onChange={(e) => setFormData({ ...formData, currentCourse: e.value })} placeholder="Select" />
+            <Dropdown label="Select Semester" required options={semesterOptions} value={formData.currentSemester} onChange={(e) => setFormData({ ...formData, currentSemester: e.value })} placeholder="Select" />
           </div>
         </div>
 
@@ -157,10 +157,10 @@ const ApplyCollegeTransfer: React.FC = () => {
             <i className="pi pi-directions"></i> Transfer College Details
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <Dropdown label="Select Faculty" required options={facultyOptions} value={formData.transferFaculty} onChange={(e) => setFormData({...formData, transferFaculty: e.value})} placeholder="Select" />
-            <Dropdown label="Select University" required options={universityOptions} value={formData.transferUniversity} onChange={(e) => setFormData({...formData, transferUniversity: e.value})} placeholder="Select" />
-            <Dropdown label="Desired Course" required options={courseOptions} value={formData.desiredCourse} onChange={(e) => setFormData({...formData, desiredCourse: e.value})} placeholder="Select" />
-            <Dropdown label="Desired Semester" required options={semesterOptions} value={formData.transferSemester} onChange={(e) => setFormData({...formData, transferSemester: e.value})} placeholder="Select" />
+            <Dropdown label="Select Faculty" required options={facultyOptions} value={formData.transferFaculty} onChange={(e) => setFormData({ ...formData, transferFaculty: e.value })} placeholder="Select" />
+            <Dropdown label="Select University" required options={universityOptions} value={formData.transferUniversity} onChange={(e) => setFormData({ ...formData, transferUniversity: e.value })} placeholder="Select" />
+            <Dropdown label="Desired Course" required options={courseOptions} value={formData.desiredCourse} onChange={(e) => setFormData({ ...formData, desiredCourse: e.value })} placeholder="Select" />
+            <Dropdown label="Desired Semester" required options={semesterOptions} value={formData.transferSemester} onChange={(e) => setFormData({ ...formData, transferSemester: e.value })} placeholder="Select" />
           </div>
         </div>
 
@@ -177,9 +177,9 @@ const ApplyCollegeTransfer: React.FC = () => {
               <label className="text-sm font-medium text-gray-700">Supporting Docs *</label>
               <input type="file" className="text-sm border p-2 rounded w-full file:mr-4 file:py-1 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" />
             </div>
-            <Input label="Reason for Transfer" required value={formData.reason} onChange={(e) => setFormData({...formData, reason: e.target.value})} placeholder="Enter Reason" />
+            <Input label="Reason for Transfer" required value={formData.reason} onChange={(e) => setFormData({ ...formData, reason: e.target.value })} placeholder="Enter Reason" />
             <div className="flex flex-col gap-2">
-                 <Textarea label="Enter Description" required value={formData.description} onChange={(e) => setFormData({...formData, description: e.target.value})} placeholder="विवरण दर्ज करें" rows={1} />
+              <Textarea label="Enter Description" required value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} placeholder="विवरण दर्ज करें" rows={1} />
             </div>
           </div>
         </div>

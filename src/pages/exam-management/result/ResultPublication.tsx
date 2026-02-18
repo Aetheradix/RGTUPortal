@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from 'react';
 import PageLayout from '@/components/PageLayout';
-import { Card } from 'primereact/card';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
-import { Dropdown } from 'primereact/dropdown';
 import { Calendar } from 'primereact/calendar';
+import { Card } from 'primereact/card';
+import { Column } from 'primereact/column';
+import { DataTable } from 'primereact/datatable';
+import { Dropdown } from 'primereact/dropdown';
 import { Tag } from 'primereact/tag';
+import React, { useState } from 'react';
 
 interface ResultPublication {
   id: number;
@@ -25,7 +25,7 @@ interface ResultPublication {
 const publicationList: ResultPublication[] = [
   {
     id: 1,
-    university: 'Rajiv Gandhi Proudyogiki Vishwavidyalaya (RGPV), Bhopal',
+    university: 'Devi Ahilya Vishwavidyalaya (DAVV), Indore',
     college: 'Government Engineering College, Jabalpur',
     courseLevel: 'Under Graduate',
     course: 'B.Tech',
@@ -63,7 +63,7 @@ const publicationList: ResultPublication[] = [
 
 // Dropdown options
 const universityOptions = [
-  { label: 'RGPV, Bhopal', value: 'RGPV, Bhopal' },
+  { label: 'DAVV, Indore', value: 'DAVV, Indore' },
   { label: 'Dr. Harisingh Gour University, Sagar', value: 'Dr. Harisingh Gour University, Sagar' },
   { label: 'APS University, Rewa', value: 'APS University, Rewa' },
 ];

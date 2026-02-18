@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from "react";
 import PageLayout from "@/components/PageLayout";
-import { Card } from "primereact/card";
 import { Button } from "primereact/button";
-import { DataTable } from "primereact/datatable";
-import { Column } from "primereact/column";
-import { InputText } from "primereact/inputtext";
-import { Dropdown } from "primereact/dropdown";
 import { Calendar } from "primereact/calendar";
+import { Card } from "primereact/card";
+import { Column } from "primereact/column";
+import { DataTable } from "primereact/datatable";
+import { Dropdown } from "primereact/dropdown";
+import { InputText } from "primereact/inputtext";
 import { Tag } from "primereact/tag";
+import React, { useState } from "react";
 
 interface DuplicateMarksheet {
   id: number;
@@ -25,8 +25,8 @@ interface DuplicateMarksheet {
   reason: string;
 }
 const universityOptions = [
-  { label: "RGPV, Bhopal", value: "RGPV" },
   { label: "DAVV, Indore", value: "DAVV" },
+  { label: "RGPV, Bhopal", value: "RGPV" },
 ];
 
 const collegeOptions = [
@@ -100,39 +100,39 @@ const ApplyForDuplicateMarksheet: React.FC = () => {
             />
           </div>
 
- <DataTable
-  value={duplicateList}
-  paginator
-  rows={10}
-  showGridlines
-  dataKey="id"
-  className="p-datatable-sm"
-  expandedRows={expandedRows}
-  onRowToggle={(e) => setExpandedRows(e.data)}
-  rowExpansionTemplate={(row: DuplicateMarksheet) => (
-    <div className="p-4 bg-gray-50 grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
-      <div><strong>University:</strong> {row.university}</div>
-      <div><strong>College:</strong> {row.college}</div>
-      <div><strong>Course:</strong> {row.course}</div>
-      <div><strong>Exam Type:</strong> {row.examType}</div>
-      <div><strong>Issue Date:</strong> {row.issueDate}</div>
-      <div><strong>Application Date:</strong> {row.applicationDate}</div>
-      <div><strong>Fee:</strong> ₹{row.fee}</div>
-      <div><strong>Payment:</strong> <Tag value={row.paymentStatus} severity="success" /></div>
-      <div><strong>Status:</strong> <Tag value={row.status} severity="info" /></div>
-      <div className="md:col-span-2"><strong>Reason:</strong> {row.reason}</div>
-    </div>
-  )}
->
-  <Column expander style={{ width: "3rem" }} />
-  <Column
-    header="Sr No."
-    body={(_, o) => o.rowIndex + 1}
-    style={{ width: '80px' }}
-    sortable
-  />
-  <Column field="rollNo" header="Roll Number" sortable />
-</DataTable>
+          <DataTable
+            value={duplicateList}
+            paginator
+            rows={10}
+            showGridlines
+            dataKey="id"
+            className="p-datatable-sm"
+            expandedRows={expandedRows}
+            onRowToggle={(e) => setExpandedRows(e.data)}
+            rowExpansionTemplate={(row: DuplicateMarksheet) => (
+              <div className="p-4 bg-gray-50 grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+                <div><strong>University:</strong> {row.university}</div>
+                <div><strong>College:</strong> {row.college}</div>
+                <div><strong>Course:</strong> {row.course}</div>
+                <div><strong>Exam Type:</strong> {row.examType}</div>
+                <div><strong>Issue Date:</strong> {row.issueDate}</div>
+                <div><strong>Application Date:</strong> {row.applicationDate}</div>
+                <div><strong>Fee:</strong> ₹{row.fee}</div>
+                <div><strong>Payment:</strong> <Tag value={row.paymentStatus} severity="success" /></div>
+                <div><strong>Status:</strong> <Tag value={row.status} severity="info" /></div>
+                <div className="md:col-span-2"><strong>Reason:</strong> {row.reason}</div>
+              </div>
+            )}
+          >
+            <Column expander style={{ width: "3rem" }} />
+            <Column
+              header="Sr No."
+              body={(_, o) => o.rowIndex + 1}
+              style={{ width: '80px' }}
+              sortable
+            />
+            <Column field="rollNo" header="Roll Number" sortable />
+          </DataTable>
 
         </Card>
       )}

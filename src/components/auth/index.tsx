@@ -116,7 +116,7 @@ const AuthPage: React.FC<AuthPageProps> = ({
                   <div className="w-1.5 h-1.5 lg:w-2 lg:h-2 bg-white rounded-sm"></div>
                 </div>
               </div>
-              <span className="text-lg lg:text-2xl font-bold">RGPV ERP SYSTEM</span>
+              <span className="text-lg lg:text-2xl font-bold">DAVV ERP SYSTEM</span>
             </div>
 
             <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
@@ -183,7 +183,7 @@ const AuthPage: React.FC<AuthPageProps> = ({
                   <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
                 </div>
               </div>
-              <span className="text-sm font-bold text-purple-900">RGPV ERP</span>
+              <span className="text-sm font-bold text-purple-900">DAVV ERP</span>
             </div>
           </div>
 

@@ -51,6 +51,7 @@ const BudgetAllocationApprovalProcess: React.FC = () => {
   const districtOptions = [{ label: "Bhopal District", value: "Bhopal_Dist" }];
   const blockOptions = [{ label: "Phanda Block", value: "Phanda" }];
   const universityOptions = [
+    { label: "Devi Ahilya Vishwavidyalaya (DAVV)", value: "DAVV" },
     { label: "Barkatullah University (BU)", value: "BU" },
     { label: "Rajiv Gandhi Proudyogiki Vishwavidyalaya (RGPV)", value: "RGPV" },
   ];

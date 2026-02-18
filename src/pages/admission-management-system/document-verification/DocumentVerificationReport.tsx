@@ -1,11 +1,11 @@
+import { Button } from "primereact/button";
+import { Calendar } from "primereact/calendar";
+import { Column } from "primereact/column";
+import { DataTable, type DataTableValueArray } from "primereact/datatable";
+import { Dropdown, type DropdownChangeEvent } from "primereact/dropdown";
+import { InputText } from "primereact/inputtext";
 import React, { useState } from "react";
 import PageLayout from "../../../components/PageLayout";
-import { DataTable, type DataTableValueArray } from "primereact/datatable";
-import { Column } from "primereact/column";
-import { Button } from "primereact/button";
-import { InputText } from "primereact/inputtext";
-import { Dropdown, type DropdownChangeEvent } from "primereact/dropdown";
-import { Calendar } from "primereact/calendar";
 interface VerificationReport {
   id: number;
   enrollmentNo: string;
@@ -149,7 +149,7 @@ const DocVerificationReport: React.FC = () => {
               onChange={(e: DropdownChangeEvent) => setFilters({ ...filters, course: e.value })}
               placeholder="Select Course"
               className="w-full p-inputtext-sm"
-             
+
             />
           </div>
 
@@ -161,7 +161,7 @@ const DocVerificationReport: React.FC = () => {
               onChange={(e: DropdownChangeEvent) => setFilters({ ...filters, year: e.value })}
               placeholder="Select Year"
               className="w-full p-inputtext-sm"
-              
+
             />
           </div>
 
@@ -173,7 +173,7 @@ const DocVerificationReport: React.FC = () => {
               onChange={(e: DropdownChangeEvent) => setFilters({ ...filters, docName: e.value })}
               placeholder="Select Document"
               className="w-full p-inputtext-sm"
-              
+
             />
           </div>
           <div className="flex flex-col gap-1">
@@ -184,7 +184,7 @@ const DocVerificationReport: React.FC = () => {
               onChange={(e: DropdownChangeEvent) => setFilters({ ...filters, status: e.value })}
               placeholder="Select Status"
               className="w-full p-inputtext-sm"
-          
+
             />
           </div>
           <div className="flex flex-col gap-1">

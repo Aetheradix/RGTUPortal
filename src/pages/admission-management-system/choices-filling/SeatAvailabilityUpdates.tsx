@@ -1,12 +1,12 @@
+import { Button } from "primereact/button";
+import { Checkbox } from "primereact/checkbox";
+import { Column } from "primereact/column";
+import { DataTable } from "primereact/datatable";
+import { Dialog } from "primereact/dialog";
+import { Dropdown } from "primereact/dropdown";
+import { InputText } from "primereact/inputtext";
 import React, { useState } from "react";
 import PageLayout from "../../../components/PageLayout";
-import { DataTable } from "primereact/datatable";
-import { Column } from "primereact/column";
-import { Button } from "primereact/button";
-import { InputText } from "primereact/inputtext";
-import { Dropdown } from "primereact/dropdown";
-import { Checkbox } from "primereact/checkbox";
-import { Dialog } from "primereact/dialog";
 
 interface SeatData {
   id: number;
@@ -61,7 +61,7 @@ const SeatAvailability: React.FC = () => {
   const [seats, setSeats] = useState<SeatData[]>([
     {
       id: 1,
-      collegeName: "RGPV, Bhopal",
+      collegeName: "DAVV, Indore",
       courseName: "B.Tech",
       specialization: "Computer Science",
       totalSeats: 120,
@@ -90,7 +90,7 @@ const SeatAvailability: React.FC = () => {
   ]);
 
   const collegeOptions = [
-    "RGPV, Bhopal",
+    "DAVV, Indore",
     "MANIT, Bhopal",
     "IET DAVV, Indore",
     "SGSITS, Indore",
@@ -179,11 +179,10 @@ const SeatAvailability: React.FC = () => {
 
   const statusBodyTemplate = (rowData: SeatData) => (
     <span
-      className={`px-2 py-1 rounded text-xs font-bold ${
-        rowData.status === "Active"
-          ? "bg-green-100 text-green-700"
-          : "bg-red-100 text-red-700"
-      }`}
+      className={`px-2 py-1 rounded text-xs font-bold ${rowData.status === "Active"
+        ? "bg-green-100 text-green-700"
+        : "bg-red-100 text-red-700"
+        }`}
     >
       {rowData.status}
     </span>

@@ -1,7 +1,7 @@
+import { Button } from 'primereact/button';
 import React, { useState } from 'react';
 import PageLayout from '../../../components/PageLayout';
-import { Button } from 'primereact/button';
-import { Input, Dropdown, Table, type TableColumn } from '../../../ui/shared';
+import { Dropdown, Input, Table, type TableColumn } from '../../../ui/shared';
 import { DateInput, Textarea } from '../../../ui/shared/Input';
 
 interface TransferOutRow {
@@ -19,7 +19,7 @@ const dummyData: TransferOutRow[] = [
     sNo: 1,
     studentId: 'STU00123',
     studentName: 'Ankit Verma',
-    currentCollegeName: 'RGPV, Bhopal',
+    currentCollegeName: 'DAVV, Indore',
     currentCourseName: 'BCA',
     newCollegeName: 'IIT, Indore',
     newCourseName: 'MCA',
@@ -51,8 +51,8 @@ const AddTransferOut: React.FC = () => {
   });
 
   const disabledBoxStyle = {
-    backgroundColor: '#F3F4F6', 
-    color: '#4B5563', 
+    backgroundColor: '#F3F4F6',
+    color: '#4B5563',
     cursor: 'not-allowed',
     border: '1px solid #E5E7EB'
   };
@@ -64,16 +64,16 @@ const AddTransferOut: React.FC = () => {
     { field: 'currentCollegeName', header: 'Current College' },
     { field: 'newCollegeName', header: 'New College' },
     { field: 'newCourseName', header: 'New Course' },
-     {
-          header: 'Action',
-          body: () => (
-            <div className="flex gap-2">
-              <Button icon="pi pi-pencil" className="p-button-rounded p-button-secondary p-button-sm" style={{ backgroundColor: '#6366F1' }} />
-              <Button icon="pi pi-trash" className="p-button-rounded p-button-danger p-button-sm" />
-            </div>
-          ),
-          field: '',
-        },
+    {
+      header: 'Action',
+      body: () => (
+        <div className="flex gap-2">
+          <Button icon="pi pi-pencil" className="p-button-rounded p-button-secondary p-button-sm" style={{ backgroundColor: '#6366F1' }} />
+          <Button icon="pi pi-trash" className="p-button-rounded p-button-danger p-button-sm" />
+        </div>
+      ),
+      field: '',
+    },
   ];
 
   return (
@@ -81,75 +81,75 @@ const AddTransferOut: React.FC = () => {
       <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 mb-8">
         <div className="flex justify-between items-center mb-6 border-b pb-3">
           <h2 className="text-lg font-bold text-gray-700">Student Transfer Out Details</h2>
-          </div>
-        
+        </div>
+
         <form className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             <Input label="Student ID" value={formData.studentId} disabled style={disabledBoxStyle} />
             <Input label="Student Name" value={formData.studentName} disabled style={disabledBoxStyle} />
             <Input label="Current College" value={formData.currentCollegeName} disabled style={disabledBoxStyle} />
             <Dropdown label="Current Course" value={formData.currentCourseName} options={[]} disabled placeholder="B.Tech" style={disabledBoxStyle} />
-            
+
             <Dropdown label="New College Name" value={formData.newCollegeName} options={[]} disabled placeholder="IET-DAVV, Indore" style={disabledBoxStyle} />
 
-            <Dropdown 
-              label="New Course Name" 
-              required 
-              value={formData.newCourseName} 
-              options={[{ label: 'M.Tech', value: 'MTech' }, { label: 'Ph.D', value: 'PhD' }]} 
-              onChange={(e) => setFormData({...formData, newCourseName: e.value})} 
-              placeholder="Select Course" 
+            <Dropdown
+              label="New Course Name"
+              required
+              value={formData.newCourseName}
+              options={[{ label: 'M.Tech', value: 'MTech' }, { label: 'Ph.D', value: 'PhD' }]}
+              onChange={(e) => setFormData({ ...formData, newCourseName: e.value })}
+              placeholder="Select Course"
             />
 
-            <DateInput 
-              label="Transfer Request Date" 
-              required 
-              value={formData.transferRequestDate} 
-              onChange={(e) => setFormData({...formData, transferRequestDate: e.value as Date})} 
+            <DateInput
+              label="Transfer Request Date"
+              required
+              value={formData.transferRequestDate}
+              onChange={(e) => setFormData({ ...formData, transferRequestDate: e.value as Date })}
               showIcon
               placeholder="dd/mm/yyyy"
             />
 
-            <DateInput 
-              label="Transfer Approval Date" 
-              required 
-              value={formData.transferApprovalDate} 
-              onChange={(e) => setFormData({...formData, transferApprovalDate: e.value as Date})} 
+            <DateInput
+              label="Transfer Approval Date"
+              required
+              value={formData.transferApprovalDate}
+              onChange={(e) => setFormData({ ...formData, transferApprovalDate: e.value as Date })}
               showIcon
               placeholder="dd/mm/yyyy"
             />
 
-            <Input 
-              label="Credits Accepted" 
-              required 
-              value={formData.creditsAccepted} 
-              onChange={(e) => setFormData({...formData, creditsAccepted: e.target.value})} 
-              placeholder="Enter Credits" 
+            <Input
+              label="Credits Accepted"
+              required
+              value={formData.creditsAccepted}
+              onChange={(e) => setFormData({ ...formData, creditsAccepted: e.target.value })}
+              placeholder="Enter Credits"
             />
 
-            <Dropdown 
-              label="Transfer Status" 
-              required 
-              value={formData.transferStatus} 
-              options={[{ label: 'Approved', value: 'Approved' }, { label: 'Pending', value: 'Pending' }]} 
-              onChange={(e) => setFormData({...formData, transferStatus: e.value})} 
-              placeholder="Select Status" 
+            <Dropdown
+              label="Transfer Status"
+              required
+              value={formData.transferStatus}
+              options={[{ label: 'Approved', value: 'Approved' }, { label: 'Pending', value: 'Pending' }]}
+              onChange={(e) => setFormData({ ...formData, transferStatus: e.value })}
+              placeholder="Select Status"
             />
 
             <div className="flex flex-col gap-1">
               <label className="text-sm font-bold text-gray-700">View Documents</label>
-               <div className="flex gap-2">
-              <input type="text" value="transfer_letter.pdf" disabled className="text-xs p-2 rounded w-full border bg-gray-100 text-gray-500 italic" />
-                             <Button icon="pi pi-eye" className="p-button-indigo p-button-sm" style={{ backgroundColor: '#6366F1' }} />
+              <div className="flex gap-2">
+                <input type="text" value="transfer_letter.pdf" disabled className="text-xs p-2 rounded w-full border bg-gray-100 text-gray-500 italic" />
+                <Button icon="pi pi-eye" className="p-button-indigo p-button-sm" style={{ backgroundColor: '#6366F1' }} />
+              </div>
             </div>
-           </div>
 
             <div className="md:col-span-2">
-              <Textarea 
-                label="University Remarks" 
+              <Textarea
+                label="University Remarks"
                 required
-                value={formData.universityRemarks} 
-                onChange={(e) => setFormData({...formData, universityRemarks: e.target.value})} 
+                value={formData.universityRemarks}
+                onChange={(e) => setFormData({ ...formData, universityRemarks: e.target.value })}
                 placeholder="Enter University Remarks"
               />
             </div>
@@ -157,7 +157,7 @@ const AddTransferOut: React.FC = () => {
 
           <div className="flex gap-3 justify-center pt-4 border-t">
             <Button type="submit" label="Save " className="px-10" style={{ backgroundColor: '#6366F1', border: 'none' }} />
-            <Button type="button" label="Clear "  className="p-button-danger p-button-outlined px-10" />
+            <Button type="button" label="Clear " className="p-button-danger p-button-outlined px-10" />
           </div>
         </form>
       </div>

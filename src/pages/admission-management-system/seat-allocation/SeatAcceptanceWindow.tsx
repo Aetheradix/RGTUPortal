@@ -1,12 +1,12 @@
+import { Button } from "primereact/button";
+import { Calendar } from "primereact/calendar";
+import { Column } from "primereact/column";
+import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
+import { DataTable, type DataTableExpandedRows } from "primereact/datatable";
+import { Dropdown } from "primereact/dropdown";
+import { InputText } from "primereact/inputtext";
 import React, { useState } from "react";
 import PageLayout from "../../../components/PageLayout";
-import { Button } from "primereact/button";
-import { InputText } from "primereact/inputtext";
-import { Dropdown } from "primereact/dropdown";
-import { DataTable, type DataTableExpandedRows } from "primereact/datatable";
-import { Column } from "primereact/column";
-import { Calendar } from "primereact/calendar";
-import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
 
 interface SeatAcceptanceRecord {
   id: number;
@@ -22,7 +22,7 @@ interface SeatAcceptanceRecord {
 }
 
 const SeatAcceptanceWindow: React.FC = () => {
-  const [showForm, setShowForm] = useState<boolean>(false); 
+  const [showForm, setShowForm] = useState<boolean>(false);
   const [formTitle, setFormTitle] = useState<string>("Add Seat Acceptance");
   const [expandedRows, setExpandedRows] = useState<DataTableExpandedRows | undefined>(undefined);
   const [globalFilter, setGlobalFilter] = useState<string>("");
@@ -96,22 +96,22 @@ const SeatAcceptanceWindow: React.FC = () => {
     <div className="bg-white p-6 rounded shadow-sm border animate-fadein">
       <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4 border-b pb-4">
         <h2 className="text-xl font-bold text-gray-800">Seat Acceptance List</h2>
-        <Button 
-          label="Add Seat Acceptance" 
-          icon="pi pi-plus" 
-          className="p-button-sm p-button-success px-4" 
-          onClick={handleAddNew} 
+        <Button
+          label="Add Seat Acceptance"
+          icon="pi pi-plus"
+          className="p-button-sm p-button-success px-4"
+          onClick={handleAddNew}
         />
       </div>
 
       <div className="flex justify-end mb-4">
         <span className="p-input-icon-left w-full md:w-auto">
           <i className="pi pi-search" />
-          <InputText 
-            value={globalFilter} 
-            onChange={(e) => setGlobalFilter(e.target.value)} 
-            placeholder="Quick Search..." 
-            className="p-inputtext-sm w-full md:w-64" 
+          <InputText
+            value={globalFilter}
+            onChange={(e) => setGlobalFilter(e.target.value)}
+            placeholder="Quick Search..."
+            className="p-inputtext-sm w-full md:w-64"
           />
         </span>
       </div>

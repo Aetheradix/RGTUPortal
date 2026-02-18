@@ -1,12 +1,12 @@
+import { Button } from "primereact/button";
+import { Calendar } from "primereact/calendar";
+import { Column } from "primereact/column";
+import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
+import { DataTable, type DataTableExpandedRows } from "primereact/datatable";
+import { Dropdown } from "primereact/dropdown";
+import { InputText } from "primereact/inputtext";
 import React, { useState } from "react";
 import PageLayout from "../../../components/PageLayout";
-import { Button } from "primereact/button";
-import { InputText } from "primereact/inputtext";
-import { Dropdown } from "primereact/dropdown";
-import { DataTable, type DataTableExpandedRows } from "primereact/datatable";
-import { Column } from "primereact/column";
-import { Calendar } from "primereact/calendar";
-import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
 
 interface AllocationReportData {
   id: number;
@@ -29,7 +29,7 @@ const AllocationReport: React.FC = () => {
   const [showReport, setShowReport] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
 
-  const universities = ["RGPV, Bhopal", "Sagar University", "Barkatullah University"];
+  const universities = ["DAVV, Indore", "Sagar University", "Barkatullah University"];
   const colleges = ["MANIT, Bhopal", "IET-DAVV, Indore", "LNCT, Bhopal"];
   const courses = ["B.Tech", "M.Tech", "BCA", "MCA"];
   const categories = ["General", "OBC", "ST", "SC", "EWS"];
@@ -39,7 +39,7 @@ const AllocationReport: React.FC = () => {
     {
       id: 1,
       date: "21-Nov-2024",
-      universityName: "Rajiv Gandhi Proudyogiki Vishwavidyalaya (RGPV)",
+      universityName: "Devi Ahilya Vishwavidyalaya (DAVV), Indore",
       collegeName: "Institute of Engineering and Technology (IET), DAVV, Indore",
       courseName: "MCA",
       category: "OBC",
@@ -89,7 +89,7 @@ const AllocationReport: React.FC = () => {
   return (
     <PageLayout title="Allocation Report">
       <ConfirmDialog />
-      
+
       {!isEditing ? (
         <div className="animate-fade-in">
           <div className="bg-white p-6 rounded shadow-sm border mb-6">
@@ -132,11 +132,11 @@ const AllocationReport: React.FC = () => {
                 <h2 className="text-lg font-bold">Seat Allocation Report Result</h2>
                 <span className="p-input-icon-left">
                   <i className="pi pi-search" />
-                  <InputText 
-                    placeholder="Search..." 
-                    className="p-inputtext-sm" 
-                    value={globalFilter} 
-                    onChange={(e) => setGlobalFilter(e.target.value)} 
+                  <InputText
+                    placeholder="Search..."
+                    className="p-inputtext-sm"
+                    value={globalFilter}
+                    onChange={(e) => setGlobalFilter(e.target.value)}
                   />
                 </span>
               </div>
@@ -157,10 +157,10 @@ const AllocationReport: React.FC = () => {
                 <Column field="universityName" header="University Name" sortable />
                 <Column field="collegeName" header="College Name" sortable />
                 <Column field="courseName" header="Course Name" sortable />
-                <Column 
-                    header="Export" 
-                    body={() => <Button icon="pi pi-file-pdf" className="p-button-rounded p-button-danger p-button-text" />} 
-                    style={{ textAlign: 'center' }}
+                <Column
+                  header="Export"
+                  body={() => <Button icon="pi pi-file-pdf" className="p-button-rounded p-button-danger p-button-text" />}
+                  style={{ textAlign: 'center' }}
                 />
               </DataTable>
             </div>
@@ -169,8 +169,8 @@ const AllocationReport: React.FC = () => {
       ) : (
         <div className="bg-white p-6 rounded shadow-sm border animate-fade-in">
           <div className="flex justify-between items-center mb-6 border-b pb-3">
-             <h2 className="text-xl font-bold text-blue-800">Update Seat Acceptance Detail</h2>
-             <Button label="Back to Report" icon="pi pi-arrow-left" className="p-button-text p-button-sm" onClick={() => setIsEditing(false)} />
+            <h2 className="text-xl font-bold text-blue-800">Update Seat Acceptance Detail</h2>
+            <Button label="Back to Report" icon="pi pi-arrow-left" className="p-button-text p-button-sm" onClick={() => setIsEditing(false)} />
           </div>
 
           <div className="p-fluid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-2">
@@ -211,7 +211,7 @@ const AllocationReport: React.FC = () => {
               <Dropdown options={acceptanceStatus} placeholder="Select" className="p-inputtext-sm" />
             </div>
           </div>
-          
+
           <div className="flex gap-3 mt-8 border-t pt-4 justify-end">
             <Button label="Clear" icon="pi pi-refresh" className="p-button-outlined p-button-secondary w-32" />
             <Button label="Update Report" icon="pi pi-check" className="p-button-success w-40" onClick={confirmUpdate} />

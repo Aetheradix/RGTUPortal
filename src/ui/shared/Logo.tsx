@@ -17,7 +17,7 @@ const sizeMap = {
 
 const Logo: React.FC<LogoProps> = ({
   showText = true,
-  text = 'RGPV ERP SYSTEM',
+  text = 'DAVV ERP SYSTEM',
   size = 'md',
   variant = 'light',
   className = '',

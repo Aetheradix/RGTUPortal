@@ -129,7 +129,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, collapsed, onClose }) => {
               size="md"
               variant="light"
               showText={!collapsed}
-              text="RGPV ERP SYSTEM"
+              text="DAVV ERP SYSTEM"
               textClassName={`${collapsed ? 'lg:opacity-0 lg:w-0 lg:overflow-hidden lg:hidden' : 'opacity-100'}`}
             />
           </div>

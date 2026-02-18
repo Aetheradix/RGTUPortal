@@ -1,9 +1,9 @@
+import { Button } from "primereact/button";
+import { Column } from "primereact/column";
+import { DataTable } from "primereact/datatable";
+import { InputText } from "primereact/inputtext";
 import React, { useState } from "react";
 import PageLayout from "../../../components/PageLayout";
-import { InputText } from "primereact/inputtext";
-import { Button } from "primereact/button";
-import { DataTable } from "primereact/datatable";
-import { Column } from "primereact/column";
 
 interface PriorityChoice {
   srNo: number;
@@ -48,12 +48,12 @@ const StudentPreferencesReport: React.FC = () => {
       branch: "Electrical Engineering",
     },
     {
-        srNo: 5,
-        rollNo: "202310001",
-        instType: "Government",
-        instName: "University Institute of Technology (UIT RGPV)",
-        branch: "Information Technology",
-      },
+      srNo: 5,
+      rollNo: "202310001",
+      instType: "Government",
+      instName: "Devi Ahilya Vishwavidyalaya (DAVV), Indore",
+      branch: "Information Technology",
+    },
   ]);
 
   const handleSearch = () => {
@@ -92,7 +92,7 @@ const StudentPreferencesReport: React.FC = () => {
 
   return (
     <PageLayout title="Student Preferences Report">
-     
+
       <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 mb-5">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-end">
           <div className="flex flex-col gap-2">
@@ -137,10 +137,10 @@ const StudentPreferencesReport: React.FC = () => {
           </div>
           <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
             <div className="flex flex-column md:flex-row justify-between items-center mb-4 gap-3">
-                <h3 className="text-lg font-bold text-gray-800">
-                    Priority-wise Preferences
-                </h3>
-                {renderHeader()}
+              <h3 className="text-lg font-bold text-gray-800">
+                Priority-wise Preferences
+              </h3>
+              {renderHeader()}
             </div>
 
             <DataTable
@@ -170,11 +170,10 @@ const StudentPreferencesReport: React.FC = () => {
                 header="Institute Type"
                 body={(rowData) => (
                   <span
-                    className={`px-2 py-1 rounded text-[10px] font-bold uppercase ${
-                      rowData.instType === "Government"
+                    className={`px-2 py-1 rounded text-[10px] font-bold uppercase ${rowData.instType === "Government"
                         ? "bg-blue-100 text-blue-700"
                         : "bg-orange-100 text-orange-700"
-                    }`}
+                      }`}
                   >
                     {rowData.instType}
                   </span>
