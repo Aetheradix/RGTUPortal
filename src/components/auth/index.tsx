@@ -1,4 +1,5 @@
 import { useAuth } from '@/context/AuthContext';
+import { Logo } from '@/ui/shared';
 import { Eye, EyeOff, Shield, Sparkles, Zap } from 'lucide-react';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -67,6 +68,23 @@ const AuthPage: React.FC<AuthPageProps> = ({
     }
   };
 
+  const handleQuickLogin = async () => {
+    setLoading(true);
+    setError('');
+    try {
+      const ok = await login('admin@gmail.com', 'password');
+      if (ok) {
+        navigate(redirectTo, { replace: true });
+      } else {
+        setError('Invalid email or password');
+      }
+    } catch {
+      setError('Something went wrong. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const features = [
     {
       icon: <Shield className="w-6 h-6" />,
@@ -108,14 +126,15 @@ const AuthPage: React.FC<AuthPageProps> = ({
           {/* Logo & Title */}
           <div className="space-y-4">
             <div className="inline-flex items-center gap-2 lg:gap-3 bg-white/10 backdrop-blur-sm px-4 lg:px-6 py-2 lg:py-3 rounded-full border border-white/20">
-              <div className="w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-purple-400 to-pink-500 rounded-lg flex items-center justify-center flex-shrink-0">
-                <div className="grid grid-cols-2 gap-0.5">
+              {/* <div className="w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-purple-400 to-pink-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                <div className="grid grid-cols-2 gap-0.5"> */}
+              {/* <div className="w-1.5 h-1.5 lg:w-2 lg:h-2 bg-white rounded-sm"></div>
                   <div className="w-1.5 h-1.5 lg:w-2 lg:h-2 bg-white rounded-sm"></div>
                   <div className="w-1.5 h-1.5 lg:w-2 lg:h-2 bg-white rounded-sm"></div>
-                  <div className="w-1.5 h-1.5 lg:w-2 lg:h-2 bg-white rounded-sm"></div>
-                  <div className="w-1.5 h-1.5 lg:w-2 lg:h-2 bg-white rounded-sm"></div>
-                </div>
-              </div>
+                  <div className="w-1.5 h-1.5 lg:w-2 lg:h-2 bg-white rounded-sm"></div> */}
+              <Logo size="sm" showText={false} variant="light" className="bg-transparent" />
+              {/* </div>
+              </div> */}
               <span className="text-lg lg:text-2xl font-bold">DAVV ERP SYSTEM</span>
             </div>
 
@@ -282,6 +301,14 @@ const AuthPage: React.FC<AuthPageProps> = ({
                 ) : (
                   'Sign in to Dashboard'
                 )}
+              </button>
+
+              <button
+                onClick={handleQuickLogin}
+                disabled={loading}
+                className="w-full bg-white border-2 border-purple-500 text-purple-600 text-sm lg:text-base font-semibold py-3 lg:py-4 rounded-xl hover:bg-purple-50 transition-all duration-300 transform hover:-translate-y-0.5 mt-2"
+              >
+                Login as Admin
               </button>
 
               {/* Divider */}

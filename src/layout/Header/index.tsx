@@ -1,4 +1,5 @@
 import { useAuth } from '@/context/AuthContext';
+import { Logo } from '@/ui/shared';
 import { Bell, LogOut, Menu, Settings } from 'lucide-react';
 import React, { Suspense, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -28,6 +29,11 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
           <button onClick={onToggleSidebar} className="p-2 rounded-lg hover:bg-gray-100">
             <Menu className="w-6 h-6 text-gray-600" />
           </button>
+
+          <div className="flex items-center gap-2 lg:hidden">
+            <Logo size="sm" showText={false} variant="light" className="bg-transparent" />
+            <span className="font-bold text-gray-800 text-sm">DAVV ERP</span>
+          </div>
 
           <Suspense fallback={<div className="flex-1 max-w-2xl h-10 bg-gray-100 animate-pulse rounded-lg" />}>
             <SearchBar />
